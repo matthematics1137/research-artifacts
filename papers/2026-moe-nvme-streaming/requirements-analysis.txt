@@ -1,0 +1,2 @@
+# Analysis-only verification uses only the Python standard library.
+# Tested with CPython 3.12.3; minimum supported version: Python 3.11.

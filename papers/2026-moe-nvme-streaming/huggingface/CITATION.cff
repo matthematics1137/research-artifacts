@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Cite the report for scientific claims and the versioned artifact for frozen evidence."
+title: "llama.cpp Throughput for Qwen3.8-Flash-Next and gpt-oss-120b on a 62 GiB RAM Laptop — Reproducibility Artifact"
+type: dataset
+version: 1.0.0
+doi: "10.5281/zenodo.22314465"
+date-released: 2026-09-28
+authors:
+  - family-names: Schwartz
+    given-names: Matthew
+    orcid: "https://orcid.org/0009-0009-4171-7247"
+repository-code: "https://github.com/matthematics1137/research-artifacts/tree/moe-nvme-streaming-v1.0.0/papers/2026-moe-nvme-streaming"
+repository-artifact: "https://doi.org/10.5281/zenodo.22314465"
+url: "https://doi.org/10.5281/zenodo.22314465"
+keywords:
+  - mixture-of-experts
+  - memory mapping
+  - llama.cpp
+  - out-of-core inference
+  - inference throughput
+  - consumer hardware
+  - reproducibility
+preferred-citation:
+  type: report
+  title: "llama.cpp Throughput for Qwen3.8-Flash-Next and gpt-oss-120b on a 62 GiB RAM Laptop"
+  authors:
+    - family-names: Schwartz
+      given-names: Matthew
+      orcid: "https://orcid.org/0009-0009-4171-7247"
+  year: 2026
+  url: "https://github.com/matthematics1137/research-artifacts/blob/moe-nvme-streaming-v1.0.0/papers/2026-moe-nvme-streaming/paper/main.pdf"
+  institution:
+    name: Independent researcher

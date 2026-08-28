@@ -1,0 +1,330 @@
+% References for Paper 3 (unmodified mmap throughput baseline).
+%
+% Audited against primary records on 2026-08-29, with a current-development
+% freshness checks on 2026-09-03 and 2026-09-05. The bibliography is kept
+% deliberately narrow: architecture papers, the exact deployed artifacts and
+% engine revision, directly relevant offloading work, first-party development
+% records, and the evaluation-suite definitions.  GitHub discussions and pull
+% requests are labelled as development records rather than peer-reviewed work.
+
+% ---------------------------------------------------------------------------
+% MoE foundations and model architectures
+
+@misc{shazeer2017moe,
+  author        = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc V. and Hinton, Geoffrey E. and Dean, Jeff},
+  title         = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},
+  year          = {2017},
+  eprint        = {1701.06538},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.1701.06538},
+  url           = {https://arxiv.org/abs/1701.06538},
+}
+
+@misc{fedus2021switch,
+  author        = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  title         = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},
+  year          = {2021},
+  eprint        = {2101.03961},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2101.03961},
+  url           = {https://arxiv.org/abs/2101.03961},
+  note          = {Published in the Journal of Machine Learning Research, 2022},
+}
+
+@misc{dai2024deepseekmoe,
+  author        = {Dai, Damai and Deng, Chengqi and Zhao, Chenggang and Xu, R. X. and Gao, Huazuo and Chen, Deli and Li, Jiashi and Zeng, Wangding and Yu, Xingkai and Wu, Y. and Xie, Zhenda and Li, Y. K. and Huang, Panpan and Luo, Fuli and Ruan, Chong and Sui, Zhifang and Liang, Wenfeng},
+  title         = {{DeepSeekMoE}: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models},
+  year          = {2024},
+  eprint        = {2401.06066},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  doi           = {10.48550/arXiv.2401.06066},
+  url           = {https://arxiv.org/abs/2401.06066},
+}
+
+@misc{qwenflash2026,
+  author       = {{Qwen Team}},
+  title        = {{Qwen3.8-Flash-Next} Model Card},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/Qwen/Qwen3.8-Flash-Next/tree/de4b8e4d43b917e7706784d8bb445c9af86a3540},
+  note         = {Repository revision de4b8e4d43b917e7706784d8bb445c9af86a3540; accessed 2026-08-29},
+}
+
+@misc{unsloth2026flashnext,
+  author       = {{Unsloth}},
+  title        = {{Qwen3.8-Flash-Next} {GGUF} Quantizations},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/tree/d3bc75ee6ccef3efc1e228ec00a6cc2cdb1e2249/UD-IQ1_S},
+  note         = {Exact deployed tier: UD-IQ1\_S; repository revision d3bc75ee6ccef3efc1e228ec00a6cc2cdb1e2249; accessed 2026-08-29},
+}
+
+@misc{openai2025gptoss,
+  author        = {{OpenAI}},
+  title         = {{gpt-oss-120b} \& {gpt-oss-20b} Model Card},
+  year          = {2025},
+  eprint        = {2508.10925},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  doi           = {10.48550/arXiv.2508.10925},
+  url           = {https://arxiv.org/abs/2508.10925},
+  note          = {Official model repository: \url{https://huggingface.co/openai/gpt-oss-120b/tree/b5c939de8f754692c1647ca79fbf85e8c1e70f8a}},
+}
+
+@misc{ggmlorg2025gptossgguf,
+  author       = {{ggml-org}},
+  title        = {{gpt-oss-120b} {GGUF}},
+  year         = {2025},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/ggml-org/gpt-oss-120b-GGUF/blob/238abdd290bb874b90a5da1b4549881b7d05c091/gpt-oss-120b-MXFP4.gguf},
+  note         = {Exact deployed artifact: gpt-oss-120b-MXFP4.gguf; repository revision 238abdd290bb874b90a5da1b4549881b7d05c091; accessed 2026-08-29},
+}
+
+% ---------------------------------------------------------------------------
+% Engine, operating-system mechanism, and first-party development records
+
+@misc{gerganov2023llamacpp,
+  author       = {Gerganov, Georgi and {llama.cpp contributors}},
+  title        = {{llama.cpp}: {LLM} Inference in {C/C++}},
+  year         = {2023},
+  howpublished = {Software repository},
+  url          = {https://github.com/ggml-org/llama.cpp},
+  note         = {Qwen3.8 measurements used source revision \url{https://github.com/ggml-org/llama.cpp/commit/035e22731a7fd70b9854b3a2d64ec68e9b1a45d3}; accessed 2026-08-29},
+}
+
+@misc{llamacpp2026qwen4exppr,
+  author       = {{danielhanchen} and {llama.cpp contributors}},
+  title        = {model: add {Qwen3.8-Flash-Next} (qwen4exp)},
+  year         = {2026},
+  howpublished = {llama.cpp pull request 27742},
+  url          = {https://github.com/ggml-org/llama.cpp/pull/27742},
+  note         = {Merged 2026-08-27; merge commit 6c84c7d5d8833c6e0df69628f75a0f599797934e; the tested revision 035e22731a7fd70b9854b3a2d64ec68e9b1a45d3 is among the pull request's commits},
+}
+
+@manual{linuxmmap2026,
+  author       = {{Linux man-pages project}},
+  title        = {{mmap(2)}: Map Files or Devices into Memory},
+  year         = {2026},
+  organization = {Linux man-pages project},
+  url          = {https://man7.org/linux/man-pages/man2/mmap.2.html},
+  note         = {Accessed 2026-08-29},
+}
+
+@manual{linuxmm2026,
+  author       = {{Linux kernel contributors}},
+  title        = {Memory Management Concepts Overview},
+  year         = {2026},
+  organization = {The Linux Kernel documentation},
+  url          = {https://docs.kernel.org/admin-guide/mm/concepts.html},
+  note         = {Accessed 2026-08-29},
+}
+
+@misc{llamacppdiscussion18758,
+  author       = {{qdacsvx}},
+  title        = {{Mmap} Faster than Direct {I/O} for {MoE} Models},
+  year         = {2026},
+  howpublished = {llama.cpp community discussion 18758},
+  url          = {https://github.com/ggml-org/llama.cpp/discussions/18758},
+  note         = {Community development record opened 2026-01-11; accessed 2026-08-29; not peer reviewed},
+}
+
+@misc{llamacppdiscussion23324,
+  author       = {{kisasexypantera94}},
+  title        = {{RFC+PoC}: {MoE} Offload to Disk with On-Demand Paging},
+  year         = {2026},
+  howpublished = {llama.cpp community discussion 23324},
+  url          = {https://github.com/ggml-org/llama.cpp/discussions/23324},
+  note         = {Community development record opened 2026-05-19; accessed 2026-08-29; not peer reviewed},
+}
+
+@misc{llamacpp2026streampr,
+  author       = {{freedomljc} and {llama.cpp contributors}},
+  title        = {llama: Stream {MoE} Routed Experts from Disk},
+  year         = {2026},
+  howpublished = {llama.cpp pull request 25294},
+  url          = {https://github.com/ggml-org/llama.cpp/pull/25294},
+  note         = {Open development record created 2026-07-04; head revision 1248fd8fa8cfebaece5ea992e4d951c1e18bb9d5 as accessed 2026-08-29; not peer reviewed},
+}
+
+@misc{llamacpp2026moecachepr,
+  author       = {{csantiago78} and {llama.cpp contributors}},
+  title        = {llama: {GPU}-Resident {LRU} Cache for Host-Offloaded {MoE} Expert Weights},
+  year         = {2026},
+  howpublished = {llama.cpp pull request 27861},
+  url          = {https://github.com/ggml-org/llama.cpp/pull/27861},
+  note         = {Open draft; head bccbacdb8945680f1cfc7e6bffd1e59014705750, checked 2026-09-28; the RTX 3060 port is the comment by pjsgsy of 2026-09-18; not peer reviewed},
+}
+
+@misc{generelschwerz2026flashreproduction,
+  author       = {{GenerelSchwerz}},
+  title        = {{Qwen3.8 Flash Next} Reproduction Protocol},
+  year         = {2026},
+  howpublished = {Community llama.cpp fork benchmark and reproduction record},
+  url          = {https://github.com/GenerelSchwerz/llama.cpp/wiki/Qwen3.8-Flash-Next-Reproduction/162ffa89354b371b917a450da968cdd70acb4b95},
+  note         = {Runs dated 2026-09-14; wiki revision of 2026-09-21; engine revision 92593380102129b68a5c526d83cb59eb608a0b6d; accessed 2026-09-28; not peer reviewed or independently reproduced here},
+}
+
+@misc{alfarizy2026consumer,
+  author        = {Alfarizy, Alfarizy and Nguyen, Hung Truong Thanh and Richard, Ren\'{e} and Razavi-Far, Roozbeh and Cao, Hung},
+  title         = {Does Mixture-of-Experts Actually Help Inference on Consumer and Edge Hardware? An Empirical Study},
+  year          = {2026},
+  eprint        = {2606.21428},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.PF},
+  doi           = {10.48550/arXiv.2606.21428},
+  url           = {https://arxiv.org/abs/2606.21428v3},
+  note          = {Version 3, July 9, 2026; checked 2026-09-05},
+}
+
+@misc{lukallm2026flashbenchmark,
+  author       = {{lukaLLM}},
+  title        = {{Qwen3.8-Flash-Next} on One {RTX PRO 6000}},
+  year         = {2026},
+  howpublished = {Community benchmark repository},
+  url          = {https://github.com/lukaLLM/Qwen3.8-Flash-Next-VRAM-Benchmark/tree/518a52dafcfc707ca2f7d5349635350d0b2fe831},
+  note         = {Repository revision 518a52dafcfc707ca2f7d5349635350d0b2fe831; checked 2026-09-05; not peer reviewed},
+}
+
+% ---------------------------------------------------------------------------
+% Purpose-built MoE offloading systems
+
+@misc{edgemoe2023,
+  author        = {Yi, Rongjie and Guo, Liwei and Wei, Shiyun and Zhou, Ao and Wang, Shangguang and Xu, Mengwei},
+  title         = {{EdgeMoE}: Empowering Sparse Large Language Models on Mobile Devices},
+  year          = {2023},
+  eprint        = {2308.14352},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2308.14352},
+  url           = {https://arxiv.org/abs/2308.14352},
+}
+
+@misc{mixtraloffload2023,
+  author        = {Eliseev, Artyom and Mazur, Denis},
+  title         = {Fast Inference of Mixture-of-Experts Language Models with Offloading},
+  year          = {2023},
+  eprint        = {2312.17238},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2312.17238},
+  url           = {https://arxiv.org/abs/2312.17238},
+  note          = {Technical report},
+}
+
+@misc{hobbit2024,
+  author        = {Tang, Peng and Liu, Jiacheng and Hou, Xiaofeng and Pu, Yifei and Wang, Jing and Heng, Pheng-Ann and Li, Chao and Guo, Minyi},
+  title         = {{HOBBIT}: A Mixed Precision Expert Offloading System for Fast {MoE} Inference},
+  year          = {2024},
+  eprint        = {2411.01433},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2411.01433},
+  url           = {https://arxiv.org/abs/2411.01433},
+}
+
+@misc{slicemoe2025,
+  author        = {Choi, Yuseon and Kim, Sangjin and Oh, Jungjun and Park, Gwangtae and Kim, Byeongcheol and Yoo, Hoi-Jun},
+  title         = {{SliceMoE}: Bit-Sliced Expert Caching under Miss-Rate Constraints for Efficient {MoE} Inference},
+  year          = {2025},
+  eprint        = {2512.12990},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AR},
+  url           = {https://arxiv.org/abs/2512.12990},
+  note          = {Design Automation Conference 2026},
+}
+
+@misc{dymoe2026,
+  author        = {Huang, Yuegui and Fang, Zhiyuan and Luo, Weiqi and Wu, Ruoyu and Chen, Wuhui and Zheng, Zibin},
+  title         = {{DyMoE}: Dynamic Expert Orchestration with Mixed-Precision Quantization for Efficient {MoE} Inference on Edge},
+  year          = {2026},
+  eprint        = {2603.19172},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2603.19172},
+  url           = {https://arxiv.org/abs/2603.19172},
+}
+
+@misc{pagedweight2026,
+  author        = {Yang, Yuchen and Zhao, Yifan and Dasgupta, Anisha and Misailovic, Sasa},
+  title         = {{PagedWeight}: Efficient {MoE} {LLM} Serving with Dynamic Quality-Aware Weight Quantization},
+  year          = {2026},
+  eprint        = {2607.16184},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2607.16184},
+  url           = {https://arxiv.org/abs/2607.16184},
+}
+
+% ---------------------------------------------------------------------------
+% Evaluation suites
+
+@misc{hendrycks2021math,
+  author        = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},
+  title         = {Measuring Mathematical Problem Solving With the {MATH} Dataset},
+  year          = {2021},
+  eprint        = {2103.03874},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2103.03874},
+  url           = {https://arxiv.org/abs/2103.03874},
+  note          = {NeurIPS 2021},
+}
+
+@misc{chen2021humaneval,
+  author        = {Chen, Mark and others},
+  title         = {Evaluating Large Language Models Trained on Code},
+  year          = {2021},
+  eprint        = {2107.03374},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  doi           = {10.48550/arXiv.2107.03374},
+  url           = {https://arxiv.org/abs/2107.03374},
+}
+
+@misc{liu2023evalplus,
+  author        = {Liu, Jiawei and Xia, Chunqiu Steven and Wang, Yuyao and Zhang, Lingming},
+  title         = {Is Your Code Generated by {ChatGPT} Really Correct? Rigorous Evaluation of Large Language Models for Code Generation},
+  year          = {2023},
+  eprint        = {2305.01210},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  doi           = {10.48550/arXiv.2305.01210},
+  url           = {https://arxiv.org/abs/2305.01210},
+}
+
+@misc{cobbe2021gsm8k,
+  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  title         = {Training Verifiers to Solve Math Word Problems},
+  year          = {2021},
+  eprint        = {2110.14168},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  doi           = {10.48550/arXiv.2110.14168},
+  url           = {https://arxiv.org/abs/2110.14168},
+}
+
+@article{wilson1927,
+  author  = {Wilson, Edwin B.},
+  title   = {Probable Inference, the Law of Succession, and Statistical Inference},
+  journal = {Journal of the American Statistical Association},
+  year    = {1927},
+  volume  = {22},
+  number  = {158},
+  pages   = {209--212},
+  doi     = {10.1080/01621459.1927.10502953},
+  url     = {https://doi.org/10.1080/01621459.1927.10502953},
+}
+
+@misc{liang2026ssdllama,
+  author        = {Liang, Fangzhou and Shen, Yibin and Hu, Jianmin and Xu, Jiayang and Gao, Hanchi and Xu, Minxian and Meng, Zili},
+  title         = {{SSD-LLaMA}: {SSD}-Native Inference for Trillion-Parameter {MoE} at 1+ Token/s on a Consumer {PC}},
+  year          = {2026},
+  eprint        = {2609.18110},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DC},
+  url           = {https://arxiv.org/abs/2609.18110},
+  note          = {arXiv 2609.18110v1, submitted 2026-09-16},
+}
