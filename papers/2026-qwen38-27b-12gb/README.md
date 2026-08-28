@@ -15,14 +15,17 @@ or establish parity with bf16/Q8.
 
 ## Release identifiers
 
-- Version: 1.0.0, dated 2026-08-29
-- Version-of-record artifact: [doi:10.5281/zenodo.22166977](https://doi.org/10.5281/zenodo.22166977)
-- GitHub release: <https://github.com/matthematics1137/research-artifacts/releases/tag/qwen38-27b-12gb-v1.0.0>
-- Tagged source and results: <https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb>
+- Version: 1.0.1 correction, dated 2026-09-04
+- Version DOI: [doi:10.5281/zenodo.22314395](https://doi.org/10.5281/zenodo.22314395)
+- Previous, unchanged 1.0.0 artifact: [doi:10.5281/zenodo.22166977](https://doi.org/10.5281/zenodo.22166977)
+- GitHub release: <https://github.com/matthematics1137/research-artifacts/releases/tag/qwen38-27b-12gb-v1.0.1>
+- Tagged source and results: <https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb>
 - Hugging Face result dataset: <https://huggingface.co/datasets/mv1137/qwen38-27b-12gb-results>
 
-The DOI is assigned to the reviewed Zenodo deposition. The immutable DOI and
-GitHub tag identify version 1.0.0.
+The new DOI is version-specific; the old DOI identifies only 1.0.0. During
+prepublication review, a reserved DOI and planned tag need not resolve yet.
+See [CORRECTIONS.md](CORRECTIONS.md) for the changes.
+Original measurement rows and central conclusions are unchanged.
 
 ## Contents
 
@@ -47,7 +50,9 @@ must not be reconstructed after the fact.
 
 ## Five-minute analysis-only check
 
-No model, GPU, network access, or inference server is required.
+No model, GPU, or inference server is required. Install the pinned Python
+dependencies and populate the Tectonic cache first; that setup can require
+network access. Analysis and cached paper compilation then run offline.
 
 ```bash
 python3 check_claims.py
@@ -59,6 +64,12 @@ python3 paper/scripts/make_figures.py
 recomputes effective bpw, alternate MATH scores, Wilson intervals, matched-workload
 rates, and the four paper figures from the frozen files. It writes only inside
 the checked-out artifact.
+
+The release controller's network-isolated check uses a minimal system-Python
+environment for the claim verifier, correction tests, scorer self-test, and
+byte-matching PDF rebuild from shipped figures. Figure regeneration is a
+separate fresh-tree check using the pinned NumPy/Matplotlib dependencies;
+it was also verified to reproduce the final paper PDF byte for byte.
 
 To rebuild the paper after regenerating the figures:
 
@@ -98,9 +109,9 @@ author holds rights. Benchmark subsets and derived fields retain their upstream
 terms; see `THIRD_PARTY_NOTICES.md` and `LICENSE`.
 
 Use `CITATION.cff` for citation metadata. Cite the
-[immutable tagged report PDF](https://github.com/matthematics1137/research-artifacts/blob/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb/paper/main.pdf)
+[version-specific report PDF](https://github.com/matthematics1137/research-artifacts/blob/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb/paper/main.pdf)
 for scientific claims and
-[doi:10.5281/zenodo.22166977](https://doi.org/10.5281/zenodo.22166977) for the
+[doi:10.5281/zenodo.22314395](https://doi.org/10.5281/zenodo.22314395) for the
 frozen evidence bundle.
 
 ## AI assistance

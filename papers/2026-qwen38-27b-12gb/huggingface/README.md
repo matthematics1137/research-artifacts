@@ -6,6 +6,15 @@ tags:
   - llm-inference
   - quantization
   - consumer-gpu
+configs:
+  - config_name: summary
+    data_files:
+      - split: train
+        path: data/summary.jsonl
+  - config_name: throughput
+    data_files:
+      - split: train
+        path: data/throughput/phase1.jsonl
 ---
 
 # Qwen3.8-27B on 12 GB — result dataset
@@ -18,16 +27,17 @@ This dataset mirrors the redistribution-cleared measurements for “Deploying
 Qwen3.8-27B in 12 GB of VRAM: Accuracy and Throughput Across Quantized
 Inference Stacks.”
 
-The immutable version-of-record artifact is
-[doi:10.5281/zenodo.22166977](https://doi.org/10.5281/zenodo.22166977). The
-matching tagged GitHub source and analysis instructions are at
-<https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb>.
-The matching GitHub release is
-<https://github.com/matthematics1137/research-artifacts/releases/tag/qwen38-27b-12gb-v1.0.0>.
-This discovery dataset is
-<https://huggingface.co/datasets/mv1137/qwen38-27b-12gb-results>. The DOI is
-assigned to the reviewed Zenodo deposition. These links identify version 1.0.0,
-dated 2026-08-29.
+This is the 1.0.1 correction, dated 2026-09-04. Original measurement
+rows are unchanged; see [CORRECTIONS.md](CORRECTIONS.md). The previous 1.0.0
+artifact remains at [doi:10.5281/zenodo.22166977](https://doi.org/10.5281/zenodo.22166977).
+The correction's version DOI is
+[doi:10.5281/zenodo.22314395](https://doi.org/10.5281/zenodo.22314395).
+Version-specific source and analysis instructions are at
+<https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb>.
+The result dataset is
+<https://huggingface.co/datasets/mv1137/qwen38-27b-12gb-results>.
+In prepublication review copies, the reserved DOI and planned tag need not
+resolve until release; this card alone is not a publication receipt.
 
 This repository contains measurement records under mixed terms rather than a
 single blanket license. Original measurements and documentation are CC BY 4.0;
