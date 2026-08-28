@@ -1,0 +1,6 @@
+{"id": "needle_8k_25pct", "correct": true, "wall_s": 144.6, "completion_tokens": 133, "thinking_tokens_estimate": 114, "truncated": false, "raw_answer_excerpt": "Ilsa Brannigan"}
+{"id": "needle_8k_75pct", "correct": true, "wall_s": 143.66, "completion_tokens": 89, "thinking_tokens_estimate": 80, "truncated": false, "raw_answer_excerpt": "tamarink plum"}
+{"id": "needle_16k_25pct", "correct": true, "wall_s": 553.8, "completion_tokens": 96, "thinking_tokens_estimate": 87, "truncated": false, "raw_answer_excerpt": "Lanternwick Festival"}
+{"id": "needle_16k_75pct", "correct": true, "wall_s": 522.27, "completion_tokens": 104, "thinking_tokens_estimate": 65, "truncated": false, "raw_answer_excerpt": "The passphrase to the Halvorsen seed vault is **cobalt-heron-42**."}
+{"id": "needle_32k_25pct", "correct": false, "wall_s": 1202.2, "completion_tokens": null, "thinking_tokens_estimate": 0, "truncated": false, "raw_answer_excerpt": "", "error": "TimeoutError: timed out"}
+{"id": "needle_32k_75pct", "correct": false, "wall_s": 1202.2, "completion_tokens": null, "thinking_tokens_estimate": 0, "truncated": false, "raw_answer_excerpt": "", "error": "TimeoutError: timed out"}

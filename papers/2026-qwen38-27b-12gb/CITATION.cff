@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "Cite the paper for scientific claims and this artifact version for the frozen evidence."
+title: "Deploying Qwen3.8-27B in 12 GB of VRAM: Reproducibility Artifact"
+type: dataset
+authors:
+  - family-names: Schwartz
+    given-names: Matthew
+    orcid: "https://orcid.org/0009-0009-4171-7247"
+version: 1.0.0
+doi: "10.5281/zenodo.22166977"
+date-released: 2026-08-29
+repository-code: "https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb"
+repository-artifact: "https://doi.org/10.5281/zenodo.22166977"
+url: "https://doi.org/10.5281/zenodo.22166977"
+keywords:
+  - large language model inference
+  - post-training quantization
+  - VRAM-constrained deployment
+  - CPU offloading
+  - consumer GPUs
+  - Qwen3.8-27B
+preferred-citation:
+  type: report
+  title: "Deploying Qwen3.8-27B in 12 GB of VRAM: Accuracy and Throughput Across Quantized Inference Stacks"
+  authors:
+    - family-names: Schwartz
+      given-names: Matthew
+      orcid: "https://orcid.org/0009-0009-4171-7247"
+  year: 2026
+  url: "https://github.com/matthematics1137/research-artifacts/blob/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb/paper/main.pdf"
+  institution:
+    name: Independent researcher

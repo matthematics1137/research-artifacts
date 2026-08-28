@@ -1,0 +1,24 @@
+{
+  "python": "3.12.3",
+  "cuda_toolkit": "12.6.3",
+  "llama_cpp": {
+    "repository": "ggml-org/llama.cpp",
+    "commit": "1729ed5371cd1ac6f6d6f3226f8803b080042839",
+    "display_build": "b1-1729ed5",
+    "build_flags": [
+      "-DGGML_CUDA=ON",
+      "-DCMAKE_CUDA_ARCHITECTURES=89",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DLLAMA_CURL=OFF"
+    ]
+  },
+  "exllamav3": "1.4.3+cu128.torch2.10.0",
+  "tabbyapi": {
+    "repository": "theroyallab/tabbyAPI",
+    "associated_local_commit": "4a4f9f44820303593844f092d424bb7506008733",
+    "preservation_note": "The server log records ExLlamaV3 1.4.3 but not the TabbyAPI commit."
+  },
+  "numpy": "2.3.3",
+  "matplotlib": "3.10.6",
+  "tectonic": "0.17.0"
+}

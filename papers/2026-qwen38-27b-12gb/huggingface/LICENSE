@@ -1,0 +1,18 @@
+# License map
+
+Copyright (c) 2026 Matthew Schwartz.
+
+- Authored Python and shell code in this release is licensed under the MIT
+  License in `LICENSES/MIT.txt`.
+- The paper, original documentation, original figures, and measurement records
+  authored for this study are licensed under Creative Commons Attribution 4.0
+  International (CC BY 4.0), to the extent the author holds the relevant
+  rights: https://creativecommons.org/licenses/by/4.0/legalcode
+- Benchmark selections, test material, and fields derived from them remain
+  subject to the upstream notices listed in `THIRD_PARTY_NOTICES.md`.
+  Full copies of the applicable MIT and Apache-2.0 texts are in `LICENSES/`.
+- Model weights and inference engines are not redistributed by this release.
+  Their upstream repositories and licenses are identified in the notices and
+  environment manifests.
+
+Nothing in this file grants rights the author does not hold.
