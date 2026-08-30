@@ -1,0 +1,6 @@
+{"id": "needle_8k_25pct", "correct": true, "wall_s": 21.36, "completion_tokens": null, "thinking_tokens_estimate": 170, "truncated": false, "raw_answer_excerpt": "The cartographer Ilsa Brannigan"}
+{"id": "needle_8k_75pct", "correct": true, "wall_s": 15.39, "completion_tokens": null, "thinking_tokens_estimate": 72, "truncated": false, "raw_answer_excerpt": "The rare fruit cultivated in the Quillside greenhouse is called the **tamarink plum**."}
+{"id": "needle_16k_25pct", "correct": true, "wall_s": 26.85, "completion_tokens": null, "thinking_tokens_estimate": 68, "truncated": false, "raw_answer_excerpt": "The Lanternwick Festival"}
+{"id": "needle_16k_75pct", "correct": true, "wall_s": 30.19, "completion_tokens": null, "thinking_tokens_estimate": 68, "truncated": false, "raw_answer_excerpt": "The passphrase to the Halvorsen seed vault is **cobalt-heron-42**."}
+{"id": "needle_32k_25pct", "correct": true, "wall_s": 57.98, "completion_tokens": null, "thinking_tokens_estimate": 74, "truncated": false, "raw_answer_excerpt": "Petra Osgood"}
+{"id": "needle_32k_75pct", "correct": true, "wall_s": 56.93, "completion_tokens": null, "thinking_tokens_estimate": 70, "truncated": false, "raw_answer_excerpt": "ferrovine"}

@@ -1,0 +1,22 @@
+{
+  "measurement_window": "2026-08-25/2026-08-26",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "architecture": "Ada Lovelace",
+    "compute_capability": "8.9",
+    "vram_mib": 12282,
+    "power_limit_w": 80,
+    "background_desktop_vram_mib_approx": 900,
+    "nominal_memory_bandwidth_gb_s": 432
+  },
+  "cpu": "Intel Core i9-14900HX",
+  "ram": "62 GiB dual-channel DDR5",
+  "storage": "NVMe",
+  "operating_system": "Linux",
+  "kernel": "7.0.0",
+  "nvidia_driver": "580.167.08",
+  "limits": [
+    "Power mode, sustained clocks, and memory clock were not separately logged.",
+    "The reported fit boundary includes the desktop session and is not a headless maximum."
+  ]
+}
