@@ -1,0 +1,172 @@
+{
+  "schema": "paper4-p4r1-placement-readback-excerpt-v1",
+  "campaign": "P4R1 campaign-003",
+  "scope": "Privacy-sanitized exact engine log excerpts for the three Qwen automatic-fit cells. Line numbers are one-based in each cell's exact promoted stderr file.",
+  "provenance": {
+    "promotion_receipt": {
+      "schema": "paper4-p4r1-promotion-receipt-v1",
+      "bytes": 11976,
+      "sha256": "cfdce45819a8647c5c646c42e4561b3abd38c20b1b31afcceab33130adfe766d",
+      "source_campaign_receipt_sha256": "eb5b93399f184ce16363e326f26a931b16090801cd49a0fcd569ab77d6f2981f"
+    },
+    "engine": {
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "commit": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3",
+      "source_links": [
+        "https://github.com/ggml-org/llama.cpp/blob/035e22731a7fd70b9854b3a2d64ec68e9b1a45d3/common/fit.cpp#L531-L576",
+        "https://github.com/ggml-org/llama.cpp/blob/035e22731a7fd70b9854b3a2d64ec68e9b1a45d3/common/fit.cpp#L734-L875",
+        "https://github.com/ggml-org/llama.cpp/blob/035e22731a7fd70b9854b3a2d64ec68e9b1a45d3/src/llama-model.cpp#L1771-L1781"
+      ],
+      "semantics": [
+        "The automatic-fit layer count includes partial layers; n_part is the number of partial layers and those layers receive tensor-buffer overrides for overflow to another device or system memory.",
+        "The load_tensors offloaded-layer counter is printed from n_gpu_layers, whereas backend model-buffer sizes are printed separately.",
+        "Consequently, 49/49 is an engine layer-offload counter and does not by itself establish that every tensor or every model-buffer byte is physically resident in device memory."
+      ]
+    }
+  },
+  "cells": [
+    {
+      "alias": "P4R1-QWEN3MOE-Q4KM",
+      "quantization": "Q4_K_M",
+      "stderr": {
+        "bytes": 1991047,
+        "sha256": "3db30f2c4cf05fe02227f5ee7c74b1b1945e97639ea7ff3c23802079939cb77b"
+      },
+      "cell_receipt_sha256": "2d98b8f89f98e1256d68e22ab0bbda57b98446ec270ac5c615c7671af6ddbcd2",
+      "automatic_fit": {
+        "layer_count": 49,
+        "overflowing_layer_count_reported": true,
+        "overflowing_layer_count": 25,
+        "projected_device_memory_used_mib": 9975,
+        "projected_device_memory_free_mib": 1045
+      },
+      "layer_offload_counter": {
+        "offloaded": 49,
+        "total": 49
+      },
+      "backend_model_buffers_mib": {
+        "CPU_Mapped": 17447.91,
+        "CUDA0": 9370.43
+      },
+      "excerpts": [
+        {
+          "line": 78,
+          "text": "0.01.844.259 I common_params_fit_impl:   - CUDA0 (NVIDIA GeForce RTX 4080 Laptop GPU): 49 layers (25 overflowing),   9975 MiB used,   1045 MiB free"
+        },
+        {
+          "line": 215,
+          "text": "0.12.206.702 I load_tensors: offloaded 49/49 layers to GPU"
+        },
+        {
+          "line": 216,
+          "text": "0.12.207.258 I load_tensors:   CPU_Mapped model buffer size = 17447.91 MiB"
+        },
+        {
+          "line": 217,
+          "text": "0.12.207.258 I load_tensors:        CUDA0 model buffer size =  9370.43 MiB"
+        }
+      ]
+    },
+    {
+      "alias": "P4R1-QWEN3MOE-IQ2XXS",
+      "quantization": "IQ2_XXS",
+      "stderr": {
+        "bytes": 1977227,
+        "sha256": "0f57f9822b685c40ab31a8bcfb1e242e647a4e56dcf0f9f2f4a74d88a8a13a65"
+      },
+      "cell_receipt_sha256": "3f821abb2185d6a982ec55f9e2ac679ee2293a54f22396ee0684f104338d1705",
+      "automatic_fit": {
+        "layer_count": 49,
+        "overflowing_layer_count_reported": true,
+        "overflowing_layer_count": 2,
+        "projected_device_memory_used_mib": 9936,
+        "projected_device_memory_free_mib": 1084
+      },
+      "layer_offload_counter": {
+        "offloaded": 49,
+        "total": 49
+      },
+      "backend_model_buffers_mib": {
+        "CPU_Mapped": 9613.59,
+        "CUDA0": 9464.11
+      },
+      "excerpts": [
+        {
+          "line": 77,
+          "text": "0.01.743.692 I common_params_fit_impl:   - CUDA0 (NVIDIA GeForce RTX 4080 Laptop GPU): 49 layers ( 2 overflowing),   9936 MiB used,   1084 MiB free"
+        },
+        {
+          "line": 221,
+          "text": "0.12.839.490 I load_tensors: offloaded 49/49 layers to GPU"
+        },
+        {
+          "line": 222,
+          "text": "0.12.839.580 I load_tensors:   CPU_Mapped model buffer size =  9613.59 MiB"
+        },
+        {
+          "line": 223,
+          "text": "0.12.839.582 I load_tensors:        CUDA0 model buffer size =  9464.11 MiB"
+        }
+      ]
+    },
+    {
+      "alias": "P4R1-QWEN3MOE-IQ1M",
+      "quantization": "IQ1_M",
+      "stderr": {
+        "bytes": 1970217,
+        "sha256": "0d05c6664940fa795dbf050b0972056ea10ee47fa09f9b7de3b24b891f2d36f0"
+      },
+      "cell_receipt_sha256": "3c8fdb4cb694ff31850e8b7523fab432d406eea3ab952a738c9951a28c406715",
+      "automatic_fit": {
+        "overflowing_layer_count_reported": false,
+        "overflowing_layer_count": null,
+        "projected_device_memory_used_mib": 9536,
+        "projected_device_memory_free_mib": 1484,
+        "fit_adjustment": "no changes needed"
+      },
+      "layer_offload_counter": {
+        "offloaded": 49,
+        "total": 49
+      },
+      "backend_model_buffers_mib": {
+        "CPU_Mapped": 166.92,
+        "CUDA0": 9064.43
+      },
+      "excerpts": [
+        {
+          "line": 22,
+          "text": "0.00.364.419 I common_memory_breakdown_print: |   - CUDA0 (RTX 4080 Laptop GPU) | 11848 = 11020 + (9536 =  9064 +     384 +      88) +       -8708 |"
+        },
+        {
+          "line": 23,
+          "text": "0.00.364.419 I common_memory_breakdown_print: |   - Host                        |                   178 =   166 +       0 +      12                |"
+        },
+        {
+          "line": 24,
+          "text": "0.00.386.748 I common_params_fit_impl: projected to use 9536 MiB of device memory vs. 11020 MiB of free device memory"
+        },
+        {
+          "line": 25,
+          "text": "0.00.386.751 I common_params_fit_impl: will leave 1484 >= 1024 MiB of free device memory, no changes needed"
+        },
+        {
+          "line": 167,
+          "text": "0.06.065.079 I load_tensors: offloaded 49/49 layers to GPU"
+        },
+        {
+          "line": 168,
+          "text": "0.06.065.083 I load_tensors:   CPU_Mapped model buffer size =   166.92 MiB"
+        },
+        {
+          "line": 169,
+          "text": "0.06.065.084 I load_tensors:        CUDA0 model buffer size =  9064.43 MiB"
+        }
+      ]
+    }
+  ],
+  "interpretation_limits": [
+    "The 49/49 counter must not be restated as proof of full device-memory residency.",
+    "CPU_Mapped and CUDA0 are separate engine-reported backend model-buffer sizes. This record does not infer physical resident-set memory, memory overlap, or an additive total from those values.",
+    "The three Qwen cells did not have matched fit outcomes: Q4_K_M reported 25 overflowing layers, IQ2_XXS reported 2, and IQ1_M reported no fit adjustment while retaining a 166.92 MiB CPU_Mapped model buffer."
+  ]
+}

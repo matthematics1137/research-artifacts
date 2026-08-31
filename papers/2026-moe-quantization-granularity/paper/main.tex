@@ -1,0 +1,664 @@
+% P4R1-PROTOCOL-PROFILE: corrective-exploratory-v1
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[font=small,labelfont=bf]{caption}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\Urlmuskip=0mu plus 1mu\relax
+\emergencystretch=1.3em
+\renewcommand{\bibfont}{\scriptsize\raggedright}
+\setlength{\bibsep}{1pt}
+\usepackage[compact]{titlesec}
+\setlength{\textfloatsep}{14pt plus 2pt minus 4pt}
+
+\newif\ifdarkmode
+\ifdefined\DARKMODE \darkmodetrue \else \darkmodefalse \fi
+\providecommand{\PfourFigureRoot}{figures/p4r1}
+\providecommand{\PfourDarkStylePath}{darkstyle}
+\providecommand{\PfourBibliographyPath}{references}
+\ifdarkmode
+  \input{\PfourDarkStylePath}
+  \graphicspath{{\PfourFigureRoot/dark/}}
+\else
+  \graphicspath{{\PfourFigureRoot/}}
+\fi
+
+\newcommand{\singleauthorinfo}[1]{\\[0.25em]{\small #1}}
+\newcommand{\q}[1]{\texttt{#1}}
+\providecommand{\PfourClaimsPath}{derived-p4r1/claims}
+\input{\PfourClaimsPath}
+\ExplSyntaxOn
+\cs_new:Npn \PfourFileGb #1 { \fp_eval:n { round(#1/1000000000,1) } }
+\cs_new:Npn \PfourSizeReductionPct #1#2
+  { \fp_eval:n { round(100*(1-#1/#2),0) } }
+\ExplSyntaxOff
+
+\title{\textbf{Contrasting GSM8K Accuracy Across Low-Bit\\
+Mixtral and Qwen3 GGUFs}}
+
+\hypersetup{
+  pdftitle={Contrasting GSM8K Accuracy Across Low-Bit Mixtral and Qwen3 GGUFs},
+  pdfauthor={Matthew Schwartz},
+  pdfsubject={Paired evaluation of Q4, IQ2, and IQ1 GGUF deployments for Mixtral and Qwen3}
+}
+
+
+\author{Matthew Schwartz\singleauthorinfo{Independent researcher \enspace
+\href{https://orcid.org/0009-0009-4171-7247}{ORCID 0009-0009-4171-7247}
+\enspace \texttt{matthew.schwartz.research@gmail.com}}}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Choosing a smaller quantized model file saves storage and can change which
+layers fit on a GPU, but its accuracy must be measured. We evaluated Q4, IQ2,
+and IQ1 GGUF files for two mixture-of-experts models on the same
+\PfourPrimaryItemCount\ GSM8K arithmetic problems, using one llama.cpp build,
+fixed generation settings, and recorded CPU/GPU placements. Mixtral-8x7B scored
+\PfourMixtralHealthyAccuracyPct\%, \PfourMixtralIqTwoAccuracyPct\%, and
+\PfourMixtralIqOneAccuracyPct\% at Q4, IQ2, and IQ1, whereas
+Qwen3-30B-A3B scored \PfourQwenMoeHealthyAccuracyPct\%,
+\PfourQwenMoeIqTwoAccuracyPct\%, and \PfourQwenMoeIqOneAccuracyPct\%.
+Relative to Q4, the IQ2 and IQ1 files were
+\PfourSizeReductionPct{\PfourMixtralIqTwoFileBytes}{\PfourMixtralHealthyFileBytes}\%
+and
+\PfourSizeReductionPct{\PfourMixtralIqOneFileBytes}{\PfourMixtralHealthyFileBytes}\%
+smaller for Mixtral and
+\PfourSizeReductionPct{\PfourQwenMoeIqTwoFileBytes}{\PfourQwenMoeHealthyFileBytes}\%
+and
+\PfourSizeReductionPct{\PfourQwenMoeIqOneFileBytes}{\PfourQwenMoeHealthyFileBytes}\%
+smaller for Qwen. For Mixtral, Q4 was
+\PfourMixtralIqTwoDeltaPp\ and \PfourMixtralIqOneDeltaPp\ percentage points
+higher; both paired differences remained significant after Holm correction
+across four comparisons. Qwen's smaller-file point estimates exceeded Q4, but
+neither paired comparison was rejected after correction (both Holm
+$p=\PfourQwenMoeIqTwoHolmP$). This does not establish improvement or
+equivalence. The six-file benchmark documents substantially different
+observed size--accuracy tradeoffs. The lower tiers are not precision-matched
+between models, so the contrast cannot isolate architectural robustness.
+The experiment, P4R1, is corrective and not independent: it replaces a
+historical campaign with insufficient endpoint and model-identity provenance,
+whose outcomes and hypothesis were already known. Only the replacement
+measurements support the reported results.
+\end{abstract}
+
+\section{Introduction}
+
+People running models locally often choose among several GGUF files for the
+same model. In the two sets studied here, the Q4 file uses more storage and
+memory than the IQ2 or IQ1 files, while a smaller file may fit more of the
+model in limited GPU memory. That trade is worthwhile only if the smaller
+deployment remains accurate enough for the intended task. File size is visible
+before download; the accuracy cost is not.
+
+A quantization-tier label cannot supply that missing answer. Labels such as
+Q4, IQ2, and IQ1 name recipes, not a uniform precision for every tensor or a
+portable accuracy penalty. Prior work reports both strong low-bit MoE results
+and substantial variation across architectures and quantization methods
+\citep{kim2023moqe,frantar2023qmoe,moefragile2024,
+li2024quantmoebench}. The deployed result can also depend on the exact public
+file, inference engine, generation settings, and the engine's placement of
+model layers between GPU and system memory.
+
+We measure the size--accuracy tradeoff for Mixtral-8x7B and Qwen3-30B-A3B,
+using GSM8K grade-school arithmetic problems. Each of the six files answered the same
+\PfourPrimaryItemCount\ items through one llama.cpp build and a fixed
+generation and scoring protocol. Within each model, pairing correctness on the
+same questions shows both the aggregate difference and which deployment was
+correct when the other was not.
+
+The answer differs between the two tested models. Mixtral scored
+\PfourMixtralHealthyAccuracyPct\% at Q4,
+\PfourMixtralIqTwoAccuracyPct\% at IQ2, and
+\PfourMixtralIqOneAccuracyPct\% at IQ1; both Q4-to-low differences remained
+significant after correction for four comparisons. Qwen scored
+\PfourQwenMoeHealthyAccuracyPct\%, \PfourQwenMoeIqTwoAccuracyPct\%, and
+\PfourQwenMoeIqOneAccuracyPct\%, respectively. Its smaller-file point
+estimates were higher than Q4, although neither comparison was rejected after
+Holm correction. One model's result therefore does not tell a local user what
+the same tier choice will do for another model.
+The smaller files also use different effective precisions: Mixtral IQ1 and
+IQ2 have \PfourMixtralIqOneEffectiveBpw\ and
+\PfourMixtralIqTwoEffectiveBpw\ whole-file bits per parameter, while Qwen's
+corresponding files have \PfourQwenMoeIqOneEffectiveBpw\ and
+\PfourQwenMoeIqTwoEffectiveBpw. We compare the available files within each
+model; their labels do not define a matched cross-model intervention.
+
+The contribution is an item-paired benchmark of six named deployments,
+including the exact files, observed placement, and reproducible statistical
+analysis. Section~\ref{sec:methods} explains the corrective study design and
+defines the deployments. Section~\ref{sec:results} reports the paired results, and the
+remaining sections explain their practical meaning, limits, and
+reproducibility.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Study status and scope}
+
+P4R1 is a corrective exploratory experiment, not independent confirmation.
+A historical campaign did not preserve enough endpoint, model-identity, and
+placement provenance to attribute its saved scores reliably. We replaced all
+six GSM8K cells under a fixed protocol with explicit identity checks. The
+historical outcomes, sampled items, and motivating hypothesis were already
+known, which limits confirmatory interpretation even though the replacement
+protocol was frozen before execution. Only these six replacement cells
+contribute results. Historical MATH and HumanEval+ measurements are retained
+as audit context and are outside the present study.
+
+\subsection{Models and artifacts}
+
+The base checkpoints are Mixtral-8x7B-Instruct-v0.1 and
+Qwen3-30B-A3B-Instruct-2507, abbreviated below as Mixtral and Qwen.
+GGUF is the model container used by llama.cpp for CPU, GPU, and hybrid
+inference \citep{gerganov2023llamacpp}. Labels such as \q{IQ1\_M},
+\q{IQ2\_XXS}, and \q{Q4\_K\_M} name quantization recipes. They do not assert
+that every stored tensor uses one, two, or four bits. We therefore characterize
+each deployment by its exact file and by effective whole-file bits per stored
+parameter,
+\begin{equation}
+  \mathrm{effective\ file\ bpw}
+  = \frac{8\,(\mathrm{artifact\ bytes})}
+           {\mathrm{parameters\ enumerated\ from\ GGUF\ tensor\ shapes}}.
+\end{equation}
+This measure includes tensor-specific allocations and file overhead. It does
+not isolate routed-expert precision.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrl}
+\toprule
+Model & Artifact & File (GB) & Effective bpw & Experts/active & GPU layers/total \\
+\midrule
+Mixtral-8x7B
+ & Q4\_K\_M & \PfourFileGb{\PfourMixtralHealthyFileBytes}
+ & \PfourMixtralHealthyEffectiveBpw
+ & \PfourMixtralExperts/\PfourMixtralActiveExperts
+ & \PfourMixtralHealthyGpuLayers/33 \\
+ & IQ2\_XXS & \PfourFileGb{\PfourMixtralIqTwoFileBytes}
+ & \PfourMixtralIqTwoEffectiveBpw
+ & \PfourMixtralExperts/\PfourMixtralActiveExperts
+ & \PfourMixtralIqTwoGpuLayers/33 \\
+ & IQ1\_M & \PfourFileGb{\PfourMixtralIqOneFileBytes}
+ & \PfourMixtralIqOneEffectiveBpw
+ & \PfourMixtralExperts/\PfourMixtralActiveExperts
+ & \PfourMixtralIqOneGpuLayers/33 \\
+\addlinespace
+Qwen3-30B-A3B
+ & Q4\_K\_M & \PfourFileGb{\PfourQwenMoeHealthyFileBytes}
+ & \PfourQwenMoeHealthyEffectiveBpw
+ & \PfourQwenMoeExperts/\PfourQwenMoeActiveExperts
+ & 49/49 \\
+ & UD-IQ2\_XXS & \PfourFileGb{\PfourQwenMoeIqTwoFileBytes}
+ & \PfourQwenMoeIqTwoEffectiveBpw
+ & \PfourQwenMoeExperts/\PfourQwenMoeActiveExperts
+ & 49/49 \\
+ & UD-IQ1\_M & \PfourFileGb{\PfourQwenMoeIqOneFileBytes}
+ & \PfourQwenMoeIqOneEffectiveBpw
+ & \PfourQwenMoeExperts/\PfourQwenMoeActiveExperts
+ & 49/49 \\
+\bottomrule
+\end{tabular}
+\caption{The six P4R1 deployments, ordered from Q4 to the smaller IQ2 and IQ1
+files. Decimal GB is calculated from exact artifact bytes; effective bpw uses
+the whole file and enumerated
+GGUF tensor shapes. The GPU column is llama.cpp's offloaded-layer counter,
+which includes partially offloaded layers; 49/49 does not imply that all model
+weights reside in VRAM.}
+\label{tab:artifacts}
+\end{table}
+
+Mixtral uses repository revision
+\q{\PfourMixtralSourceRevision}; Qwen uses revision
+\q{\PfourQwenMoeSourceRevision}
+\citep{mradermacher2024mixtral,unsloth2025qwen3moe}. The campaign binds each
+basename, byte count, and SHA-256 digest to a frozen manifest and verifies
+content again after all six cells. The artifacts within a ladder share a base
+checkpoint and publisher. The ladders do not share model lineage,
+quantization recipe, effective precision, or expert geometry.
+
+\subsection{Dataset, generation, and scoring}
+
+The evaluation uses \PfourPrimaryItemCount\ examples sampled without
+replacement from the GSM8K test split \citep{cobbe2021gsm8k}. The source
+revision and subset digest are frozen. Sampling used Python's deterministic
+random generator with seed \PfourDatasetSamplingSeed. Every cell received the
+same item identifiers in the same evaluation contract.
+
+Each request contained one user message: the GSM8K question followed by
+``End your response with: Answer: <number>''. There was no separate system
+message and no worked-example prompt. The serving engine applied each
+artifact's chat template.
+
+All six cells used a 4096-token context, a maximum of
+\PfourPrimaryMaxTokens\ generated tokens, temperature \PfourTemperature,
+top-$p$ \PfourTopP, top-$k$ \PfourTopK, and concurrency
+\PfourConcurrency. The per-item sampler seed was 4,200,000 plus the integer
+GSM8K item suffix. Thus each item used the same per-item seed shared across
+all six artifacts. The request specified \q{\PfourReasoningEffort} reasoning
+effort. No cell dropped the chat-template keyword arguments.
+
+The scorer extracts the final numeric answer and compares it with the gold
+value using absolute and relative tolerance
+\PfourGsmScorerTolerance. Private outputs and gold answers were recomputed
+during promotion. A request failure, malformed response, parser failure, or
+missing answer was scored wrong rather than omitted. The promoted rows contain
+no request errors. The output limit was reached once in Mixtral IQ1 and once
+in each Qwen cell; these rows remain in their assigned cells.
+
+\subsection{Engine, placement, and lifecycle evidence}
+
+All cells ran through the same llama.cpp executable from clean commit
+\texttt{035e2273\allowbreak 1a7fd70b\allowbreak 9854b3a2\allowbreak
+d64ec68e\allowbreak 9b1a45d3}, built for CUDA 12.6 and the
+target GPU architecture. The executable, build cache, compiler tools, CUDA
+libraries, and driver were hashed or read back before inference. The machine
+used an Intel Core i9-14900HX, \PfourRamGib\,GiB of RAM, and an NVIDIA RTX
+4080 Laptop GPU with \PfourGpuVramMib\,MiB of VRAM at an
+\PfourGpuPowerW\,W power limit.
+
+Cells ran sequentially with one server at a time. Before scoring, the guard
+verified the intended model hash and endpoint alias, rejected stale listeners
+or foreign compute processes, and captured the engine's placement readback.
+Mixtral reported \PfourMixtralHealthyGpuLayers/33,
+\PfourMixtralIqTwoGpuLayers/33, and
+\PfourMixtralIqOneGpuLayers/33 GPU-offloaded layers for Q4, IQ2, and IQ1.
+Qwen's offloaded-layer counter was 49/49 for every tier, but it includes
+partially offloaded layers: automatic fitting reported system-memory overflow
+for 25 Q4 layers and two IQ2 layers. IQ1 required no fit adjustment. Thus the
+18.6\,GB Q4 file was not wholly GPU-resident, and the matching counters do not
+establish matched tensor placement. The artifact includes hash-bound startup
+excerpts and separate CPU-mapped and CUDA model-buffer readbacks; these buffer
+sizes are not additive measurements of physical resident memory.
+
+Each cell has a startup receipt, completion receipt, and shutdown receipt; the next
+server could not begin until the previous process tree and listener were gone.
+Post-campaign verification rechecked model content and the CUDA runtime.
+
+These controls address the specific failure of the historical run: P4R1 binds
+the response stream to the intended endpoint, exact model artifact, observed
+placement, and server lifecycle. They do not turn placement into a randomized
+factor. In particular, the Mixtral artifact tiers also differ in the number of
+layers placed on the GPU.
+
+\subsection{Statistical analysis}
+
+For each cell we report exact accuracy and a 95\% Wilson interval
+\citep{wilson1927}. Within a model, Q4 and each low tier answer the same
+items. Let $Y_{i,Q4}$ and $Y_{i,L}$ denote binary correctness for item $i$.
+The paired estimand is
+\begin{equation}
+  \widehat{\Delta}_{Q4-L}
+  = \frac{1}{n}\sum_{i=1}^{n}(Y_{i,Q4}-Y_{i,L}).
+\end{equation}
+Positive values mean Q4 scored higher; negative values mean the low tier
+scored higher.
+
+We report Newcombe method-10 paired 95\% intervals for
+$\widehat{\Delta}_{Q4-L}$ and exact two-sided McNemar tests
+\citep{newcombe1998paired,mcnemar1947}. Holm's step-down procedure controls
+family-wise error across exactly four comparisons
+\citep{holm1979}. The Newcombe intervals are pointwise; they are not adjusted
+simultaneous intervals. The family-wise decision follows the Holm-adjusted
+McNemar values. We did not predefine an equivalence margin, so failure to
+reject is not an equivalence result.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{The contrast across the six deployments}
+
+Table~\ref{tab:accuracy} and Figure~\ref{fig:scores} show the observed
+scores. The Mixtral results fall sharply as file size decreases; Qwen's
+smaller files have higher point estimates. The paired comparisons below
+quantify those differences and their uncertainty. They test each smaller file
+against its within-model Q4 anchor, rather than testing an interaction between
+model family and quantization tier.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llrr}
+\toprule
+Model & Artifact & Correct / \PfourPrimaryItemCount
+ & Accuracy [95\% Wilson interval] \\
+\midrule
+Mixtral-8x7B
+ & Q4\_K\_M & \PfourMixtralHealthyCorrect & \PfourMixtralHealthyAccuracyPct\%
+ [\PfourMixtralHealthyWilsonLowPct, \PfourMixtralHealthyWilsonHighPct] \\
+ & IQ2\_XXS & \PfourMixtralIqTwoCorrect & \PfourMixtralIqTwoAccuracyPct\%
+ [\PfourMixtralIqTwoWilsonLowPct, \PfourMixtralIqTwoWilsonHighPct] \\
+ & IQ1\_M & \PfourMixtralIqOneCorrect & \PfourMixtralIqOneAccuracyPct\%
+ [\PfourMixtralIqOneWilsonLowPct, \PfourMixtralIqOneWilsonHighPct] \\
+\addlinespace
+Qwen3-30B-A3B
+ & Q4\_K\_M & \PfourQwenMoeHealthyCorrect & \PfourQwenMoeHealthyAccuracyPct\%
+ [\PfourQwenMoeHealthyWilsonLowPct, \PfourQwenMoeHealthyWilsonHighPct] \\
+ & UD-IQ2\_XXS & \PfourQwenMoeIqTwoCorrect & \PfourQwenMoeIqTwoAccuracyPct\%
+ [\PfourQwenMoeIqTwoWilsonLowPct, \PfourQwenMoeIqTwoWilsonHighPct] \\
+ & UD-IQ1\_M & \PfourQwenMoeIqOneCorrect & \PfourQwenMoeIqOneAccuracyPct\%
+ [\PfourQwenMoeIqOneWilsonLowPct, \PfourQwenMoeIqOneWilsonHighPct] \\
+\bottomrule
+\end{tabular}
+\caption{GSM8K accuracy on the same \PfourPrimaryItemCount\ items in all six
+deployments. Wilson intervals describe individual cell proportions; paired
+comparisons appear in Table~\ref{tab:paired}.}
+\label{tab:accuracy}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.94\linewidth]{fig_matched.pdf}
+\caption{Within-model GSM8K scores. Bars share the same
+\PfourPrimaryItemCount\ items; whiskers are 95\% Wilson intervals. Overlap or
+non-overlap of these marginal intervals is not the paired test.}
+\label{fig:scores}
+\end{figure}
+
+\subsection{Mixtral: the smaller files scored lower}
+
+Choosing IQ2 saved
+\PfourSizeReductionPct{\PfourMixtralIqTwoFileBytes}{\PfourMixtralHealthyFileBytes}\%
+of the Q4 file size and reduced observed accuracy by
+\PfourMixtralIqTwoDeltaPp\ percentage points. Choosing IQ1 saved
+\PfourSizeReductionPct{\PfourMixtralIqOneFileBytes}{\PfourMixtralHealthyFileBytes}\%
+and reduced it by \PfourMixtralIqOneDeltaPp\ points. The paired evidence is
+asymmetric: Q4 answered \PfourMixtralIqTwoHealthyOnlyCorrect\ items that
+IQ2 missed, while IQ2 answered \PfourMixtralIqTwoLowOnlyCorrect\ that Q4
+missed. The corresponding Q4-only and IQ1-only counts were
+\PfourMixtralIqOneHealthyOnlyCorrect\ and \PfourMixtralIqOneLowOnlyCorrect.
+Thus the losses concern many of the same questions, rather than a comparison
+of unrelated samples.
+
+Both exact McNemar tests reject after Holm adjustment at $\alpha=0.05$.
+Table~\ref{tab:paired} reports the paired intervals and adjusted values;
+the unadjusted values are $p=\PfourMixtralIqTwoMcNemarP$ for IQ2 and
+$p=\PfourMixtralIqOneMcNemarP$ for IQ1. The measured storage saving came
+with a substantial GSM8K accuracy cost for these Mixtral deployments.
+
+\subsection{Qwen: the low-tier point estimates exceed Q4}
+
+Qwen IQ2 and IQ1 saved
+\PfourSizeReductionPct{\PfourQwenMoeIqTwoFileBytes}{\PfourQwenMoeHealthyFileBytes}\%
+and
+\PfourSizeReductionPct{\PfourQwenMoeIqOneFileBytes}{\PfourQwenMoeHealthyFileBytes}\%
+of the Q4 file size. Their scores exceeded Q4's
+\PfourQwenMoeHealthyCorrect/\PfourPrimaryItemCount:
+\PfourQwenMoeIqTwoLowOnlyCorrect\ discordant items favored IQ2 and
+\PfourQwenMoeIqOneLowOnlyCorrect\ favored IQ1, with none favoring Q4 in
+either comparison. In the Q4-minus-low convention, the differences are
+\PfourQwenMoeIqTwoDeltaPp\ and \PfourQwenMoeIqOneDeltaPp\ points.
+
+The unadjusted exact McNemar values are
+$p=\PfourQwenMoeIqTwoMcNemarP$ and $p=\PfourQwenMoeIqOneMcNemarP$.
+Both become $p=\PfourQwenMoeIqTwoHolmP$ after Holm adjustment, so neither
+comparison is rejected within the four-test family. The pointwise Newcombe
+intervals in Table~\ref{tab:paired} are not simultaneous intervals or
+inversions of the exact tests; they can exclude zero while the adjusted tests
+do not reject. These data record the higher low-tier point estimates without
+establishing either improvement or equivalence.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{llrrrr}
+\toprule
+Comparison & Signed direction & Q4--low pp [95\% CI] & Q4-only & Low-only
+ & Holm $p$ \\
+\midrule
+Mixtral IQ2 & \PfourMixtralIqTwoSignedDirection
+ & \PfourMixtralIqTwoDeltaPp\
+ [\PfourMixtralIqTwoRiskDiffCiLowPp, \PfourMixtralIqTwoRiskDiffCiHighPp]
+ & \PfourMixtralIqTwoHealthyOnlyCorrect
+ & \PfourMixtralIqTwoLowOnlyCorrect & \PfourMixtralIqTwoHolmP \\
+Mixtral IQ1 & \PfourMixtralIqOneSignedDirection
+ & \PfourMixtralIqOneDeltaPp\
+ [\PfourMixtralIqOneRiskDiffCiLowPp, \PfourMixtralIqOneRiskDiffCiHighPp]
+ & \PfourMixtralIqOneHealthyOnlyCorrect
+ & \PfourMixtralIqOneLowOnlyCorrect & $\PfourMixtralIqOneHolmP$ \\
+Qwen IQ2 & \PfourQwenMoeIqTwoSignedDirection
+ & \PfourQwenMoeIqTwoDeltaPp\
+ [\PfourQwenMoeIqTwoRiskDiffCiLowPp, \PfourQwenMoeIqTwoRiskDiffCiHighPp]
+ & \PfourQwenMoeIqTwoHealthyOnlyCorrect
+ & \PfourQwenMoeIqTwoLowOnlyCorrect & \PfourQwenMoeIqTwoHolmP \\
+Qwen IQ1 & \PfourQwenMoeIqOneSignedDirection
+ & \PfourQwenMoeIqOneDeltaPp\
+ [\PfourQwenMoeIqOneRiskDiffCiLowPp, \PfourQwenMoeIqOneRiskDiffCiHighPp]
+ & \PfourQwenMoeIqOneHealthyOnlyCorrect
+ & \PfourQwenMoeIqOneLowOnlyCorrect & \PfourQwenMoeIqOneHolmP \\
+\bottomrule
+\end{tabular}
+\caption{Paired Q4-to-low comparisons. The signed difference is Q4 accuracy
+minus low-tier accuracy. Intervals are paired Newcombe method 10; Holm values
+adjust the four exact two-sided McNemar tests.}
+\label{tab:paired}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.82\linewidth]{fig_delta.pdf}
+\caption{Paired Q4-minus-low differences with pointwise Newcombe method-10
+95\% intervals. Positive values favor Q4; negative values favor the lower
+tier. Family-wise decisions use the Holm-adjusted values in
+Table~\ref{tab:paired}.}
+\label{fig:differences}
+\end{figure}
+
+\section{Discussion}
+
+\subsection{The practical answer}
+
+The file-size tradeoff did not have one accuracy answer across the two tested
+models. The Mixtral Q4 file answered substantially more of the same questions
+correctly than either smaller file. For Qwen, both smaller-file point
+estimates exceeded Q4, but the Holm procedure did not reject either comparison
+at a 0.05 family-wise threshold. A local user therefore cannot transfer the
+Mixtral result to Qwen, or the Qwen point estimates to another model, from
+tier names alone.
+
+This is a deployment result, not a universal MoE quantization rule or a tested
+cross-model interaction. The paired tables add information that six marginal
+percentages would miss.
+Mixtral's Q4-only counts greatly exceed its low-only counts. The Qwen
+discordances in this sample all run in the opposite observed direction. That
+is why the results should be reported as signed paired outcomes. At the same
+time, only five or six Qwen items were discordant, so multiplicity-aware
+inference remains limited.
+
+\subsection{Why the contrast does not identify a cause}
+
+The effective precisions differ before architecture enters the comparison.
+Qwen's IQ1 file uses \PfourQwenMoeIqOneEffectiveBpw\ whole-file bpw,
+more than even Mixtral's IQ2 file at \PfourMixtralIqTwoEffectiveBpw\ bpw.
+The Q4 files are close in effective bpw, but matching that anchor does not
+match the amount or tensor-level distribution of compression at the lower
+tiers. This alone prevents reading the two ladders as a controlled test of
+low-bit robustness.
+
+The architectures also differ in expert granularity:
+\PfourMixtralExperts\ experts with \PfourMixtralActiveExperts\ active for
+Mixtral, versus \PfourQwenMoeExperts\ with
+\PfourQwenMoeActiveExperts\ active for Qwen. Fine-grained MoE designs are
+intended to partition capacity and routing more flexibly
+\citep{dai2024deepseekmoe,qwen2025qwen3}. It is plausible that expert width,
+routing alternatives, or tensor allocation changes how weight error affects a
+model.
+
+P4R1 compares one checkpoint from each family. Expert count changes together
+with training, model width, router design, active-expert count, quantization
+recipe, and placement. A follow-up could test granularity with multiple
+checkpoints and controlled precision and placement. The present observations
+cannot favor that explanation over the other differences.
+
+\subsection{Implications for local deployment}
+
+The smaller file can ease a storage or memory constraint and may allow more
+layers to be assigned to the GPU. The present Mixtral offload counters show
+that the engine assigned more layers to the GPU for IQ2 and IQ1 than
+for Q4. This paper measures the other half of the decision---whether the
+smaller deployment still answers the target task correctly enough. It does
+not combine speed and accuracy into a single recommendation.
+
+The relevant unit is the exact artifact and engine under its actual memory
+placement. Effective file bpw is more informative than a tier label, but it
+still cannot predict accuracy by itself. A sound local evaluation should hash
+the artifact, verify the serving endpoint and loaded model, record placement,
+keep the task and generation protocol fixed, and pair responses on the same
+items. This is especially important when the GPU cannot hold every artifact
+under the same placement.
+
+The result also cautions against treating Q4 as a universal quality ceiling.
+It is a practical within-model anchor. P4R1 includes no unquantized or
+near-lossless reference, so it cannot determine which artifact is closest to
+the underlying checkpoint's maximum GSM8K accuracy.
+
+\section{Threats to Validity}
+
+P4R1 is not independent. The historical outcomes, exact item set, and
+hypothesis were known before the corrective run. The protocol and analysis
+were frozen for P4R1, but the resulting evidence is best interpreted as a
+provenance-corrected exploratory measurement. An independent confirmation
+would require newly sampled items, prospectively fixed hypotheses, and
+preferably additional model families.
+
+The historical campaign's endpoint, model-identity, and placement provenance
+was insufficient. P4R1 repairs those links for the replacement measurements;
+it cannot validate the earlier scores. Historical MATH and HumanEval+ results
+remain outside this study.
+
+The evaluation covers one task, \PfourPrimaryItemCount\ items, one seeded
+decode per item and artifact, and one machine. It does not estimate
+run-to-run sampling variability. A few responses reached the output limit,
+although no promoted request was dropped and failures would have counted as
+wrong. GSM8K numeric-answer accuracy does not measure coding, factual recall,
+dialogue quality, calibration, or long-context behavior.
+
+The comparisons are deployed configurations rather than isolated
+quantization treatments. Mixtral placement changes from
+\PfourMixtralHealthyGpuLayers/33 layers at Q4 to
+\PfourMixtralIqTwoGpuLayers/33 and \PfourMixtralIqOneGpuLayers/33 at the
+lower tiers. Qwen's matching 49/49 counters also conceal different
+system-memory overflow and model-buffer allocations. Model family, artifact
+recipe, and tensor allocation differ across the ladders. Effective whole-file bpw
+does not reveal expert-tensor precision. Consequently, neither cross-model
+differences nor within-ladder changes identify a quantization algorithm's
+causal effect in isolation.
+
+Finally, the paired intervals are pointwise while the hypothesis decisions
+use Holm-adjusted $p$ values. No simultaneous confidence intervals,
+equivalence margin, power target, or preregistered minimum effect of interest
+was specified. The Qwen results therefore support their observed signed point
+estimates and the stated family-wise non-rejections, not interchangeability
+among artifacts.
+
+\section{Related Work}
+
+MoE architectures reduce active computation by routing tokens through a
+subset of experts \citep{fedus2021switch,jiang2024mixtral}. DeepSeekMoE and
+Qwen develop finer-grained expert organizations that motivate expert
+granularity as a variable of interest
+\citep{dai2024deepseekmoe,qwen2025qwen3}. Offloading work addresses the
+systems problem of serving MoEs when all weights do not reside in fast device
+memory \citep{eliseev2023offloading}.
+
+MoQE uses expert-aware mixed precision and an optimized runtime
+\citep{kim2023moqe}; QMoE co-designs a compression format and GPU decoding
+kernels \citep{frantar2023qmoe}. QuantMoE-Bench studies structure-aware bit
+allocation, and Q-Strata optimizes hierarchical mixed-precision allocation
+across MoE blocks \citep{li2024quantmoebench,lee2026qstrata}. These are
+quantization or execution methods. P4R1 introduces no corresponding optimizer,
+quantizer, or kernel.
+
+Colla-Q allocates expert precision using activation entropy and evaluates
+Mixtral at average bit-widths from 1.57 to 2.54 with GPTQ-based quantization
+\citep{shin2026collaq}. Its benchmark suite and bit allocation differ from
+the downloadable GGUFs tested here. Such method-level results reinforce why
+our Mixtral losses cannot be generalized to every low-bit representation of
+that model.
+
+Evaluations spanning models and quantizers already report substantial
+variation, including low-precision fragility in Mixtral
+\citep{moefragile2024,li2024quantmoebench}. A pre-existing public GGUF
+Quantization Benchmark also compares tiers within a model under llama.cpp and
+explicitly frames the practical question as the accuracy lost when moving to a
+smaller GGUF \citep{rougy2026ggufbench}. MoE-XBench evaluates the same
+Qwen3-30B-A3B-Instruct-2507 checkpoint in llama.cpp: its Q4\_K\_M GSM8K score
+is 0.833 against 0.836 in BF16. Its low-bit sensitivity analysis uses
+perplexity and excludes IQ1\_M from the primary quantization-sensitivity
+aggregate; the paper also reports IQ1\_M runtime measurements
+\citep{benazir2026moexbench}. It does not report the item-paired GSM8K
+comparison for our six public files. Even where the checkpoint and task
+overlap, its generated artifacts and evaluation protocol differ. The scores
+cannot be combined with ours or treated as a matched replication. We make no
+general priority claim for within-model GGUF benchmarking. The narrower
+contribution here is item-paired GSM8K evidence
+with artifact, engine, placement, and lifecycle provenance for these six exact
+deployments; it is not an expert-count scaling law.
+
+\section{Reproducibility and Artifact Availability}
+
+The version-1.0.0 reproducibility compendium is identified by
+\href{https://doi.org/10.5281/zenodo.22346482}{doi:10.5281/zenodo.22346482};
+the corresponding source and report use the
+\href{https://github.com/matthematics1137/research-artifacts/tree/moe-quantization-granularity-v1.0.0/papers/2026-moe-quantization-granularity}{versioned research-artifact directory}.
+It contains 600 sanitized item-level outcomes, frozen claims, exact model and
+dataset identities, engine/build and placement metadata, the replication
+sources, and this report. Benchmark questions and answers, response prose,
+model weights, runtime binaries, and private lifecycle logs are excluded.
+The evidence records bind the public projection to the checked private
+campaign; the public archive does not expose the private logs themselves.
+
+Analysis reproduction needs only Python's standard library. From the artifact
+root, \q{python3 check\_claims.py} recomputes the six cell counts, four
+discordance tables, Wilson and Newcombe intervals, exact McNemar values, and
+Holm adjustment. The paper rebuild uses the shipped figures and cached
+Tectonic 0.17.0. Full replication instead obtains the pinned upstream GSM8K
+revision and six model files, verifies their hashes, and runs one server at a
+time under the documented protocol. It requires compatible hardware,
+84.23\,GiB of model files, and local review of memory and thermal limits.
+
+\section{Conclusion}
+\enlargethispage{\baselineskip}
+
+Choosing a smaller GGUF file did not produce a uniform accuracy cost across
+the two tested models. On the same \PfourPrimaryItemCount\ GSM8K items,
+Mixtral scored \PfourMixtralHealthyAccuracyPct\% at Q4,
+\PfourMixtralIqTwoAccuracyPct\% at IQ2, and
+\PfourMixtralIqOneAccuracyPct\% at IQ1; both Q4-to-low paired differences
+remained significant after Holm correction. Qwen scored
+\PfourQwenMoeHealthyAccuracyPct\%, \PfourQwenMoeIqTwoAccuracyPct\%, and
+\PfourQwenMoeIqOneAccuracyPct\%. The smaller-file point estimates were above
+Q4, but neither comparison was rejected after Holm correction.
+The Qwen non-rejections establish neither improvement nor equivalence.
+
+The useful result is the measured storage--accuracy tradeoff for these exact
+files on this task. Lower-tier precision differs between the model families,
+and the experiment does not isolate an architectural cause. A broader
+recommendation requires newly sampled tasks and items, additional
+checkpoints, and matched precision and placement.
+
+\medskip
+\noindent\textbf{AI assistance.} Claude (Anthropic) assisted with evaluation
+harness development and experiment orchestration. Claude and Codex (OpenAI)
+assisted with evidence auditing, analysis and figure code, citation checking,
+and manuscript drafting and revision. Matthew Schwartz directed the research
+and is responsible for its methods, results, interpretation, claims,
+citations, rights, and released artifacts.
+
+\bibliographystyle{unsrtnat}
+\bibliography{\PfourBibliographyPath}
+
+\end{document}

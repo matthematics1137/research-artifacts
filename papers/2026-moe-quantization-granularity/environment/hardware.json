@@ -1,0 +1,36 @@
+{
+  "schema": "paper4-p4r1-hardware-v1",
+  "campaign": "P4R1 campaign-003",
+  "measurement_date": "2026-08-31",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "memory_total_mib": 12282,
+    "power_limit_w": 80.0,
+    "driver_version": "580.167.08"
+  },
+  "cpu": {
+    "model": "Intel(R) Core(TM) i9-14900HX",
+    "logical_cpus": 32,
+    "physical_cores": 24,
+    "sockets": 1
+  },
+  "memory": {
+    "mem_total_kib": 65445316
+  },
+  "storage": {
+    "filesystem": "ext4",
+    "model": "WD PC SN740 SDDPNQE-2T00-1102",
+    "transport": "nvme",
+    "rotational": 0
+  },
+  "operating_system": {
+    "pretty_name": "Ubuntu 24.04.3 LTS",
+    "kernel": "Linux 7.0.0-29-generic x86_64"
+  },
+  "limits": [
+    "This is one laptop host, not a portable performance characterization.",
+    "P4R1 recorded the engine-reported offloaded-layer counter for every cell.",
+    "Mixtral counters changed across files; Qwen's equal 49/49 counters included 25 overflowing layers for Q4 and two for IQ2. They do not establish complete GPU weight residency or matched tensor placement. See placement_readback_excerpt.json for exact source-bound overflow and separate buffer-allocation readbacks."
+  ],
+  "provenance": "Privacy-sanitized exact pre-campaign readback, bound to the P4R1 host receipt."
+}
