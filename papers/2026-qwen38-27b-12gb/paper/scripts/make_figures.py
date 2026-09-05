@@ -184,10 +184,14 @@ def grid_x(ax):
     ax.set_axisbelow(True)
 
 # ================================================================ FIG 1: ladder
-# Controlled llama-bench tg128 numbers (server tg agreed within +-0.4).
+# Controlled llama-bench tg128; matching draft-off server rates differ by <=0.73.
+sys.path.insert(0, ROOT)
+from correction_metrics import mtp_metrics
+mtp = mtp_metrics()
+mtp_low, mtp_high = mtp["decode_min"], mtp["decode_max"]
 ladder = [
     # label, tok/s, residency ('full'/'partial'), note
-    ("UD-IQ2_XXS + MTP (GPU draft)", 30.9, "full", "48–50 on math/code"),
+    ("UD-IQ2_XXS + MTP (GPU draft)", 30.9, "full", f"{mtp_low:.2f}–{mtp_high:.2f} MATH"),
     ("UD-IQ2_XXS",                    25.5, "full", ""),
     ("UD-IQ2_S",                      24.4, "full", ""),
     ("UD-Q2_K_XL  (61/65)",           16.6, "partial", ""),
@@ -206,13 +210,13 @@ for y, (lab, v, res_, note) in zip(ys, ladder):
     txt = f"{v:.1f}"
     ax.text(v + 0.45, y, txt, va="center", ha="left", fontsize=8, color=INK)
     if note:  # MTP content-dependence range marker
-        ax.plot([48, 50], [y, y], color=BLUE, lw=2, solid_capstyle="round")
-        ax.plot([v + 2.6, 47.2], [y, y], color=AXIS, lw=0.7)
-        ax.text(50.9, y, note, va="center", ha="left", fontsize=7.5, color=INK2)
+        ax.plot([mtp_low, mtp_high], [y, y], color=BLUE, lw=2, solid_capstyle="round")
+        ax.plot([v + 2.6, mtp_low - 0.8], [y, y], color=AXIS, lw=0.7)
+        ax.text(mtp_high + 0.9, y, note, va="center", ha="left", fontsize=7, color=INK2)
 ax.set_yticks(ys)
 ax.set_yticklabels([l for l, *_ in ladder], fontsize=8)
 ax.set_xlabel("decode speed (tokens/s), ctx 8192, KV q8_0")
-ax.set_xlim(0, 69)
+ax.set_xlim(0, 75)
 ax.set_ylim(-0.65, len(ladder) - 0.35)
 grid_x(ax)
 from matplotlib.patches import Patch
@@ -277,13 +281,13 @@ plt.close(fig)
 
 # ================================================================ FIG 3: original->alternate
 order = [  # bottom-to-top display order by effective bpw
-    ("UD-Q4_K_XL (5.1 bpw)",        "UD-Q4_K_XL-ngl33-effmed"),
-    ("UD-IQ3_XXS (3.2 bpw)",        "UD-IQ3_XXS-ngl54-effmed"),
-    ("bartowski IQ2_S (3.0 bpw)",   "bart-IQ2_S-ngl59-effmed"),
-    ("EXL3 2.0 bpw (3.03 eff.)",    "EXL3-2.0bpw-effmed"),
-    ("UD-IQ2_S, xhigh (2.5 bpw)",   "UD-IQ2_S-effxhigh"),
-    ("UD-IQ2_S (2.5 bpw)",          "UD-IQ2_S-effmed"),
-    ("UD-IQ2_XXS+MTP (2.2 bpw)",    "UD-IQ2_XXS-mtpgpu-effmed"),
+    (f"UD-Q4_K_XL ({FILE_BYTES['UD-Q4_K_XL']*8/PARAMS:.2f} bpw)", "UD-Q4_K_XL-ngl33-effmed"),
+    (f"UD-IQ3_XXS ({FILE_BYTES['UD-IQ3_XXS']*8/PARAMS:.2f} bpw)", "UD-IQ3_XXS-ngl54-effmed"),
+    (f"bartowski IQ2_S ({FILE_BYTES['bartowski IQ2_S']*8/PARAMS:.2f} bpw)", "bart-IQ2_S-ngl59-effmed"),
+    (f"EXL3 2.0 bpw ({FILE_BYTES['EXL3-2.0bpw']*8/PARAMS:.2f} eff.)", "EXL3-2.0bpw-effmed"),
+    (f"UD-IQ2_S, xhigh ({FILE_BYTES['UD-IQ2_S']*8/PARAMS:.2f} bpw)", "UD-IQ2_S-effxhigh"),
+    (f"UD-IQ2_S ({FILE_BYTES['UD-IQ2_S']*8/PARAMS:.2f} bpw)", "UD-IQ2_S-effmed"),
+    (f"UD-IQ2_XXS+MTP ({FILE_BYTES['UD-IQ2_XXS']*8/PARAMS:.2f} bpw)", "UD-IQ2_XXS-mtpgpu-effmed"),
 ]
 fig, ax = plt.subplots(figsize=(6.3, 2.9))
 for i, (lab, key) in enumerate(order):

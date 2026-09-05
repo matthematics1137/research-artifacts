@@ -1,0 +1,16 @@
+{
+  "version": "1.0.1",
+  "previous_version": "1.0.0",
+  "previous_version_doi": "10.5281/zenodo.22166977",
+  "evidence_freeze_commit": "009859e4af3a923732be09ee60b52383827db0f7",
+  "previous_paper_pdf_sha256": "3d54edc454e9f1c6166ea1d61ceea59d9eb6bb1838df22833b912eb349a14bc6",
+  "new_inference": false,
+  "original_measurement_rows_changed": false,
+  "additional_existing_evidence": {
+    "path": "testsuite/results/server_UD-IQ2_XXS-mtpgpu-effmed.log",
+    "source_git_blob": "645c26c623cb993baa194526257fb6346a29ffd6",
+    "source_sha256": "42b40f1e8e2cc744b36e5423fcbecd459a15cfe2dcc0498755f3292b73fbeada",
+    "sanitization": "Replace the absolute model-directory prefix with <MODEL_ROOT>/; all timing lines are unchanged.",
+    "alignment": "The 45 final request timings align in order with all completion-token counts in MATH-25 followed by HumanEval+-20. Requests do not embed benchmark item IDs; alignment is retrospective, not run-time identity instrumentation."
+  }
+}

@@ -6,12 +6,12 @@ authors:
   - family-names: Schwartz
     given-names: Matthew
     orcid: "https://orcid.org/0009-0009-4171-7247"
-version: 1.0.0
-doi: "10.5281/zenodo.22166977"
-date-released: 2026-08-29
-repository-code: "https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb"
-repository-artifact: "https://doi.org/10.5281/zenodo.22166977"
-url: "https://doi.org/10.5281/zenodo.22166977"
+version: 1.0.1
+doi: "10.5281/zenodo.22314395"
+repository-artifact: "https://doi.org/10.5281/zenodo.22314395"
+date-released: 2026-09-04
+repository-code: "https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb"
+url: "https://github.com/matthematics1137/research-artifacts/tree/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb"
 keywords:
   - large language model inference
   - post-training quantization
@@ -27,6 +27,6 @@ preferred-citation:
       given-names: Matthew
       orcid: "https://orcid.org/0009-0009-4171-7247"
   year: 2026
-  url: "https://github.com/matthematics1137/research-artifacts/blob/qwen38-27b-12gb-v1.0.0/papers/2026-qwen38-27b-12gb/paper/main.pdf"
+  url: "https://github.com/matthematics1137/research-artifacts/blob/qwen38-27b-12gb-v1.0.1/papers/2026-qwen38-27b-12gb/paper/main.pdf"
   institution:
     name: Independent researcher

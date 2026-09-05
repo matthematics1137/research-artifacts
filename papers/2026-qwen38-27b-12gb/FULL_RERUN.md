@@ -93,8 +93,16 @@ Q8 KV cache, and disables MTP and vision. Change both `max_seq_len` and
 - KV cache q8_0; flash attention enabled
 - Temperature 1.0; top-p 0.95; top-k 20
 - `reasoning_effort=medium` except the named xhigh checks
-- One stochastic generation per item
-- Client timeout 600 seconds and one retry
+- At most one retained response per item, with no best-of selection
+- Client timeout 600 seconds and one automatic retry after transport errors or time-outs; the historical harness did not retain attempt counts
+
+The frozen GSM8K-50 subset is the first 50 rows of the sorted seed-42 sample
+of 100 (source indices 13–563), not a direct random sample of 50. Use those
+exact retained IDs to replicate this campaign; future studies should construct
+their intended sample directly. Needle context lengths are nominal word-count
+estimates, not tokenizer-verified lengths. Two Q4 MATH requests exhausted their
+retries: their 2404.36 seconds remain included in correct responses per minute.
+See `CORRECTIONS.md` for the version 1.0.1 reporting changes.
 
 Run the harness self-test before contacting a server:
 

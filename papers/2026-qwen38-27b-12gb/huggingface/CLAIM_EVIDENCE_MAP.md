@@ -19,3 +19,11 @@ table. The release inventory and `SHA256SUMS` freeze every other source row.
 
 The release contains response excerpts, not full transcripts. It contains no
 Q4 per-item GSM8K/HumanEval rows because those files were not retained.
+# Correction 1.0.1
+
+`CORRECTIONS.md` records the versioned reporting changes. `correction_metrics.py`
+checks the recovered MTP log against all 45 retained completion-token counts,
+its four distinct MATH rate summaries, Q4 error IDs and elapsed retry time,
+the exact historical GSM selection, and the server/tg128 caption bound.
+`test_corrections.py` includes mutation tests for these checks and stricter
+MATH ID/boolean validation. Original headline results remain unchanged.

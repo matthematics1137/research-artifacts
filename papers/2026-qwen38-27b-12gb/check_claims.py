@@ -14,6 +14,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from correction_metrics import verify as verify_corrections
+
 
 ROOT = Path(__file__).resolve().parent
 RESULTS = ROOT / "testsuite/evals/results"
@@ -87,11 +89,14 @@ def equivalent(predicted: Any, expected: Any) -> bool:
 def math_scores() -> tuple[dict[str, tuple[int, int, int]], dict[str, dict[str, bool]]]:
     truth_rows = load_jsonl(ROOT / "testsuite/evals/datasets/math25.jsonl")
     truth = {row["id"]: row["answer"] for row in truth_rows}
+    require(len(truth_rows) == len(truth) == 25, "MATH truth IDs must be unique and complete")
     scores: dict[str, tuple[int, int, int]] = {}
     maps: dict[str, dict[str, bool]] = {}
     for path in sorted(RESULTS.glob("*/math25.jsonl")):
         rows = load_jsonl(path)
         require(len(rows) == 25, f"partial MATH run: {path}")
+        require({row["id"] for row in rows} == set(truth), f"MATH item IDs differ: {path}")
+        require(all(type(row["correct"]) is bool and type(row["truncated"]) is bool for row in rows), f"MATH booleans are not typed: {path}")
         raw = sum(bool(row["correct"]) for row in rows)
         alternate = 0
         upgrades = 0
@@ -285,9 +290,10 @@ def main() -> int:
     check_matched_workload()
     check_validation_pairing()
     check_model_manifest()
+    verify_corrections()
     print("ALL CLAIM CHECKS PASSED")
     print("Controlled GGUF decode: 25.48 -> 4.87 tok/s across the fit/offload ladder")
-    print("MATH cliff: 16/25 vs 23/25 alternate-normalizer; Fisher p=0.037")
+    print("MATH cliff: 16/25 vs 23/25 alternate-normalizer; paired exact McNemar p=0.016")
     print("Matched footprint MATH throughput: 22.44 vs 13.71 tok/s (1.64x)")
     print("Validation MMLU: 175/200 vs 182/200; paired exact p=0.119")
     return 0
