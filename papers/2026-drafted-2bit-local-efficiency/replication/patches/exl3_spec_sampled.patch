@@ -1,0 +1,194 @@
+--- /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py.orig_lab	2026-09-08 02:00:33.016123165 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py	2026-09-08 04:46:59.865923901 -0700
+@@ -23,6 +23,98 @@
+ from ..tokenizer import MMEmbedding
+ from ..util import profile_opt
+ 
++# ---- LAB MEASURE (H32, 2026-09-08): when EXL3_SPEC_MEASURE=<path> is set, record per drafted position the target's
++# filtered probability of the drafted token p(x*), the draft head's q(x*), and sum(min(p, q)) = the acceptance a
++# sampled-draft rejection-sampling verifier would get, plus the target's entropy. Measurement only; no behaviour change.
++import os as _os, json as _json, math as _math
++_SPEC_MEASURE = _os.environ.get("EXL3_SPEC_MEASURE")
++
++def _spec_filter(logits, top_k = 20, top_p = 0.95):
++    p = torch.softmax(logits.float().view(-1), dim = -1)
++    if top_k:
++        v, ix = torch.topk(p, top_k)
++        m = torch.zeros_like(p); m[ix] = v; p = m
++    if top_p < 1.0:
++        sv, si = torch.sort(p, descending = True)
++        cs = torch.cumsum(sv, 0)
++        keep = (cs - sv) <= top_p
++        sv = sv * keep
++        p = torch.zeros_like(p).scatter(0, si, sv)
++    return p / p.sum()
++
++def _spec_measure_record(gen, token_logits, x_star, sampled, i, j):
++    try:
++        dl = getattr(gen, "_spec_meas_draft_logits", None)
++        if not dl or i >= len(dl) or dl[i] is None: return
++        V = gen.model.config.vocab_size
++        p = _spec_filter(token_logits[0, 0, :V])
++        q = _spec_filter(dl[i][j].view(-1)[:V])
++        ent = float(-(p[p > 0] * p[p > 0].log()).sum())
++        row = {"i": i, "x": int(x_star), "p_star": round(float(p[x_star]), 5), "q_star": round(float(q[x_star]), 5),
++               "sum_min": round(float(torch.minimum(p, q).sum()), 5), "p_max": round(float(p.max()), 5), "ent": round(ent, 4), "acc": int(sampled == x_star)}
++        with open(_SPEC_MEASURE, "a") as f: f.write(_json.dumps(row) + "\n")
++    except Exception as e:
++        with open(_SPEC_MEASURE + ".err", "a") as f: f.write(repr(e) + "\n")
++
++
++# ---- LAB H33 (2026-09-08): standard speculative sampling for the MTP path. EXL3_SPEC_SAMPLED=1 switches the drafter
++# from argmax to a sample x ~ q (q = the MTP head's distribution under the job's temperature/top-k/top-p/min-p) and the
++# verifier from "sample the target, accept if equal" to "accept x with probability min(1, p(x)/q(x)), else sample the
++# residual norm(max(0, p - q))". Output distribution is unchanged (Leviathan et al. 2023); expected acceptance rises
++# from p(argmax q) to sum(min(p, q)). Batch rows are handled in Python loops; non-TP only; greedy jobs use argmax/equality.
++_SPEC_SAMPLED = _os.environ.get("EXL3_SPEC_SAMPLED") == "1"
++
++def _spec_job_filters(job):
++    """(greedy, temperature, top_k, top_p, min_p) from the job's sampler stack (fused step or individual steps)."""
++    from .sampler.custom import SS_Fused, SS_Temperature, SS_TopK, SS_TopP, SS_MinP, SS_Argmax
++    t, k, pp, mp, greedy = 1.0, 0, 1.0, 0.0, False
++    for st in getattr(job.sampler, "steps", []):
++        if isinstance(st, SS_Fused):
++            greedy = greedy or (getattr(st, "mode", None) == getattr(SS_Fused, "MODE_GREEDY", "greedy"))
++            t = getattr(st, "temperature", t); k = getattr(st, "top_k", k); pp = getattr(st, "top_p", pp); mp = getattr(st, "min_p", mp)
++        elif isinstance(st, SS_Temperature): t = st.temperature
++        elif isinstance(st, SS_TopK): k = st.top_k
++        elif isinstance(st, SS_TopP): pp = st.top_p
++        elif isinstance(st, SS_MinP): mp = st.min_p
++        elif isinstance(st, SS_Argmax): greedy = True
++    if t is not None and t <= 0.0: greedy = True
++    return greedy, (t or 1.0), int(k or 0), (pp if pp is not None else 1.0), (mp or 0.0)
++
++def _spec_make_dist(greedy, t, k, pp, mp, tokenizer):
++    """Dense filtered distribution over the vocabulary (same math as the engine's step-by-step sampler stack)."""
++    from .sampler.custom import CustomSampler, SS_Temperature, SS_TopK, SS_TopP, SS_MinP, SS_Normalize
++    if greedy:
++        def dist(logits_1d):
++            p = torch.zeros_like(logits_1d, dtype = torch.float); p[torch.argmax(logits_1d)] = 1.0; return p
++        return dist
++    stack = CustomSampler([SS_Temperature(t), SS_TopK(k), SS_TopP(pp), SS_MinP(mp), SS_Normalize()])
++    def dist(logits_1d, logit_mask = None):
++        st = stack.forward(logits_1d.view(1, 1, -1).float(), None, 0, tokenizer, logit_mask = logit_mask, return_state = True)
++        probs = st.probs.view(-1)
++        idx = getattr(st, "indices", None)
++        if idx is not None:
++            dense = torch.zeros_like(probs).scatter(0, idx.view(-1), probs)
++        else:
++            dense = probs
++        return dense / dense.sum()
++    return dist
++
++def _spec_verify(gen, job, token_logits, x_star, q, i):
++    """Returns (next_token [1,1] long on device, accepted: bool)."""
++    greedy, t, k, pp, mp = _spec_job_filters(job)
++    dist = _spec_make_dist(greedy, t, k, pp, mp, gen.tokenizer)
++    V = q.shape[-1]
++    p = dist(token_logits[0, 0, :V], job.device_logit_mask) if not greedy else dist(token_logits[0, 0, :V])
++    px, qx = float(p[x_star]), float(q[x_star])
++    u = job.rng.random()
++    if qx > 0 and u < min(1.0, px / qx):
++        return torch.tensor([[x_star]], dtype = torch.long, device = token_logits.device), True
++    r = torch.clamp(p - q, min = 0.0); s = float(r.sum())
++    g = torch.Generator(device = r.device); g.manual_seed(job.rng.randint(0, (1 << 31) - 1))
++    tok = torch.multinomial(r / s if s > 1e-9 else p, 1, generator = g)
++    return tok.view(1, 1).to(torch.long), False
++
++
+ class Generator:
+ 
+     def __init__(
+@@ -758,6 +850,17 @@
+             }
+             if cal is not None:
+                 params["export_draft_conf"] = True
++            if _SPEC_MEASURE:
++                params["export_draft_logits"] = True
++            if _SPEC_SAMPLED and not self.model.loaded_tp:
++                if idx == 0:
++                    job0 = next((jb for jb in self.active_jobs if jb.is_prefill_done()), None)
++                    g_, t_, k_, p_, m_ = _spec_job_filters(job0) if job0 is not None else (False, 1.0, 20, 0.95, 0.0)
++                    self._spec_dist_round = _spec_make_dist(g_, t_, k_, p_, m_, self.tokenizer)
++                    self._spec_torch_gen = torch.Generator(device = "cuda")
++                    self._spec_torch_gen.manual_seed((job0.rng.randint(0, (1 << 31) - 1)) if job0 is not None else 0)
++                    self._spec_q_round = []
++                params["spec_sampled"] = True; params["spec_dist"] = self._spec_dist_round; params["spec_torch_gen"] = self._spec_torch_gen
+             batch_state = self.draft_model.forward(batch_ids, params)
+             lm_head = self.model.modules[self.model.logit_layer_idx]
+             batch_state = lm_head.prepare_for_device(batch_state, params)
+@@ -766,6 +869,11 @@
+             batch_ids.copy_(new_ids)
+             cache_seqlens += 1
+             temp_hidden = batch_state
++            if _SPEC_MEASURE:
++                if idx == 0: self._spec_meas_draft_logits = []
++                self._spec_meas_draft_logits.append(params.get("draft_logits"))
++            if _SPEC_SAMPLED and params.get("draft_q") is not None:
++                self._spec_q_round.append(params["draft_q"])
+             draft_conf = params.get("draft_conf")
+             if cal is not None and draft_conf is not None:
+                 c = draft_conf.float().cpu()
+@@ -1148,9 +1256,23 @@
+ 
+                 for i in range(batch_logits.shape[1]):
+                     token_logits = job_logits[:, i:i + 1, :]
+-                    next_token, next_k_tokens, next_k_probs, next_prob = job.receive_logits(
+-                        token_logits,
+-                    )
++                    spec_accepted = None
++                    if (_SPEC_SAMPLED and draft_tokens is not None and i < batch_logits.shape[1] - 1
++                            and getattr(self, "_spec_q_round", None) and i < len(self._spec_q_round)
++                            and not (job.forced_ids is not None and job.new_tokens >= 0) and job.new_tokens >= 0
++                            and len(job.sequences) == 1):
++                        next_token, spec_accepted = _spec_verify(self, job, token_logits, draft_tokens[j, i].item(), self._spec_q_round[i][j], i)
++                        next_k_tokens, next_k_probs, next_prob = None, None, None
++                        if job.return_probs or job.return_top_tokens > 0:
++                            probs_ = torch.softmax(token_logits.float(), dim = -1)
++                            if job.return_probs: next_prob = torch.gather(probs_.squeeze(0), dim = 1, index = next_token)
++                            if job.return_top_tokens > 0:
++                                sp_, si_ = torch.sort(probs_, dim = -1, descending = True)
++                                next_k_tokens = si_[:, :, :job.return_top_tokens]; next_k_probs = sp_[:, :, :job.return_top_tokens]
++                    else:
++                        next_token, next_k_tokens, next_k_probs, next_prob = job.receive_logits(
++                            token_logits,
++                        )
+                     eos, sampled_token, rq = job.receive_sample(
+                         token_logits,
+                         next_token,
+@@ -1205,7 +1327,10 @@
+                     # draft acceptance so state can be stashed at an exact page boundary.
+                     if draft_tokens is not None and i < batch_logits.shape[1] - 1:
+                         cp_boundary = batch_states is not None and job.is_checkpoint_boundary()
+-                        if draft_tokens[j, i].item() != sampled_token.item() or cp_boundary:
++                        if _SPEC_MEASURE:
++                            _spec_measure_record(self, token_logits, draft_tokens[j, i].item(), sampled_token.item(), i, j)
++                        mismatch = (not spec_accepted) if spec_accepted is not None else (draft_tokens[j, i].item() != sampled_token.item())
++                        if mismatch or cp_boundary:
+                             rejected = reject_remainder(job, j, i, batch_states)
+                             break
+ 
+--- /path/to/scratch/eff/exl3_147/exllamav3/architecture/qwen3_5_mtp.py.orig_lab	2026-09-08 02:00:33.017602292 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/architecture/qwen3_5_mtp.py	2026-09-08 04:46:22.404677109 -0700
+@@ -238,6 +238,21 @@
+             lm = self.attached_model().modules[ll]
+             logits = lm.prepare_for_device(state, params)
+             logits = lm.forward(logits, params)
++            if params.get("export_draft_logits"):  # LAB MEASURE (H32): keep the draft distribution for verification-time stats
++                params["draft_logits"] = logits[..., :self.attached_model().config.vocab_size].float()
++            if params.get("spec_sampled"):  # LAB H33: sampled draft (standard speculative sampling), q exported per row
++                V = self.attached_model().config.vocab_size
++                lg = logits[..., :V]
++                if params.get("export_draft_conf"):
++                    params["draft_conf"] = torch.max(lg, dim = -1)[0]
++                dist = params["spec_dist"]; gen = params["spec_torch_gen"]
++                qs, ids = [], []
++                for r in range(lg.shape[0]):
++                    q = dist(lg[r].view(-1))
++                    x = torch.multinomial(q, 1, generator = gen)
++                    qs.append(q); ids.append(x)
++                params["draft_q"] = qs
++                return torch.stack(ids, dim = 0).view(lg.shape[0], 1)
+             if params.get("export_draft_conf"):
+                 # Per-position confidence for the generator's draft truncation: the argmax logit
+                 # value, over the unpadded vocabulary

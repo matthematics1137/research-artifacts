@@ -1,0 +1,24 @@
+{"exllamav3": "?", "fla_chunk": true, "has_fa2": false, "has_triton": true, "sms": 58, "step": "env", "torch": "2.10.0+cu128", "ts": "08:19:19"}
+{"M": 1024, "fp16_ms": 2.907, "fp16_tflops": 62.8, "int8_ms": 4.087, "int8_tops": 44.7, "shape": "mlp_up", "step": "gemm", "ts": "08:19:19"}
+{"M": 1024, "fp16_ms": 5.228, "fp16_tflops": 34.9, "int8_ms": 5.143, "int8_tops": 35.5, "shape": "mlp_down", "step": "gemm", "ts": "08:19:19"}
+{"M": 1024, "fp16_ms": 3.145, "fp16_tflops": 34.1, "int8_ms": 3.059, "int8_tops": 35.1, "shape": "gdn_qkv", "step": "gemm", "ts": "08:19:19"}
+{"M": 1024, "fp16_ms": 1.948, "fp16_tflops": 33.1, "int8_ms": 1.792, "int8_tops": 35.9, "shape": "gdn_z", "step": "gemm", "ts": "08:19:19"}
+{"M": 1024, "fp16_ms": 1.756, "fp16_tflops": 36.7, "int8_ms": 1.645, "int8_tops": 39.2, "shape": "gdn_out", "step": "gemm", "ts": "08:19:20"}
+{"M": 1024, "fp16_ms": 3.348, "fp16_tflops": 38.5, "int8_ms": 4.063, "int8_tops": 31.7, "shape": "attn_q", "step": "gemm", "ts": "08:19:20"}
+{"M": 1024, "fp16_ms": 0.488, "fp16_tflops": 22.0, "int8_ms": 0.607, "int8_tops": 17.7, "shape": "attn_kv", "step": "gemm", "ts": "08:19:20"}
+{"exllamav3": "?", "fla_chunk": true, "has_fa2": false, "has_triton": true, "sms": 58, "step": "env", "torch": "2.10.0+cu128", "ts": "08:20:08"}
+{"chunk": 2048, "reserved_mib": 7092, "step": "loaded", "ts": "08:20:13"}
+{"M": 1024, "fp16_ms": 2.955, "fp16_tflops": 61.8, "int8_ms": 4.922, "int8_tops": 37.1, "shape": "mlp_up", "step": "gemm", "ts": "08:20:13"}
+{"M": 1024, "fp16_ms": 5.236, "fp16_tflops": 34.9, "int8_ms": 5.399, "int8_tops": 33.8, "shape": "mlp_down", "step": "gemm", "ts": "08:20:14"}
+{"M": 1024, "fp16_ms": 3.208, "fp16_tflops": 33.5, "int8_ms": 3.001, "int8_tops": 35.8, "shape": "gdn_qkv", "step": "gemm", "ts": "08:20:14"}
+{"M": 1024, "fp16_ms": 1.924, "fp16_tflops": 33.5, "int8_ms": 1.662, "int8_tops": 38.8, "shape": "gdn_z", "step": "gemm", "ts": "08:20:14"}
+{"M": 1024, "fp16_ms": 1.796, "fp16_tflops": 35.9, "int8_ms": 1.729, "int8_tops": 37.3, "shape": "gdn_out", "step": "gemm", "ts": "08:20:14"}
+{"M": 1024, "fp16_ms": 3.295, "fp16_tflops": 39.1, "int8_ms": 3.989, "int8_tops": 32.3, "shape": "attn_q", "step": "gemm", "ts": "08:20:14"}
+{"M": 1024, "fp16_ms": 0.406, "fp16_tflops": 26.5, "int8_ms": 0.596, "int8_tops": 18.0, "shape": "attn_kv", "step": "gemm", "ts": "08:20:14"}
+{"body_estimate_s": 0.24, "bytes": 178257920, "ms": 0.88, "step": "reconstruct", "tensor": "layers.0.mlp.up_proj", "ts": "08:20:14"}
+{"s": 2.57, "step": "warmup", "tokens": 1370, "ts": "08:20:17"}
+{"alloc_retries": 0, "buckets": {"attention": 0.029, "copies": 0.048, "gdn": 0.035, "gemm": 0.738, "norm_misc": 0.011, "reconstruct": 0.107}, "cuda_total_s": 6.49, "device_allocs": 3, "gap_s": -0.22, "step": "profile", "tok_s": 582.7, "tokens": 3652, "ts": "08:20:26", "wall_s": 6.27}
+{"chunk": 512, "step": "chunk", "tok_s": 534.7, "tok_s_rep2": 536.8, "tokens": 3690, "ts": "08:20:40"}
+{"chunk": 1024, "step": "chunk", "tok_s": 582.6, "tok_s_rep2": 578.5, "tokens": 3660, "ts": "08:20:52"}
+{"chunk": 2048, "step": "chunk", "tok_s": 593.1, "tok_s_rep2": 590.8, "tokens": 3682, "ts": "08:21:05"}
+{"step": "done", "ts": "08:21:05"}

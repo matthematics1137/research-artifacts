@@ -1,0 +1,38 @@
+{
+ "A": "EFF-h38b_q4kxl_mtp",
+ "A_only_correct": 1,
+ "B": "EFF-h38a_mtp",
+ "B_only_correct": 3,
+ "accA": 98.0,
+ "accA_ci": [
+  95.0,
+  99.2
+ ],
+ "accB": 99.0,
+ "accB_ci": [
+  96.4,
+  99.7
+ ],
+ "delta_acc_pts": 1.0,
+ "errors": 0,
+ "identity_ci": [
+  0.0,
+  0.019
+ ],
+ "identity_rate": 0.0,
+ "mcnemar_p": 0.625,
+ "mean_tok_A": 321.9,
+ "mean_tok_B": 322.0,
+ "mean_wall_A": 30.24,
+ "mean_wall_B": 6.3,
+ "missing": 0,
+ "n": 200,
+ "suite": "gsm8k_500",
+ "token_identity_rate": 0.01,
+ "truncated_A": 0,
+ "truncated_B": 0,
+ "verdict": [
+  "accuracy SUPPORTED (within pre-registered band)"
+ ],
+ "wall_ratio_A_over_B": 4.803
+}

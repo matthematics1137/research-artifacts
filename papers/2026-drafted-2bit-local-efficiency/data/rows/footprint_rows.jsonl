@@ -1,0 +1,10 @@
+{"fit": true, "label": "iq2s_none_ub512", "tps": 23.406004643305494, "ts": "2026-09-06T07:27:44-07:00", "vram_gen_mib": 8546, "vram_load_mib": 8356}
+{"fit": true, "label": "iq2s_none_ub128", "tps": 23.32854666116656, "ts": "2026-09-06T07:28:01-07:00", "vram_gen_mib": 8470, "vram_load_mib": 8280}
+{"fit": false, "label": "iq2s_dflash2_ub512", "rc": 1, "ts": "2026-09-06T07:28:16-07:00"}
+{"fit": false, "label": "iq2s_dflash2_ub256", "rc": 1, "ts": "2026-09-06T07:28:24-07:00"}
+{"fit": false, "label": "iq2s_dflash2_ub128", "rc": 1, "ts": "2026-09-06T07:28:32-07:00"}
+{"fit": true, "label": "iq2s_mtp_ub256", "tps": 41.77020816150086, "ts": "2026-09-06T07:28:43-07:00", "vram_gen_mib": 9672, "vram_load_mib": 9480}
+{"fit": true, "label": "iq2s_mtp_ub128", "tps": 42.32898083908134, "ts": "2026-09-06T07:28:59-07:00", "vram_gen_mib": 9628, "vram_load_mib": 9436}
+{"fit": true, "label": "iq2xxs_none_ub256", "tps": 25.024995203542584, "ts": "2026-09-06T07:29:14-07:00", "vram_gen_mib": 7438, "vram_load_mib": 7248}
+{"fit": true, "label": "iq2xxs_dflash2_ub256", "tps": 52.40540823813018, "ts": "2026-09-06T07:29:30-07:00", "vram_gen_mib": 9986, "vram_load_mib": 9710}
+{"fit": true, "label": "iq2xxs_mtp_ub256", "tps": 44.847773841930824, "ts": "2026-09-06T07:29:45-07:00", "vram_gen_mib": 8618, "vram_load_mib": 8426}

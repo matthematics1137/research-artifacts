@@ -1,0 +1,38 @@
+{
+ "A": "EFF-h38a_nodraft",
+ "B": "EFF-h38c_nodraft_rerun",
+ "identical": 50,
+ "identity_by_ref_length_tercile": {
+  "long": {
+   "identity": 0.324,
+   "max_tokens": 1503,
+   "n": 34
+  },
+  "mid": {
+   "identity": 0.576,
+   "max_tokens": 347,
+   "n": 33
+  },
+  "short": {
+   "identity": 0.606,
+   "max_tokens": 237,
+   "n": 33
+  }
+ },
+ "n": 100,
+ "non_identical": 50,
+ "non_identical_correctness_agree": 50,
+ "non_identical_same_final_answer": 50,
+ "non_identical_with_both_answers_parsed": 50,
+ "ref_len_median_identical": 250.5,
+ "ref_len_median_non_identical": 332.5,
+ "suite": "gsm8k_500",
+ "token_delta_buckets": {
+  "0": 5,
+  "1-5": 21,
+  "6-50": 17,
+  ">50": 7
+ },
+ "token_delta_mean": -31.6,
+ "token_delta_median": 0.0
+}

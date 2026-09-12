@@ -1,0 +1,8 @@
+{"avg_ts": 707.302581, "build": "old", "build_commit": "035e227", "model": "Qwen3.8-27B-UD-IQ2_XXS.gguf", "stddev_ts": 11.108383, "test": "pp512", "ts": "2026-09-06T07:22:40-07:00"}
+{"avg_ts": 25.130438, "build": "old", "build_commit": "035e227", "model": "Qwen3.8-27B-UD-IQ2_XXS.gguf", "stddev_ts": 0.045959, "test": "tg128", "ts": "2026-09-06T07:22:40-07:00"}
+{"avg_ts": 677.144815, "build": "old", "build_commit": "035e227", "model": "Qwen3.8-27B-UD-IQ2_S.gguf", "stddev_ts": 9.86463, "test": "pp512", "ts": "2026-09-06T07:24:20-07:00"}
+{"avg_ts": 23.637098, "build": "old", "build_commit": "035e227", "model": "Qwen3.8-27B-UD-IQ2_S.gguf", "stddev_ts": 0.077427, "test": "tg128", "ts": "2026-09-06T07:24:20-07:00"}
+{"avg_ts": 706.156596, "build": "v040", "build_commit": "5266f24", "model": "Qwen3.8-27B-UD-IQ2_XXS.gguf", "stddev_ts": 5.522639, "test": "pp512", "ts": "2026-09-06T07:26:08-07:00"}
+{"avg_ts": 25.084877, "build": "v040", "build_commit": "5266f24", "model": "Qwen3.8-27B-UD-IQ2_XXS.gguf", "stddev_ts": 0.092665, "test": "tg128", "ts": "2026-09-06T07:26:08-07:00"}
+{"avg_ts": 676.13604, "build": "v040", "build_commit": "5266f24", "model": "Qwen3.8-27B-UD-IQ2_S.gguf", "stddev_ts": 4.638256, "test": "pp512", "ts": "2026-09-06T07:26:48-07:00"}
+{"avg_ts": 23.593765, "build": "v040", "build_commit": "5266f24", "model": "Qwen3.8-27B-UD-IQ2_S.gguf", "stddev_ts": 0.112819, "test": "tg128", "ts": "2026-09-06T07:26:48-07:00"}

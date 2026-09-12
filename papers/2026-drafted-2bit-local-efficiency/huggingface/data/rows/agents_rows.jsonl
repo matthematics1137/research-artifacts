@@ -1,0 +1,65 @@
+{"agent": 0, "chunks": 75, "elapsed": 21.0, "label": "shared_1agent", "tok_s_est": 5.6, "ttft_s": 7.71, "turn": 0, "wall_s": 20.98}
+{"agent": 0, "chunks": 77, "elapsed": 37.6, "label": "shared_1agent", "tok_s_est": 5.5, "ttft_s": 2.57, "turn": 1, "wall_s": 16.64}
+{"agent": 0, "chunks": 71, "elapsed": 53.0, "label": "shared_1agent", "tok_s_est": 5.5, "ttft_s": 2.5, "turn": 2, "wall_s": 15.42}
+{"agent": 0, "chunks": 74, "elapsed": 69.3, "label": "shared_1agent", "tok_s_est": 5.4, "ttft_s": 2.41, "turn": 3, "wall_s": 16.22}
+{"agent": 0, "chunks": 78, "elapsed": 85.8, "label": "shared_1agent", "tok_s_est": 5.5, "ttft_s": 2.3, "turn": 4, "wall_s": 16.55}
+{"agent": 0, "chunks": 84, "elapsed": 103.5, "label": "shared_1agent", "tok_s_est": 5.4, "ttft_s": 2.19, "turn": 5, "wall_s": 17.7}
+{"agents": 1, "aggregate_chunks_per_s": 4.4, "label": "shared_1agent", "max_mem_mib": 10983, "mean_w": 79.4, "per_agent_tok_s_mean": 5.5, "phase": "summary", "ttft_first_turn_mean": 7.71, "ttft_later_turns_mean": 2.39, "turns": 6, "turns_done": 6, "wall_s": 103.5}
+{"agent": 0, "chunks": 74, "elapsed": 32.0, "label": "shared_3agents", "tok_s_est": 2.4, "ttft_s": 1.21, "turn": 0, "wall_s": 32.04}
+{"agent": 1, "chunks": 72, "elapsed": 37.7, "label": "shared_3agents", "tok_s_est": 2.8, "ttft_s": 8.63, "turn": 0, "wall_s": 34.71}
+{"agent": 2, "chunks": 79, "elapsed": 55.9, "label": "shared_3agents", "tok_s_est": 3.4, "ttft_s": 27.01, "turn": 0, "wall_s": 49.94}
+{"agent": 0, "chunks": 72, "elapsed": 62.1, "label": "shared_3agents", "tok_s_est": 3.0, "ttft_s": 6.25, "turn": 1, "wall_s": 30.06}
+{"agent": 1, "chunks": 81, "elapsed": 85.4, "label": "shared_3agents", "tok_s_est": 2.8, "ttft_s": 18.79, "turn": 1, "wall_s": 47.69}
+{"agent": 2, "chunks": 78, "elapsed": 92.3, "label": "shared_3agents", "tok_s_est": 2.6, "ttft_s": 6.9, "turn": 1, "wall_s": 36.37}
+{"agent": 0, "chunks": 70, "elapsed": 117.3, "label": "shared_3agents", "tok_s_est": 2.4, "ttft_s": 25.82, "turn": 2, "wall_s": 55.23}
+{"agent": 1, "chunks": 74, "elapsed": 125.1, "label": "shared_3agents", "tok_s_est": 2.3, "ttft_s": 7.73, "turn": 2, "wall_s": 39.65}
+{"agent": 2, "chunks": 70, "elapsed": 153.4, "label": "shared_3agents", "tok_s_est": 2.0, "ttft_s": 26.71, "turn": 2, "wall_s": 61.14}
+{"agent": 0, "chunks": 66, "elapsed": 163.6, "label": "shared_3agents", "tok_s_est": 2.1, "ttft_s": 14.49, "turn": 3, "wall_s": 46.24}
+{"agent": 1, "chunks": 78, "elapsed": 194.3, "label": "shared_3agents", "tok_s_est": 2.4, "ttft_s": 36.73, "turn": 3, "wall_s": 69.21}
+{"agent": 2, "chunks": 79, "elapsed": 209.3, "label": "shared_3agents", "tok_s_est": 2.0, "ttft_s": 16.81, "turn": 3, "wall_s": 55.88}
+{"agent": 0, "chunks": 69, "elapsed": 234.2, "label": "shared_3agents", "tok_s_est": 2.3, "ttft_s": 40.33, "turn": 4, "wall_s": 70.58}
+{"agent": 1, "chunks": 77, "elapsed": 244.5, "label": "shared_3agents", "tok_s_est": 2.5, "ttft_s": 19.69, "turn": 4, "wall_s": 50.19}
+{"agent": 2, "chunks": 78, "elapsed": 264.0, "label": "shared_3agents", "tok_s_est": 3.6, "ttft_s": 33.08, "turn": 4, "wall_s": 54.69}
+{"agent": 0, "chunks": 100, "elapsed": 295.5, "label": "shared_3agents", "tok_s_est": 4.1, "ttft_s": 37.0, "turn": 5, "wall_s": 61.36}
+{"agent": 1, "chunks": 70, "elapsed": 320.7, "label": "shared_3agents", "tok_s_est": 3.9, "ttft_s": 58.28, "turn": 5, "wall_s": 76.23}
+{"agent": 2, "chunks": 115, "elapsed": 349.7, "label": "shared_3agents", "tok_s_est": 5.7, "ttft_s": 65.65, "turn": 5, "wall_s": 85.7}
+{"agents": 3, "aggregate_chunks_per_s": 4.0, "label": "shared_3agents", "max_mem_mib": 11169, "mean_w": 79.7, "per_agent_tok_s_mean": 2.9, "phase": "summary", "ttft_first_turn_mean": 12.28, "ttft_later_turns_mean": 27.62, "turns": 6, "turns_done": 18, "wall_s": 349.7}
+{"agent": 0, "elapsed": 20.6, "label": "shared_1agent_v2", "tok_s": 53.7, "tokens": 701, "ttft_s": 7.57, "turn": 0, "wall_s": 20.62}
+{"agent": 0, "elapsed": 37.0, "label": "shared_1agent_v2", "tok_s": 50.8, "tokens": 701, "ttft_s": 2.57, "turn": 1, "wall_s": 16.37}
+{"agent": 0, "elapsed": 53.2, "label": "shared_1agent_v2", "tok_s": 51.2, "tokens": 701, "ttft_s": 2.48, "turn": 2, "wall_s": 16.17}
+{"agent": 0, "elapsed": 69.9, "label": "shared_1agent_v2", "tok_s": 48.8, "tokens": 701, "ttft_s": 2.41, "turn": 3, "wall_s": 16.76}
+{"agent": 0, "elapsed": 86.0, "label": "shared_1agent_v2", "tok_s": 50.9, "tokens": 701, "ttft_s": 2.27, "turn": 4, "wall_s": 16.03}
+{"agent": 0, "elapsed": 101.5, "label": "shared_1agent_v2", "tok_s": 52.4, "tokens": 701, "ttft_s": 2.16, "turn": 5, "wall_s": 15.54}
+{"agents": 1, "aggregate_tok_s": 41.4, "label": "shared_1agent_v2", "max_mem_mib": 10575, "mean_w": 79.3, "per_agent_tok_s_mean": 51.3, "phase": "summary", "ttft_first_turn_mean": 7.57, "ttft_later_turns_mean": 2.38, "turns": 6, "turns_done": 6, "wall_s": 101.5}
+{"agent": 0, "elapsed": 24.8, "label": "shared_2agents_v2", "tok_s": 30.0, "tokens": 701, "ttft_s": 1.23, "turn": 0, "wall_s": 24.61}
+{"agent": 1, "elapsed": 38.5, "label": "shared_2agents_v2", "tok_s": 26.2, "tokens": 701, "ttft_s": 8.52, "turn": 0, "wall_s": 35.3}
+{"agent": 0, "elapsed": 47.4, "label": "shared_2agents_v2", "tok_s": 36.3, "tokens": 701, "ttft_s": 3.17, "turn": 1, "wall_s": 22.47}
+{"agent": 1, "elapsed": 60.5, "label": "shared_2agents_v2", "tok_s": 37.8, "tokens": 701, "ttft_s": 3.33, "turn": 1, "wall_s": 21.87}
+{"agent": 0, "elapsed": 70.3, "label": "shared_2agents_v2", "tok_s": 36.0, "tokens": 701, "ttft_s": 3.16, "turn": 2, "wall_s": 22.62}
+{"agent": 1, "elapsed": 83.8, "label": "shared_2agents_v2", "tok_s": 35.4, "tokens": 701, "ttft_s": 3.26, "turn": 2, "wall_s": 23.08}
+{"agent": 0, "elapsed": 96.0, "label": "shared_2agents_v2", "tok_s": 31.3, "tokens": 701, "ttft_s": 3.14, "turn": 3, "wall_s": 25.57}
+{"agent": 1, "elapsed": 109.4, "label": "shared_2agents_v2", "tok_s": 31.5, "tokens": 701, "ttft_s": 3.19, "turn": 3, "wall_s": 25.42}
+{"agent": 0, "elapsed": 118.6, "label": "shared_2agents_v2", "tok_s": 36.0, "tokens": 701, "ttft_s": 2.94, "turn": 4, "wall_s": 22.41}
+{"agent": 1, "elapsed": 137.1, "label": "shared_2agents_v2", "tok_s": 28.7, "tokens": 701, "ttft_s": 3.09, "turn": 4, "wall_s": 27.51}
+{"agent": 0, "elapsed": 140.5, "label": "shared_2agents_v2", "tok_s": 37.1, "tokens": 701, "ttft_s": 2.82, "turn": 5, "wall_s": 21.73}
+{"agent": 1, "elapsed": 155.6, "label": "shared_2agents_v2", "tok_s": 45.3, "tokens": 701, "ttft_s": 3.03, "turn": 5, "wall_s": 18.49}
+{"agents": 2, "aggregate_tok_s": 54.1, "label": "shared_2agents_v2", "max_mem_mib": 10683, "mean_w": 79.6, "per_agent_tok_s_mean": 34.3, "phase": "summary", "ttft_first_turn_mean": 4.88, "ttft_later_turns_mean": 3.11, "turns": 6, "turns_done": 12, "wall_s": 155.6}
+{"agent": 0, "elapsed": 24.9, "label": "shared_3agents_v2", "tok_s": 30.6, "tokens": 701, "ttft_s": 1.19, "turn": 0, "wall_s": 24.06}
+{"agent": 1, "elapsed": 37.2, "label": "shared_3agents_v2", "tok_s": 21.8, "tokens": 701, "ttft_s": 1.82, "turn": 0, "wall_s": 33.93}
+{"agent": 2, "elapsed": 46.1, "label": "shared_3agents_v2", "tok_s": 34.8, "tokens": 701, "ttft_s": 19.67, "turn": 0, "wall_s": 39.8}
+{"agent": 0, "elapsed": 61.2, "label": "shared_3agents_v2", "tok_s": 29.9, "tokens": 701, "ttft_s": 12.56, "turn": 1, "wall_s": 36.03}
+{"agent": 1, "elapsed": 72.1, "label": "shared_3agents_v2", "tok_s": 27.4, "tokens": 701, "ttft_s": 9.14, "turn": 1, "wall_s": 34.74}
+{"agent": 2, "elapsed": 83.0, "label": "shared_3agents_v2", "tok_s": 33.6, "tokens": 701, "ttft_s": 15.83, "turn": 1, "wall_s": 36.72}
+{"agent": 0, "elapsed": 101.5, "label": "shared_3agents_v2", "tok_s": 28.5, "tokens": 701, "ttft_s": 11.34, "turn": 2, "wall_s": 35.92}
+{"agent": 1, "elapsed": 116.9, "label": "shared_3agents_v2", "tok_s": 21.2, "tokens": 701, "ttft_s": 11.1, "turn": 2, "wall_s": 44.19}
+{"agent": 2, "elapsed": 126.3, "label": "shared_3agents_v2", "tok_s": 29.9, "tokens": 701, "ttft_s": 19.57, "turn": 2, "wall_s": 43.0}
+{"agent": 0, "elapsed": 140.7, "label": "shared_3agents_v2", "tok_s": 30.8, "tokens": 701, "ttft_s": 16.2, "turn": 3, "wall_s": 38.94}
+{"agent": 1, "elapsed": 153.7, "label": "shared_3agents_v2", "tok_s": 26.2, "tokens": 701, "ttft_s": 9.82, "turn": 3, "wall_s": 36.56}
+{"agent": 2, "elapsed": 165.2, "label": "shared_3agents_v2", "tok_s": 29.5, "tokens": 701, "ttft_s": 14.92, "turn": 3, "wall_s": 38.65}
+{"agent": 0, "elapsed": 176.6, "label": "shared_3agents_v2", "tok_s": 31.8, "tokens": 701, "ttft_s": 13.65, "turn": 4, "wall_s": 35.67}
+{"agent": 1, "elapsed": 192.9, "label": "shared_3agents_v2", "tok_s": 25.8, "tokens": 701, "ttft_s": 11.72, "turn": 4, "wall_s": 38.9}
+{"agent": 2, "elapsed": 208.2, "label": "shared_3agents_v2", "tok_s": 22.6, "tokens": 701, "ttft_s": 11.75, "turn": 4, "wall_s": 42.75}
+{"agent": 0, "elapsed": 221.6, "label": "shared_3agents_v2", "tok_s": 26.1, "tokens": 701, "ttft_s": 17.07, "turn": 5, "wall_s": 43.97}
+{"agent": 1, "elapsed": 239.1, "label": "shared_3agents_v2", "tok_s": 23.3, "tokens": 701, "ttft_s": 15.89, "turn": 5, "wall_s": 45.99}
+{"agent": 2, "elapsed": 244.3, "label": "shared_3agents_v2", "tok_s": 32.1, "tokens": 701, "ttft_s": 14.31, "turn": 5, "wall_s": 36.14}
+{"agents": 3, "aggregate_tok_s": 51.6, "label": "shared_3agents_v2", "max_mem_mib": 10757, "mean_w": 79.7, "per_agent_tok_s_mean": 28.1, "phase": "summary", "ttft_first_turn_mean": 7.56, "ttft_later_turns_mean": 13.66, "turns": 6, "turns_done": 18, "wall_s": 244.3}

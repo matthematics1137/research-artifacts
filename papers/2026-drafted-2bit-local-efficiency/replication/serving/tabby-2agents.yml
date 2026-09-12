@@ -1,0 +1,27 @@
+# Shared server for TWO concurrent agents (E39): 2 drafted slots, 24K context, 16 GB stash.
+# Each agent keeps ~34 tok/s (vs 51 alone) with ~3 s later-turn TTFT; aggregate x1.3. Three agents on this
+# config queue for a slot and everyone's later turns wait 14 s; a 16K cache with 3 slots thrashes (TTFT to a minute).
+# Resident ~10.7 GB during two 10K-token conversations (E39); measured 2026-09-09 (smoke_serving.sh): 9,202 MiB at load,
+# 9,922 MiB after one ~8K-token prompt, up in 8 s, released cleanly.
+network:
+  host: 127.0.0.1
+  port: 18120
+  disable_auth: true
+logging:
+  log_prompt: false
+  log_generation_params: false
+model:
+  model_dir: /path/to/models
+  model_name: qwen38-exl3-2.0
+  max_seq_len: 24576
+  cache_size: 24576
+  cache_mode: Q8
+  chunk_size: 1024
+  max_batch_size: 2
+draft_model:
+  draft_mode: mtp
+  draft_cache_mode: Q8
+  dynamic_draft: true
+  draft_num_tokens: 4        # shared draft window across slots (E29): keep the default here
+memory:
+  sysmem_recurrent_cache: 16384

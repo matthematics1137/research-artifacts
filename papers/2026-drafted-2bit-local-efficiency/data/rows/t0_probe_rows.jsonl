@@ -1,0 +1,12 @@
+{"chars": 333, "label": "t0_default_mbs4", "prompt": "math", "text_sha256": "2061a29ad301dcf3404dcd0cb5a3f7a36627b26cee05a86939743aa3c301bfce", "ts": "05:49:57"}
+{"chars": 512, "label": "t0_default_mbs4", "prompt": "code", "text_sha256": "40da14d5d2029914c6d7a014c698fbe8afebe6276be898bd726a6f00594929fe", "ts": "05:50:00"}
+{"chars": 623, "label": "t0_default_mbs4", "prompt": "prose", "text_sha256": "5702871337717bc4f646115c1722e4438387849248e855e48709bb7ac6acea5f", "ts": "05:50:04"}
+{"chars": 333, "label": "t0_mbs1", "prompt": "math", "text_sha256": "2061a29ad301dcf3404dcd0cb5a3f7a36627b26cee05a86939743aa3c301bfce", "ts": "06:21:57"}
+{"chars": 512, "label": "t0_mbs1", "prompt": "code", "text_sha256": "40da14d5d2029914c6d7a014c698fbe8afebe6276be898bd726a6f00594929fe", "ts": "06:22:00"}
+{"chars": 623, "label": "t0_mbs1", "prompt": "prose", "text_sha256": "5702871337717bc4f646115c1722e4438387849248e855e48709bb7ac6acea5f", "ts": "06:22:03"}
+{"chars": 333, "label": "t0_b7_base", "prompt": "math", "text_sha256": "2061a29ad301dcf3404dcd0cb5a3f7a36627b26cee05a86939743aa3c301bfce", "ts": "07:58:15"}
+{"chars": 512, "label": "t0_b7_base", "prompt": "code", "text_sha256": "40da14d5d2029914c6d7a014c698fbe8afebe6276be898bd726a6f00594929fe", "ts": "07:58:18"}
+{"chars": 623, "label": "t0_b7_base", "prompt": "prose", "text_sha256": "5702871337717bc4f646115c1722e4438387849248e855e48709bb7ac6acea5f", "ts": "07:58:21"}
+{"chars": 333, "label": "t0_b7_sampled", "prompt": "math", "text_sha256": "2061a29ad301dcf3404dcd0cb5a3f7a36627b26cee05a86939743aa3c301bfce", "ts": "08:08:39"}
+{"chars": 512, "label": "t0_b7_sampled", "prompt": "code", "text_sha256": "40da14d5d2029914c6d7a014c698fbe8afebe6276be898bd726a6f00594929fe", "ts": "08:08:42"}
+{"chars": 623, "label": "t0_b7_sampled", "prompt": "prose", "text_sha256": "5702871337717bc4f646115c1722e4438387849248e855e48709bb7ac6acea5f", "ts": "08:08:45"}

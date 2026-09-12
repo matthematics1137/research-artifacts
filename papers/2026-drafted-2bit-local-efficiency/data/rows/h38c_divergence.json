@@ -1,0 +1,59 @@
+{
+ "gap_max_nat": 0.0313,
+ "gap_median_nat": 0.0156,
+ "identical": 20,
+ "identity_rate": 0.8,
+ "items": [
+  {
+   "div": 357,
+   "frac": 0.611,
+   "gap_nat": 0.0,
+   "id": "gsm8k_7",
+   "other_is_runner_up": true,
+   "other_len": 524,
+   "ref_len": 584
+  },
+  {
+   "div": 45,
+   "frac": 0.04,
+   "gap_nat": 0.0156,
+   "id": "gsm8k_12",
+   "other_is_runner_up": true,
+   "other_len": 1358,
+   "ref_len": 1112
+  },
+  {
+   "div": 92,
+   "frac": 0.343,
+   "gap_nat": 0.0313,
+   "id": "gsm8k_31",
+   "other_is_runner_up": true,
+   "other_len": 268,
+   "ref_len": 268
+  },
+  {
+   "div": 122,
+   "frac": 0.213,
+   "gap_nat": 0.0156,
+   "id": "gsm8k_41",
+   "other_is_runner_up": true,
+   "other_len": 379,
+   "ref_len": 574
+  },
+  {
+   "div": 39,
+   "frac": 0.141,
+   "gap_nat": 0.0156,
+   "id": "gsm8k_64",
+   "other_is_runner_up": true,
+   "other_len": 275,
+   "ref_len": 276
+  }
+ ],
+ "median_first_div_tokens": 92,
+ "n_divergent": 5,
+ "n_paired": 25,
+ "near_tie_share": 1.0,
+ "runner_up_share": 1.0,
+ "same_final_answer": 23
+}

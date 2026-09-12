@@ -1,0 +1,31 @@
+{
+  "schema": "paper7-hardware-v1",
+  "scope": "One laptop; every row is 'loaded machine' unless stated (foreign agents ran throughout; one foreign Python job held about four CPU cores). Host state was not controlled per run.",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "memory_total_mib": 12282,
+    "power_limit_w": 80,
+    "compute_capability": "8.9",
+    "desktop_session_vram_mib": 485,
+    "working_envelope_gib": 10.5,
+    "sources": "E12 (device memory), E23 (desktop share), campaign working envelope; power limit from E4a/E25 telemetry"
+  },
+  "cpu": {
+    "model": "Intel Core i9-14900HX",
+    "source": "verified on the host during the 2026-09-09 editorial pass (not recorded by the campaign itself)"
+  },
+  "memory": {
+    "ram_gb": 62,
+    "source": "verified on the host during the 2026-09-09 editorial pass"
+  },
+  "telemetry": {
+    "tool": "nvidia-smi query every 1-2 s (power, SM/memory clocks, temperature, utilization, memory, throttle reasons)",
+    "energy_scope": "GPU-board energy only; no wall meter; idle draw measured for 30 s with the model loaded before each sustained run (E25)"
+  },
+  "operating_system": {
+    "kernel": "Linux 7.0.0-29-generic",
+    "distribution": "Ubuntu 24.04.3 LTS",
+    "nvidia_driver": "580.167.08",
+    "source": "the same laptop's host readback of 2026-08-31 (Paper 4 artifact) and the current host; the efficiency campaign did not record the driver version itself"
+  }
+}

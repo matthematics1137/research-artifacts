@@ -1,0 +1,6 @@
+{"completion_tokens": 119, "correct": true, "errored": false, "id": "needle_8k_25pct", "thinking_tokens_estimate": 94, "truncated": false, "wall_s": 16.15}
+{"completion_tokens": 80, "correct": true, "errored": false, "id": "needle_8k_75pct", "thinking_tokens_estimate": 71, "truncated": false, "wall_s": 15.18}
+{"completion_tokens": 63, "correct": true, "errored": false, "id": "needle_16k_25pct", "thinking_tokens_estimate": 52, "truncated": false, "wall_s": 28.96}
+{"completion_tokens": 107, "correct": true, "errored": false, "id": "needle_16k_75pct", "thinking_tokens_estimate": 68, "truncated": false, "wall_s": 29.75}
+{"completion_tokens": 89, "correct": true, "errored": false, "id": "needle_32k_25pct", "thinking_tokens_estimate": 74, "truncated": false, "wall_s": 60.72}
+{"completion_tokens": 80, "correct": true, "errored": false, "id": "needle_32k_75pct", "thinking_tokens_estimate": 70, "truncated": false, "wall_s": 60.31}
