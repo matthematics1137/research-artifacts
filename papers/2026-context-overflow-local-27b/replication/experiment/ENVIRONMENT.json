@@ -1,0 +1,2099 @@
+{
+  "author_approval": false,
+  "build": {
+    "basis": "p5-pre-primary-snapshot",
+    "cmake": {
+      "compilers": {
+        "cuda": {
+          "id": "NVIDIA",
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3419,
+            "sha256": "c319c06cb461e2ebca5275ec8591f15b0471ccedd96740dfded9bf186bf8a8bd",
+            "source": "engines/llama.cpp/build/CMakeFiles/3.28.3/CMakeCUDACompiler.cmake"
+          },
+          "version": "12.6.85"
+        },
+        "cxx": {
+          "id": "GNU",
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 5539,
+            "sha256": "12aa7c8bbf1cab72086c6cf13c49e3efb595ce9a89e3a1cbc73bf019b660bd12",
+            "source": "engines/llama.cpp/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
+          },
+          "version": "13.3.0"
+        }
+      },
+      "metadata": {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 54238,
+        "sha256": "34f33c3217b6e2b2ce8ee33ca7ada828f75ed4be50eb5e72f17aba8c356d9a8c",
+        "source": "engines/llama.cpp/build/CMakeCache.txt"
+      },
+      "options": {
+        "BUILD_SHARED_LIBS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CUDA_ARCHITECTURES": "89",
+        "GGML_BLAS": "OFF",
+        "GGML_CUDA": "ON",
+        "GGML_CUDA_COMPRESSION_MODE": "size",
+        "GGML_CUDA_FA": "ON",
+        "GGML_CUDA_FA_ALL_QUANTS": "OFF",
+        "GGML_CUDA_FORCE_CUBLAS": "OFF",
+        "GGML_CUDA_FORCE_MMQ": "OFF",
+        "GGML_CUDA_GRAPHS": "ON",
+        "GGML_CUDA_NCCL": "ON",
+        "GGML_CUDA_NO_PEER_COPY": "OFF",
+        "GGML_CUDA_NO_VMM": "OFF",
+        "GGML_CUDA_PEER_MAX_BATCH_SIZE": "128",
+        "GGML_NATIVE": "ON",
+        "GGML_OPENMP": "ON",
+        "LLAMA_CURL": "OFF"
+      }
+    },
+    "component": "llama.cpp",
+    "native_artifacts": [
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 939528,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "553f4deeb1f52f3846bf0b485b18cd434b4cc4425ae1b24d93ba0aded086e7cc",
+        "source": "engines/llama.cpp/build/bin/libggml-base.so.0.22.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 1139704,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "b79e3efac1edfe1fc2d44aa7a14c59a3f8be7c8524f42b5ea8461cfc6c946e55",
+        "source": "engines/llama.cpp/build/bin/libggml-cpu.so.0.22.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 196395304,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "dc9477e96b1246ba410d5c48357c1cd76bb723e3e33c99bda48d3413796f16bd",
+        "source": "engines/llama.cpp/build/bin/libggml-cuda.so.0.22.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 56016,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "8645e6dd20b2fe68e4fc4b879317e0dd7189268192f02107b4674a716f4be0f2",
+        "source": "engines/llama.cpp/build/bin/libggml.so.0.22.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 472200,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "1dcfc611ccc562751b2c839f5fba41e8d1e335678cd33980bf37dd856bc6848f",
+        "source": "engines/llama.cpp/build/bin/libllama-bench-impl.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 243032,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "e813edd08a9ff7f76306fc15e4128a2b56a9802f578e68d6725b312253185dc7",
+        "source": "engines/llama.cpp/build/bin/libllama-cli-impl.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 5886840,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "a5654c131fce6a97e2c94afa77fa5128aa6f6bd39d1cf5267f0c7b47f5c6bb81",
+        "source": "engines/llama.cpp/build/bin/libllama-common.so.0.3.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 168440,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "870c013fa85a8fa4925889c2d945c4e1ac171c82716b1fdf3d0abbfb983fd615",
+        "source": "engines/llama.cpp/build/bin/libllama-perplexity-impl.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 6943320,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "7e2802228ab103fa5f3d0ded30ec71c3205de19b2e36e2aa5f05361ae31d2b66",
+        "source": "engines/llama.cpp/build/bin/libllama-server-impl.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 4656200,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "3d311856b548e5b00fb02e067055a1aed9ca542f4c5129e502f1e52426a1211e",
+        "source": "engines/llama.cpp/build/bin/libllama.so.0.3.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 1929576,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "6f58152e711d89e921d26c8837921abae376fc7adfde8941b4822c7eb7960b62",
+        "source": "engines/llama.cpp/build/bin/libmtmd.so.0.3.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 17920,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": false,
+        "sha256": "be5d18464c3aa74bca264f15a1d07b059928d92f8d192e3752df38a610cbf8a9",
+        "source": "engines/llama.cpp/build/bin/llama-server"
+      }
+    ],
+    "revision": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3"
+  },
+  "environments": [
+    {
+      "basis": "p5-pre-primary-snapshot",
+      "id": "exl3-base",
+      "packages": [
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6291,
+            "sha256": "6b96b99073158a00ddb012a514834b48c3ec5f732ce059ffcde700481759a8b5",
+            "source": "exl3-base/lib/python3.12/site-packages/aiofiles-25.1.0.dist-info/METADATA"
+          },
+          "name": "aiofiles",
+          "version": "25.1.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 5939,
+            "sha256": "e68d1bf48aec9dcc2767343dedec25e12860085cba180e10bc3d3bdd031602ba",
+            "source": "exl3-base/lib/python3.12/site-packages/aiohappyeyeballs-2.7.1.dist-info/METADATA"
+          },
+          "name": "aiohappyeyeballs",
+          "version": "2.7.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 8266,
+            "sha256": "287d4346fb85cdf58dae89ac33639bef485653990a19af9bcd7d39e47e54ea1b",
+            "source": "exl3-base/lib/python3.12/site-packages/aiohttp-3.14.3.dist-info/METADATA"
+          },
+          "name": "aiohttp",
+          "version": "3.14.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 3662,
+            "sha256": "09247ef1da8bc696728d47130e702e4307f6f7d101d6c485bff9f3a71ce7008d",
+            "source": "exl3-base/lib/python3.12/site-packages/aiosignal-1.4.0.dist-info/METADATA"
+          },
+          "name": "aiosignal",
+          "version": "1.4.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6516,
+            "sha256": "8c24d70c5d9153d22123353a906042fd7603df2d15c2196290b0f8a962558c46",
+            "source": "exl3-base/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA"
+          },
+          "name": "annotated-doc",
+          "version": "0.0.5"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 15009,
+            "sha256": "614985b278f601b8ef863f82783b991cc3ada4b89f592eb71c7c48c5f2ef2298",
+            "source": "exl3-base/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA"
+          },
+          "name": "annotated-types",
+          "version": "0.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4645,
+            "sha256": "c5e6fc4dfd833319913b287be7a30d9935e9208c7ef917630621855aaac4d419",
+            "source": "exl3-base/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA"
+          },
+          "name": "anyio",
+          "version": "4.14.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 7648,
+            "sha256": "ce20436dd22cbc90f0da0491c01ec43edc37953a3beaa9b9cb15d6b48bb469a8",
+            "source": "exl3-base/lib/python3.12/site-packages/async_lru-2.3.0.dist-info/METADATA"
+          },
+          "name": "async-lru",
+          "version": "2.3.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 8754,
+            "sha256": "4cd40e690f23bf37cbcad34efd6758e062df1df07c86833f7e3ce95bf1fa38cc",
+            "source": "exl3-base/lib/python3.12/site-packages/attrs-26.1.0.dist-info/METADATA"
+          },
+          "name": "attrs",
+          "version": "26.1.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2474,
+            "sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090",
+            "source": "exl3-base/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA"
+          },
+          "name": "certifi",
+          "version": "2026.7.22"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 45868,
+            "sha256": "955c93827d59f1280f6d6a76b1e11bfb999cc65a55df83a6f9b28b7bc0e467f6",
+            "source": "exl3-base/lib/python3.12/site-packages/charset_normalizer-3.5.1.dist-info/METADATA"
+          },
+          "name": "charset-normalizer",
+          "version": "3.5.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2621,
+            "sha256": "194c9dd81d567f9081f026c7e401060fbafa7bc147c8e0a58b3668b40a64c031",
+            "source": "exl3-base/lib/python3.12/site-packages/click-8.4.2.dist-info/METADATA"
+          },
+          "name": "click",
+          "version": "8.4.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2578,
+            "sha256": "e89661f414ebd3b325b664a9f671274c0e0ea1889eb8b02c441ee0d5375249c4",
+            "source": "exl3-base/lib/python3.12/site-packages/cuda_bindings-12.9.4.dist-info/METADATA"
+          },
+          "name": "cuda-bindings",
+          "version": "12.9.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1906,
+            "sha256": "0b224d8df48997cd2d336dbf9debc7a7afa000cc242e1555c5c90ac654cccb7f",
+            "source": "exl3-base/lib/python3.12/site-packages/cuda_pathfinder-1.6.0.dist-info/METADATA"
+          },
+          "name": "cuda-pathfinder",
+          "version": "1.6.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 13724,
+            "sha256": "0bd65db043688a44f4a29608c1cba521c932f7ff76f238bbd869441e15012653",
+            "source": "exl3-base/lib/python3.12/site-packages/einops-0.8.2.dist-info/METADATA"
+          },
+          "name": "einops",
+          "version": "0.8.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 551,
+            "sha256": "b112efdc6416fe50933cae0145f330c903583e9c786c94c32084cc1c59b3358c",
+            "source": "exl3-base/lib/python3.12/site-packages/exllamav3-1.4.3+cu128.torch2.10.0.dist-info/METADATA"
+          },
+          "name": "exllamav3",
+          "version": "1.4.3+cu128.torch2.10.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 27029,
+            "sha256": "1010c29547b4026bdb3cd1c406e0570b9d79bb448b5a61fa4d5bb5a5eb0b752c",
+            "source": "exl3-base/lib/python3.12/site-packages/fastapi-0.141.1.dist-info/METADATA"
+          },
+          "name": "fastapi",
+          "version": "0.141.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4018,
+            "sha256": "e60449c7daa7704862f3ade864819b424a36179dcf4cab17e8907269233dc77f",
+            "source": "exl3-base/lib/python3.12/site-packages/fastapi_slim-0.129.1.dist-info/METADATA"
+          },
+          "name": "fastapi-slim",
+          "version": "0.129.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2028,
+            "sha256": "2d80f43bd905689145c00b3133bc95895d654ced70a96a1802e9237e0d66599f",
+            "source": "exl3-base/lib/python3.12/site-packages/filelock-3.32.3.dist-info/METADATA"
+          },
+          "name": "filelock",
+          "version": "3.32.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 45284,
+            "sha256": "8e641db5f26a58c254dd7c6977984d380aa9e36b4b46a82882f75954ca50c6c4",
+            "source": "exl3-base/lib/python3.12/site-packages/fla_core-0.5.2.dist-info/METADATA"
+          },
+          "name": "fla-core",
+          "version": "0.5.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 45569,
+            "sha256": "5ba189db45ddd61415bba9e71469bf396cec9b739192619b2fb95ee9bd1d892e",
+            "source": "exl3-base/lib/python3.12/site-packages/flash_linear_attention-0.5.2.dist-info/METADATA"
+          },
+          "name": "flash-linear-attention",
+          "version": "0.5.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 20333,
+            "sha256": "946c22dc9f7e2c76f2d698f00a4306dbe49a820e2b3f1a0e22fe5286cbec35f1",
+            "source": "exl3-base/lib/python3.12/site-packages/frozenlist-1.8.0.dist-info/METADATA"
+          },
+          "name": "frozenlist",
+          "version": "1.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 10561,
+            "sha256": "88b1657585de14e3bb82aa5278aa9595b30aa4ca74ead073d8950615c808099d",
+            "source": "exl3-base/lib/python3.12/site-packages/fsspec-2026.7.0.dist-info/METADATA"
+          },
+          "name": "fsspec",
+          "version": "2026.7.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 8348,
+            "sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64",
+            "source": "exl3-base/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA"
+          },
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4882,
+            "sha256": "becdd6ec73b515dc38c59501956134eb0b903bfed33ffcd99b252361acd926e9",
+            "source": "exl3-base/lib/python3.12/site-packages/hf_xet-1.6.0.dist-info/METADATA"
+          },
+          "name": "hf-xet",
+          "version": "1.6.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 21529,
+            "sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21",
+            "source": "exl3-base/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA"
+          },
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 3532,
+            "sha256": "7b5c0231580b589e7721b111f37324276f2a585bc2d27aedd67297e0c9b4bda8",
+            "source": "exl3-base/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA"
+          },
+          "name": "httptools",
+          "version": "0.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 7052,
+            "sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25",
+            "source": "exl3-base/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA"
+          },
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 16314,
+            "sha256": "566d25225518213644171833d0f13cdfbcc1332d5adf6aac7ef539c2dd6500f0",
+            "source": "exl3-base/lib/python3.12/site-packages/huggingface_hub-1.28.0.dist-info/METADATA"
+          },
+          "name": "huggingface_hub",
+          "version": "1.28.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 9160,
+            "sha256": "4d113161aca8582e8d28fddf3ea50f19b607209c2b3e4364379a163454680084",
+            "source": "exl3-base/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA"
+          },
+          "name": "idna",
+          "version": "3.19"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2871,
+            "sha256": "68c5548fb67c4132a13898d9b31ec50c6bea2abdd915d921f214355c3a6499c8",
+            "source": "exl3-base/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA"
+          },
+          "name": "Jinja2",
+          "version": "3.1.6"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 10887,
+            "sha256": "a7968303b137c447b2a8ded329acad220d604c0a200079989a4f2c66eff6a764",
+            "source": "exl3-base/lib/python3.12/site-packages/llguidance-1.8.0.dist-info/METADATA"
+          },
+          "name": "llguidance",
+          "version": "1.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 22596,
+            "sha256": "3a371f8b089014fdaee055edc440d448242847926ad67613621af402f9975fd9",
+            "source": "exl3-base/lib/python3.12/site-packages/loguru-0.7.3.dist-info/METADATA"
+          },
+          "name": "loguru",
+          "version": "0.7.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 10936,
+            "sha256": "1b8531c42618cc2ccf40abf504de6f9f3b2653ea1e0426a449baad9d06af6b03",
+            "source": "exl3-base/lib/python3.12/site-packages/marisa_trie-1.4.1.dist-info/METADATA"
+          },
+          "name": "marisa-trie",
+          "version": "1.4.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 7410,
+            "sha256": "72c36ff516755443b1ecb61e17b2567a990230b49a504b0eb0c42d5f82448a9c",
+            "source": "exl3-base/lib/python3.12/site-packages/markdown_it_py-4.2.0.dist-info/METADATA"
+          },
+          "name": "markdown-it-py",
+          "version": "4.2.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2690,
+            "sha256": "12b4cc61a7fa288cf7667ee3f213786d9619db57fb33ff6f934afbcb5c12ec81",
+            "source": "exl3-base/lib/python3.12/site-packages/markupsafe-3.0.3.dist-info/METADATA"
+          },
+          "name": "MarkupSafe",
+          "version": "3.0.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1638,
+            "sha256": "b53b29d48f499367053fda3c81e7ce27d2558380ebbf83e66023b02eb7ddd25d",
+            "source": "exl3-base/lib/python3.12/site-packages/mdurl-0.1.2.dist-info/METADATA"
+          },
+          "name": "mdurl",
+          "version": "0.1.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 8630,
+            "sha256": "44b66ea444b9c0d19ae94815d356bf047ae6b680c19268b5c265687cd6a81406",
+            "source": "exl3-base/lib/python3.12/site-packages/mpmath-1.3.0.dist-info/METADATA"
+          },
+          "name": "mpmath",
+          "version": "1.3.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 5321,
+            "sha256": "4913fdaae936a309c29b89b98c2dbebd237203fb27ab9e68ae5e4ec17ba3024f",
+            "source": "exl3-base/lib/python3.12/site-packages/multidict-6.7.1.dist-info/METADATA"
+          },
+          "name": "multidict",
+          "version": "6.7.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6783,
+            "sha256": "aca5d94a97d1f70f301d033addb635f6e66be8973a00aba4127637eed2ef316a",
+            "source": "exl3-base/lib/python3.12/site-packages/networkx-3.6.1.dist-info/METADATA"
+          },
+          "name": "networkx",
+          "version": "3.6.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 5148,
+            "sha256": "8d76fc4e382cedcd22bcaeaa748af39b3fa7931b72442396d15cb181659d0a4e",
+            "source": "exl3-base/lib/python3.12/site-packages/ninja-1.13.0.dist-info/METADATA"
+          },
+          "name": "ninja",
+          "version": "1.13.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6635,
+            "sha256": "9a895d801184d2176f926af84eb47f2db1af2756afac99d64a2bf482d5d5e024",
+            "source": "exl3-base/lib/python3.12/site-packages/numpy-2.5.2.dist-info/METADATA"
+          },
+          "name": "numpy",
+          "version": "2.5.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1683,
+            "sha256": "310556f1c2c31ec517d4b049eaf12374081d1c52c8ef4d8eceab2aaf1edff2df",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cublas_cu12-12.8.4.1.dist-info/METADATA"
+          },
+          "name": "nvidia-cublas-cu12",
+          "version": "12.8.4.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1730,
+            "sha256": "6df7fa2fcdfa046eb952f3f8c172f524b2e19a654ec037da3dbb32e93d9671d1",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cuda_cupti_cu12-12.8.90.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-cupti-cu12",
+          "version": "12.8.90"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1684,
+            "sha256": "376458a22054b4a36e110dfab570df4bc658c037a2fb47184bdc4dff7ab90d23",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cuda_nvrtc_cu12-12.8.93.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-nvrtc-cu12",
+          "version": "12.8.93"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1684,
+            "sha256": "00431338ea983d4be2f46f9fd29cec2fd9bfa39553933ca59fd37192e7d0f82f",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cuda_runtime_cu12-12.8.90.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-runtime-cu12",
+          "version": "12.8.90"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1796,
+            "sha256": "7dc7ea3541119ddea15ed9a68e9f01e4a160b164607abad22f9dec54e2937266",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cudnn_cu12-9.10.2.21.dist-info/METADATA"
+          },
+          "name": "nvidia-cudnn-cu12",
+          "version": "9.10.2.21"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1741,
+            "sha256": "ed11d2273b98e3897dc87ae88fcd7a0661b8a4c96529b93a5d22799fd4898de5",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cufft_cu12-11.3.3.83.dist-info/METADATA"
+          },
+          "name": "nvidia-cufft-cu12",
+          "version": "11.3.3.83"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1673,
+            "sha256": "df713a26389a8052d17fee3c1521563e060b24a037983b3889fff54f906ef288",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cufile_cu12-1.13.1.3.dist-info/METADATA"
+          },
+          "name": "nvidia-cufile-cu12",
+          "version": "1.13.1.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1684,
+            "sha256": "7d4df14884c3de2ec922c546d995cee62f9a0e5225b3eaf2d8951520212cbf6f",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_curand_cu12-10.3.9.90.dist-info/METADATA"
+          },
+          "name": "nvidia-curand-cu12",
+          "version": "10.3.9.90"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1826,
+            "sha256": "1f06a55dc8f2aef9eb20f018044bfa7731124698ba7b435d11c250c62eaf4dc3",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cusolver_cu12-11.7.3.90.dist-info/METADATA"
+          },
+          "name": "nvidia-cusolver-cu12",
+          "version": "11.7.3.90"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1750,
+            "sha256": "e83b3bf81e6a2c1dc4d4ddcd73b283a88e6f7f9d20385d280ec030dbf5384f22",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cusparse_cu12-12.5.8.93.dist-info/METADATA"
+          },
+          "name": "nvidia-cusparse-cu12",
+          "version": "12.5.8.93"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6974,
+            "sha256": "b264cea6951b70b52a3fd2ffaa88f9109eaf379633aa8d6e0832ecc92ddf6fba",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_cusparselt_cu12-0.7.1.dist-info/METADATA"
+          },
+          "name": "nvidia-cusparselt-cu12",
+          "version": "0.7.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2019,
+            "sha256": "f10617dee00ecd377a03e9103ebcf20c33305d0df47191a540498ab45f8ac67d",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_nccl_cu12-2.27.5.dist-info/METADATA"
+          },
+          "name": "nvidia-nccl-cu12",
+          "version": "2.27.5"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1695,
+            "sha256": "776feab012c1f3efce8918975dc08aa01793aa33832d87b377caa0448cad4435",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_nvjitlink_cu12-12.8.93.dist-info/METADATA"
+          },
+          "name": "nvidia-nvjitlink-cu12",
+          "version": "12.8.93"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2094,
+            "sha256": "c6c10473179c8c2a45a5f06dbffa3ab5aface4a5363a810c6b68a72e2f8de452",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_nvshmem_cu12-3.4.5.dist-info/METADATA"
+          },
+          "name": "nvidia-nvshmem-cu12",
+          "version": "3.4.5"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1820,
+            "sha256": "c63c23e04e8cf04143721ff718cba87a2ae5630a50451b77f8357a0d26133cf1",
+            "source": "exl3-base/lib/python3.12/site-packages/nvidia_nvtx_cu12-12.8.90.dist-info/METADATA"
+          },
+          "name": "nvidia-nvtx-cu12",
+          "version": "12.8.90"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 3544,
+            "sha256": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763",
+            "source": "exl3-base/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA"
+          },
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 9093,
+            "sha256": "8fc07146cab33ef7582361dab6eac596d340b03ec648f18217da7894f73838c8",
+            "source": "exl3-base/lib/python3.12/site-packages/pillow-12.3.0.dist-info/METADATA"
+          },
+          "name": "pillow",
+          "version": "12.3.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 16496,
+            "sha256": "f534495cdd2f915af8e649783d95fddcb1a05a1ac181850f0c973c0a78f7bbae",
+            "source": "exl3-base/lib/python3.12/site-packages/propcache-0.5.2.dist-info/METADATA"
+          },
+          "name": "propcache",
+          "version": "0.5.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 22187,
+            "sha256": "525f8ba78523cf7bc3759d62a105e7c57fd679ea702402b9449fb0746aa0217f",
+            "source": "exl3-base/lib/python3.12/site-packages/psutil-7.2.2.dist-info/METADATA"
+          },
+          "name": "psutil",
+          "version": "7.2.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 109397,
+            "sha256": "d1e56c3412492512fb6b59a9dfc25ab7af2a8204585cd7bca000513023133394",
+            "source": "exl3-base/lib/python3.12/site-packages/pydantic-2.13.4.dist-info/METADATA"
+          },
+          "name": "pydantic",
+          "version": "2.13.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6573,
+            "sha256": "135fa8b2f89473e9191c7078c2164e3ec6c8927a61c2379c2fddcc07f11f3bae",
+            "source": "exl3-base/lib/python3.12/site-packages/pydantic_core-2.46.4.dist-info/METADATA"
+          },
+          "name": "pydantic_core",
+          "version": "2.46.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2527,
+            "sha256": "1dde075570136774c706bf0009183a793fe0ee262e4a5590cc6eff8453eedd43",
+            "source": "exl3-base/lib/python3.12/site-packages/pygments-2.21.0.dist-info/METADATA"
+          },
+          "name": "Pygments",
+          "version": "2.21.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2351,
+            "sha256": "03c3b415ed38d09faedc49360e930769b40c58f68585e6de00e2e4916a858d34",
+            "source": "exl3-base/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA"
+          },
+          "name": "PyYAML",
+          "version": "6.0.3"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 40513,
+            "sha256": "fd895ec7522cd0bbab71ee4826442162f3f408a5f8d92e759f4ddf1be60dcf73",
+            "source": "exl3-base/lib/python3.12/site-packages/regex-2026.7.19.dist-info/METADATA"
+          },
+          "name": "regex",
+          "version": "2026.7.19"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4806,
+            "sha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27",
+            "source": "exl3-base/lib/python3.12/site-packages/requests-2.34.2.dist-info/METADATA"
+          },
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 18445,
+            "sha256": "fad34fc603fac4481bf81f8dd629492fc302c0ec31909c86644751512afb2e3b",
+            "source": "exl3-base/lib/python3.12/site-packages/rich-15.0.0.dist-info/METADATA"
+          },
+          "name": "rich",
+          "version": "15.0.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 16955,
+            "sha256": "1ecd311518266882ede8804686f758255d6dff89a71a646bb6970a69615e39f6",
+            "source": "exl3-base/lib/python3.12/site-packages/ruamel_yaml-0.19.1.dist-info/METADATA"
+          },
+          "name": "ruamel.yaml",
+          "version": "0.19.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4189,
+            "sha256": "645be7b8d55e91534f991d144dc9e279581ea8dbea1a8c5b0be14e529d01e345",
+            "source": "exl3-base/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/METADATA"
+          },
+          "name": "safetensors",
+          "version": "0.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6599,
+            "sha256": "4444a6b549a8ebb02e1739f4375af7756c841f96f0c31077a183273c7462bd10",
+            "source": "exl3-base/lib/python3.12/site-packages/setuptools-78.1.0.dist-info/METADATA"
+          },
+          "name": "setuptools",
+          "version": "78.1.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 3461,
+            "sha256": "183d80220a37493262795739dd357cc5bb3f49bd390cc9198d5180e5451a07fa",
+            "source": "exl3-base/lib/python3.12/site-packages/shellingham-1.5.4.dist-info/METADATA"
+          },
+          "name": "shellingham",
+          "version": "1.5.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 15325,
+            "sha256": "9092f1449006df9835d766bfe749d03fe39e4407658791bb5398ec360bead9ac",
+            "source": "exl3-base/lib/python3.12/site-packages/sse_starlette-3.4.8.dist-info/METADATA"
+          },
+          "name": "sse-starlette",
+          "version": "3.4.8"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6370,
+            "sha256": "43f6240f976044f4cf9a573506d96d895391094717c55682700c931d5cd3c5a2",
+            "source": "exl3-base/lib/python3.12/site-packages/starlette-1.6.0.dist-info/METADATA"
+          },
+          "name": "starlette",
+          "version": "1.6.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 12816,
+            "sha256": "b756c2fbfd5be05ac5bdb0ebca61f55618f30f633ed92d88a5687429313a7595",
+            "source": "exl3-base/lib/python3.12/site-packages/sympy-1.14.0.dist-info/METADATA"
+          },
+          "name": "sympy",
+          "version": "1.14.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 8564,
+            "sha256": "f8fe56be8dcce9f77b5af54973d0429724a593176a0870175298dac5f98209de",
+            "source": "exl3-base/lib/python3.12/site-packages/tabbyapi-0.0.1.dist-info/METADATA"
+          },
+          "name": "tabbyAPI",
+          "version": "0.0.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 9830,
+            "sha256": "67226b8d55c78feec1f100f38cd5b04ad7385af8484696b7fd332c1d8cec4345",
+            "source": "exl3-base/lib/python3.12/site-packages/tokenizers-0.23.1.dist-info/METADATA"
+          },
+          "name": "tokenizers",
+          "version": "0.23.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 30537,
+            "sha256": "7f56e1b49211bfcfe45a8c7df42d96a054f69a96fbf6bc4f1b6b6fe8d3f097a7",
+            "source": "exl3-base/lib/python3.12/site-packages/torch-2.10.0+cu128.dist-info/METADATA"
+          },
+          "name": "torch",
+          "version": "2.10.0+cu128"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 57344,
+            "sha256": "0d95b85b90428f8776afc4a92b17c5094f78ee98d150b3255acbcdf4e9d57941",
+            "source": "exl3-base/lib/python3.12/site-packages/tqdm-4.70.0.dist-info/METADATA"
+          },
+          "name": "tqdm",
+          "version": "4.70.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 32065,
+            "sha256": "14a66a6240524f1b7b2e1b5666f72140375b35465e248d013f552669e495f335",
+            "source": "exl3-base/lib/python3.12/site-packages/transformers-5.16.0.dist-info/METADATA"
+          },
+          "name": "transformers",
+          "version": "5.16.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 1663,
+            "sha256": "5c9071db9b057bec89cd6d7f76f61e5f28a5e8d3717ff6c85420cf8015ee0321",
+            "source": "exl3-base/lib/python3.12/site-packages/triton-3.6.0.dist-info/METADATA"
+          },
+          "name": "triton",
+          "version": "3.6.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 16414,
+            "sha256": "d71011dc4b250b9670d91fbae7882d707a9ef93b22a527d90992a962a5759601",
+            "source": "exl3-base/lib/python3.12/site-packages/typer-0.27.1.dist-info/METADATA"
+          },
+          "name": "typer",
+          "version": "0.27.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 3310,
+            "sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46",
+            "source": "exl3-base/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA"
+          },
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 2554,
+            "sha256": "bad3d9e6342ef6750cf5128ec942327b8bebdce0b6e4d6f67cb15b27ae5118da",
+            "source": "exl3-base/lib/python3.12/site-packages/typing_inspection-0.4.4.dist-info/METADATA"
+          },
+          "name": "typing-inspection",
+          "version": "0.4.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6852,
+            "sha256": "66147856d30bbb6bed01c6ce3326d0f48d84ed5f286ac177633a1486b82eace5",
+            "source": "exl3-base/lib/python3.12/site-packages/urllib3-2.7.0.dist-info/METADATA"
+          },
+          "name": "urllib3",
+          "version": "2.7.0"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 6589,
+            "sha256": "6cea83c70e4f2746374ca19af72a52406aa706ad8735b11d72fbd5fd82f7cbff",
+            "source": "exl3-base/lib/python3.12/site-packages/uvicorn-0.52.4.dist-info/METADATA"
+          },
+          "name": "uvicorn",
+          "version": "0.52.4"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 4922,
+            "sha256": "7106328da9670776c358802971b7dc41c0b86ed3673bf9cc4c0d5e11ff2f3583",
+            "source": "exl3-base/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA"
+          },
+          "name": "uvloop",
+          "version": "0.22.1"
+        },
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 103964,
+            "sha256": "0fd7b817553598246289189dfb95b425a15c9319d1bae355a38860419937e1c7",
+            "source": "exl3-base/lib/python3.12/site-packages/yarl-1.24.5.dist-info/METADATA"
+          },
+          "name": "yarl",
+          "version": "1.24.5"
+        }
+      ],
+      "python": {
+        "implementation": "CPython",
+        "include-system-site-packages": "false",
+        "metadata": {
+          "basis": "p5-pre-primary-snapshot",
+          "bytes": 111,
+          "sha256": "50a2ea3347492cbca1426f1999d86b8fc151a2e5cf47e1937d781898232ae419",
+          "source": "exl3-base/pyvenv.cfg"
+        },
+        "version_info": "3.12.3"
+      },
+      "scope": "installed METADATA inventory; not proof every distribution was imported",
+      "torch": {
+        "__version__": "2.10.0+cu128",
+        "cuda": "12.8",
+        "git_version": "449b1768410104d3ed79d3bcfe4ba1d65c7f22c0",
+        "metadata": {
+          "basis": "p5-pre-primary-snapshot",
+          "bytes": 317,
+          "sha256": "53e3fb24ceaf300de811ae08721e5ca3a0720c7ef900c8365da3fe80c7271ebc",
+          "source": "exl3-base/torch/version.py"
+        }
+      }
+    },
+    {
+      "basis": "current-metadata-not-historical-execution",
+      "id": "analysis",
+      "packages": [
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 62117,
+            "sha256": "661ed2938131e161a5f723099c7236e709e705dec856d1ef37527d37d0ac4dc6",
+            "source": "analysis/numpy-2.3.3.dist-info/METADATA"
+          },
+          "name": "numpy",
+          "version": "2.3.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 62003,
+            "sha256": "2b01909e07f69a4e64c8f8826635a217079ef4b9957e3926defbb2b96b126f06",
+            "source": "analysis/scipy-1.16.2.dist-info/METADATA"
+          },
+          "name": "scipy",
+          "version": "1.16.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 11268,
+            "sha256": "98f8b6dae4f3e446fa44c8684dc53db4f3003efde1ef16cf8c411bee0fef2bb1",
+            "source": "analysis/matplotlib-3.10.6.dist-info/METADATA"
+          },
+          "name": "matplotlib",
+          "version": "3.10.6"
+        }
+      ],
+      "python": "3.12.3",
+      "scope": "three analysis/test/render dependencies only; not transitive closure or earlier inference"
+    },
+    {
+      "basis": "p5-pre-primary-snapshot",
+      "id": "exl3-overlay",
+      "packages": [
+        {
+          "metadata": {
+            "basis": "p5-pre-primary-snapshot",
+            "bytes": 551,
+            "sha256": "f94afb148c56413fb10b260d3577bd2fef682a72e888ae2efa37b9c72cf50e26",
+            "source": "exl3-overlay/exllamav3-1.4.7+cu128.torch2.10.0.dist-info/METADATA"
+          },
+          "name": "exllamav3",
+          "version": "1.4.7+cu128.torch2.10.0"
+        }
+      ],
+      "python_from": "exl3-base",
+      "scope": "installed METADATA inventory; not proof every distribution was imported",
+      "wheel": {
+        "metadata": {
+          "basis": "p5-pre-primary-snapshot",
+          "bytes": 105,
+          "sha256": "d7c654382c56994f026699578f852d5dc8f4ca46aa0e07995b64d38f7904d9d7",
+          "source": "exl3-overlay/exllamav3-1.4.7+cu128.torch2.10.0.dist-info/WHEEL"
+        },
+        "tags": [
+          "cp312-cp312-linux_x86_64"
+        ]
+      }
+    },
+    {
+      "basis": "current-metadata-not-historical-execution",
+      "id": "lingua",
+      "packages": [
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 19552,
+            "sha256": "ed1c0dd9cca2d1449bbae7d641208431f5fccc7d5e06e20bec802c1d81340f6c",
+            "source": "lingua/lib/python3.12/site-packages/accelerate-1.14.0.dist-info/METADATA"
+          },
+          "name": "accelerate",
+          "version": "1.14.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6516,
+            "sha256": "8c24d70c5d9153d22123353a906042fd7603df2d15c2196290b0f8a962558c46",
+            "source": "lingua/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA"
+          },
+          "name": "annotated-doc",
+          "version": "0.0.5"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 4645,
+            "sha256": "c5e6fc4dfd833319913b287be7a30d9935e9208c7ef917630621855aaac4d419",
+            "source": "lingua/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA"
+          },
+          "name": "anyio",
+          "version": "4.14.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2474,
+            "sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090",
+            "source": "lingua/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA"
+          },
+          "name": "certifi",
+          "version": "2026.7.22"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 45868,
+            "sha256": "955c93827d59f1280f6d6a76b1e11bfb999cc65a55df83a6f9b28b7bc0e467f6",
+            "source": "lingua/lib/python3.12/site-packages/charset_normalizer-3.5.1.dist-info/METADATA"
+          },
+          "name": "charset-normalizer",
+          "version": "3.5.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2567,
+            "sha256": "e87bce0bd194de70dfb8e708e0a6b0483009f25611804eaf87bfeb63e6c20501",
+            "source": "lingua/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA"
+          },
+          "name": "click",
+          "version": "8.5.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2498,
+            "sha256": "0bfcbe77dade61b1cba9f201c0465f2353f5b50adf4e4f554bca35a35033166f",
+            "source": "lingua/lib/python3.12/site-packages/cuda_bindings-13.3.1.dist-info/METADATA"
+          },
+          "name": "cuda-bindings",
+          "version": "13.3.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1906,
+            "sha256": "52d0f17b3e3a3c032c45d131288bcaeaed888a3ccf49caca1f3ff47dfb420d8b",
+            "source": "lingua/lib/python3.12/site-packages/cuda_pathfinder-1.8.0.dist-info/METADATA"
+          },
+          "name": "cuda-pathfinder",
+          "version": "1.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 17687,
+            "sha256": "3e28bf0013ae8db8cf863ae392897248f4a1ff6c946fe966547fd4b6c44c0057",
+            "source": "lingua/lib/python3.12/site-packages/cuda_toolkit-13.0.3.0.dist-info/METADATA"
+          },
+          "name": "cuda-toolkit",
+          "version": "13.0.3.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 32518,
+            "sha256": "369d3cef64870daf849fba711cb8d05a7efe3c8d9ab0f763adc34079fe378bb1",
+            "source": "lingua/lib/python3.12/site-packages/defusedxml-0.7.1.dist-info/METADATA"
+          },
+          "name": "defusedxml",
+          "version": "0.7.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2028,
+            "sha256": "3537e7b9982e7c24c535067af50a7d7ecb2ca4abba8aac40616793f2956d6482",
+            "source": "lingua/lib/python3.12/site-packages/filelock-3.32.4.dist-info/METADATA"
+          },
+          "name": "filelock",
+          "version": "3.32.4"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 10561,
+            "sha256": "88b1657585de14e3bb82aa5278aa9595b30aa4ca74ead073d8950615c808099d",
+            "source": "lingua/lib/python3.12/site-packages/fsspec-2026.7.0.dist-info/METADATA"
+          },
+          "name": "fsspec",
+          "version": "2026.7.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 8348,
+            "sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64",
+            "source": "lingua/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA"
+          },
+          "name": "h11",
+          "version": "0.16.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 4882,
+            "sha256": "becdd6ec73b515dc38c59501956134eb0b903bfed33ffcd99b252361acd926e9",
+            "source": "lingua/lib/python3.12/site-packages/hf_xet-1.6.0.dist-info/METADATA"
+          },
+          "name": "hf-xet",
+          "version": "1.6.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 21529,
+            "sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21",
+            "source": "lingua/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA"
+          },
+          "name": "httpcore",
+          "version": "1.0.9"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 7052,
+            "sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25",
+            "source": "lingua/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA"
+          },
+          "name": "httpx",
+          "version": "0.28.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 16321,
+            "sha256": "60b2bcb58f6d852eaa21eeae6f0030354278ecab9620dfe83e350a93a268e647",
+            "source": "lingua/lib/python3.12/site-packages/huggingface_hub-1.29.0.dist-info/METADATA"
+          },
+          "name": "huggingface_hub",
+          "version": "1.29.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 9160,
+            "sha256": "4d113161aca8582e8d28fddf3ea50f19b607209c2b3e4364379a163454680084",
+            "source": "lingua/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA"
+          },
+          "name": "idna",
+          "version": "3.19"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2871,
+            "sha256": "68c5548fb67c4132a13898d9b31ec50c6bea2abdd915d921f214355c3a6499c8",
+            "source": "lingua/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA"
+          },
+          "name": "Jinja2",
+          "version": "3.1.6"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 5542,
+            "sha256": "cee9c60896ae4e7a965a840fbde50d111d2f8018f61201d1ed2e9fc3dd4883e6",
+            "source": "lingua/lib/python3.12/site-packages/joblib-1.5.3.dist-info/METADATA"
+          },
+          "name": "joblib",
+          "version": "1.5.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 17902,
+            "sha256": "9cfd48f0f2f2334011fa12a0ebe7efdee9551a4477bb18bc7a6580315fbac4cd",
+            "source": "lingua/lib/python3.12/site-packages/llmlingua-0.2.2.dist-info/METADATA"
+          },
+          "name": "llmlingua",
+          "version": "0.2.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 7410,
+            "sha256": "72c36ff516755443b1ecb61e17b2567a990230b49a504b0eb0c42d5f82448a9c",
+            "source": "lingua/lib/python3.12/site-packages/markdown_it_py-4.2.0.dist-info/METADATA"
+          },
+          "name": "markdown-it-py",
+          "version": "4.2.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2690,
+            "sha256": "12b4cc61a7fa288cf7667ee3f213786d9619db57fb33ff6f934afbcb5c12ec81",
+            "source": "lingua/lib/python3.12/site-packages/markupsafe-3.0.3.dist-info/METADATA"
+          },
+          "name": "MarkupSafe",
+          "version": "3.0.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1638,
+            "sha256": "b53b29d48f499367053fda3c81e7ce27d2558380ebbf83e66023b02eb7ddd25d",
+            "source": "lingua/lib/python3.12/site-packages/mdurl-0.1.2.dist-info/METADATA"
+          },
+          "name": "mdurl",
+          "version": "0.1.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 8630,
+            "sha256": "44b66ea444b9c0d19ae94815d356bf047ae6b680c19268b5c265687cd6a81406",
+            "source": "lingua/lib/python3.12/site-packages/mpmath-1.3.0.dist-info/METADATA"
+          },
+          "name": "mpmath",
+          "version": "1.3.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6783,
+            "sha256": "aca5d94a97d1f70f301d033addb635f6e66be8973a00aba4127637eed2ef316a",
+            "source": "lingua/lib/python3.12/site-packages/networkx-3.6.1.dist-info/METADATA"
+          },
+          "name": "networkx",
+          "version": "3.6.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3230,
+            "sha256": "78584b6194873a677ecc029634f2178e6b962fababd4188a0049d76e6b64ba1e",
+            "source": "lingua/lib/python3.12/site-packages/nltk-3.10.3.dist-info/METADATA"
+          },
+          "name": "nltk",
+          "version": "3.10.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6635,
+            "sha256": "9a895d801184d2176f926af84eb47f2db1af2756afac99d64a2bf482d5d5e024",
+            "source": "lingua/lib/python3.12/site-packages/numpy-2.5.2.dist-info/METADATA"
+          },
+          "name": "numpy",
+          "version": "2.5.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1819,
+            "sha256": "775b12e0b38858a03e93019f6a18104b10fce80f64f969fe9bb7ed6153ab2804",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cublas-13.1.1.3.dist-info/METADATA"
+          },
+          "name": "nvidia-cublas",
+          "version": "13.1.1.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1749,
+            "sha256": "ae42b56aa16feaa9994af204b6c82ac546fed7d67cf584cc10d1f2b7119b5eac",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cuda_cupti-13.0.85.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-cupti",
+          "version": "13.0.85"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1703,
+            "sha256": "27505676fa8577b448021d935306228d06c6236b2bf5247c148425e5130ad4c8",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cuda_nvrtc-13.0.88.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-nvrtc",
+          "version": "13.0.88"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1693,
+            "sha256": "30699e3ca76f6f41f5252e7a0fce2c2d303c465b86c1b022e03a2799bd15098b",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cuda_runtime-13.0.96.dist-info/METADATA"
+          },
+          "name": "nvidia-cuda-runtime",
+          "version": "13.0.96"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1852,
+            "sha256": "905598a1f0fa9ec98b73133b7340bb60fb3666262eaaaf87f8fb8e3461261d38",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cudnn_cu13-9.20.0.48.dist-info/METADATA"
+          },
+          "name": "nvidia-cudnn-cu13",
+          "version": "9.20.0.48"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1755,
+            "sha256": "f519e642db9f4983f5e24d131a52972210b3222800a07e099d40926d18d183d8",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cufft-12.0.0.61.dist-info/METADATA"
+          },
+          "name": "nvidia-cufft",
+          "version": "12.0.0.61"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1692,
+            "sha256": "35ef649dd5370d74512351b45aa9ddc81715ae8c806326c2c5ec61d80dc97aca",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cufile-1.15.1.6.dist-info/METADATA"
+          },
+          "name": "nvidia-cufile",
+          "version": "1.15.1.6"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1703,
+            "sha256": "0a7d6e8b87aa972f3f2bc454f12fee898e8ef5d1a09d92b418acd38e8582076d",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_curand-10.4.0.35.dist-info/METADATA"
+          },
+          "name": "nvidia-curand",
+          "version": "10.4.0.35"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1830,
+            "sha256": "88d296b4407f82253bf358667db12776dcb521170c7ff5b8eff38eb272ff729f",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cusolver-12.0.4.66.dist-info/METADATA"
+          },
+          "name": "nvidia-cusolver",
+          "version": "12.0.4.66"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1763,
+            "sha256": "d7b8582e9cf38072a8bb9960822e89f41a64bc7f68995eec783304c828e9734e",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cusparse-12.6.3.3.dist-info/METADATA"
+          },
+          "name": "nvidia-cusparse",
+          "version": "12.6.3.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 12677,
+            "sha256": "353669bafb80cbf22f1324121ac05049d36a6b0fb44b1fed3fab00b513231171",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_cusparselt_cu13-0.8.1.dist-info/METADATA"
+          },
+          "name": "nvidia-cusparselt-cu13",
+          "version": "0.8.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2097,
+            "sha256": "1a0f592f961f6e5b260131f57c59f23c05bec4e78279ab64a585e483894aacb4",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_nccl_cu13-2.29.7.dist-info/METADATA"
+          },
+          "name": "nvidia-nccl-cu13",
+          "version": "2.29.7"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1775,
+            "sha256": "908bff94497d21be5d218bf2905aec3f0751242e1e4cc9af07d0380bda91e6d0",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_nvjitlink-13.3.33.dist-info/METADATA"
+          },
+          "name": "nvidia-nvjitlink",
+          "version": "13.3.33"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2094,
+            "sha256": "825ae32b105cfd50f7b375b9132e551f24dc32896c67c425349f6565d3b3fe46",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_nvshmem_cu13-3.4.5.dist-info/METADATA"
+          },
+          "name": "nvidia-nvshmem-cu13",
+          "version": "3.4.5"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1837,
+            "sha256": "4777c4d7b040cdead515e13febe9da861052e4690bdfc2c67664b13aaf605be5",
+            "source": "lingua/lib/python3.12/site-packages/nvidia_nvtx-13.0.85.dist-info/METADATA"
+          },
+          "name": "nvidia-nvtx",
+          "version": "13.0.85"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3544,
+            "sha256": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763",
+            "source": "lingua/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA"
+          },
+          "name": "packaging",
+          "version": "26.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 22187,
+            "sha256": "525f8ba78523cf7bc3759d62a105e7c57fd679ea702402b9449fb0746aa0217f",
+            "source": "lingua/lib/python3.12/site-packages/psutil-7.2.2.dist-info/METADATA"
+          },
+          "name": "psutil",
+          "version": "7.2.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3292,
+            "sha256": "29e53bc2f9e13f9b72838ea1cc71a9a30fb1f7fc8b4ad5f32fda2187b6cf2550",
+            "source": "lingua/lib/python3.12/site-packages/pyarrow-21.0.0.dist-info/METADATA"
+          },
+          "name": "pyarrow",
+          "version": "21.0.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2527,
+            "sha256": "1dde075570136774c706bf0009183a793fe0ee262e4a5590cc6eff8453eedd43",
+            "source": "lingua/lib/python3.12/site-packages/pygments-2.21.0.dist-info/METADATA"
+          },
+          "name": "Pygments",
+          "version": "2.21.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 2351,
+            "sha256": "03c3b415ed38d09faedc49360e930769b40c58f68585e6de00e2e4916a858d34",
+            "source": "lingua/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA"
+          },
+          "name": "PyYAML",
+          "version": "6.0.3"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 40513,
+            "sha256": "fd895ec7522cd0bbab71ee4826442162f3f408a5f8d92e759f4ddf1be60dcf73",
+            "source": "lingua/lib/python3.12/site-packages/regex-2026.7.19.dist-info/METADATA"
+          },
+          "name": "regex",
+          "version": "2026.7.19"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 4806,
+            "sha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27",
+            "source": "lingua/lib/python3.12/site-packages/requests-2.34.2.dist-info/METADATA"
+          },
+          "name": "requests",
+          "version": "2.34.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 18445,
+            "sha256": "fad34fc603fac4481bf81f8dd629492fc302c0ec31909c86644751512afb2e3b",
+            "source": "lingua/lib/python3.12/site-packages/rich-15.0.0.dist-info/METADATA"
+          },
+          "name": "rich",
+          "version": "15.0.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 4189,
+            "sha256": "645be7b8d55e91534f991d144dc9e279581ea8dbea1a8c5b0be14e529d01e345",
+            "source": "lingua/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/METADATA"
+          },
+          "name": "safetensors",
+          "version": "0.8.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6581,
+            "sha256": "3ef2975718dd31cabdd5829455e9b868ca14dbf79ed8fed2de0af4e87347006e",
+            "source": "lingua/lib/python3.12/site-packages/setuptools-84.0.0.dist-info/METADATA"
+          },
+          "name": "setuptools",
+          "version": "84.0.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3461,
+            "sha256": "183d80220a37493262795739dd357cc5bb3f49bd390cc9198d5180e5451a07fa",
+            "source": "lingua/lib/python3.12/site-packages/shellingham-1.5.4.dist-info/METADATA"
+          },
+          "name": "shellingham",
+          "version": "1.5.4"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 12816,
+            "sha256": "b756c2fbfd5be05ac5bdb0ebca61f55618f30f633ed92d88a5687429313a7595",
+            "source": "lingua/lib/python3.12/site-packages/sympy-1.14.0.dist-info/METADATA"
+          },
+          "name": "sympy",
+          "version": "1.14.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6669,
+            "sha256": "30086725221223f7a19463e71c0e9f79fe7aba9125b36632c00bf50a23fa968a",
+            "source": "lingua/lib/python3.12/site-packages/tiktoken-0.14.0.dist-info/METADATA"
+          },
+          "name": "tiktoken",
+          "version": "0.14.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 9830,
+            "sha256": "67226b8d55c78feec1f100f38cd5b04ad7385af8484696b7fd332c1d8cec4345",
+            "source": "lingua/lib/python3.12/site-packages/tokenizers-0.23.1.dist-info/METADATA"
+          },
+          "name": "tokenizers",
+          "version": "0.23.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 38460,
+            "sha256": "63e791c950d477e7107e22f186e91ae81fbca5beec545c013a71edbde72f6c00",
+            "source": "lingua/lib/python3.12/site-packages/torch-2.13.0.dist-info/METADATA"
+          },
+          "name": "torch",
+          "version": "2.13.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 57344,
+            "sha256": "0d95b85b90428f8776afc4a92b17c5094f78ee98d150b3255acbcdf4e9d57941",
+            "source": "lingua/lib/python3.12/site-packages/tqdm-4.70.0.dist-info/METADATA"
+          },
+          "name": "tqdm",
+          "version": "4.70.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 32065,
+            "sha256": "a552b99768921327581cb0e1389718d39cb25f09d4f49b80aa9fc27a843d09e4",
+            "source": "lingua/lib/python3.12/site-packages/transformers-5.16.1.dist-info/METADATA"
+          },
+          "name": "transformers",
+          "version": "5.16.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 1663,
+            "sha256": "c0067ae183ac3e221330fc16dd9539a4bc7f2e56a34245cca63335e9da14a8ce",
+            "source": "lingua/lib/python3.12/site-packages/triton-3.7.1.dist-info/METADATA"
+          },
+          "name": "triton",
+          "version": "3.7.1"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 16414,
+            "sha256": "d1b73586e27d662dc32af374a4f073d167706e0b2e5fa025c0a507ba0eeb4ccb",
+            "source": "lingua/lib/python3.12/site-packages/typer-0.27.2.dist-info/METADATA"
+          },
+          "name": "typer",
+          "version": "0.27.2"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 3310,
+            "sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46",
+            "source": "lingua/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA"
+          },
+          "name": "typing_extensions",
+          "version": "4.16.0"
+        },
+        {
+          "metadata": {
+            "basis": "current-metadata-not-historical-execution",
+            "bytes": 6852,
+            "sha256": "66147856d30bbb6bed01c6ce3326d0f48d84ed5f286ac177633a1486b82eace5",
+            "source": "lingua/lib/python3.12/site-packages/urllib3-2.7.0.dist-info/METADATA"
+          },
+          "name": "urllib3",
+          "version": "2.7.0"
+        }
+      ],
+      "python": {
+        "implementation": "CPython",
+        "include-system-site-packages": "false",
+        "metadata": {
+          "basis": "current-metadata-not-historical-execution",
+          "bytes": 111,
+          "sha256": "50a2ea3347492cbca1426f1999d86b8fc151a2e5cf47e1937d781898232ae419",
+          "source": "lingua/pyvenv.cfg"
+        },
+        "version_info": "3.12.3"
+      },
+      "scope": "installed METADATA inventory; not proof every distribution was imported",
+      "torch": {
+        "__version__": "2.13.0+cu130",
+        "cuda": "13.0",
+        "git_version": "cf30153c4c131c8164ee7798e5022d810682e2cb",
+        "metadata": {
+          "basis": "current-metadata-not-historical-execution",
+          "bytes": 317,
+          "sha256": "d7662da37d4b8b037c81e7ae20381a43893b379facf17988a6d4f17a93265140",
+          "source": "lingua/torch/version.py"
+        }
+      }
+    }
+  ],
+  "metadata_collection_date_utc": "2026-11-02",
+  "not_established": [
+    "by this metadata projection alone: upstream wheel acquisition or clean native-runtime reconstruction; separate P5 byte records have their own scope",
+    "historical Lingua/MiniLM preparation runtime from current installed metadata",
+    "complete real P5/P6 execution, dependency import closure, or author approval"
+  ],
+  "original_observation": {
+    "finished_at": "2026-09-21T01:31:22.872509+00:00",
+    "scope": "one pre-primary observation, not pre-pilot or continuous monitoring",
+    "snapshot_sha256": "dfd03f0f627ebda68a3af239e4d243241bb1605bc7815a7865604ca04fc35ab1",
+    "started_at": "2026-09-21T01:30:58.335710+00:00"
+  },
+  "paper": "paper5",
+  "schema": "paper-replication-environment-preparation-v1",
+  "serving": {
+    "basis": "p5-pre-primary-snapshot",
+    "captured_allowlist": {
+      "EXL3_CKPT_PP": "1024",
+      "P5_REQUEST_IDLE_SECONDS": "10",
+      "PYTHONPATH": "<repo>/engines/exl3-1.4.7-lab"
+    },
+    "loader_boundary": "P5 source removes LD_LIBRARY_PATH for Tabby; this allowlist does not establish all LD_* variables absent",
+    "native_artifacts": [
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 1294967232,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "90bc134fc33df7575413cfa9b709b4f094cc27e268d7f3c40f01227f4f3d329c",
+        "source": "engines/exl3-1.4.7-lab/exllamav3_ext.cpython-312-x86_64-linux-gnu.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 116388640,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "031ce6c2cbfbb9468f040527cab5c599069ce5609e73e28f87503881063eac21",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 751771728,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "10b5e6631cf8115c661eb895ed1533826308b58f7956466f53d236a40c9b622c",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 7595792,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "fccdc5fcc7c32f8cf4b3ed9b17f7f187a185a6fa0a5bcc06e3434cbd1687c808",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_cupti/lib/libcupti.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 6338504,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "eccaa824230ee7858a94a3055cb01f1cb634df05d313880d0bdcf195161fcb4e",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 104487248,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "43731e24cd89e3749826304f304e8aa11fbecf1188715271b1f5018d6212b5e6",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 728800,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 125136,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "3b68ea689be647bce63cb3c2d9edb589add415405a7e9f296d69ca029cae0b8b",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn.so.9"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 278925016,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "5c912146449614f9d73ebd1a5cb604242da6b819d94ba5b4a99272a0649f3761",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cufft/lib/libcufft.so.11"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 3209496,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "a2f4854177f666c1a8c719b486e4cb1119ebfdd858ebaa6349cb63c5549d27e8",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cufile/lib/libcufile.so.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 136749240,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "f9bea038a2703b721571fd45a299a898141fd8cb264a5912635c95116f5960fe",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/curand/lib/libcurand.so.10"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 243303872,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "b64b838bf3e2f27373a59312aff73a5fb7e452300c4048db353a7f30d009a1d7",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cusolver/lib/libcusolver.so.11"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 387990224,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "437651d1ec5d0e5b1b4d07b8c492f153cb4825222fe2d763232a407f667d9bb2",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cusparse/lib/libcusparse.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 451980513,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "b3d85a0311eadfd3cec86b0291c9a4b5769cba2f248a9e7e8167fbf3ffa99863",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/cusparselt/lib/libcusparseLt.so.0"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 429628328,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "1d9c10322efacde695cf640db1f29fc1586c929f1087f0e1202d2d5e70fb7168",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/nccl/lib/libnccl.so.2"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 94101392,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "0369e6867d44b800437de4e146d72c65afc6c75adf677a15c2ecd8e6a7ac135f",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/nvjitlink/lib/libnvJitLink.so.12"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 160322296,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "bb1c1ad4a03eaf0456a01c671e5df3d27a7ac153e0e7eb5c0eb872df376cdef3",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/nvshmem/lib/libnvshmem_host.so.3"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 36024,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "c498fcbab0202886c27a0adeac44abf233ade03d30680ffa2d2abe93ab88d913",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/nvidia/nvtx/lib/libnvToolsExt.so.1"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 1490361,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "10976d2a98e0f9807e8c1f44d930c5ec4e07af7049cd02cc48d5177f952a7dfb",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libc10.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 577801,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "644ababdead4dd25a1564e360feeb6966ac5629f48b47843484e32f2499efbae",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libc10_cuda.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 254337,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "59badd7c550c340a23d217c37232a4bac6e66a99f47aa273a0a0393bc7c68ddb",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libgomp.so.1"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 57969,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "363d1d82e3b12a41ec07a27a226cb8b34a165f80954df0d9c518e4cee3cc818a",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libshm.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 343457,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "672f6cfa6f5bb39094c52e400f6ca8443bfe294f06ba793def90ddf339529f5f",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 448177281,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "c960407c516ec84d7994fd2c46cf2adc282d0fe6d3d0e928e1d64cc66598e5e4",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 1043840721,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "c4769210434140703db15073cc72fb7c3f4e62e5ba78fd00df74b6dd62fa5fe8",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 17353,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "2eaab74d60647976a45caf4e0643d8b1b568f7202aa1cc861fdff70cea8dbf48",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch_global_deps.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 9828441,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "1842201a74be7758f8f9c4bc5670bda92dcd2f460e4b926aca82456cf8fe899c",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch_nvshmem.so"
+      },
+      {
+        "basis": "p5-pre-primary-snapshot",
+        "bytes": 32514921,
+        "current_contents_rehashed": false,
+        "mapped_at_snapshot": true,
+        "sha256": "04cec54f776d5850b1372045218dcccf519c1123eb3906a0a0348682e6540ce5",
+        "source": "engines/exl3-env/lib/python3.12/site-packages/torch/lib/libtorch_python.so"
+      }
+    ],
+    "patched_sources": [
+      {
+        "after": {
+          "basis": "p5-pre-primary-snapshot",
+          "bytes": 82144,
+          "sha256": "f0d7bee9e713b5b755e199babdc8fe8fa4e6c0ad116d072cef679ef8c353148e",
+          "source": "engines/exl3-1.4.7-lab/exllamav3/generator/generator.py"
+        },
+        "before": {
+          "basis": "current-metadata-not-historical-execution",
+          "bytes": 73449,
+          "sha256": "d9679f40791c091382e00e5278d815a19fa7856b9788c376b2ae7093d1cf8231",
+          "source": "engines/exl3-1.4.7-lab/exllamav3/generator/generator.py.orig_lab"
+        },
+        "origin": "preserved local unpatched file, not authenticated upstream acquisition",
+        "path": "exllamav3/generator/generator.py"
+      },
+      {
+        "after": {
+          "basis": "p5-pre-primary-snapshot",
+          "bytes": 11427,
+          "sha256": "8f619e54c0423c9174ed5c75869db49d2334c181e2e0362a789f64b4fa6000a2",
+          "source": "engines/exl3-1.4.7-lab/exllamav3/architecture/qwen3_5_mtp.py"
+        },
+        "before": {
+          "basis": "current-metadata-not-historical-execution",
+          "bytes": 10436,
+          "sha256": "91a71f29dd7c80336527a7cac6aa566e7b7b97ce9e38f0afe3469eeeff51d829",
+          "source": "engines/exl3-1.4.7-lab/exllamav3/architecture/qwen3_5_mtp.py.orig_lab"
+        },
+        "origin": "preserved local unpatched file, not authenticated upstream acquisition",
+        "path": "exllamav3/architecture/qwen3_5_mtp.py"
+      }
+    ],
+    "tabbyapi_revision": "4a4f9f44820303593844f092d424bb7506008733"
+  },
+  "status": "preparation-not-a-release",
+  "study_hardware": {
+    "basis": "P5 dated observation; P6 intended study hardware, not a P6 execution record",
+    "cpu_model": "Intel(R) Core(TM) i9-14900HX",
+    "gpu": {
+      "driver": "580.167.08",
+      "memory_mib": 12282,
+      "name": "NVIDIA GeForce RTX 4080 Laptop GPU"
+    },
+    "host_mem_kib": 65445316,
+    "kernel": "7.0.0-29-generic"
+  }
+}

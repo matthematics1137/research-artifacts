@@ -1,0 +1,22 @@
+{
+  "author_approval": false,
+  "files": {
+    "README.md": "0b806e41e6f47926f41c6c68fa5c24bcc53a45aa388c1447221259fdf630045c",
+    "check_results.py": "fc5bb8d0a2e1d1b4ef470009632802b5ac9fe6ce328cc56648832a576aa1b8db",
+    "claims.tex": "0b6f415c5fecee929183b1fb2fa1d58f5b072618d6a8e526a9de5d8dae90ac61",
+    "figure_core.py": "a44605d459a55e42637b0915070a7dc4718e06a5e2c865ac7b5d14fbdea781a2",
+    "followup_text.py": "5f8fd893a08e029a891bb078e32f6aee8caebc536a1066e693d55f7ea22b447e",
+    "macros_core.py": "5c21790000f1200d625a2c68a6072dbf0c9ea570c2a259f75a26479bed0d4a6a",
+    "manuscript_text.py": "33dcc662b16d215900cb43eccb18187959e73e72ee7cab4601f5c755cad5a958",
+    "observations.json": "1b1c1957cc120d30c257ebc4523437ba3395ab470d98556b0b79b376b25790c6",
+    "primary_core.py": "8797dbd6d60525b35e2b6e39b4cae94d29361a0ca8425a0d44c6f951af002da3",
+    "rebuild_results.py": "9967e79c27f23ef3ee67395a17c7e49c14d5479d9368b175846aa86fc72cbc97",
+    "reporting_core.py": "d0320d474d80b6b79ec8c65aff95771b742800f22f9f24a9e15f9d97945c460e",
+    "results.json": "1d330f6dd3ce82cc9b5014a440e3a315cb51d984508465b90c802aca5bd6f74b",
+    "sections_text.py": "5c751ef958686fd8fa3d30cdd44f45e8a4683435cf9eec4bc3beb9da6c844501",
+    "statistics_core.py": "16283cf03ee86a93a7c8635d6ffe4420048e370a11e51a74350c7331cd03aadb",
+    "support_core.py": "b7599b3c4caf164b027a183d9be41837b769097a17205174f2ed520689564035"
+  },
+  "schema": "p5-analysis-data-candidate-v1",
+  "scope": "scored-record replay; no text rescoring, execution attestation, or public LoCoMo bootstrap reconstruction"
+}

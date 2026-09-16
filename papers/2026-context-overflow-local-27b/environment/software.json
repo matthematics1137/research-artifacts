@@ -1,0 +1,7 @@
+{
+  "scope": "Analysis replay only; exact runtime receipt in private build evidence. Historical inference environment is replication/experiment/ENVIRONMENT.json.",
+  "python": "3.12 or later",
+  "numpy": "2.3.3",
+  "scipy": "1.16.2",
+  "matplotlib": "3.10.6"
+}

@@ -1,0 +1,4 @@
+# Environment used for this candidate replay; not a full inference environment.
+numpy==2.3.3
+scipy==1.16.2
+matplotlib==3.10.6
