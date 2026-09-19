@@ -1,0 +1,55 @@
+{
+  "Ex": {
+    "artifact_record_sha256": "7a1243abc113de3b54cd13566c153751c4008af281141fda24a48455f7bca842",
+    "artifact_sha256": "c341a93b3d6567dee6e8c9ec7cb8012c1a0133aa4caa5591d04eee5ce10539d1",
+    "file": "qwen38-exl3-2.0",
+    "note": "effective bpw not derived: EXL3 shard headers are not parsed here and mixed head/embedding precision makes a file-level ratio misleading; the vendor bulk label is reported as such",
+    "source_coverage": "upstream weight shards enumerated exactly; the artifact record's separate full local-tree hash covers all additional local files",
+    "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+    "upstream_license": "apache-2.0",
+    "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+    "upstream_revision": "d7e02d63dddd4e047a8d397acb22aeb2b0bedcec",
+    "upstream_weight_shards": [
+      {
+        "bytes": 8573967630,
+        "filename": "model-00001-of-00002.safetensors",
+        "sha256": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93"
+      },
+      {
+        "bytes": 1622158601,
+        "filename": "model-00002-of-00002.safetensors",
+        "sha256": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746"
+      }
+    ],
+    "vendor_label": "EXL3 SC_2.00bpw_H3",
+    "weight_safetensors_bytes": 10196126231
+  },
+  "Iq": {
+    "artifact_record_sha256": "f278ba3b9dd2894dfcbfec809d28862191c24e2a6ea83b850e807f9ecbff670f",
+    "artifact_sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe",
+    "effective_file_bpw": 2.4901756472676158,
+    "file": "Qwen3.8-27B-UD-IQ2_S.gguf",
+    "file_bytes": 8371970048,
+    "gguf_tensor_count": 851,
+    "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+    "stored_parameters_from_gguf_tensor_shapes": 26895998464,
+    "upstream_filename": "Qwen3.8-27B-UD-IQ2_S.gguf",
+    "upstream_license": "apache-2.0",
+    "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+    "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502"
+  },
+  "Qf": {
+    "artifact_record_sha256": "9500252a42b4f78e28c76c17f8b70302c71f4e9e4f18b3f0217732b53ce43223",
+    "artifact_sha256": "3f227079003add2511437e5b1e94812e363385225bf6a9b47b0054a72bc8b01e",
+    "effective_file_bpw": 5.141648500063848,
+    "file": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+    "file_bytes": 17559178144,
+    "gguf_tensor_count": 866,
+    "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+    "stored_parameters_from_gguf_tensor_shapes": 27320697856,
+    "upstream_filename": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+    "upstream_license": "apache-2.0",
+    "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+    "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502"
+  }
+}

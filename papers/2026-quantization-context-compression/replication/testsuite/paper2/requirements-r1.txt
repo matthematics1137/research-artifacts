@@ -1,0 +1,8 @@
+# Frozen R1 input-build/compression environment. Inference engines use their
+# separately pinned environments documented in paper2/RERUN_PLAN.md.
+pyarrow==21.0.0
+llmlingua==0.2.2
+torch==2.13.0
+transformers==5.16.1
+tokenizers==0.23.1
+numpy==2.5.2

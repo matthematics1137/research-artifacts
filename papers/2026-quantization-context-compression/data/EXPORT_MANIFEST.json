@@ -1,0 +1,172 @@
+{
+  "attempt_id": "p2r1-primary-v5",
+  "authority": {
+    "campaign_toolchain_sha256": "6372742197b12638dc2b1c3586bf2899457dc083f2c4bd0973e4aabfab929d2b",
+    "claims_tex_sha256": "786a4b78a352588f1b19efe02c4f7f2fca4d3dd1d49f644a96258b5459c3e6e8",
+    "evidence_freeze_commit": "38a68c359458c1faa1c223ac04016c87eb22bf10",
+    "promotion_sha256": "454b9bd0a19003957efbda9b3d6a47918142fd98103cdcd7580bc1e4cf57b711"
+  },
+  "files": {
+    "claims.json": {
+      "bytes": 67080,
+      "sha256": "5819a341c047474fa919b3b189cfb8c860d3873e335890f85c59ce2b82c2a7bd"
+    }
+  },
+  "no_inference": true,
+  "privacy_boundary": "Aggregates only. No question, gold answer, response, window text, per-item row, item identifier, or source-conversation identifier from either corpus is exported; the private corpus never leaves the host.",
+  "replication_sources": {
+    "methodology/EMPIRICAL_RESEARCH_LOOP.md": {
+      "bundle": "measurement",
+      "bytes": 16020,
+      "sha256": "fff213856c65e298fbae4cd53c85ecf57101957a85c3b84834991b816b4decd1"
+    },
+    "paper2/Makefile": {
+      "bundle": "analysis",
+      "bytes": 3419,
+      "sha256": "7e51df172ee75ae2c94956eea7949d5e58b559ea5da383a9a10e0e6180504562"
+    },
+    "paper2/R1_PROTOCOL.json": {
+      "bundle": "measurement",
+      "bytes": 36176,
+      "sha256": "61cb587882a55206e7f71ef270f235e51cd21861f43cf89c8d7f034da876aaac"
+    },
+    "paper2/RERUN_PLAN.md": {
+      "bundle": "measurement",
+      "bytes": 40245,
+      "sha256": "2c434e3cd1af7c87ff8fccaf02aaa2b95dab490b4014b35a3852868523f951b2"
+    },
+    "paper2/scripts/build_claims.py": {
+      "bundle": "analysis",
+      "bytes": 73889,
+      "sha256": "3febb1d6579343140900151b42e9b49a58636cc3f0cc6ad67ea770373400d485"
+    },
+    "paper2/scripts/build_public_allowlist.py": {
+      "bundle": "analysis",
+      "bytes": 6490,
+      "sha256": "20e4c7b734ec996adbd9d3fc84320e6e644b2906062d25d4d4b12dbc92cfb4c9"
+    },
+    "paper2/scripts/check_release_state.py": {
+      "bundle": "analysis",
+      "bytes": 28623,
+      "sha256": "5f217a45ac3fcb0ca246b6dc9edbf74b12d26308637f93635b71dbb0a0c2d874"
+    },
+    "paper2/scripts/make_figures.py": {
+      "bundle": "analysis",
+      "bytes": 9818,
+      "sha256": "21843870b15410603a9fac7f23159b33f8b2c4eb6e24630cbfe2b4aac76a52b1"
+    },
+    "paper2/scripts/test_claims.py": {
+      "bundle": "analysis",
+      "bytes": 68676,
+      "sha256": "eec0afb02d6f7569f4616a7a0017f570d2c9087c42331f03522cae16f3e98862"
+    },
+    "paper2/scripts/validate_r1.py": {
+      "bundle": "analysis",
+      "bytes": 76040,
+      "sha256": "2ea609ed32f8976770bbaef66cadffde509e154b85894d2382e83c170d242718"
+    },
+    "paper4/scripts/verify_claims.py": {
+      "bundle": "analysis",
+      "bytes": 85249,
+      "sha256": "fccf114d57b887aff1350de6ffa0cb147c417c65932ae8c1848cd26812668fb6"
+    },
+    "publication/papers/qwen38_27b_12gb/public/environment/model_artifacts.json": {
+      "bundle": "measurement",
+      "bytes": 3669,
+      "sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db"
+    },
+    "testsuite/paper2/build_wildchat_r1.py": {
+      "bundle": "measurement",
+      "bytes": 13180,
+      "sha256": "4ae510a02fad8e19e598565e3d752e27afc19b786d34b40c5ef25e5db50aff78"
+    },
+    "testsuite/paper2/campaign_guard.py": {
+      "bundle": "measurement",
+      "bytes": 34993,
+      "sha256": "c4b62aa8693ac15c36f164050c64ce0bf652ee7205dbe2d87170546a28e25929"
+    },
+    "testsuite/paper2/freeze_tsi_r1.py": {
+      "bundle": "measurement",
+      "bytes": 5334,
+      "sha256": "4b48c715f43a088ed50ef3ce2889e846f4799384eaadca206297a2ec98b3706d"
+    },
+    "testsuite/paper2/gen_questions.py": {
+      "bundle": "measurement",
+      "bytes": 53700,
+      "sha256": "48695d2ef40aadce800f8fe4a69d3aa7dd64069ea74becafe226f864f6d74dfe"
+    },
+    "testsuite/paper2/identity_guard.py": {
+      "bundle": "measurement",
+      "bytes": 38764,
+      "sha256": "fffd73f1b4875ef545c26fc3a5454319b2bd4240a307c30215acbdb01f71efb4"
+    },
+    "testsuite/paper2/ladder.py": {
+      "bundle": "measurement",
+      "bytes": 4026,
+      "sha256": "78281435eb8a8965bd7ce886c6641b6909b7f460e869b77b38f16ed045c51863"
+    },
+    "testsuite/paper2/make_conditions_r1.py": {
+      "bundle": "measurement",
+      "bytes": 8575,
+      "sha256": "9f2b1f8900cdbe3d726296a2756783415c576f72b764414513e0f10e12500352"
+    },
+    "testsuite/paper2/p2_grid_r1.sh": {
+      "bundle": "measurement",
+      "bytes": 22214,
+      "sha256": "4650f3904c578670d204347d22e69d266a1bc3afd93ebb2eceffc75449c51d2a"
+    },
+    "testsuite/paper2/prepare_tabby_config_r1.py": {
+      "bundle": "measurement",
+      "bytes": 3312,
+      "sha256": "76d6e9426d27acbddde56b4352ddb0e627cfc0bb74b03b22f7da01289fc90f9e"
+    },
+    "testsuite/paper2/protocol_bindings.py": {
+      "bundle": "measurement",
+      "bytes": 3799,
+      "sha256": "4fb36d9cfa0639aec87b719a2b413a4ed91c59d6f8524c9cda295357aafa6727"
+    },
+    "testsuite/paper2/r1_safety.py": {
+      "bundle": "measurement",
+      "bytes": 16480,
+      "sha256": "fdba99ac316c4a735a1a6c8a604b926daa41b11b3e5e7db279eea84931bebdc6"
+    },
+    "testsuite/paper2/requirements-r1.txt": {
+      "bundle": "measurement",
+      "bytes": 246,
+      "sha256": "d85cc3679021f7cc8aff9cdd09e45fb6ad6fca2036cce8ad4c66f0a61e89a454"
+    },
+    "testsuite/paper2/run_grid.py": {
+      "bundle": "measurement",
+      "bytes": 55509,
+      "sha256": "0a4098fe9c7f5adba24548e422fd0209045e47d5466e2ab7051a22f0662aa3e1"
+    },
+    "testsuite/paper2/runtime_provenance.py": {
+      "bundle": "measurement",
+      "bytes": 55779,
+      "sha256": "ea85752a02479db589226be1eacb898ca8115157d29ee45e3ec0ea8a2c6fa487"
+    },
+    "testsuite/paper2/selftest_r1.py": {
+      "bundle": "measurement",
+      "bytes": 42327,
+      "sha256": "81bf9c4a3e5f3c184beef0adc16112de853085fa47202576d9831ccf41ff405c"
+    },
+    "testsuite/paper2/tabby_p2r1_config.template.yml": {
+      "bundle": "measurement",
+      "bytes": 490,
+      "sha256": "ffcc6b00eb74a5f0471a3819bfd7573b0bbf19b7b7cb62f0790586ce8edf2f3a"
+    },
+    "testsuite/paper2/validate_inputs_r1.py": {
+      "bundle": "measurement",
+      "bytes": 10091,
+      "sha256": "6528791fa571fbc0b88fcd7f1d6774fab0f1615013bb94276e921f6047b9c867"
+    },
+    "testsuite/paper2/warmup_r1.py": {
+      "bundle": "measurement",
+      "bytes": 4243,
+      "sha256": "cfd6a91349309e79852fcf5067aff36e7e700c0dd78c43406c57ddd2281d933d"
+    }
+  },
+  "schema": "paper2-p2r1-public-data-export-v1",
+  "status": "unpublished-local-package-source",
+  "study_status": "corrective exploratory rerun after hypotheses, corpus frames, and contaminated outputs were observed; not independent confirmation"
+}

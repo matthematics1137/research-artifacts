@@ -1,0 +1,194 @@
+{
+  "llama_build": {
+    "cmake_cache_sha256": "34f33c3217b6e2b2ce8ee33ca7ada828f75ed4be50eb5e72f17aba8c356d9a8c",
+    "schema": "paper2-r1-llama-build-identity-v1",
+    "settings": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CUDA_ARCHITECTURES": "89",
+      "GGML_BLAS": "OFF",
+      "GGML_CUDA": "ON",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "LLAMA_CURL": "OFF"
+    },
+    "tool_sha256": {
+      "cmake": "1c5227af4edd22d8d689def545e18ee458260c0fd579eba2187967f38817e638",
+      "cxx": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769",
+      "nvcc": "874d5124e3a7a32f68873fc7fcb0d8ad41b3fb2730fb18e3bb45544b14c8173d"
+    },
+    "tool_versions": {
+      "cmake": "cmake version 3.28.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+      "cxx": "x86_64-linux-gnu-g++-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Oct_29_23:50:19_PDT_2024\nCuda compilation tools, release 12.6, V12.6.85\nBuild cuda_12.6.r12.6/compiler.35059454_0"
+    }
+  },
+  "llama_cpp_revision": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3",
+  "llama_cuda_runtime": {
+    "dynamic_resolution_verified": true,
+    "libraries": {
+      "libcublas.so.12": {
+        "bytes": 108244960,
+        "filename": "libcublas.so.12.6.4.1",
+        "sha256": "d9343511e1d2ed51e4d65fa94a25cb8f73b0ebc5ae5487da794e18e6950c98dc",
+        "soname": "libcublas.so.12"
+      },
+      "libcublasLt.so.12": {
+        "bytes": 491106832,
+        "filename": "libcublasLt.so.12.6.4.1",
+        "sha256": "a4ddaed1410acc604815f0e84cdd6c4a70c61cfd2b95dc96360f0799169f0374",
+        "soname": "libcublasLt.so.12"
+      },
+      "libcudart.so.12": {
+        "bytes": 716128,
+        "filename": "libcudart.so.12.6.77",
+        "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85",
+        "soname": "libcudart.so.12"
+      }
+    },
+    "privacy": "absolute toolkit and library paths omitted",
+    "schema": "paper2-r1-llama-cuda-runtime-public-v1",
+    "toolkit_release": "12.6"
+  },
+  "llama_server_sha256": "be5d18464c3aa74bca264f15a1d07b059928d92f8d192e3752df38a610cbf8a9",
+  "nvidia_driver": "580.167.08",
+  "privacy": "absolute executable/site-package paths omitted",
+  "python_runtime": {
+    "all_distribution_inventory_sha256": "d07ff118783076b90bcf705d328949baff9c65541515900eb7d9b2893ae88c2b",
+    "distributions": {
+      "exllamav3": {
+        "content_tree_sha256": "00b024048ee8c4545281792db72685614674ac25f883b041d2b309cf3e13560c",
+        "file_count": 447,
+        "total_bytes": 1265688849,
+        "version": "1.4.3+cu128.torch2.10.0"
+      },
+      "fastapi": {
+        "content_tree_sha256": "a3eea0c243dbaaf0dce554acee529faac7deadea06dc426a91a3195f29e21a8d",
+        "file_count": 64,
+        "total_bytes": 823069,
+        "version": "0.141.1"
+      },
+      "nvidia-cublas-cu12": {
+        "content_tree_sha256": "66d8b26fc5cc89670ef591ee01dd978750fa3e852228daaaf9243d305af9d0b4",
+        "file_count": 20,
+        "total_bytes": 869571305,
+        "version": "12.8.4.1"
+      },
+      "nvidia-cuda-cupti-cu12": {
+        "content_tree_sha256": "7008e95ebaa1244de65f9c1b6cfecdb523ffb13f1d6c8f0cb95ba6025f3dff53",
+        "file_count": 53,
+        "total_bytes": 42519396,
+        "version": "12.8.90"
+      },
+      "nvidia-cuda-nvrtc-cu12": {
+        "content_tree_sha256": "0a1c0b366a9ecae385f8137ae71b63dd74f549860fbb5f4fb4e23d12bb280f55",
+        "file_count": 16,
+        "total_bytes": 222208990,
+        "version": "12.8.93"
+      },
+      "nvidia-cuda-runtime-cu12": {
+        "content_tree_sha256": "ccf29d72da38fa4b89836bb7c92ac915250f977f447ffce6ff63ce867a58b42f",
+        "file_count": 107,
+        "total_bytes": 4992191,
+        "version": "12.8.90"
+      },
+      "nvidia-cudnn-cu12": {
+        "content_tree_sha256": "68ee4d10eeb246bf1cc4b43444fb03ede1912abd9fe31fcdddd9b73ce9a56c26",
+        "file_count": 29,
+        "total_bytes": 1053624959,
+        "version": "9.10.2.21"
+      },
+      "nvidia-cufft-cu12": {
+        "content_tree_sha256": "588701f66e9efa54e6abe8d3236be3cf02ce195eb0bdbcade2adf53f2f2cf5ee",
+        "file_count": 17,
+        "total_bytes": 281139430,
+        "version": "11.3.3.83"
+      },
+      "nvidia-cufile-cu12": {
+        "content_tree_sha256": "419a5e4b1cc541c60f70f046ed667a097051e8b56dc68a217c8dcd624c6cae68",
+        "file_count": 14,
+        "total_bytes": 3347901,
+        "version": "1.13.1.3"
+      },
+      "nvidia-curand-cu12": {
+        "content_tree_sha256": "6ebbd6e1b761240f97b5d9d804e35af70cfb3461ea6bc7ac576f1f9a3ba3e9ed",
+        "file_count": 29,
+        "total_bytes": 138917689,
+        "version": "10.3.9.90"
+      },
+      "nvidia-cusolver-cu12": {
+        "content_tree_sha256": "1ca92bcaff2a3a9b5f5144897b2369920ea86f47f554798ca3b0319f971d92bd",
+        "file_count": 19,
+        "total_bytes": 405119350,
+        "version": "11.7.3.90"
+      },
+      "nvidia-cusparse-cu12": {
+        "content_tree_sha256": "a79ab4f29019a964b52fe74b9ab7219e739748719c60202f11388864aa1cb493",
+        "file_count": 14,
+        "total_bytes": 388352060,
+        "version": "12.5.8.93"
+      },
+      "nvidia-cusparselt-cu12": {
+        "content_tree_sha256": "63e47df797ba3ab53a283239da83ea327b7f08bb9fb96cee0177a95f97b22b15",
+        "file_count": 9,
+        "total_bytes": 452024287,
+        "version": "0.7.1"
+      },
+      "nvidia-nccl-cu12": {
+        "content_tree_sha256": "5f06922f0630b0bd5bba3a7ccc47bd2bc8c6a67ebad6c70facf597129135a469",
+        "file_count": 9,
+        "total_bytes": 429655778,
+        "version": "2.27.5"
+      },
+      "nvidia-nvjitlink-cu12": {
+        "content_tree_sha256": "b5d903d670e4c398c0096f195ca6a9627e94c111f065ac8322d4e5f5940f2bb5",
+        "file_count": 13,
+        "total_bytes": 94180784,
+        "version": "12.8.93"
+      },
+      "nvidia-nvshmem-cu12": {
+        "content_tree_sha256": "0ac0574362de1f1d175d6c357507bbc6c3cd82b49caf6bd00f2979d16978410e",
+        "file_count": 66,
+        "total_bytes": 204181479,
+        "version": "3.4.5"
+      },
+      "nvidia-nvtx-cu12": {
+        "content_tree_sha256": "c37a908fab20ca2c2e5d69c244fd476f1211b1e5817c9d046c504d73dc232006",
+        "file_count": 33,
+        "total_bytes": 367445,
+        "version": "12.8.90"
+      },
+      "tabbyapi": {
+        "content_tree_sha256": "ec9f8ccbc23ab28ecb138c5c419435d54b648d4ee65235ec7eafdd08092a6582",
+        "file_count": 10,
+        "total_bytes": 44250,
+        "version": "0.0.1"
+      },
+      "torch": {
+        "content_tree_sha256": "4c951718a44a62f2a9a4df53724687963c006ea2936dbf3780948d3ccd74af34",
+        "file_count": 11784,
+        "total_bytes": 1761574718,
+        "version": "2.10.0+cu128"
+      },
+      "uvicorn": {
+        "content_tree_sha256": "03f033f82d966ec5ac73b26f93d8a983f5fbc69ead427e782f6e53f294b4dc57",
+        "file_count": 51,
+        "total_bytes": 267867,
+        "version": "0.52.4"
+      }
+    },
+    "loader_environment_contract": "all inherited LD_* variables removed; no LD_LIBRARY_PATH",
+    "observed_ld_variables": {},
+    "precompiled_extension": {
+      "bytes": 1261393912,
+      "filename": "exllamav3_ext.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "ca056802008bfb821a51e4fd834367535cfd33d81a292815b2c9fb2fcc22d347"
+    },
+    "schema": "paper2-r1-python-runtime-content-v1",
+    "torch_runtime": {
+      "cuda": "12.8",
+      "cudnn": 91002,
+      "torch": "2.10.0+cu128"
+    }
+  },
+  "tabbyapi_revision": "4a4f9f44820303593844f092d424bb7506008733"
+}
