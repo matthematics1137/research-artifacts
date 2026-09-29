@@ -1,0 +1,533 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[font=small,labelfont=bf]{caption}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\Urlmuskip=0mu plus 1mu\relax
+\emergencystretch=1.2em
+\renewcommand{\bibfont}{\scriptsize\raggedright}
+\setlength{\bibsep}{1pt}
+\usepackage[compact]{titlesec}
+\setlength{\textfloatsep}{14pt plus 2pt minus 4pt}
+
+\newif\ifdarkmode
+\ifdefined\DARKMODE \darkmodetrue \else \darkmodefalse \fi
+\ifdarkmode
+  \input{darkstyle}
+  \graphicspath{{figures/dark/}}
+\else
+  \graphicspath{{figures/}}
+\fi
+
+\newcommand{\singleauthorinfo}[1]{\\[0.25em]{\small #1}}
+\newcommand{\q}[1]{\texttt{#1}}
+\input{derived/claims}
+
+\title{\textbf{llama.cpp Throughput for Qwen3.8-Flash-Next\\
+and gpt-oss-120b on a 62 GiB RAM Laptop}}
+
+\hypersetup{
+  pdftitle={llama.cpp Throughput for Qwen3.8-Flash-Next and gpt-oss-120b on a 62 GiB RAM Laptop},
+  pdfauthor={Matthew Schwartz},
+  pdfsubject={Decode-throughput measurements for two large mixture-of-experts GGUF deployments using llama.cpp's ordinary mmap path}
+}
+
+\author{Matthew Schwartz\singleauthorinfo{Independent researcher \enspace
+\href{https://orcid.org/0009-0009-4171-7247}{ORCID 0009-0009-4171-7247}
+\enspace \texttt{matthew.schwartz.research@gmail.com}}}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large mixture-of-experts (MoE) models can be deployed across system memory,
+GPU memory, and storage, but file size alone does not predict generation
+speed. We measured two public GGUF deployments with unmodified llama.cpp on
+an Intel Core i9-14900HX laptop with \PthreeCpuRamGiB\,GiB of RAM and an
+\PthreeGpuPowerCapWatts\,W RTX 4080 Laptop GPU. The engine used its ordinary
+memory-mapped file path, with routed experts assigned to the CPU and GPU
+offload requested for other supported layers. The \PthreeFlashFileGiB\,GiB
+Qwen3.8-Flash-Next artifact decoded at
+\PthreeFlashInitialGenOne--\PthreeFlashQuietGenOne\ tokens/s across two
+sequential three-run groups under different recorded host states. A
+\PthreeGptOssFileGiB\,GiB gpt-oss-120b artifact decoded at
+\PthreeGptOssInitialGenTwo--\PthreeGptOssInitialGenOne\ tokens/s across three
+runs. Each invocation requested \PthreeGenerationRequestedDecode\ output
+tokens from one fixed prompt. These are decode rates: they exclude model
+loading and prompt processing and do not establish interactive response
+latency. The report provides run-level measurements, exact deployment
+identities, and separate small task checks as a reference for reproducing
+these configurations. Sequential run groups and whole-device storage
+counters leave the causes of the observed rates unresolved. The contribution
+is a hardware-specific throughput benchmark; no inference method was changed.
+\end{abstract}
+
+\section{Introduction}
+
+A local deployment must deliver answers within a useful time budget as well
+as fit the available memory. With 59--68\,GiB model files on a
+\PthreeCpuRamGiB\,GiB RAM laptop, the operating system, inference buffers,
+and weights compete for system memory, while a
+\PthreeGpuMarketedVramGB\,GB GPU holds only part of the deployment.
+Measuring generation speed is one step toward deciding whether such a
+configuration can serve the intended workload.
+
+Linux memory mapping lets an engine address file-backed pages without first
+copying the whole artifact into RAM \citep{linuxmmap2026,linuxmm2026}.
+llama.cpp users have already reported large, storage-backed MoE deployments
+through this path \citep{llamacppdiscussion18758,llamacppdiscussion23324}.
+The open practical question for a new configuration is its measured speed,
+rather than whether memory mapping permits execution at all.
+
+Mixture-of-experts models make this performance question especially relevant.
+They store many feed-forward experts but route each token through only a few
+\citep{shazeer2017moe,fedus2021switch,dai2024deepseekmoe}, so stored size and
+active computation are not the same quantity. Purpose-built runtimes exploit
+this structure through expert placement, prefetching, compression, and caching
+\citep{edgemoe2023,mixtraloffload2023,hobbit2024,slicemoe2025,dymoe2026,
+pagedweight2026}. The ordinary mmap path in llama.cpp provides a reference
+configuration for evaluating these techniques \citep{gerganov2023llamacpp}.
+
+We ask how fast Qwen3.8-Flash-Next and gpt-oss-120b decoded on this laptop
+with a fixed llama.cpp checkout and CPU/GPU placement. ``Unmodified'' refers
+to the source checkout; the command lines use explicit placement flags.
+
+The \PthreeFlashFileGiB\,GiB Flash deployment completed generation at
+\PthreeFlashInitialGenOne--\PthreeFlashQuietGenOne\ decode tokens/s across its
+recorded host states, and the \PthreeGptOssFileGiB\,GiB gpt-oss deployment ran
+at \PthreeGptOssInitialGenTwo--\PthreeGptOssInitialGenOne\ tokens/s. The
+contribution is this benchmark and the configuration needed to repeat it.
+Tensor inventories document the files, and small separate task samples
+provide limited checks of the deployed models' answers. Prompt processing is
+reported separately because decode speed alone does not determine response
+latency.
+
+The larger file exceeded installed system RAM, but not combined nominal RAM
+and VRAM; the study did not measure simultaneous residency of every tensor
+byte. The measurements therefore do not establish execution beyond combined
+physical memory or identify a paging mechanism.
+Section~\ref{sec:methods} defines the exact deployments and measurements,
+Section~\ref{sec:results} reports their observed rates and supporting audits,
+and the remaining sections explain how the baseline can and cannot be used.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Machine, engine, and placement}
+
+The host was a Linux laptop with an Intel Core i9-14900HX,
+\PthreeCpuRamGiB\,GiB of
+dual-channel DDR5 memory, a 2\,TB WD PC SN740 NVMe drive, and an NVIDIA RTX
+4080 Laptop GPU with \PthreeGpuVramMiB\,MiB of VRAM at an
+\PthreeGpuPowerCapWatts\,W power limit. The recorded baseline inventory lists
+Linux \q{\PthreeKernelVersion}, NVIDIA driver
+\q{\PthreeNvidiaDriverVersion}, and driver-reported CUDA compatibility
+\q{\PthreeCudaVersion}. It also
+records \PthreeSwapTotalGiB\,GiB of swap, with
+\PthreeSwapUsedBaselineGiB\,GiB in use at that snapshot. These are inventory
+values, not per-run measurements of software state, memory pressure, or swap
+traffic. Run logs
+record llama.cpp build \q{b1-035e227}; the associated clean source checkout
+currently resolves to
+\q{035e2273}\allowbreak\q{1a7fd70b}\allowbreak\q{9854b3a2}\allowbreak
+\q{d64ec68e}\allowbreak\q{9b1a45d3}. It was compiled with CUDA for
+compute capability 8.9. The surviving build record identifies GNU C++ 13.3.0
+and CUDA toolkit compiler 12.6.85; the release artifact records the remaining
+toolchain and CMake options. For the Flash runs, that revision was a commit in the
+then-unmerged Qwen4Exp support pull request; the pull request subsequently
+merged on August 27, 2026 \citep{llamacpp2026qwen4exppr}. The gpt-oss path did
+not depend on that experimental architecture support.
+
+Both command lines used llama.cpp's default mmap behavior, requested GPU
+offload with \q{-ngl 99}, and assigned routed MoE tensors to the CPU path with
+\q{--n-cpu-moe 999}. Thus the requested placement combines CPU expert
+execution with GPU execution of other supported layers. The exact flags and
+engine revision define the baseline.
+
+\subsection{Artifacts and tensor inventory}
+
+GGUF is the model container used by llama.cpp. The first subject was the
+three-shard Unsloth
+\path{Qwen3.8-Flash-Next-UD-IQ1_S} artifact at Hugging Face revision
+\q{d3bc75ee}\allowbreak\q{6ccef3ef}\allowbreak\q{c1e228ec}\allowbreak
+\q{00a6cc2c}\allowbreak\q{db1e2249}. Its GGUF metadata declares
+\PthreeFlashLayers\ blocks, \PthreeFlashExperts\ experts, and
+\PthreeFlashActiveExperts\ active experts per token
+\citep{qwenflash2026,unsloth2026flashnext}. The second was
+\path{gpt-oss-120b-MXFP4.gguf} at revision
+\q{238abdd2}\allowbreak\q{90bb874b}\allowbreak\q{90a5da1b}\allowbreak
+\q{4549881b}\allowbreak\q{7d05c091}, with \PthreeGptOssLayers\
+blocks, \PthreeGptOssExperts\ experts, and \PthreeGptOssActiveExperts\ active
+per token \citep{openai2025gptoss,ggmlorg2025gptossgguf}.
+
+We parsed the frozen GGUF headers and summed stored bytes and logical tensor
+elements by standardized tensor name. Effective whole-file bits per enumerated
+logical tensor element (bpw) is
+$8\times$ artifact bytes divided by enumerated logical tensor elements. The
+inventory is descriptive of the deployed files; it does not measure which
+pages the engine read during a token.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{lrrrrl}
+\toprule
+Artifact & File GiB & File bpw & Routed experts GiB & Experts/active & Notable other tensor \\
+\midrule
+Flash UD-IQ1\_S & \PthreeFlashFileGiB & \PthreeFlashEffectiveBpw &
+\PthreeFlashRoutedGiB & \PthreeFlashExperts/\PthreeFlashActiveExperts &
+\PthreeFlashNonRoutedTableGiB\ GiB lookup table \\
+gpt-oss MXFP4 & \PthreeGptOssFileGiB & \PthreeGptOssEffectiveBpw &
+\PthreeGptOssRoutedGiB & \PthreeGptOssExperts/\PthreeGptOssActiveExperts & --- \\
+\bottomrule
+\end{tabular}
+\caption{Deployed-file inventory from GGUF headers. Flash's
+\q{per\_layer\_token\_embd.weight} lookup table is outside the
+routed-expert tensor set. File bpw includes all tensors and container overhead.}
+\label{tab:inventory}
+\end{table}
+
+\subsection{Timing protocol and storage counters}
+
+Each generation invocation used one fixed technical-explanation prompt, a
+\PthreeGenerationContext-token context limit, a request for
+\PthreeGenerationRequestedDecode\ output tokens, and llama.cpp's
+\q{-st} timing output. The harness saved the reported prompt and generation
+throughput but not the generated text for these timing runs. It did not set a
+fixed seed or force greedy decoding. The exact prompt was: \emph{Write a
+detailed technical explanation of how an operating system page cache interacts
+with memory-mapped files during sequential and random access patterns.}
+
+The Flash campaign contains an initial three-run sequence labeled as a loaded
+host and a later three-run sequence fired by a quiet gate after available
+memory remained at least \PthreeQuietGateMinMemAvailableGiB\,GiB and one-minute
+load remained below \PthreeQuietGateMaxLoadExclusive\ for
+\PthreeQuietGateDurationMinutes\ minutes. The gpt-oss campaign contains one
+initial three-run sequence. These
+are sequential observations, not randomized or interleaved condition samples.
+The host-state labels describe the campaign; they do not isolate cache size or
+background load as a cause.
+
+Immediately before process launch and after process exit, the harness sampled
+the read-sector counter for the physical NVMe device in
+\q{/proc/diskstats}. We call the difference a \emph{whole-invocation
+device-read delta}. It includes every phase of \q{llama-cli} and reads by
+other processes on the same device. The generation rate, by contrast, is
+llama.cpp's decode timing. These two intervals must not be divided to obtain
+decode bytes per token, cache misses, or effective decode bandwidth. Memory
+fields also differ across groups: the initial Flash rows record post-run
+\q{Cached} and pre-run \q{MemAvailable}, while later groups record post-run
+\q{MemAvailable}. We therefore do not put them on one cache-size axis.
+
+\subsection{Quality checks and alternate scoring}
+
+Separate saved evaluations used frozen subsets constructed with dataset seed
+\PthreeDatasetSelectionSeed. The surviving files contain the same
+\PthreeMathMatchedItems\ MATH and \PthreeGsmMatchedItems\ GSM8K item IDs for
+both models. Both campaigns targeted the same
+\PthreeHumanEvalFrozenItems-item HumanEval+ subset, although the Flash file is
+incomplete as described below. The GSM8K subset consists of the first
+\PthreeGsmMatchedItems\ entries of a seed-42 sample of 100 test items sorted
+by source index, not a direct random sample of 50. Servers used an \PthreeQualityContext-token
+context, temperature \PthreeQualityTemperature, top-$p$
+\PthreeQualityTopP, top-$k$ \PthreeQualityTopK, requested reasoning effort
+\q{\PthreeQualityReasoningEffort}, and concurrency
+\PthreeQualityConcurrency. Maximum requested output was
+\PthreeMathMaxTokens\ tokens for MATH, \PthreeCodeMaxTokens\ for HumanEval+,
+and \PthreeGsmMaxTokens\ for GSM8K
+\citep{hendrycks2021math,chen2021humaneval,liu2023evalplus,
+cobbe2021gsm8k}. The harness sent one user message per item and no separate
+system message. MATH appended ``End your response with: Answer: <final
+answer>'' to the problem; GSM8K appended ``End your response with: Answer:
+<number>'' to the question. HumanEval+ asked for the complete runnable Python
+function, including its signature and imports, in one Python code block with
+nothing afterward, then supplied the task's function prompt. MATH is reported
+both under the original harness scorer and a
+more lenient post-hoc rescore. The original scorer already extracts an answer,
+normalizes common LaTeX and fraction forms, and applies numeric tolerance. The
+post-hoc rescore accepts additional presentation variants and simple numeric
+equivalents. The original score remains primary; the two scores are not
+merged. One retained MATH row from each model records a timeout error and was
+counted incorrect.
+The harness could retry a failed request automatically; the saved rows do not
+record attempt counts. Task scores describe retained outcomes, not necessarily
+one generation attempt per item.
+
+The saved Flash HumanEval+ file contains only \PthreeFlashCodeSavedN\ rows
+(\PthreeFlashCodeSavedCorrect\ correct), while the aggregate ledger reports
+\PthreeFlashCodeAggregateCorrect/\PthreeFlashCodeAggregateN. Because the
+\PthreeFlashCodeMissingRows\ missing item rows cannot be
+audited, we omit the aggregate Flash code score from the scientific result and
+retain the discrepancy in the artifact. Wilson 95\% intervals accompany the
+row-backed proportions \citep{wilson1927}.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Observed decode throughput}
+\vspace{0.15em}
+
+The \PthreeFlashFileGiB\,GiB Flash deployment produced
+\PthreeFlashInitialGenOne--\PthreeFlashQuietGenOne\ decode tokens/s across its
+six recorded invocations. The \PthreeGptOssFileGiB\,GiB gpt-oss deployment
+produced \PthreeGptOssInitialGenTwo--\PthreeGptOssInitialGenOne\ tokens/s
+across three invocations. Every principal invocation reached a generation
+timing result. Table~\ref{tab:generation} gives the individual rates and the
+separately scoped storage counters. The ranges are observed extrema, not
+confidence intervals or estimates of run-to-run variability.
+
+Prompt processing was slower than decode in these runs. The initial Flash
+group reported \PthreeFlashInitialPromptOne, \PthreeFlashInitialPromptTwo,
+and \PthreeFlashInitialPromptThree\ input tokens/s; the later group reported
+\PthreeFlashQuietPromptOne, \PthreeFlashQuietPromptTwo, and
+\PthreeFlashQuietPromptThree. The gpt-oss group reported
+\PthreeGptOssInitialPromptOne, \PthreeGptOssInitialPromptTwo, and
+\PthreeGptOssInitialPromptThree\ input tokens/s. Loading time and prompt
+processing must therefore be measured alongside decode before using these
+configurations for latency-sensitive work. The single prompt does not support
+a prediction for longer contexts.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{llrrl}
+\toprule
+Artifact & Recorded group & $n$ & Decode tok/s & Whole-invocation device reads (GiB) \\
+\midrule
+Flash & initial loaded label & \PthreeFlashInitialN &
+\PthreeFlashInitialGenOne\ / \PthreeFlashInitialGenTwo\ / \PthreeFlashInitialGenThree &
+\PthreeFlashInitialReadOneGiB\ / \PthreeFlashInitialReadTwoGiB\ / \PthreeFlashInitialReadThreeGiB \\
+Flash & quiet gate & \PthreeFlashQuietN &
+\PthreeFlashQuietGenOne\ / \PthreeFlashQuietGenTwo\ / \PthreeFlashQuietGenThree &
+\PthreeFlashQuietReadOneGiB\ / \PthreeFlashQuietReadTwoGiB\ / \PthreeFlashQuietReadThreeGiB \\
+gpt-oss & initial loaded label & \PthreeGptOssInitialN &
+\PthreeGptOssInitialGenOne\ / \PthreeGptOssInitialGenTwo\ / \PthreeGptOssInitialGenThree &
+\PthreeGptOssInitialReadOneGiB\ / \PthreeGptOssInitialReadTwoGiB\ / \PthreeGptOssInitialReadThreeGiB \\
+\bottomrule
+\end{tabular}
+\caption{Sequential generation observations. The read column is the physical
+device's counter change over each complete process invocation, not expert
+traffic or decode-only I/O. The observations are descriptive because the runs
+were not randomized and host state changed between groups.}
+\label{tab:generation}
+\end{table}
+
+The higher Flash rates in the quiet-gated sequence are an observed association
+with a different host state, not an estimate of a cache-size treatment effect.
+Likewise, the declining device-read deltas within that sequence do not prove
+cache warming: the counter includes unrelated reads and its interval differs
+from the decode timer. The data establish the observed throughput of the two
+deployments, not why one sequence was faster.
+
+\subsection{Stored tensors and the limits of I/O accounting}
+
+Flash contains \PthreeFlashRoutedGiB\,GiB of tensors whose standardized names
+identify routed experts. Its \PthreeFlashNonRoutedTableGiB\,GiB
+\q{per\_layer\_token\_embd.weight} table is separate and does not match the
+routed \q{*\_exps} naming rule. The audit does not infer a more specific
+architectural role from that name alone. The mean stored
+routed-expert slice is \PthreeFlashMeanExpertLayerSliceMiB\,MiB per
+expert-layer for Flash and \PthreeGptOssMeanExpertLayerSliceMiB\,MiB for
+gpt-oss, an \PthreeExpertSliceSizeRatio-fold storage difference.
+
+From those inventories, reading every active routed-expert slice once with no
+reuse would amount arithmetically to
+\PthreeFlashNoReuseActiveExpertGiBPerTwoFiveSixTokens\,GiB per
+\PthreeGenerationRequestedDecode\ Flash tokens and
+\PthreeGptOssNoReuseActiveExpertGiBPerTwoFiveSixTokens\,GiB per
+\PthreeGenerationRequestedDecode\ gpt-oss tokens. These are counterfactual storage sums, not
+measured I/O. Because the recorded device deltas span additional tensors and
+process phases, comparing them with the counterfactual does not yield a
+page-cache hit rate.
+
+\subsection{Sampled task performance}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{lllrr}
+\toprule
+Artifact & Task and scoring rule & Correct/$n$ & Accuracy & Wilson 95\% interval \\
+\midrule
+Flash & MATH, original harness &
+\PthreeFlashMathRawCorrect/\PthreeFlashMathRawN & \PthreeFlashMathRawPct\% &
+\PthreeFlashMathRawWilsonLowPct--\PthreeFlashMathRawWilsonHighPct\% \\
+Flash & MATH, post-hoc lenient &
+\PthreeFlashMathLenientCorrect/\PthreeFlashMathLenientN & \PthreeFlashMathLenientPct\% &
+\PthreeFlashMathLenientWilsonLowPct--\PthreeFlashMathLenientWilsonHighPct\% \\
+Flash & GSM8K & \PthreeFlashGsmCorrect/\PthreeFlashGsmN & \PthreeFlashGsmPct\% &
+\PthreeFlashGsmWilsonLowPct--\PthreeFlashGsmWilsonHighPct\% \\
+gpt-oss & MATH, original harness &
+\PthreeGptOssMathRawCorrect/\PthreeGptOssMathRawN & \PthreeGptOssMathRawPct\% &
+\PthreeGptOssMathRawWilsonLowPct--\PthreeGptOssMathRawWilsonHighPct\% \\
+gpt-oss & MATH, post-hoc lenient &
+\PthreeGptOssMathLenientCorrect/\PthreeGptOssMathLenientN & \PthreeGptOssMathLenientPct\% &
+\PthreeGptOssMathLenientWilsonLowPct--\PthreeGptOssMathLenientWilsonHighPct\% \\
+gpt-oss & HumanEval+ &
+\PthreeGptOssCodeSavedCorrect/\PthreeGptOssCodeSavedN & \PthreeGptOssCodeSavedPct\% &
+\PthreeGptOssCodeSavedWilsonLowPct--\PthreeGptOssCodeSavedWilsonHighPct\% \\
+gpt-oss & GSM8K & \PthreeGptOssGsmCorrect/\PthreeGptOssGsmN & \PthreeGptOssGsmPct\% &
+\PthreeGptOssGsmWilsonLowPct--\PthreeGptOssGsmWilsonHighPct\% \\
+\bottomrule
+\end{tabular}
+\caption{Row-backed task checks for the deployed configurations. The Flash
+HumanEval+ aggregate is omitted because \PthreeFlashCodeMissingRows\ item rows
+are missing. The two
+MATH rows score the same saved responses under different disclosed rules.}
+\label{tab:quality}
+\end{table}
+
+These samples show that the deployed configurations returned correct answers
+on several tasks while operating through the measured stacks. The MATH result
+depends materially on the disclosed scoring rule, so the original and post-hoc
+values remain separate. These samples do not show that mmap preserves quality,
+because neither artifact was also evaluated in a fully memory-resident
+configuration and the artifacts are already quantized.
+
+\section{Discussion}
+
+\subsection{What the throughput baseline is useful for}
+
+The measured decode rates give users of these exact files a starting point
+for a local trial. They also specify a baseline that can be rerun under matched
+conditions when evaluating an expert cache or offloader. A useful comparison
+would keep the model file, prompt, generation settings, placement, and host
+state fixed, and report loading, prompt processing, decode, and total response
+time separately. The slow prompt rates here make that distinction practical:
+a tolerable stream of output tokens can follow a long wait for the first one.
+
+\subsection{What controls performance remains open}
+
+The recorded groups show that throughput varied with host state, but their
+measurement windows cannot assign that variation to cache residency,
+background load, storage traffic, or another cause. Explaining decode traffic
+would require phase-scoped and preferably process-attributed I/O, consistent
+before/after residency metrics, fixed decoding, and randomized repeated host
+states. Direct router or tensor-access instrumentation would then be needed to
+distinguish expert popularity, lookup-table traffic, and reuse.
+
+\section{Limitations and threats to validity}
+
+This is one machine, one NVMe device, one engine commit, two artifacts, and
+three sequential observations per principal group. The Flash artifact exceeds
+physical RAM and gpt-oss is smaller; the paper does not cover models several
+times larger than host memory. Host activity, thermal
+state, page residency, and invocation order were not randomized or held fixed.
+The timing harness retained extracted throughput lines rather than full CLI
+outputs, and it did not set a fixed seed.
+
+Device reads are whole-invocation, physical-device-global counters. They cannot
+separate engine I/O from unrelated host reads. They also do not distinguish
+loading, prefill, decode, and teardown. The memory fields differ across groups.
+No comparison with a purpose-built offloader, a direct-I/O or memory-locking
+configuration, or a fully memory-resident run of the same artifact was made.
+
+Quality samples are small. MATH conclusions depend strongly on whether the
+original harness score or more lenient post-hoc rescore is used, so both are
+reported. Flash HumanEval+
+has an unresolved aggregate/item-row mismatch and is omitted. Model and
+hardware scope is exact: results should not be generalized to other MoEs,
+quantizations, storage devices, operating systems, or engine revisions without
+replication.
+
+\section{Related work}
+
+EdgeMoE, Fast MoE Offloading, HOBBIT, SliceMoE, DyMoE, and PagedWeight represent
+an engineered lineage of expert placement, caching, prefetching, and mixed
+precision \citep{edgemoe2023,mixtraloffload2023,hobbit2024,slicemoe2025,
+dymoe2026,pagedweight2026}. A proposed llama.cpp \q{O\_DIRECT} expert streamer
+targets pools far beyond RAM and reports improvements over mmap
+\citep{llamacpp2026streampr}, and SSD-LLaMA builds a three-tier SSD, RAM, and
+VRAM expert hierarchy into llama.cpp to run trillion-parameter MoEs on a
+consumer PC \citep{liang2026ssdllama}. Those systems pursue speed, scale, or predictable
+resource control. The measurements here document an unmodified mmap
+configuration that could be reused in a future matched comparison; no such
+comparison is made here.
+
+An opt-in GPU-resident LRU cache for host-offloaded experts is proposed in
+llama.cpp pull request 27861 \citep{llamacpp2026moecachepr}, still an open
+draft when checked on September 28, 2026. Its author reports 18.4 versus 24.2
+decode tokens/s in a matched cache-disabled/cache-enabled test with a larger
+Flash quantization on a dual-Xeon, two-RTX-3090 system. A community port of the
+same cache with an added admission gate reports 5.6 versus 10.0 decode tokens/s
+for Flash IQ3\_XXS on a 12\,GB RTX 3060 with 64\,GB of RAM, in interleaved
+arms on one binary \citep{llamacpp2026moecachepr}. These within-system
+comparisons test an optimization. Its speedup cannot be transferred to the present
+laptop, which used another artifact, placement, and engine revision. Testing
+the cache here would require a new matched experiment.
+
+A later community fork reports 55.54 decode tokens/s without speculation and
+61.68 with multi-token prediction for Flash UD-Q3\_K\_XL on a
+62.14\,GiB RAM desktop with a 16\,GB RTX 5070 Ti
+\citep{generelschwerz2026flashreproduction}. Its September 14 runs use expert
+caching, lazy loading of the per-layer embedding table, and other engine
+changes. These are author-reported short-prompt results, not independently
+reproduced measurements here. Similar RAM capacity does not make the CPU,
+GPU, quantization, placement, prompt, or software comparable. The present
+report preserves an older, pinned baseline; it does not recommend that
+revision over newer runtimes or estimate their speedup on this laptop.
+
+Community reports already establish storage-backed mmap execution
+\citep{llamacppdiscussion18758,llamacppdiscussion23324}; the contribution here
+is the auditable configuration and measurements for these exact deployments.
+Recent deployment benchmarks also address adjacent questions: Alfarizy et al.\
+compare a smaller MoE with dense models on consumer and edge devices
+\citep{alfarizy2026consumer}, while a community Flash report sweeps placement
+and loading modes on one RTX PRO 6000 workstation with 96\,GB system RAM
+\citep{lukallm2026flashbenchmark}. Neither is a matched comparison with the
+two laptop deployments reported here.
+
+\section{Artifact availability and reproducibility}
+
+The reproducibility artifact accompanying this report contains
+checksummed, sanitized timing measurements and item-level quality outcomes,
+the claims data, environment and artifact manifests, model revisions, and a
+deterministic analysis-only checker. Without
+executing a model, the checker verifies the exported files, recomputes reported
+generation rates and row-backed task scores, and checks the reported artifact
+byte lengths, effective bpw, and routed-expert totals. It does not include or
+parse the private working logs or local GGUF headers. Full replication requires
+downloading the pinned upstream artifacts and running the documented commands
+on compatible hardware; the weights are linked rather than redistributed.
+The version-1.0.0 artifact is identified by
+\href{https://doi.org/10.5281/zenodo.22314465}{doi:10.5281/zenodo.22314465}.
+Its code, sanitized evidence, and replication instructions share the immutable
+\href{https://github.com/matthematics1137/research-artifacts/tree/moe-nvme-streaming-v1.0.0/papers/2026-moe-nvme-streaming}{versioned GitHub artifact path}.
+The DOI identifies the frozen reproducibility bundle; it is not a separate
+manuscript DOI or a claim of peer review.
+
+\section{Conclusion}
+
+On a \PthreeCpuRamGiB\,GiB RAM, \PthreeGpuMarketedVramGB\,GB VRAM laptop,
+unmodified llama.cpp produced
+\PthreeFlashInitialGenOne--\PthreeFlashQuietGenOne\ decode tokens/s with the
+\PthreeFlashFileGiB\,GiB Qwen3.8-Flash-Next artifact and
+\PthreeGptOssInitialGenTwo--\PthreeGptOssInitialGenOne\ tokens/s with the
+\PthreeGptOssFileGiB\,GiB gpt-oss-120b artifact. The archived invocations and
+configuration provide a baseline for repeating these deployments and testing
+changes under matched conditions. Slow prompt processing also shows why
+decode throughput must be separated from response latency. The observations
+characterize these files on this machine; their short sequential design does
+not explain the speed differences or establish quality preservation.
+
+\medskip
+\noindent\textbf{AI assistance.} Claude (Anthropic) assisted with evaluation
+harness development and experiment orchestration. Claude and Codex (OpenAI)
+assisted with evidence auditing, analysis and figure code, citation checking,
+and manuscript drafting and revision. Matthew Schwartz directed the research
+and is responsible for its methods, results, interpretation, claims,
+citations, rights, and released artifacts.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

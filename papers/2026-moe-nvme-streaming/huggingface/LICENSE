@@ -1,0 +1,16 @@
+# License map
+
+Copyright (c) 2026 Matthew Schwartz.
+
+- Authored Python and shell code in this release is licensed under the MIT
+  License in `LICENSES/MIT.txt`.
+- The paper, original documentation, original figures, and released measurement
+  records are offered under Creative Commons Attribution 4.0 International
+  (CC BY 4.0), to the extent the author holds the relevant rights:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+- Frozen benchmark inputs retain their upstream MIT and Apache-2.0 terms; see
+  `THIRD_PARTY_NOTICES.md` and `LICENSES/`.
+- Model weights and engine source are not redistributed. Their upstream terms
+  remain controlling and are identified in `THIRD_PARTY_NOTICES.md`.
+
+Nothing in this file grants rights the author does not hold.

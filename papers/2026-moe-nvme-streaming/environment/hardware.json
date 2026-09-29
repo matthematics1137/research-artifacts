@@ -1,0 +1,28 @@
+{
+  "schema": "paper3-hardware-v1",
+  "scope": "retained baseline inventory; host activity, page residency, thermal state, memory pressure, and swap traffic were not measured consistently per invocation",
+  "host": {
+    "form_factor": "consumer laptop",
+    "cpu": "Intel Core i9-14900HX",
+    "physical_ram_gib": 62,
+    "memory": "dual-channel DDR5",
+    "swap_total_gib": 8,
+    "swap_used_at_baseline_gib": 7.3
+  },
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "marketed_vram_gb": 12,
+    "reported_vram_mib": 12282,
+    "power_limit_w": 80,
+    "compute_capability": "8.9"
+  },
+  "storage": {
+    "device": "2 TB WD PC SN740 NVMe",
+    "counter_scope": "physical-device read sectors from /proc/diskstats over each complete llama-cli invocation"
+  },
+  "software_inventory": {
+    "kernel": "7.0.0-29-generic",
+    "nvidia_driver": "580.167.08",
+    "driver_reported_cuda": "13.0"
+  }
+}

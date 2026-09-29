@@ -1,0 +1,39 @@
+{
+  "schema": "paper3-software-v1",
+  "engine": {
+    "repository": "ggml-org/llama.cpp",
+    "associated_source_revision": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3",
+    "logged_build_id": "b1-035e227",
+    "build": "Release build with CUDA enabled for compute capability 8.9",
+    "historical_toolchain": {
+      "cmake": "3.28.3",
+      "generator": "Unix Makefiles",
+      "cxx_compiler": "GNU 13.3.0",
+      "cuda_toolkit_compiler": "12.6.85",
+      "nvcc_build": "cuda_12.6.r12.6/compiler.35059454_0",
+      "driver_reported_cuda_compatibility": "13.0",
+      "scope_note": "CUDA 13.0 is the driver's reported compatibility level; the historical build used the CUDA 12.6.85 toolkit compiler. Versions and options were recovered from the surviving CMake build record. Machine-local paths are intentionally omitted."
+    },
+    "historical_cmake_options": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CUDA_ARCHITECTURES": "89",
+      "GGML_CUDA": true,
+      "GGML_NATIVE": true,
+      "GGML_OPENMP": true,
+      "GGML_BLAS": false
+    },
+    "mapping": "default mmap path",
+    "principal_placement": "-ngl 99 --n-cpu-moe 999",
+    "local_patch": false,
+    "scope_note": "The Flash revision was the then-unmerged Qwen4Exp pull-request head; the gpt-oss path did not depend on that architecture support."
+  },
+  "analysis": {
+    "python_tested": "3.12.3",
+    "python_minimum": "3.11",
+    "dependencies": "standard library only"
+  },
+  "paper_build": {
+    "engine": "Tectonic",
+    "mode": "untrusted, cached bundle, SOURCE_DATE_EPOCH fixed by release manifest"
+  }
+}

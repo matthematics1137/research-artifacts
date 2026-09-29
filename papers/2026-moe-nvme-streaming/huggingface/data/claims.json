@@ -1,0 +1,868 @@
+{
+  "artifacts": {
+    "flash": {
+      "artifact": {
+        "effective_file_bits_per_logical_element": 3.2799757,
+        "file_bytes": 72546461344,
+        "file_count": 3,
+        "file_gib": 67.564157158,
+        "identity_note": "GGUF headers and exact file lengths were read; multi-gigabyte data regions were not hashed to avoid a full-artifact I/O pass.",
+        "logical_tensor_elements": 176943899520,
+        "notable_non_routed_tensors": [
+          {
+            "bytes": 28800138240,
+            "exclusion_reason": "name does not match routed-expert '_exps.' tensors",
+            "gib": 26.822218895,
+            "logical_elements": 51200245760,
+            "name": "per_layer_token_embd.weight",
+            "tensor_type": "IQ4_NL"
+          }
+        ],
+        "shards": [
+          {
+            "basename": "Qwen3.8-Flash-Next-UD-IQ1_S-00001-of-00003.gguf",
+            "bytes": 10946624,
+            "header_and_metadata_bytes": 10946624,
+            "split_number_zero_based": 0,
+            "tensor_count": 0
+          },
+          {
+            "basename": "Qwen3.8-Flash-Next-UD-IQ1_S-00002-of-00003.gguf",
+            "bytes": 49990818368,
+            "header_and_metadata_bytes": 37696,
+            "split_number_zero_based": 1,
+            "tensor_count": 595
+          },
+          {
+            "basename": "Qwen3.8-Flash-Next-UD-IQ1_S-00003-of-00003.gguf",
+            "bytes": 22544696352,
+            "header_and_metadata_bytes": 40224,
+            "split_number_zero_based": 2,
+            "tensor_count": 629
+          }
+        ],
+        "tensor_storage_bytes": 72535436800
+      },
+      "display_name": "Qwen3.8-Flash-Next UD-IQ1_S",
+      "gguf_metadata": {
+        "architecture": "qwen4exp",
+        "block_count": 48,
+        "declared_total_tensor_count": 1224,
+        "expert_count": 512,
+        "experts_active_per_token": 10,
+        "name": "Qwen3.8 Flash Next",
+        "size_label": "512x56B"
+      },
+      "routed_expert_storage": {
+        "bytes": 39845888000,
+        "definition": "all GGUF tensors whose standardized name contains '_exps.'",
+        "gib": 37.109375,
+        "logical_elements": 120795955200,
+        "mean_bytes_per_expert_layer_slice": 1621333.333333,
+        "mean_bytes_per_layer": 830122666.666667,
+        "mean_gib_per_layer": 0.773111979,
+        "mean_mib_per_expert_layer_slice": 1.546223958,
+        "no_reuse_active_expert_bytes_per_token": 778240000.0,
+        "no_reuse_active_expert_gib_per_256_tokens": 185.546875,
+        "no_reuse_active_expert_mib_per_token": 742.1875,
+        "no_reuse_note": "Arithmetic counterfactual from stored routed-expert bytes and routing cardinality; it is not a measured I/O volume or cache-miss count.",
+        "tensor_count": 144,
+        "tensor_groups": {
+          "ffn_down_exps": {
+            "bytes": 22649241600,
+            "logical_elements": 40265318400,
+            "tensor_count": 48
+          },
+          "ffn_gate_exps": {
+            "bytes": 8598323200,
+            "logical_elements": 40265318400,
+            "tensor_count": 48
+          },
+          "ffn_up_exps": {
+            "bytes": 8598323200,
+            "logical_elements": 40265318400,
+            "tensor_count": 48
+          }
+        },
+        "tensor_type_counts": {
+          "IQ1_S": 68,
+          "IQ2_XXS": 28,
+          "IQ4_NL": 48
+        }
+      }
+    },
+    "gptoss": {
+      "artifact": {
+        "effective_file_bits_per_logical_element": 4.340515537,
+        "file_bytes": 63387346208,
+        "file_count": 1,
+        "file_gib": 59.034066468,
+        "identity_note": "GGUF headers and exact file lengths were read; multi-gigabyte data regions were not hashed to avoid a full-artifact I/O pass.",
+        "logical_tensor_elements": 116829156672,
+        "notable_non_routed_tensors": [],
+        "shards": [
+          {
+            "basename": "gpt-oss-120b-MXFP4.gguf",
+            "bytes": 63387346208,
+            "header_and_metadata_bytes": 13022240,
+            "split_number_zero_based": null,
+            "tensor_count": 687
+          }
+        ],
+        "tensor_storage_bytes": 63374323968
+      },
+      "display_name": "gpt-oss-120b MXFP4",
+      "gguf_metadata": {
+        "architecture": "gpt-oss",
+        "block_count": 36,
+        "declared_total_tensor_count": 687,
+        "expert_count": 128,
+        "experts_active_per_token": 4,
+        "name": "gpt-oss-120b",
+        "size_label": "128x3.1B"
+      },
+      "routed_expert_storage": {
+        "bytes": 61073326080,
+        "definition": "all GGUF tensors whose standardized name contains '_exps.'",
+        "gib": 56.878967285,
+        "logical_elements": 114701598720,
+        "mean_bytes_per_expert_layer_slice": 13253760.0,
+        "mean_bytes_per_layer": 1696481280.0,
+        "mean_gib_per_layer": 1.579971313,
+        "mean_mib_per_expert_layer_slice": 12.639770508,
+        "no_reuse_active_expert_bytes_per_token": 1908541440.0,
+        "no_reuse_active_expert_gib_per_256_tokens": 455.031738281,
+        "no_reuse_active_expert_mib_per_token": 1820.126953125,
+        "no_reuse_note": "Arithmetic counterfactual from stored routed-expert bytes and routing cardinality; it is not a measured I/O volume or cache-miss count.",
+        "tensor_count": 216,
+        "tensor_groups": {
+          "ffn_down_exps": {
+            "bytes": 20357775360,
+            "logical_elements": 38233866240,
+            "tensor_count": 72
+          },
+          "ffn_gate_exps": {
+            "bytes": 20357775360,
+            "logical_elements": 38233866240,
+            "tensor_count": 72
+          },
+          "ffn_up_exps": {
+            "bytes": 20357775360,
+            "logical_elements": 38233866240,
+            "tensor_count": 72
+          }
+        },
+        "tensor_type_counts": {
+          "F32": 108,
+          "MXFP4": 108
+        }
+      }
+    }
+  },
+  "cross_model_descriptive": {
+    "interpretation_limit": "A storage ratio does not identify cache locality, routing skew, or decode I/O from the recorded global device counters.",
+    "mean_routed_expert_slice_size_ratio_gptoss_to_flash": 8.174605263
+  },
+  "generation_policy": {
+    "deterministic": true,
+    "generated_timestamp_included": false,
+    "raw_evidence_mutated": false
+  },
+  "generation_run_descriptive_comparisons": {
+    "flash_quiet_mean_minus_initial_mean_tokens_per_second": 4.4,
+    "flash_quiet_mean_relative_to_initial_mean_percent": 44.295303,
+    "interpretation": "Unadjusted contrast between observational sequences; not a causal cache-size effect."
+  },
+  "generation_runs": {
+    "flash_initial_loaded_label": {
+      "condition_label_source": "FLASH-CAMPAIGN.md",
+      "generation_tokens_per_second_summary": {
+        "maximum": 10.4,
+        "mean": 9.933333,
+        "minimum": 9.4,
+        "n": 3
+      },
+      "measurements": [
+        {
+          "cached_gib_post_invocation": 20,
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 9.4,
+          "mem_available_gib_pre_invocation": 21.6,
+          "model": "flash",
+          "prompt_tokens_per_second": 4.9,
+          "requested_decode_tokens": 256,
+          "source_line": 2,
+          "tag": "warmup1",
+          "timestamp": "2026-08-26T15:11:10-07:00",
+          "whole_invocation_device_read_delta_gib": 104.2
+        },
+        {
+          "cached_gib_post_invocation": 19.9,
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 10.4,
+          "mem_available_gib_pre_invocation": 21.7,
+          "model": "flash",
+          "prompt_tokens_per_second": 5.0,
+          "requested_decode_tokens": 256,
+          "source_line": 3,
+          "tag": "warmup2",
+          "timestamp": "2026-08-26T15:12:37-07:00",
+          "whole_invocation_device_read_delta_gib": 102.1
+        },
+        {
+          "cached_gib_post_invocation": 19.9,
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 10.0,
+          "mem_available_gib_pre_invocation": 21.8,
+          "model": "flash",
+          "prompt_tokens_per_second": 4.9,
+          "requested_decode_tokens": 256,
+          "source_line": 4,
+          "tag": "warmup3",
+          "timestamp": "2026-08-26T15:14:04-07:00",
+          "whole_invocation_device_read_delta_gib": 103.6
+        }
+      ],
+      "whole_invocation_device_read_delta_gib_summary": {
+        "maximum": 104.2,
+        "mean": 103.3,
+        "minimum": 102.1,
+        "n": 3
+      }
+    },
+    "flash_quiet_gate": {
+      "condition_label_source": "quiet-gate event in flash_f1.log",
+      "generation_tokens_per_second_summary": {
+        "maximum": 14.7,
+        "mean": 14.333333,
+        "minimum": 13.9,
+        "n": 3
+      },
+      "measurements": [
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 14.7,
+          "mem_available_gib_post_invocation": 56,
+          "model": "flash",
+          "prompt_tokens_per_second": 9.2,
+          "requested_decode_tokens": 256,
+          "source_line": 62,
+          "tag": "quiet1",
+          "timestamp": "2026-08-27T09:39:02-07:00",
+          "whole_invocation_device_read_delta_gib": 84.3
+        },
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 14.4,
+          "mem_available_gib_post_invocation": 55,
+          "model": "flash",
+          "prompt_tokens_per_second": 12.0,
+          "requested_decode_tokens": 256,
+          "source_line": 63,
+          "tag": "quiet2",
+          "timestamp": "2026-08-27T09:40:22-07:00",
+          "whole_invocation_device_read_delta_gib": 82.1
+        },
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 13.9,
+          "mem_available_gib_post_invocation": 57,
+          "model": "flash",
+          "prompt_tokens_per_second": 3.3,
+          "requested_decode_tokens": 256,
+          "source_line": 64,
+          "tag": "quiet3",
+          "timestamp": "2026-08-27T09:42:00-07:00",
+          "whole_invocation_device_read_delta_gib": 72
+        }
+      ],
+      "whole_invocation_device_read_delta_gib_summary": {
+        "maximum": 84.3,
+        "mean": 79.466667,
+        "minimum": 72.0,
+        "n": 3
+      }
+    },
+    "gptoss_initial_loaded_label": {
+      "condition_label_source": "GPTOSS-CAMPAIGN.md",
+      "generation_tokens_per_second_summary": {
+        "maximum": 9.3,
+        "mean": 9.066667,
+        "minimum": 8.7,
+        "n": 3
+      },
+      "measurements": [
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 9.3,
+          "mem_available_gib_post_invocation": 31,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 3.5,
+          "requested_decode_tokens": 256,
+          "source_line": 448,
+          "tag": "warmup1",
+          "timestamp": "2026-08-28T00:54:13-07:00",
+          "whole_invocation_device_read_delta_gib": 126.2
+        },
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 8.7,
+          "mem_available_gib_post_invocation": 30,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 3.3,
+          "requested_decode_tokens": 256,
+          "source_line": 449,
+          "tag": "warmup2",
+          "timestamp": "2026-08-28T00:55:47-07:00",
+          "whole_invocation_device_read_delta_gib": 124.1
+        },
+        {
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 9.2,
+          "mem_available_gib_post_invocation": 30,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 3.4,
+          "requested_decode_tokens": 256,
+          "source_line": 450,
+          "tag": "warmup3",
+          "timestamp": "2026-08-28T00:57:20-07:00",
+          "whole_invocation_device_read_delta_gib": 120.8
+        }
+      ],
+      "whole_invocation_device_read_delta_gib_summary": {
+        "maximum": 126.2,
+        "mean": 123.7,
+        "minimum": 120.8,
+        "n": 3
+      }
+    }
+  },
+  "measurement_contract": {
+    "cache_metric_comparability": {
+      "comparable_across_all_groups": false,
+      "reason": "Flash initial rows log post-run Cached plus pre-run MemAvailable; Flash quiet and gpt-oss rows log post-run MemAvailable."
+    },
+    "device_read_delta": {
+      "counter": "/proc/diskstats read sectors for a whole physical device",
+      "end": "after llama-cli exits and its timing line is extracted",
+      "includes": [
+        "model open/load and mmap faults",
+        "prompt processing",
+        "requested decode",
+        "unrelated reads by any process using the same physical device"
+      ],
+      "invalid_labels": [
+        "decode-only model bytes",
+        "NVMe bytes per generated token",
+        "expert-cache misses"
+      ],
+      "start": "immediately before llama-cli launch",
+      "valid_label": "whole-invocation physical-device read delta"
+    },
+    "page_cache_hit_rate": {
+      "computed": false,
+      "reason": "The numerator is a global whole-invocation device delta, while the proposed denominator represents decode-only routed-expert accesses."
+    }
+  },
+  "placement_runs": {
+    "interpretation": "Descriptive comparison to the immediately preceding three-run Flash mean; not randomized, interleaved, or isolated from system state.",
+    "measurements": [
+      {
+        "cached_gib_post_invocation": 19.9,
+        "descriptive_change_vs_initial_three_run_mean_percent": 6.711413,
+        "device_read_interval": "entire_llama_cli_invocation",
+        "expert_layers_not_assigned_to_cpu": 4,
+        "generation_tokens_per_second": 10.6,
+        "mem_available_gib_pre_invocation": 21.7,
+        "model": "flash",
+        "n_cpu_moe": 44,
+        "prompt_tokens_per_second": 5.2,
+        "requested_decode_tokens": 256,
+        "source_line": 5,
+        "tag": "moe44",
+        "timestamp": "2026-08-26T15:15:25-07:00",
+        "whole_invocation_device_read_delta_gib": 101.4
+      },
+      {
+        "cached_gib_post_invocation": 19.8,
+        "descriptive_change_vs_initial_three_run_mean_percent": 6.711413,
+        "device_read_interval": "entire_llama_cli_invocation",
+        "expert_layers_not_assigned_to_cpu": 6,
+        "generation_tokens_per_second": 10.6,
+        "mem_available_gib_pre_invocation": 21.6,
+        "model": "flash",
+        "n_cpu_moe": 42,
+        "prompt_tokens_per_second": 5.5,
+        "requested_decode_tokens": 256,
+        "source_line": 6,
+        "tag": "moe42",
+        "timestamp": "2026-08-26T15:16:46-07:00",
+        "whole_invocation_device_read_delta_gib": 99.8
+      }
+    ]
+  },
+  "prefill_runs": {
+    "claim_limit": "The observed throughput increases are descriptive. With one ascending run per approximate length, different prompts, no fixed seed, and no Flash I/O trace, these data do not establish expert-read de-duplication.",
+    "flash": {
+      "context_tokens": 8192,
+      "device_read_delta_available": false,
+      "measurements": [
+        {
+          "approximate_prompt_tokens": 160,
+          "approximation_source": "logged script estimate, not tokenizer output",
+          "generation_tokens_per_second": 3.7,
+          "model": "flash",
+          "prompt_tokens_per_second": 6.6,
+          "requested_decode_tokens": 16,
+          "source_line": 57,
+          "tag": "prefill_x4",
+          "timestamp": "2026-08-27T00:40:57-07:00"
+        },
+        {
+          "approximate_prompt_tokens": 640,
+          "approximation_source": "logged script estimate, not tokenizer output",
+          "generation_tokens_per_second": 3.7,
+          "model": "flash",
+          "prompt_tokens_per_second": 13.1,
+          "requested_decode_tokens": 16,
+          "source_line": 58,
+          "tag": "prefill_x16",
+          "timestamp": "2026-08-27T00:42:46-07:00"
+        },
+        {
+          "approximate_prompt_tokens": 2560,
+          "approximation_source": "logged script estimate, not tokenizer output",
+          "generation_tokens_per_second": 3.2,
+          "model": "flash",
+          "prompt_tokens_per_second": 20.1,
+          "requested_decode_tokens": 16,
+          "source_line": 59,
+          "tag": "prefill_x64",
+          "timestamp": "2026-08-27T00:45:57-07:00"
+        }
+      ],
+      "order": "single ascending sweep",
+      "prompt": "repeated synthetic sentence; model-specific",
+      "seed_fixed": false
+    },
+    "gptoss": {
+      "context_tokens": 8192,
+      "device_read_delta_available": true,
+      "measurements": [
+        {
+          "approximate_prompt_tokens": 160,
+          "approximation_source": "campaign construction, not tokenizer output",
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 5.4,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 4.2,
+          "requested_decode_tokens": 64,
+          "source_line": 451,
+          "tag": "prefill_x4",
+          "timestamp": "2026-08-28T00:58:44-07:00",
+          "whole_invocation_device_read_delta_gib": 117.9
+        },
+        {
+          "approximate_prompt_tokens": 640,
+          "approximation_source": "campaign construction, not tokenizer output",
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 4.9,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 9.1,
+          "requested_decode_tokens": 64,
+          "source_line": 452,
+          "tag": "prefill_x16",
+          "timestamp": "2026-08-28T01:00:17-07:00",
+          "whole_invocation_device_read_delta_gib": 127
+        },
+        {
+          "approximate_prompt_tokens": 2560,
+          "approximation_source": "campaign construction, not tokenizer output",
+          "device_read_interval": "entire_llama_cli_invocation",
+          "generation_tokens_per_second": 5.8,
+          "model": "gptoss",
+          "prompt_tokens_per_second": 23.5,
+          "requested_decode_tokens": 64,
+          "source_line": 453,
+          "tag": "prefill_x64",
+          "timestamp": "2026-08-28T01:02:02-07:00",
+          "whole_invocation_device_read_delta_gib": 138.5
+        }
+      ],
+      "order": "single ascending sweep",
+      "prompt": "repeated synthetic sentence; model-specific",
+      "seed_fixed": false
+    }
+  },
+  "protocol": {
+    "generation": {
+      "context_tokens": 4096,
+      "prompt_repeated_within_each_three_run_sequence": true,
+      "quiet_gate": {
+        "check_interval_seconds": 30,
+        "consecutive_checks": 10,
+        "maximum_one_minute_load_exclusive": 3,
+        "minimum_mem_available_gib": 35,
+        "required_duration_minutes": 5
+      },
+      "requested_decode_tokens": 256,
+      "streaming_placement": "-ngl 99 --n-cpu-moe 999"
+    },
+    "hardware": {
+      "cpu_ram_gib": 62,
+      "cuda_version": "13.0",
+      "gpu_marketed_vram_gb": 12,
+      "gpu_model": "NVIDIA GeForce RTX 4080 Laptop",
+      "gpu_power_cap_watts": 80,
+      "gpu_vram_mib": 12282,
+      "linux_kernel": "7.0.0-29-generic",
+      "nvidia_driver": "580.167.08",
+      "source": "research/hardware-baseline.md",
+      "state_scope": "Recorded hardware-baseline snapshot; not a per-run measurement of software versions, memory pressure, or swap activity.",
+      "swap_total_gib": 8,
+      "swap_used_at_baseline_gib": 7.3
+    },
+    "quality": {
+      "concurrency": 1,
+      "gsm8k_limit": 50,
+      "gsm8k_max_tokens": 4096,
+      "humaneval_plus_max_tokens": 4096,
+      "item_alignment": {
+        "dataset_selection_seed": 42,
+        "gsm8k_matched_item_count": 50,
+        "gsm8k_same_saved_item_ids": true,
+        "humaneval_plus_flash_saved_subset": true,
+        "humaneval_plus_frozen_item_count": 20,
+        "math25_matched_item_count": 25,
+        "math25_same_saved_item_ids": true
+      },
+      "math25_max_tokens": 8192,
+      "reasoning_effort": "medium",
+      "server_context_tokens": 8192,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "quality": {
+    "flash": {
+      "label": "FLASH-IQ1S-effmed",
+      "suites": {
+        "gsm8k": {
+          "aggregate_summary": {
+            "accuracy": 0.96,
+            "correct": 48,
+            "n": 50,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-26T21:06:38",
+            "wilson_95": [
+              0.865399,
+              0.988961
+            ]
+          },
+          "provenance_status": "row_backed",
+          "saved_rows_raw": {
+            "accuracy": 0.96,
+            "correct": 48,
+            "errors": 0,
+            "item_id_set_sha256": "42dee4c52137e30054d41dfe729c639657dff0702f0efcc803315f47c36b0c17",
+            "n": 50,
+            "sha256": "41f02582c22b6e3bc33278aa85ce95f305bb985eff9fc102baa6f20eec0bfb58",
+            "source": "testsuite/evals/results/FLASH-IQ1S-effmed/gsm8k.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.865399,
+              0.988961
+            ]
+          }
+        },
+        "humaneval_plus": {
+          "aggregate_summary": {
+            "accuracy": 0.85,
+            "correct": 17,
+            "n": 20,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-26T19:15:56",
+            "wilson_95": [
+              0.639581,
+              0.947631
+            ]
+          },
+          "missing_saved_row_ids": [
+            "HumanEval_151",
+            "HumanEval_154",
+            "HumanEval_163"
+          ],
+          "provenance_status": "aggregate_and_saved_rows_disagree",
+          "publication_note": "The saved file contains 17/20 rows (16 correct), while summary.jsonl reports 17/20 correct. The 85% result is aggregate-only unless the three missing item rows are recovered; the row-backed snapshot is 16/17.",
+          "saved_rows_raw": {
+            "accuracy": 0.941176,
+            "correct": 16,
+            "errors": 0,
+            "item_id_set_sha256": "04a6fb7a407bcd42785a06658ef74085463736ede4223780ac85ca36b206df1e",
+            "n": 17,
+            "sha256": "0b37b4aff7c1ecb4f4ffb44d352e8f711b34ba80f8d57e06204e0b2be50a1742",
+            "source": "testsuite/evals/results/FLASH-IQ1S-effmed/humaneval_plus.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.73018,
+              0.98954
+            ]
+          }
+        },
+        "math25": {
+          "aggregate_summary": {
+            "accuracy": 0.72,
+            "correct": 18,
+            "n": 25,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-26T18:18:01",
+            "wilson_95": [
+              0.524234,
+              0.857161
+            ]
+          },
+          "lenient_contract": "Formatting-only rescore mirrored from testsuite/evals/rescore_math25.py; both raw and lenient values must be reported.",
+          "provenance_status": "row_backed",
+          "saved_rows_lenient": {
+            "accuracy": 0.92,
+            "correct": 23,
+            "n": 25,
+            "raw_to_lenient_upgrades": 5,
+            "wilson_95": [
+              0.750339,
+              0.97778
+            ]
+          },
+          "saved_rows_raw": {
+            "accuracy": 0.72,
+            "correct": 18,
+            "errors": 1,
+            "item_id_set_sha256": "a21783a5ffcdb75b576c0145be22dc6b823ddd8ba4c0c15342ee20ea0a122e28",
+            "n": 25,
+            "sha256": "06c49fabd671dbcc98528bc26a8e5af52de8783a2ea00a1eb1bb327dc417f467",
+            "source": "testsuite/evals/results/FLASH-IQ1S-effmed/math25.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.524234,
+              0.857161
+            ]
+          }
+        }
+      }
+    },
+    "gptoss": {
+      "label": "GPTOSS-MXFP4-effmed",
+      "suites": {
+        "gsm8k": {
+          "aggregate_summary": {
+            "accuracy": 0.92,
+            "correct": 46,
+            "n": 50,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-27T23:41:45",
+            "wilson_95": [
+              0.811618,
+              0.96845
+            ]
+          },
+          "provenance_status": "row_backed",
+          "saved_rows_raw": {
+            "accuracy": 0.92,
+            "correct": 46,
+            "errors": 0,
+            "item_id_set_sha256": "42dee4c52137e30054d41dfe729c639657dff0702f0efcc803315f47c36b0c17",
+            "n": 50,
+            "sha256": "18b1bad75c672dc7c248030322a0ab27bac8a1589d8fbc7b4caca4408eb76a7a",
+            "source": "testsuite/evals/results/GPTOSS-MXFP4-effmed/gsm8k.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.811618,
+              0.96845
+            ]
+          }
+        },
+        "humaneval_plus": {
+          "aggregate_summary": {
+            "accuracy": 0.9,
+            "correct": 18,
+            "n": 20,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-27T22:48:48",
+            "wilson_95": [
+              0.698966,
+              0.972134
+            ]
+          },
+          "provenance_status": "row_backed",
+          "saved_rows_raw": {
+            "accuracy": 0.9,
+            "correct": 18,
+            "errors": 0,
+            "item_id_set_sha256": "5f0ad2e68e1236694c8c0fb2277b429072cb2d9721fd73f4a4e6dcd159cac3c3",
+            "n": 20,
+            "sha256": "e73f4e0eb3b760dc3015224787884d5d1bad266574b7a2b709592a4ce1aed2d5",
+            "source": "testsuite/evals/results/GPTOSS-MXFP4-effmed/humaneval_plus.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.698966,
+              0.972134
+            ]
+          }
+        },
+        "math25": {
+          "aggregate_summary": {
+            "accuracy": 0.48,
+            "correct": 12,
+            "n": 25,
+            "partial": false,
+            "source": "testsuite/evals/results/summary.jsonl",
+            "timestamp": "2026-08-27T22:19:35",
+            "wilson_95": [
+              0.300313,
+              0.665015
+            ]
+          },
+          "lenient_contract": "Formatting-only rescore mirrored from testsuite/evals/rescore_math25.py; both raw and lenient values must be reported.",
+          "provenance_status": "row_backed",
+          "saved_rows_lenient": {
+            "accuracy": 0.8,
+            "correct": 20,
+            "n": 25,
+            "raw_to_lenient_upgrades": 8,
+            "wilson_95": [
+              0.60869,
+              0.911394
+            ]
+          },
+          "saved_rows_raw": {
+            "accuracy": 0.48,
+            "correct": 12,
+            "errors": 1,
+            "item_id_set_sha256": "a21783a5ffcdb75b576c0145be22dc6b823ddd8ba4c0c15342ee20ea0a122e28",
+            "n": 25,
+            "sha256": "3937b24d5cb63f51f528aaa5532f7d9563a85eeb3e9a0708ff8457a8476cc281",
+            "source": "testsuite/evals/results/GPTOSS-MXFP4-effmed/math25.jsonl",
+            "truncated": 0,
+            "wilson_95": [
+              0.300313,
+              0.665015
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schema_version": "paper3.claims.v1",
+  "sources": [
+    {
+      "bytes": 4810,
+      "path": "research/hardware-baseline.md",
+      "role": "hardware inventory",
+      "sha256": "15e9c183f7eec990ad4931c0e211a99ae292e44ee06ca4b46b88b7a801277935"
+    },
+    {
+      "bytes": 29820,
+      "path": "testsuite/evals/datasets/gsm8k_100.jsonl",
+      "role": "GSM8K frozen item inventory",
+      "sha256": "184d25be0b9e2e53ba6611fda207ebef7987d69cfc1695e003be2328deca5d37"
+    },
+    {
+      "bytes": 4800421,
+      "path": "testsuite/evals/datasets/humaneval_plus_20.jsonl",
+      "role": "HumanEval+ expected item inventory",
+      "sha256": "43a428273fdd380e68c736d46d60e5dca7dedb592ebcf2c44454b814b7803479"
+    },
+    {
+      "bytes": 10575,
+      "path": "testsuite/evals/datasets/math25.jsonl",
+      "role": "MATH answer recovery",
+      "sha256": "c2ca0ffac2ef6a24617fd5390c1792d4168683dcbe4d08cce58a5d9a3e6c1da8"
+    },
+    {
+      "bytes": 21741,
+      "path": "testsuite/evals/prepare_datasets.py",
+      "role": "protocol:dataset_preparation",
+      "sha256": "232b80807457dc05e7ce302a274cbb7ecca21413343d30283ae0e9c2ffa0d523"
+    },
+    {
+      "bytes": 2958,
+      "path": "testsuite/evals/rescore_math25.py",
+      "role": "protocol:math_rescorer",
+      "sha256": "a5f254b1a9235abc084f2915c9cf4b879308eb9352d0535ea7bb17ef05397478"
+    },
+    {
+      "path": "testsuite/evals/results/summary.jsonl",
+      "role": "selected evaluation aggregate summaries",
+      "selected_bytes": 1487,
+      "selected_record_count": 6,
+      "selection": "latest non-partial row for each Paper 3 model and suite",
+      "sha256": "109f2b769d45f0e8a18d15d9a4e0a15c5c162d51a402758a5fb6b95702ff14b7"
+    },
+    {
+      "bytes": 23970,
+      "path": "testsuite/evals/run_eval.py",
+      "role": "protocol:eval_harness",
+      "sha256": "66e1c9ae98d039594e1c32006415fb751e6c09ff7433f0418e0f47876748e51d"
+    },
+    {
+      "bytes": 1615,
+      "path": "testsuite/flash_bench.sh",
+      "role": "protocol:flash_generation",
+      "sha256": "b0f451c2727f6c8af8aa1f322d2880ceeefdf3aeebdfb7e043e8772707db5e03"
+    },
+    {
+      "bytes": 955,
+      "path": "testsuite/flash_f1c.sh",
+      "role": "protocol:flash_prefill",
+      "sha256": "8d87359b8b5ebeb82c3cfc8fe1d2d01231d46323a34f18b4e858d4e03f130673"
+    },
+    {
+      "bytes": 1517,
+      "path": "testsuite/flash_f1d_quiet.sh",
+      "role": "protocol:flash_quiet",
+      "sha256": "cd2e09c40708f82e24b43d24c6572c39c2b4d91fb347f20e86ce3adc77400f46"
+    },
+    {
+      "bytes": 1316,
+      "path": "testsuite/flash_quality.sh",
+      "role": "protocol:flash_quality",
+      "sha256": "98105a90a3b98278f77e4c74451c3af1c62dc99afa7655d89e9f7663facd2edc"
+    },
+    {
+      "bytes": 7114,
+      "path": "testsuite/overnight_20260827.sh",
+      "role": "protocol:gptoss_campaign",
+      "sha256": "bb04b8ecbc32b70bcff04a3f67c255670fba80b8c0930bfbd589459505557499"
+    },
+    {
+      "bytes": 11354,
+      "path": "testsuite/results/FLASH-CAMPAIGN.md",
+      "role": "condition labels and campaign notes:flash",
+      "sha256": "4f079627f66b89cea24c023bc62688b3463f12a69cd3957f19b29b028afab8b7"
+    },
+    {
+      "bytes": 4317,
+      "path": "testsuite/results/GPTOSS-CAMPAIGN.md",
+      "role": "condition labels and campaign notes:gptoss",
+      "sha256": "cd12151a23b30a7fc2c2b01299cdb895e99d44a55d21040df7d79d57dff001bf"
+    },
+    {
+      "bytes": 5349,
+      "path": "testsuite/results/flash_f1.log",
+      "role": "f1 measurements:flash",
+      "sha256": "88335213b96ecdea291c4a4d2efe32f1bf88d233459f0f297d7469af49eae5ad"
+    },
+    {
+      "bytes": 33560,
+      "path": "testsuite/results/overnight_20260827.log",
+      "role": "f1 measurements:gptoss",
+      "sha256": "e0904ebe04596a638fd0c23be215179f1c9de26578613d69dfc1ef3214df464e"
+    }
+  ]
+}

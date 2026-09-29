@@ -1,0 +1,46 @@
+{
+  "schema": "paper3-model-artifacts-v1",
+  "identity_note": "SHA-256 values are upstream Git LFS object identifiers bound to the exact basenames and revisions by surviving Hugging Face download metadata.",
+  "artifacts": [
+    {
+      "artifact_id": "flash_shard_1",
+      "role": "Qwen3.8-Flash-Next UD-IQ1_S metadata shard",
+      "upstream_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "revision": "d3bc75ee6ccef3efc1e228ec00a6cc2cdb1e2249",
+      "filename": "UD-IQ1_S/Qwen3.8-Flash-Next-UD-IQ1_S-00001-of-00003.gguf",
+      "bytes": 10946624,
+      "sha256": "88a1420825a9304063e882ada29d438263617f51ac8923d438d927496693bafd",
+      "license": "qwen-community-1.0"
+    },
+    {
+      "artifact_id": "flash_shard_2",
+      "role": "Qwen3.8-Flash-Next UD-IQ1_S weight shard",
+      "upstream_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "revision": "d3bc75ee6ccef3efc1e228ec00a6cc2cdb1e2249",
+      "filename": "UD-IQ1_S/Qwen3.8-Flash-Next-UD-IQ1_S-00002-of-00003.gguf",
+      "bytes": 49990818368,
+      "sha256": "3a62e35bbf9add4733bd1438ebd3a67649d5edd6cb0e72bb78e33c913992b2b6",
+      "license": "qwen-community-1.0"
+    },
+    {
+      "artifact_id": "flash_shard_3",
+      "role": "Qwen3.8-Flash-Next UD-IQ1_S weight shard",
+      "upstream_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "revision": "d3bc75ee6ccef3efc1e228ec00a6cc2cdb1e2249",
+      "filename": "UD-IQ1_S/Qwen3.8-Flash-Next-UD-IQ1_S-00003-of-00003.gguf",
+      "bytes": 22544696352,
+      "sha256": "0e25ceaeb89b8a80aa973c6c0c7448943682f7408c2855b2ebd016b7643a861a",
+      "license": "qwen-community-1.0"
+    },
+    {
+      "artifact_id": "gptoss_mxfp4",
+      "role": "gpt-oss-120b MXFP4 artifact",
+      "upstream_repo": "ggml-org/gpt-oss-120b-GGUF",
+      "revision": "238abdd290bb874b90a5da1b4549881b7d05c091",
+      "filename": "gpt-oss-120b-MXFP4.gguf",
+      "bytes": 63387346208,
+      "sha256": "582bd40f6886200101f4c4ed9f25f3fe80cc14c86e9e2b37746cd8904a0c622d",
+      "license": "apache-2.0"
+    }
+  ]
+}
