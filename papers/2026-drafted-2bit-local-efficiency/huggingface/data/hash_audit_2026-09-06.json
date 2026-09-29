@@ -1,0 +1,156 @@
+[
+ {
+  "bytes": 8371970048,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 8371970048,
+    "filename": "Qwen3.8-27B-UD-IQ2_S.gguf",
+    "repo": "unsloth/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38/Qwen3.8-27B-UD-IQ2_S.gguf",
+  "sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 7266070528,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 7266070528,
+    "filename": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+    "repo": "unsloth/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38/Qwen3.8-27B-UD-IQ2_XXS.gguf",
+  "sha256": "e792d8fb3142fe6d9171876d6da0f71f05a71028718debc72dbec93ff645e67d",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 17559178144,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 17559178144,
+    "filename": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+    "repo": "unsloth/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38/Qwen3.8-27B-UD-Q4_K_XL.gguf",
+  "sha256": "3f227079003add2511437e5b1e94812e363385225bf6a9b47b0054a72bc8b01e",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 927607488,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 927607488,
+    "filename": "mmproj-F16.gguf",
+    "repo": "unsloth/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38/mmproj-F16.gguf",
+  "sha256": "cbb841a9ee0636b2ec172f5bb8df2ea8dfeb01e90fe7c6126581d662a0b4e43e",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 1369590656,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 1369590656,
+    "filename": "MTP/mtp-Qwen3.8-27B-Q4_0.gguf",
+    "repo": "unsloth/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38/MTP/mtp-Qwen3.8-27B-Q4_0.gguf",
+  "sha256": "50d9ce5a6da381bbcfb31061cf73df94a90e6faf8efeddee379a9cb8f1501c6e",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 10295330400,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 10295330400,
+    "filename": "Qwen3.8-27B-IQ2_S.gguf",
+    "repo": "bartowski/Qwen3.8-27B-GGUF"
+   }
+  ],
+  "local_name": "qwen38-bartowski/Qwen3.8-27B-IQ2_S.gguf",
+  "sha256": "5549ddb546d43f4c7a2e41115f2e24334f0c5321011acbb724a113e5a21e6fa6",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 1143006816,
+  "hub": [
+   {
+    "branch": null,
+    "bytes": 1143006816,
+    "filename": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+    "repo": "z-lab/Qwen3.8-27B-DFlash2-GGUF"
+   }
+  ],
+  "local_name": "qwen38-dflash2/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+  "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 8573967630,
+  "hub": [
+   {
+    "branch": "SC_2.00bpw_H3",
+    "bytes": 8573967630,
+    "filename": "model-00001-of-00002.safetensors",
+    "repo": "turboderp/Qwen3.8-27B-exl3"
+   }
+  ],
+  "local_name": "qwen38-exl3-2.0/model-00001-of-00002.safetensors",
+  "sha256": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 1622158601,
+  "hub": [
+   {
+    "branch": "SC_2.00bpw_H3",
+    "bytes": 1622158601,
+    "filename": "model-00002-of-00002.safetensors",
+    "repo": "turboderp/Qwen3.8-27B-exl3"
+   }
+  ],
+  "local_name": "qwen38-exl3-2.0/model-00002-of-00002.safetensors",
+  "sha256": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 8500866052,
+  "hub": [
+   {
+    "branch": "SC_2.20bpw_H3_V3",
+    "bytes": 8500866052,
+    "filename": "model-00001-of-00002.safetensors",
+    "repo": "turboderp/Qwen3.8-27B-exl3"
+   }
+  ],
+  "local_name": "qwen38-exl3-2.2v3/model-00001-of-00002.safetensors",
+  "sha256": "522f94e79dfc119eeb02cd96978513eb24f86682183eb07084c956a4299e28c4",
+  "status": "MATCH"
+ },
+ {
+  "bytes": 1780094352,
+  "hub": [
+   {
+    "branch": "SC_2.20bpw_H3_V3",
+    "bytes": 1780094352,
+    "filename": "model-00002-of-00002.safetensors",
+    "repo": "turboderp/Qwen3.8-27B-exl3"
+   }
+  ],
+  "local_name": "qwen38-exl3-2.2v3/model-00002-of-00002.safetensors",
+  "sha256": "b89cafe9c614119b2faedbfd5e635a75af09928b058f3734ed14d6d0044b5f33",
+  "status": "MATCH"
+ }
+]

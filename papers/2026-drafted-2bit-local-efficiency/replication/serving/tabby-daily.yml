@@ -1,0 +1,27 @@
+# Daily driver — EXL3 SC_2.00 + its own MTP head (efficiency campaign, testsuite/results/EFFICIENCY-CAMPAIGN.md)
+# 1 slot, 32K context, chunk 1024, draft length 6, 16 GB recurrent stash in host RAM.
+# Measured 2026-09-09 (smoke_serving.sh): up in 10 s from page cache, 9,074 MiB resident at load, 9,828 MiB after an
+# ~8K-token prompt, released cleanly. (E28's 8.0 GiB load figure was at draft length 4.) 47-50 tok/s code/math, 35 prose (E7/E44).
+# Launch with serving/launch.sh daily  (sets PYTHONPATH to the lab-patched exllamav3 copy and EXL3_CKPT_PP=1024).
+network:
+  host: 127.0.0.1
+  port: 18120
+  disable_auth: true
+logging:
+  log_prompt: false
+  log_generation_params: false
+model:
+  model_dir: /path/to/models
+  model_name: qwen38-exl3-2.0
+  max_seq_len: 32768
+  cache_size: 32768
+  cache_mode: Q8
+  chunk_size: 1024
+  max_batch_size: 1          # E28: the drafter pre-allocates (draft_len+1) recurrent states PER SLOT (728 MiB at draft 4, ~1,020 MiB at draft 6); 1 for a single user
+draft_model:
+  draft_mode: mtp            # the quant carries a 2-bit MTP layer; lossless (E17), 1.6-1.7x on code/math, 1.2x prose
+  draft_cache_mode: Q8
+  dynamic_draft: true
+  draft_num_tokens: 6        # E44: 6 beats 4 on prose/math/code by 1-4%; 2 is 5-9% worse everywhere
+memory:
+  sysmem_recurrent_cache: 16384   # E30: a repeated 4K system prompt costs 0.9 s instead of 9 s; ~300 MB host RAM per live prefix

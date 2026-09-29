@@ -1,0 +1,26 @@
+--- /path/to/scratch/eff/quantize.py.orig	2026-09-07 08:07:24.953366958 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/modules/quant/exl3_lib/quantize.py	2026-09-07 08:07:24.962281740 -0700
+@@ -451,7 +451,9 @@
+ 
+         # Fall back on CPU factorization
+         except Exception as e:
+-            if e.__class__.__name__ == "OutOfMemoryError" or "CUDA out of memory" in str(e) or "HIP out of memory" in str(e):
++            # LAB PATCH 2026-09-07: this box's torch 2.10+cu128 cuSOLVER returns "Invalid argument" for every CUDA
++            # Cholesky (reproduced on random SPD matrices); CPU factorization takes 0.1-2.2 s, so fall back.
++            if e.__class__.__name__ == "OutOfMemoryError" or "CUDA out of memory" in str(e) or "HIP out of memory" in str(e) or "Invalid argument" in str(e):
+                 retry_cpu = True
+                 break
+             else:
+@@ -475,7 +477,11 @@
+     # D = DL @ DL.transpose(1, 2)
+ 
+     # Invert each diagonal block
+-    DL = torch.linalg.inv(DL)
++    try:
++        DL = torch.linalg.inv(DL)
++    except RuntimeError as e:  # LAB PATCH 2026-09-07: same cuSOLVER failure mode, batched inverse on CPU
++        if "Invalid argument" not in str(e): raise
++        DL = torch.linalg.inv(DL.cpu()).to(DL.device)
+ 
+     # Multiply each block's column with its inverse
+     L = L.view(n, m, b)

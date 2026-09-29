@@ -1,0 +1,18 @@
+# H38a control: serving/tabby-daily.yml with the MTP drafter removed (everything else identical). Port 18120.
+network:
+  host: 127.0.0.1
+  port: 18120
+  disable_auth: true
+logging:
+  log_prompt: false
+  log_generation_params: false
+model:
+  model_dir: /path/to/models
+  model_name: qwen38-exl3-2.0
+  max_seq_len: 32768
+  cache_size: 32768
+  cache_mode: Q8
+  chunk_size: 1024
+  max_batch_size: 1
+memory:
+  sysmem_recurrent_cache: 16384

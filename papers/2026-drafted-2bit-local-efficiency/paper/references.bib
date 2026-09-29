@@ -1,0 +1,505 @@
+% Paper 7 bibliography. Every entry was found in the lab's literature sweeps
+% (testsuite/results/efficiency/lit/) and/or verified against its arXiv abstract page on
+% 2026-09-09; see BIBLIOGRAPHY_AUDIT.md. Software and model repositories are cited at the
+% revision the campaign used (hash_audit_2026-09-06.json).
+
+% ---- Speculative decoding ------------------------------------------------------------
+
+@misc{leviathan2023fast,
+  author        = {Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},
+  title         = {Fast Inference from Transformers via Speculative Decoding},
+  year          = {2022},
+  eprint        = {2211.17192},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2211.17192}{arXiv:2211.17192}},
+}
+
+@misc{chen2023accelerating,
+  author        = {Chen, Charlie and Borgeaud, Sebastian and Irving, Geoffrey and Lespiau, Jean-Baptiste and Sifre, Laurent and Jumper, John},
+  title         = {Accelerating Large Language Model Decoding with Speculative Sampling},
+  year          = {2023},
+  eprint        = {2302.01318},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2302.01318}{arXiv:2302.01318}},
+}
+
+@misc{li2026bebop,
+  author        = {Li, Yucheng and Jiang, Huiqiang and Xu, Yang and Yang, Jianxin and Zhang, Yi and Cao, Yizhong and Shen, Yuhao and Zhou, Fan and Men, Rui and Zhang, Jianwei and Yang, An and Yu, Bowen and Zheng, Bo and Huang, Fei and Lin, Junyang and Liu, Dayiheng and Zhou, Jingren},
+  title         = {Breaking Entropy Bounds: Accelerating {RL} Training via {MTP} with Rejection Sampling},
+  year          = {2026},
+  eprint        = {2606.12370},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2606.12370}{arXiv:2606.12370}},
+}
+
+@misc{su2023synergy,
+  author        = {Su, Qidong and Giannoula, Christina and Pekhimenko, Gennady},
+  title         = {The Synergy of Speculative Decoding and Batching in Serving Large Language Models},
+  year          = {2023},
+  eprint        = {2310.18813},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2310.18813}{arXiv:2310.18813}},
+}
+
+@misc{wang2026bole,
+  author        = {Wang, Li and Su, Yi and Wu, Xiabao and You, Chiran and Liu, Yongchao and Qiu, Zhan and Zhang, Juelu and Zheng, Jiajun and Liu, Fangxin and Zhang, Jie and Tian, Chen and Huan, Chengying},
+  title         = {Bole: Efficient Tree Speculation for Hybrid-Attention Language Models},
+  year          = {2026},
+  eprint        = {2608.01651},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DC},
+  note          = {\href{https://arxiv.org/abs/2608.01651}{arXiv:2608.01651}},
+}
+
+@misc{wang2026specla,
+  author        = {Wang, Zhibin and Han, Xuying and Yang, Zhaohua and Liu, Fuliang and Li, Xue and Gu, Rong and Zhong, Sheng and Tian, Chen},
+  title         = {{SpecLA}: Efficient Speculative Decoding for Linear-Attention Models},
+  year          = {2026},
+  eprint        = {2607.16673},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2607.16673}{arXiv:2607.16673}},
+}
+
+@misc{ghantasala2026treewy,
+  author        = {Ghantasala, Sneha Murthy},
+  title         = {{TreeWY}: Speculative Verification for Gated {DeltaNet} Hybrids},
+  year          = {2026},
+  eprint        = {2608.20961},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {\href{https://arxiv.org/abs/2608.20961}{arXiv:2608.20961}},
+}
+
+@misc{chen2026dflash,
+  author        = {Chen, Jian and Liang, Yesheng and Liu, Zhijian},
+  title         = {{DFlash}: Block Diffusion for Flash Speculative Decoding},
+  year          = {2026},
+  eprint        = {2602.06036},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2602.06036}{arXiv:2602.06036}},
+}
+
+% ---- Architecture, recurrent state, prefix caching ------------------------------------
+
+@misc{yang2024gated,
+  author        = {Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali},
+  title         = {Gated Delta Networks: Improving {Mamba2} with Delta Rule},
+  year          = {2024},
+  eprint        = {2412.06464},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2412.06464}{arXiv:2412.06464}},
+}
+
+@misc{zhang2026damp,
+  author        = {Zhang, Tao and Tan, Jianchao and Sun, Pingwei and Yu, Yanqi and Jiang, Zixu and Xie, Yuchen and Cai, Xunliang and Zeng, Ziqian},
+  title         = {{DAMP}: Decay-Aware Mixed-Precision Recurrent-State Quantization},
+  year          = {2026},
+  eprint        = {2608.27513},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2608.27513}{arXiv:2608.27513}},
+}
+
+@misc{tseng2024qtip,
+  author        = {Tseng, Albert and Sun, Qingyao and Hou, David and De Sa, Christopher},
+  title         = {{QTIP}: Quantization with Trellises and Incoherence Processing},
+  year          = {2024},
+  eprint        = {2406.11235},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2406.11235}{arXiv:2406.11235}},
+}
+
+@misc{liu2025hurts,
+  author        = {Liu, Ruikang and Sun, Yuxuan and Zhang, Manyi and Bai, Haoli and Yu, Xianzhi and Yu, Tiezheng and Yuan, Chun and Hou, Lu},
+  title         = {Quantization Hurts Reasoning? {An} Empirical Study on Quantized Reasoning Models},
+  year          = {2025},
+  eprint        = {2504.04823},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2504.04823}{arXiv:2504.04823}},
+}
+
+@misc{lian2026inflates,
+  author        = {Lian, Xinyu and Krichene, Walid and Huang, Beichen and Tanaka, Masahiro and Ruwase, Olatunji and Zhang, Li and Zhang, Minjia},
+  title         = {Quantization Inflates Reasoning: Token Inflation as a Hidden Cost of Low-Bit Reasoning Models},
+  year          = {2026},
+  eprint        = {2606.25519},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {\href{https://arxiv.org/abs/2606.25519}{arXiv:2606.25519}},
+}
+
+@misc{lotfi2026longer,
+  author        = {Lotfi, Sanae and Kirichenko, Polina and Li, Steven and Liu, Zechun},
+  title         = {Quantized Reasoning Models Think They Need to Think Longer, but They Do Not},
+  year          = {2026},
+  eprint        = {2606.00206},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2606.00206}{arXiv:2606.00206}},
+}
+
+@misc{alimaskina2026extreme,
+  author        = {Alimaskina, Ekaterina and Rudas, Darya and Shveykin, Denis and Molodtsov, Gleb and Vasiliev, Pavel and Beznosikov, Aleksandr},
+  title         = {Extreme Low-Bit Inference in Reasoning Models: Failure Modes and Targeted Recovery},
+  year          = {2026},
+  eprint        = {2606.02011},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {\href{https://arxiv.org/abs/2606.02011}{arXiv:2606.02011}},
+}
+
+@misc{kozyrev2026gdn,
+  author        = {Kozyrev, Sergii and Maiboroda, Davyd},
+  title         = {Why Gated {DeltaNet} Survives 4-Bit Quantization: {NVFP4} {W4A4} for the Recurrent Half of a Hybrid {27B} {LLM}},
+  year          = {2026},
+  eprint        = {2609.04098},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {\href{https://arxiv.org/abs/2609.04098}{arXiv:2609.04098}},
+}
+
+@misc{hu2026damage,
+  author        = {Hu, Jundong and Ramachandran, Shekar},
+  title         = {The Structure of Quantization Damage in {LLMs}: Why the Next Bit Should Be Spent Globally},
+  year          = {2026},
+  eprint        = {2609.01587},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2609.01587}{arXiv:2609.01587}},
+}
+
+@misc{wang2026tasa,
+  author        = {Wang, Fei and Xue, Chao and Liu, Taoran and Shen, Li and Liu, Ye and Ding, ChangXing},
+  title         = {Beyond Activation Alignment: The Alignment-Diversity Tradeoff in Task-Aware {LLM} Quantization},
+  year          = {2026},
+  eprint        = {2607.00908},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2607.00908}{arXiv:2607.00908}},
+}
+
+@misc{williams2024selfcal,
+  author        = {Williams, Miles and Chrysostomou, George and Aletras, Nikolaos},
+  title         = {Self-calibration for Language Model Quantization and Pruning},
+  year          = {2024},
+  eprint        = {2410.17170},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2410.17170}{arXiv:2410.17170}},
+}
+
+@misc{wang2026ayot,
+  author        = {Wang, Shigeng and Li, Chao and Kang, Yangyuxuan and Fan, Jiawei and Yao, Anbang},
+  title         = {Attend to Your Own Thoughts: Breaking the Barrier for Post-Training Quantization of Reasoning {LLMs} through the Lens of 1.58-Bit Quantization},
+  year          = {2026},
+  eprint        = {2608.01078},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2608.01078}{arXiv:2608.01078}},
+}
+
+% ---- Reasoning-length control ----------------------------------------------------------
+
+@misc{yang2025deer,
+  author        = {Yang, Chenxu and Si, Qingyi and Duan, Yongjie and Zhu, Zheliang and Zhu, Chenyu and Li, Qiaowei and Chen, Minghui and Lin, Zheng and Wang, Weiping},
+  title         = {Dynamic Early Exit in Reasoning Models},
+  year          = {2025},
+  eprint        = {2504.15895},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2504.15895}{arXiv:2504.15895}},
+}
+
+@misc{koh2026think,
+  author        = {Koh, Seunghee and Choi, Sungjae and Kwon, Minchan and Baek, Sunghyun and Kim, Junmo},
+  title         = {{\texttt{</think>}} Doesn't Stop Reasoning: Analysis of Spurious {CoT} Termination},
+  year          = {2026},
+  eprint        = {2609.03633},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {\href{https://arxiv.org/abs/2609.03633}{arXiv:2609.03633}},
+}
+
+@misc{hochlehnert2025sober,
+  author        = {Hochlehnert, Andreas and Bhatnagar, Hardik and Udandarao, Vishaal and Albanie, Samuel and Prabhu, Ameya and Bethge, Matthias},
+  title         = {A Sober Look at Progress in Language Model Reasoning: Pitfalls and Paths to Reproducibility},
+  year          = {2025},
+  eprint        = {2504.07086},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2504.07086}{arXiv:2504.07086}},
+}
+
+@misc{miller2024errorbars,
+  author        = {Miller, Evan},
+  title         = {Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations},
+  year          = {2024},
+  eprint        = {2411.00640},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.AP},
+  note          = {\href{https://arxiv.org/abs/2411.00640}{arXiv:2411.00640}},
+}
+
+@misc{dutta2024accuracy,
+  author        = {Dutta, Abhinav and Krishnan, Sanjeev and Kwatra, Nipun and Ramjee, Ramachandran},
+  title         = {Accuracy is Not All You Need},
+  year          = {2024},
+  eprint        = {2407.09141},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2407.09141}{arXiv:2407.09141}},
+}
+
+@article{mcnemar1947,
+  author  = {McNemar, Quinn},
+  title   = {Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages},
+  journal = {Psychometrika},
+  year    = {1947},
+  volume  = {12},
+  number  = {2},
+  pages   = {153--157},
+  doi     = {10.1007/BF02295996},
+  url     = {https://doi.org/10.1007/BF02295996},
+}
+
+% ---- Energy ----------------------------------------------------------------------------------
+
+@misc{zahl2026energy,
+  author        = {Z{\"a}hl, Philipp M. and Hennig, Anika},
+  title         = {Energy Efficiency of Locally Deployed {LLMs}: A Preliminary Quantitative {GPU} Power Benchmark on Consumer Hardware},
+  year          = {2026},
+  eprint        = {2608.00008},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {\href{https://arxiv.org/abs/2608.00008}{arXiv:2608.00008}},
+}
+
+@misc{dutta2026specenergy,
+  author        = {Dutta, Rohit and Koley, Paramita and Poddar, Soham and Misra, Janardan and Podder, Sanjay and Balani, Naveen and Ghosh, Saptarshi and Ganguly, Niloy},
+  title         = {Benchmarking the Energy Savings with Speculative Decoding Strategies},
+  year          = {2026},
+  eprint        = {2602.09113},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2602.09113}{arXiv:2602.09113}},
+}
+
+@misc{cobbe2021gsm8k,
+  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  title         = {Training Verifiers to Solve Math Word Problems},
+  year          = {2021},
+  eprint        = {2110.14168},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2110.14168}{arXiv:2110.14168}},
+}
+
+@misc{chen2021humaneval,
+  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and {Ponde de Oliveira Pinto}, Henrique and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},
+  title         = {Evaluating Large Language Models Trained on Code},
+  year          = {2021},
+  eprint        = {2107.03374},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2107.03374}{arXiv:2107.03374}},
+}
+
+@misc{liu2023evalplus,
+  author        = {Liu, Jiawei and Xia, Chunqiu Steven and Wang, Yuyao and Zhang, Lingming},
+  title         = {Is Your Code Generated by {ChatGPT} Really Correct? {Rigorous} Evaluation of Large Language Models for Code Generation},
+  year          = {2023},
+  eprint        = {2305.01210},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  note          = {\href{https://arxiv.org/abs/2305.01210}{arXiv:2305.01210}},
+}
+
+@misc{hendrycks2021mmlu,
+  author        = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},
+  title         = {Measuring Massive Multitask Language Understanding},
+  year          = {2020},
+  eprint        = {2009.03300},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CY},
+  note          = {\href{https://arxiv.org/abs/2009.03300}{arXiv:2009.03300}},
+}
+
+@misc{hendrycks2021math,
+  author        = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},
+  title         = {Measuring Mathematical Problem Solving With the {MATH} Dataset},
+  year          = {2021},
+  eprint        = {2103.03874},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {\href{https://arxiv.org/abs/2103.03874}{arXiv:2103.03874}},
+}
+
+% ---- Software and model artifacts (cited at the revision used) -------------------------------
+
+@misc{turboderp2025exllamav3,
+  author       = {{turboderp-org}},
+  title        = {{exllamav3}},
+  year         = {2026},
+  howpublished = {Software repository, versions 1.4.7 and 1.5.0},
+  url          = {https://github.com/turboderp-org/exllamav3},
+  note         = {Version 1.4.7 (released 2026-09-05), staged in isolation from the lab's pinned 1.4.3; development-branch commit 08849e3 (2026-09-12; contains the deterministic Gated-DeltaNet reduction 900cf17) for E51; release 1.5.0 (2026-09-13) for E52; accessed 2026-09-19},
+}
+
+@misc{theroyallab2025tabbyapi,
+  author       = {{theroyallab}},
+  title        = {{TabbyAPI}},
+  year         = {2026},
+  howpublished = {Software repository},
+  url          = {https://github.com/theroyallab/tabbyAPI},
+  note         = {Pinned lab checkout, commit 4a4f9f4 (2026-08-24); pull request 468 merged 2026-09-21 as commit 0feab2a; accessed 2026-09-25},
+}
+
+@misc{gerganov2023llamacpp,
+  author       = {Gerganov, Georgi and {llama.cpp contributors}},
+  title        = {{llama.cpp}: {LLM} Inference in {C/C++}},
+  year         = {2023},
+  howpublished = {Software repository},
+  url          = {https://github.com/ggml-org/llama.cpp},
+  note         = {Release v0.4.0 (commit 5266f24) and the 2026-08-26 build (commit 035e227) were used; accessed 2026-09-06},
+}
+
+@misc{turboderp2026qwen38exl3,
+  author       = {{turboderp}},
+  title        = {{Qwen3.8-27B-exl3}, branch {SC\_2.00bpw\_H3}},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/turboderp/Qwen3.8-27B-exl3/tree/SC_2.00bpw_H3},
+  note         = {Shard SHA-256 digests verified against the Hub LFS records on 2026-09-06 (hash\_audit\_2026-09-06.json); the SC\_2.20bpw\_H3\_V3 branch was verified the same way},
+}
+
+@misc{unsloth2026qwen38gguf,
+  author       = {{Unsloth}},
+  title        = {{Qwen3.8-27B} Dynamic {GGUF} Quantizations},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/unsloth/Qwen3.8-27B-GGUF},
+  note         = {Files UD-IQ2\_S, UD-IQ2\_XXS, UD-Q4\_K\_XL, mmproj-F16 and MTP/mtp-Qwen3.8-27B-Q4\_0 as re-cut on 2026-08-20 (Dynamic v3.0); SHA-256 digests verified 2026-09-06},
+}
+
+@misc{zlab2026dflash2gguf,
+  author       = {{z-lab}},
+  title        = {{Qwen3.8-27B-DFlash2-GGUF}},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2-GGUF},
+  note         = {Q4\_K\_M drafter file; SHA-256 digest verified 2026-09-06},
+}
+
+@misc{qwen2026qwen38card,
+  author       = {{Qwen Team}},
+  title        = {{Qwen3.8-27B} model card},
+  year         = {2026},
+  howpublished = {Hugging Face model repository},
+  url          = {https://huggingface.co/Qwen/Qwen3.8-27B},
+  note         = {Accessed 2026-09-06 (lab community sweep)},
+}
+
+@misc{tsai2026rtx3090spec,
+  author       = {Tsai, Hsiu-Chi},
+  title        = {{Qwen3.8-27B} speculative decoding on a single {RTX 3090}},
+  year         = {2026},
+  howpublished = {Zenodo software deposit, version 1.0.4},
+  doi          = {10.5281/zenodo.22246518},
+  url          = {https://doi.org/10.5281/zenodo.22246518},
+  note         = {Deposited 2026-09-02; concept DOI 10.5281/zenodo.22149941; source \url{https://github.com/thc1006/qwen3.8-speculative-decoding-rtx3090}; accessed 2026-09-19},
+}
+
+@misc{migdal2026qwen38quants,
+  author       = {Migda{\l}, Piotr},
+  title        = {Benchmarking {Qwen3.8} {27B} quantizations: 4-bit holds up, 1-bit collapses},
+  year         = {2026},
+  howpublished = {Quesma blog},
+  url          = {https://quesma.com/blog/qwen38-27b-quantizations-benchmarked/},
+  note         = {Published 2026-08-26; accessed 2026-09-19},
+}
+
+@misc{yuan2025nondeterminism,
+  author        = {Yuan, Jiayi and Li, Hao and Ding, Xinheng and Xie, Wenya and Li, Yu-Jhe and Zhao, Wentian and Wan, Kun and Shi, Jing and Hu, Xia and Liu, Zirui},
+  title         = {Understanding and Mitigating Numerical Sources of Nondeterminism in {LLM} Inference},
+  year          = {2025},
+  eprint        = {2506.09501},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note          = {NeurIPS 2025 (oral). \href{https://arxiv.org/abs/2506.09501}{arXiv:2506.09501}},
+}
+
+@misc{luo2026energy,
+  author        = {Luo, Qi and Li, Kunlin and Wang, Ziwen and Chen, Yun},
+  title         = {Where Does the Energy Go? Profiling {LLM} Agent Inference on {Blackwell} {GPUs}},
+  year          = {2026},
+  eprint        = {2609.29707},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DC},
+  note          = {arXiv 2609.29707v1, submitted 2026-08-31},
+}
+
+@misc{georganas2025ultralow,
+  author        = {Georganas, Evangelos and Kalamkar, Dhiraj and Heinecke, Alexander and Dubey, Pradeep},
+  title         = {Pushing the Envelope of {LLM} Inference with Ultra-Low-Bit Quantized Models},
+  year          = {2025},
+  eprint        = {2508.06753},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {arXiv 2508.06753v3, 2026-08-27},
+}
+
+@misc{panferov2026disaggregated,
+  author        = {Panferov, Andrei and Kleinegger, Maximilian and Priyadarshi, Sweta and Blankevoort, Tijmen and Alistarh, Dan},
+  title         = {Disaggregated Quantization: Specializing {LLM} Prefill and Decode},
+  year          = {2026},
+  eprint        = {2609.26333},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {arXiv 2609.26333v1, submitted 2026-09-22},
+}
+
+@misc{ma2026gdntreescan,
+  author        = {Ma, Zhiyuan},
+  title         = {{GDN} Tree-Scan: Served Tree Verification for Recurrent-Hybrid Language Models},
+  year          = {2026},
+  eprint        = {2609.23900},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {arXiv 2609.23900v1, submitted 2026-09-20},
+}
+
+@misc{ollman2026qwen38,
+  author = {Ollman, Alexander},
+  title = {{Qwen3.8-27B} on {RTX 3090}: Results},
+  year = {2026},
+  howpublished = {Author-maintained technical benchmark report},
+  url = {https://alexander-ollman.github.io/qwen3.8-on-rtx3090/results.html},
+  note = {Primary report, not peer-reviewed; accessed 2026-09-28},
+}
+
+@misc{ang2026qwen38,
+  author = {Ang, Chin Keong},
+  title = {{Qwen3.8-27B} on a 24 {GB RTX 3090}: Measured Settings, Speeds and Energy},
+  year = {2026},
+  howpublished = {Author-maintained technical benchmark report},
+  url = {https://chinkeong.github.io/qwen-27b/index.html},
+  note = {Measurements dated 2026-08-21 through 2026-08-25; not peer-reviewed; accessed 2026-09-28},
+}
+
+@misc{wiklif2026ktopt,
+  author = {{wiklif}},
+  title = {{Qwen3.8-27B-KTopt-GGUF}: Model Card and Benchmarks},
+  year = {2026},
+  howpublished = {Author-maintained Hugging Face model card},
+  url = {https://huggingface.co/wiklif/Qwen3.8-27B-KTopt-GGUF},
+  note = {First-party artifact measurements, not peer-reviewed; accessed 2026-09-28},
+}

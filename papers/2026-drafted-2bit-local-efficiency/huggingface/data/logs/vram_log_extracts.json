@@ -1,0 +1,224 @@
+[
+ {
+  "line": 8,
+  "log_line": "RANGE prose:0:2708",
+  "source": "testsuite/results/efficiency/logs/b6.out",
+  "source_sha256": "581369b0e39170462856019c9dab5e5e476d0f448b216a99f9bc0226e2d05823"
+ },
+ {
+  "line": 12,
+  "log_line": "RANGE code:2708:5505",
+  "source": "testsuite/results/efficiency/logs/b6.out",
+  "source_sha256": "581369b0e39170462856019c9dab5e5e476d0f448b216a99f9bc0226e2d05823"
+ },
+ {
+  "line": 16,
+  "log_line": "RANGE math:5505:8049",
+  "source": "testsuite/results/efficiency/logs/b6.out",
+  "source_sha256": "581369b0e39170462856019c9dab5e5e476d0f448b216a99f9bc0226e2d05823"
+ },
+ {
+  "line": 20,
+  "log_line": "RANGE rewrite:8049:9821",
+  "source": "testsuite/results/efficiency/logs/b6.out",
+  "source_sha256": "581369b0e39170462856019c9dab5e5e476d0f448b216a99f9bc0226e2d05823"
+ },
+ {
+  "line": 2,
+  "log_line": "FIT nomtp_12k load=7794MiB warm=7834MiB",
+  "source": "testsuite/results/efficiency/logs/e27.out",
+  "source_sha256": "f0a3df06687fda57fef6676ae326c5a817422eddad8a45196b647bcaf67f45b4"
+ },
+ {
+  "line": 3,
+  "log_line": "FIT mtp_12k load=10226MiB warm=10270MiB",
+  "source": "testsuite/results/efficiency/logs/e27.out",
+  "source_sha256": "f0a3df06687fda57fef6676ae326c5a817422eddad8a45196b647bcaf67f45b4"
+ },
+ {
+  "line": 4,
+  "log_line": "FIT mtp_8k load=10098MiB warm=10142MiB",
+  "source": "testsuite/results/efficiency/logs/e27.out",
+  "source_sha256": "f0a3df06687fda57fef6676ae326c5a817422eddad8a45196b647bcaf67f45b4"
+ },
+ {
+  "line": 5,
+  "log_line": "FIT mtp_12k_fp16draft load=10258MiB warm=10302MiB",
+  "source": "testsuite/results/efficiency/logs/e27.out",
+  "source_sha256": "f0a3df06687fda57fef6676ae326c5a817422eddad8a45196b647bcaf67f45b4"
+ },
+ {
+  "line": 2,
+  "log_line": "FIT mbs1_12k load=8050MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 15,
+  "log_line": "warm vram: 8468MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 16,
+  "log_line": "FIT default_12k load=10226MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 29,
+  "log_line": "warm vram: 10644MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 31,
+  "log_line": "FIT mbs1_32k load=8754MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 37,
+  "log_line": "ALIVE after 30K probe; warm vram: 9588MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 39,
+  "log_line": "FIT 22v3_mbs1_12k load=8658MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 44,
+  "log_line": "alive after math25: yes  ooms_in_log: 0  warm vram: 9332MiB",
+  "source": "testsuite/results/efficiency/logs/e28.out",
+  "source_sha256": "72067949ef2c08083d09223157c1d2250991c69060ffd9b4b9f5b8af435a397a"
+ },
+ {
+  "line": 3,
+  "log_line": "pid, 8242 MiB",
+  "source": "testsuite/results/efficiency/logs/e23c.out",
+  "source_sha256": "247f19cd0a6f75d4b5bf704d45ec6e94b7310e65a4d384dcaff7be5b080a416f"
+ },
+ {
+  "line": 10,
+  "log_line": "vram: pid, 8636 MiB  errors_in_log: 0",
+  "source": "testsuite/results/efficiency/logs/e23c.out",
+  "source_sha256": "247f19cd0a6f75d4b5bf704d45ec6e94b7310e65a4d384dcaff7be5b080a416f"
+ },
+ {
+  "line": 13,
+  "log_line": "vram: pid, 8668 MiB  errors_in_log: 0",
+  "source": "testsuite/results/efficiency/logs/e23c.out",
+  "source_sha256": "247f19cd0a6f75d4b5bf704d45ec6e94b7310e65a4d384dcaff7be5b080a416f"
+ },
+ {
+  "line": 16,
+  "log_line": "vram: pid, 8668 MiB  errors_in_log: 0",
+  "source": "testsuite/results/efficiency/logs/e23c.out",
+  "source_sha256": "247f19cd0a6f75d4b5bf704d45ec6e94b7310e65a4d384dcaff7be5b080a416f"
+ },
+ {
+  "line": 19,
+  "log_line": "vram: pid, 8668 MiB  errors_in_log: 0",
+  "source": "testsuite/results/efficiency/logs/e23c.out",
+  "source_sha256": "247f19cd0a6f75d4b5bf704d45ec6e94b7310e65a4d384dcaff7be5b080a416f"
+ },
+ {
+  "line": 2,
+  "log_line": "[main model + Q8 cache loaded] alloc 7015 MiB  reserved 7256 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_1_0.out",
+  "source_sha256": "ee3cd9a22ec5d3883542488bf7e81fbb744c3f92af96a4acf8852d51c011ce53"
+ },
+ {
+  "line": 3,
+  "log_line": "[generator created] alloc 7015 MiB  reserved 7256 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_1_0.out",
+  "source_sha256": "ee3cd9a22ec5d3883542488bf7e81fbb744c3f92af96a4acf8852d51c011ce53"
+ },
+ {
+  "line": 6,
+  "log_line": "[after generate (1.7s)] alloc 7026 MiB  reserved 7260 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_1_0.out",
+  "source_sha256": "ee3cd9a22ec5d3883542488bf7e81fbb744c3f92af96a4acf8852d51c011ce53"
+ },
+ {
+  "line": 1,
+  "log_line": "[main model + Q8 cache loaded] alloc 7597 MiB  reserved 8014 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp.out",
+  "source_sha256": "a347e8386c667e5f5442640c9942b47b61822a3a3fd743bc2e8c3f50f2461e56"
+ },
+ {
+  "line": 2,
+  "log_line": "[draft (mtp) loaded] alloc 7688 MiB  reserved 8016 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp.out",
+  "source_sha256": "a347e8386c667e5f5442640c9942b47b61822a3a3fd743bc2e8c3f50f2461e56"
+ },
+ {
+  "line": 5,
+  "log_line": "[generator created] alloc 7688 MiB  reserved 8016 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp.out",
+  "source_sha256": "a347e8386c667e5f5442640c9942b47b61822a3a3fd743bc2e8c3f50f2461e56"
+ },
+ {
+  "line": 8,
+  "log_line": "[after generate (2.9s)] alloc 7722 MiB  reserved 8050 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp.out",
+  "source_sha256": "a347e8386c667e5f5442640c9942b47b61822a3a3fd743bc2e8c3f50f2461e56"
+ },
+ {
+  "line": 2,
+  "log_line": "[main model + Q8 cache loaded] alloc 8325 MiB  reserved 8696 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_2_4.out",
+  "source_sha256": "aa07a98936f4410a784fdd3c9519d52cb8e78bbab587fbcbf10d6e5f61f30953"
+ },
+ {
+  "line": 3,
+  "log_line": "[draft (mtp) loaded] alloc 8417 MiB  reserved 8698 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_2_4.out",
+  "source_sha256": "aa07a98936f4410a784fdd3c9519d52cb8e78bbab587fbcbf10d6e5f61f30953"
+ },
+ {
+  "line": 6,
+  "log_line": "[generator created] alloc 8417 MiB  reserved 8698 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_2_4.out",
+  "source_sha256": "aa07a98936f4410a784fdd3c9519d52cb8e78bbab587fbcbf10d6e5f61f30953"
+ },
+ {
+  "line": 9,
+  "log_line": "[after generate (1.9s)] alloc 8452 MiB  reserved 8732 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_2_4.out",
+  "source_sha256": "aa07a98936f4410a784fdd3c9519d52cb8e78bbab587fbcbf10d6e5f61f30953"
+ },
+ {
+  "line": 2,
+  "log_line": "[main model + Q8 cache loaded] alloc 7456 MiB  reserved 7908 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_4_0.out",
+  "source_sha256": "c5bbc7e87be31c3604dd9e11ad8f153dfd4d39d6332ab09964c9bd787d17bb5a"
+ },
+ {
+  "line": 3,
+  "log_line": "[generator created] alloc 7456 MiB  reserved 7908 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_4_0.out",
+  "source_sha256": "c5bbc7e87be31c3604dd9e11ad8f153dfd4d39d6332ab09964c9bd787d17bb5a"
+ },
+ {
+  "line": 6,
+  "log_line": "[after generate (1.7s)] alloc 7467 MiB  reserved 7914 MiB",
+  "source": "testsuite/results/efficiency/logs/memsnap_none_4_0.out",
+  "source_sha256": "c5bbc7e87be31c3604dd9e11ad8f153dfd4d39d6332ab09964c9bd787d17bb5a"
+ },
+ {
+  "line": 13,
+  "log_line": "Insufficient VRAM in split for model and cache",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_4_4.out",
+  "source_sha256": "4dd92f5464a6f73383d8bbb48e161cf428a861378cc34a8f99dac1315efacb28"
+ },
+ {
+  "line": 14,
+  "log_line": "Insufficient VRAM in split for model and cache",
+  "source": "testsuite/results/efficiency/logs/memsnap_mtp_4_4.out",
+  "source_sha256": "4dd92f5464a6f73383d8bbb48e161cf428a861378cc34a8f99dac1315efacb28"
+ }
+]

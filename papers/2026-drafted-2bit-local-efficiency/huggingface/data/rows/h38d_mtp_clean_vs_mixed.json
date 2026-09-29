@@ -1,0 +1,35 @@
+{
+ "A": "EFF-h38a_mtp",
+ "A_only_correct": 0,
+ "B": "EFF-h38d_mtp_clean1",
+ "B_only_correct": 0,
+ "accA": 99.0,
+ "accA_ci": [
+  94.6,
+  99.8
+ ],
+ "accB": 99.0,
+ "accB_ci": [
+  94.6,
+  99.8
+ ],
+ "delta_acc_pts": 0.0,
+ "errors": 0,
+ "identity_ci": [
+  0.838,
+  0.952
+ ],
+ "identity_rate": 0.91,
+ "mcnemar_p": 1.0,
+ "mean_tok_A": 323.0,
+ "mean_tok_B": 324.9,
+ "mean_wall_A": 6.39,
+ "mean_wall_B": 5.92,
+ "missing": 0,
+ "n": 100,
+ "suite": "gsm8k_500",
+ "token_identity_rate": 0.91,
+ "truncated_A": 0,
+ "truncated_B": 0,
+ "wall_ratio_A_over_B": 1.079
+}

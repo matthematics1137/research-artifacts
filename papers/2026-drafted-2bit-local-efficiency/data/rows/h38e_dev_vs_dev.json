@@ -1,0 +1,35 @@
+{
+ "A": "EFF-h38e_nodraft_dev1",
+ "A_only_correct": 0,
+ "B": "EFF-h38e_nodraft_dev2",
+ "B_only_correct": 0,
+ "accA": 97.0,
+ "accA_ci": [
+  91.5,
+  99.0
+ ],
+ "accB": 97.0,
+ "accB_ci": [
+  91.5,
+  99.0
+ ],
+ "delta_acc_pts": 0.0,
+ "errors": 0,
+ "identity_ci": [
+  0.963,
+  1.0
+ ],
+ "identity_rate": 1.0,
+ "mcnemar_p": 1.0,
+ "mean_tok_A": 313.4,
+ "mean_tok_B": 313.4,
+ "mean_wall_A": 11.89,
+ "mean_wall_B": 11.84,
+ "missing": 0,
+ "n": 100,
+ "suite": "gsm8k_500",
+ "token_identity_rate": 1.0,
+ "truncated_A": 0,
+ "truncated_B": 0,
+ "wall_ratio_A_over_B": 1.005
+}

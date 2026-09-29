@@ -1,0 +1,82 @@
+--- /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py.orig_lab	2026-09-08 02:00:33.016123165 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py	2026-09-08 02:01:05.299373910 -0700
+@@ -23,6 +23,40 @@
+ from ..tokenizer import MMEmbedding
+ from ..util import profile_opt
+ 
++# ---- LAB MEASURE (H32, 2026-09-08): when EXL3_SPEC_MEASURE=<path> is set, record per drafted position the target's
++# filtered probability of the drafted token p(x*), the draft head's q(x*), and sum(min(p, q)) = the acceptance a
++# sampled-draft rejection-sampling verifier would get, plus the target's entropy. Measurement only; no behaviour change.
++import os as _os, json as _json, math as _math
++_SPEC_MEASURE = _os.environ.get("EXL3_SPEC_MEASURE")
++
++def _spec_filter(logits, top_k = 20, top_p = 0.95):
++    p = torch.softmax(logits.float().view(-1), dim = -1)
++    if top_k:
++        v, ix = torch.topk(p, top_k)
++        m = torch.zeros_like(p); m[ix] = v; p = m
++    if top_p < 1.0:
++        sv, si = torch.sort(p, descending = True)
++        cs = torch.cumsum(sv, 0)
++        keep = (cs - sv) <= top_p
++        sv = sv * keep
++        p = torch.zeros_like(p).scatter(0, si, sv)
++    return p / p.sum()
++
++def _spec_measure_record(gen, token_logits, x_star, sampled, i, j):
++    try:
++        dl = getattr(gen, "_spec_meas_draft_logits", None)
++        if not dl or i >= len(dl) or dl[i] is None: return
++        V = gen.model.config.vocab_size
++        p = _spec_filter(token_logits[0, 0, :V])
++        q = _spec_filter(dl[i][j].view(-1)[:V])
++        ent = float(-(p[p > 0] * p[p > 0].log()).sum())
++        row = {"i": i, "x": int(x_star), "p_star": round(float(p[x_star]), 5), "q_star": round(float(q[x_star]), 5),
++               "sum_min": round(float(torch.minimum(p, q).sum()), 5), "p_max": round(float(p.max()), 5), "ent": round(ent, 4), "acc": int(sampled == x_star)}
++        with open(_SPEC_MEASURE, "a") as f: f.write(_json.dumps(row) + "\n")
++    except Exception as e:
++        with open(_SPEC_MEASURE + ".err", "a") as f: f.write(repr(e) + "\n")
++
++
+ class Generator:
+ 
+     def __init__(
+@@ -758,6 +792,8 @@
+             }
+             if cal is not None:
+                 params["export_draft_conf"] = True
++            if _SPEC_MEASURE:
++                params["export_draft_logits"] = True
+             batch_state = self.draft_model.forward(batch_ids, params)
+             lm_head = self.model.modules[self.model.logit_layer_idx]
+             batch_state = lm_head.prepare_for_device(batch_state, params)
+@@ -766,6 +802,9 @@
+             batch_ids.copy_(new_ids)
+             cache_seqlens += 1
+             temp_hidden = batch_state
++            if _SPEC_MEASURE:
++                if idx == 0: self._spec_meas_draft_logits = []
++                self._spec_meas_draft_logits.append(params.get("draft_logits"))
+             draft_conf = params.get("draft_conf")
+             if cal is not None and draft_conf is not None:
+                 c = draft_conf.float().cpu()
+@@ -1205,6 +1244,8 @@
+                     # draft acceptance so state can be stashed at an exact page boundary.
+                     if draft_tokens is not None and i < batch_logits.shape[1] - 1:
+                         cp_boundary = batch_states is not None and job.is_checkpoint_boundary()
++                        if _SPEC_MEASURE:
++                            _spec_measure_record(self, token_logits, draft_tokens[j, i].item(), sampled_token.item(), i, j)
+                         if draft_tokens[j, i].item() != sampled_token.item() or cp_boundary:
+                             rejected = reject_remainder(job, j, i, batch_states)
+                             break
+--- /path/to/scratch/eff/exl3_147/exllamav3/architecture/qwen3_5_mtp.py.orig_lab	2026-09-08 02:00:33.017602292 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/architecture/qwen3_5_mtp.py	2026-09-08 02:01:05.298809404 -0700
+@@ -238,6 +238,8 @@
+             lm = self.attached_model().modules[ll]
+             logits = lm.prepare_for_device(state, params)
+             logits = lm.forward(logits, params)
++            if params.get("export_draft_logits"):  # LAB MEASURE (H32): keep the draft distribution for verification-time stats
++                params["draft_logits"] = logits[..., :self.attached_model().config.vocab_size].float()
+             if params.get("export_draft_conf"):
+                 # Per-position confidence for the generator's draft truncation: the argmax logit
+                 # value, over the unpadded vocabulary

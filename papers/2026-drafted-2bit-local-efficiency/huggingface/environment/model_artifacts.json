@@ -1,0 +1,189 @@
+{
+  "schema": "paper7-model-artifacts-v1",
+  "hash_audit": "2026-09-06: all 11 local Qwen3.8-27B files matched the Hub's LFS SHA-256 (data/hash_audit_2026-09-06.json)",
+  "note": "Unsloth re-cut its repository on 2026-08-20; the SHA-256 values, not the file names, identify the evidence.",
+  "upstream_artifacts": [
+    {
+      "role": "GGUF lane target (Table 1); E3-E6, E12-E22, E25",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "Qwen3.8-27B-UD-IQ2_S.gguf",
+      "bytes": 8371970048,
+      "sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "GGUF lane target (Table 1); E3, E4a, E8, E19",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "Qwen3.8-27B-UD-IQ2_XXS.gguf",
+      "bytes": 7266070528,
+      "sha256": "e792d8fb3142fe6d9171876d6da0f71f05a71028718debc72dbec93ff645e67d",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "4-bit reference, partially offloaded (E40, E48)",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+      "bytes": 17559178144,
+      "sha256": "3f227079003add2511437e5b1e94812e363385225bf6a9b47b0054a72bc8b01e",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "vision projector (E22 only; not in Table 1)",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "revision_note": "resolved 2026-09-19 from the Hugging Face API: the file at this revision has exactly the recorded LFS SHA-256",
+      "filename": "mmproj-F16.gguf",
+      "bytes": 927607488,
+      "sha256": "cbb841a9ee0636b2ec172f5bb8df2ea8dfeb01e90fe7c6126581d662a0b4e43e",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "MTP sidecar for the GGUF lane (Table 1)",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "MTP/mtp-Qwen3.8-27B-Q4_0.gguf",
+      "bytes": 1369590656,
+      "sha256": "50d9ce5a6da381bbcfb31061cf73df94a90e6faf8efeddee379a9cb8f1501c6e",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "hashed in the audit; not used by any reported experiment",
+      "upstream_repo": "bartowski/Qwen3.8-27B-GGUF",
+      "branch": null,
+      "revision": "f0eec4a4bb4975114a030d048952d83c0a53c034",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "Qwen3.8-27B-IQ2_S.gguf",
+      "bytes": 10295330400,
+      "sha256": "5549ddb546d43f4c7a2e41115f2e24334f0c5321011acbb724a113e5a21e6fa6",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "DFlash2 block drafter (Table 1; E3, E4, E8-E12)",
+      "upstream_repo": "z-lab/Qwen3.8-27B-DFlash2-GGUF",
+      "branch": null,
+      "revision": "2d9571f8ce46e151f61c6499c99dee6079e1d610",
+      "revision_note": "resolved 2026-09-19 from the Hugging Face API: the file at this revision has exactly the recorded LFS SHA-256",
+      "filename": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+      "bytes": 1143006816,
+      "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "EXL3 SC_2.00bpw_H3 shard 1 (the daily driver)",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "branch": "SC_2.00bpw_H3",
+      "revision": "d7e02d63dddd4e047a8d397acb22aeb2b0bedcec",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "model-00001-of-00002.safetensors",
+      "bytes": 8573967630,
+      "sha256": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "EXL3 SC_2.00bpw_H3 shard 2 (the daily driver)",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "branch": "SC_2.00bpw_H3",
+      "revision": "d7e02d63dddd4e047a8d397acb22aeb2b0bedcec",
+      "revision_note": "full revision recorded for the same SHA-256 in the lab's Paper 1 artifact (downloaded 2026-08-25)",
+      "filename": "model-00002-of-00002.safetensors",
+      "bytes": 1622158601,
+      "sha256": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "EXL3 SC_2.20bpw_H3_V3 shard 1 (E23, E23c, E28)",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "branch": "SC_2.20bpw_H3_V3",
+      "revision": "25019f1663e0e0bcfc363609f1dbabd5604b04e4",
+      "revision_note": "resolved 2026-09-19 from the Hugging Face API: the file at this revision has exactly the recorded LFS SHA-256",
+      "filename": "model-00001-of-00002.safetensors",
+      "bytes": 8500866052,
+      "sha256": "522f94e79dfc119eeb02cd96978513eb24f86682183eb07084c956a4299e28c4",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    },
+    {
+      "role": "EXL3 SC_2.20bpw_H3_V3 shard 2 (E23, E23c, E28)",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "branch": "SC_2.20bpw_H3_V3",
+      "revision": "25019f1663e0e0bcfc363609f1dbabd5604b04e4",
+      "revision_note": "resolved 2026-09-19 from the Hugging Face API: the file at this revision has exactly the recorded LFS SHA-256",
+      "filename": "model-00002-of-00002.safetensors",
+      "bytes": 1780094352,
+      "sha256": "b89cafe9c614119b2faedbfd5e635a75af09928b058f3734ed14d6d0044b5f33",
+      "hub_lfs_sha256_match_2026_09_06": true,
+      "license": "apache-2.0",
+      "redistributed_here": false
+    }
+  ],
+  "lab_made_quantizations_not_redistributed": [
+    {
+      "name": "qwen38-exl3-2.0-cot",
+      "experiment": "E32 (own reasoning traces)",
+      "base": "Qwen3.8-27B, converted with exllamav3 1.4.7 on this laptop at 2.00 bpw (3-bit head, 2-bit MTP layer)",
+      "total_bytes": 10224690773,
+      "sha256": {
+        "cal_cot.safetensors": "3cf0f1585ef1b9412115a379db6146ff56b2d326efa2cd812925862b3360ab21",
+        "model-00001-of-00002.safetensors": "4acb7dc9ed466d05fee339cbf2e1dd28a90ee66d3ecbb8df965858bbc14966b0",
+        "model-00002-of-00002.safetensors": "9237b9cebd65c7c33f499f1e3efdcbb5e832ae655bc3a98966c83023ae15b9fd"
+      },
+      "status": "deleted from the laboratory disk on 2026-09-08 after archiving configurations, calibration sets and shard hashes; archived off-machine; not redistributed here"
+    },
+    {
+      "name": "qwen38-exl3-2.0-off",
+      "experiment": "E42 (off-policy prose and code)",
+      "base": "Qwen3.8-27B, converted with exllamav3 1.4.7 on this laptop at 2.00 bpw (3-bit head, 2-bit MTP layer)",
+      "total_bytes": 10224107454,
+      "sha256": {
+        "cal_offpolicy.safetensors": "eefe671daa475cbc82e34f4ad0c259cfc35ee32bc24846db1bbed2efc3a245dc",
+        "model-00001-of-00002.safetensors": "e2b2abd2ad72b7bcb37014af5d6baee2a73fe621ed97774b527cdda210014232",
+        "model-00002-of-00002.safetensors": "80e26ca5fc1dfb4be353c562061cc7e02f9f80e1cf952bf29e2c72001e366f36"
+      },
+      "status": "deleted from the laboratory disk on 2026-09-08 after archiving configurations, calibration sets and shard hashes; archived off-machine; not redistributed here"
+    },
+    {
+      "name": "qwen38-exl3-2.0-varA",
+      "experiment": "E41 (variant A bit recipe)",
+      "base": "Qwen3.8-27B, converted with exllamav3 1.4.7 on this laptop at 2.00 bpw (3-bit head, 2-bit MTP layer)",
+      "total_bytes": 10224107569,
+      "sha256": {
+        "cal_cot.safetensors": "3cf0f1585ef1b9412115a379db6146ff56b2d326efa2cd812925862b3360ab21",
+        "model-00001-of-00002.safetensors": "1bf31fba2ecb3910d477763345fc2a7f09415a079976833d66eb7768fd2ecfbd",
+        "model-00002-of-00002.safetensors": "e83bb13841c6dc28a682de13206b693af39b9b1665c203f03a1ac95e92a2fba4"
+      },
+      "status": "deleted from the laboratory disk on 2026-09-08 after archiving configurations, calibration sets and shard hashes; archived off-machine; not redistributed here"
+    }
+  ],
+  "license_scope": "License labels are those recorded for the pinned upstream repositories; recheck the upstream license before downloading, using, or redistributing a weight."
+}

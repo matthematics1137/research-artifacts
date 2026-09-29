@@ -1,0 +1,6 @@
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12
+/path/to/lab-repo/engines/exl3-env/lib/python3.12/site-packages/nvidia/cusolver/lib/libcusolver.so.11

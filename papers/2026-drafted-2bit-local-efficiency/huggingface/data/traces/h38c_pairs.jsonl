@@ -1,0 +1,25 @@
+{"id": "gsm8k_5", "identical": true, "other_len": 454, "ref_len": 454}
+{"first_div": 357, "frac": 0.611, "gap_nat": 0.0, "id": "gsm8k_7", "identical": false, "other_is_runner_up": true, "other_len": 524, "ref_len": 584}
+{"id": "gsm8k_9", "identical": true, "other_len": 297, "ref_len": 297}
+{"id": "gsm8k_11", "identical": true, "other_len": 284, "ref_len": 284}
+{"first_div": 45, "frac": 0.04, "gap_nat": 0.015625, "id": "gsm8k_12", "identical": false, "other_is_runner_up": true, "other_len": 1358, "ref_len": 1112}
+{"id": "gsm8k_13", "identical": true, "other_len": 499, "ref_len": 499}
+{"id": "gsm8k_18", "identical": true, "other_len": 206, "ref_len": 206}
+{"id": "gsm8k_21", "identical": true, "other_len": 257, "ref_len": 257}
+{"id": "gsm8k_24", "identical": true, "other_len": 286, "ref_len": 286}
+{"id": "gsm8k_28", "identical": true, "other_len": 222, "ref_len": 222}
+{"first_div": 92, "frac": 0.343, "gap_nat": 0.03125, "id": "gsm8k_31", "identical": false, "other_is_runner_up": true, "other_len": 268, "ref_len": 268}
+{"id": "gsm8k_35", "identical": true, "other_len": 175, "ref_len": 175}
+{"id": "gsm8k_40", "identical": true, "other_len": 166, "ref_len": 166}
+{"first_div": 122, "frac": 0.213, "gap_nat": 0.015625, "id": "gsm8k_41", "identical": false, "other_is_runner_up": true, "other_len": 379, "ref_len": 574}
+{"id": "gsm8k_44", "identical": true, "other_len": 347, "ref_len": 347}
+{"id": "gsm8k_49", "identical": true, "other_len": 209, "ref_len": 209}
+{"id": "gsm8k_50", "identical": true, "other_len": 220, "ref_len": 220}
+{"id": "gsm8k_51", "identical": true, "other_len": 165, "ref_len": 165}
+{"id": "gsm8k_52", "identical": true, "other_len": 284, "ref_len": 284}
+{"id": "gsm8k_54", "identical": true, "other_len": 397, "ref_len": 397}
+{"id": "gsm8k_55", "identical": true, "other_len": 161, "ref_len": 161}
+{"id": "gsm8k_58", "identical": true, "other_len": 346, "ref_len": 346}
+{"id": "gsm8k_61", "identical": true, "other_len": 414, "ref_len": 414}
+{"first_div": 39, "frac": 0.141, "gap_nat": 0.015625, "id": "gsm8k_64", "identical": false, "other_is_runner_up": true, "other_len": 275, "ref_len": 276}
+{"id": "gsm8k_65", "identical": true, "other_len": 272, "ref_len": 272}

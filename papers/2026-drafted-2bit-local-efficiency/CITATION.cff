@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Cite the report for scientific claims and the versioned artifact for frozen evidence."
+title: "Self-Drafting Qwen3.8-27B at Two Bits: Speed, Energy, and Memory on a 12 GB Laptop GPU — Reproducibility Artifact"
+type: dataset
+version: 1.0.0
+date-released: 2026-09-28
+doi: "10.5281/zenodo.22847652"
+url: "https://doi.org/10.5281/zenodo.22847652"
+authors:
+  - family-names: Schwartz
+    given-names: Matthew
+    orcid: "https://orcid.org/0009-0009-4171-7247"
+repository-code: "https://github.com/matthematics1137/research-artifacts/tree/drafted-2bit-local-efficiency-v1.0.0/papers/2026-drafted-2bit-local-efficiency"
+keywords:
+  - speculative decoding
+  - multi-token prediction
+  - low-bit quantization
+  - exllamav3
+  - llama.cpp
+  - energy efficiency
+  - consumer GPU
+  - reproducibility
+preferred-citation:
+  type: report
+  title: "Self-Drafting Qwen3.8-27B at Two Bits: Speed, Energy, and Memory on a 12 GB Laptop GPU"
+  authors:
+    - family-names: Schwartz
+      given-names: Matthew
+      orcid: "https://orcid.org/0009-0009-4171-7247"
+  year: 2026
+  url: "https://github.com/matthematics1137/research-artifacts/blob/drafted-2bit-local-efficiency-v1.0.0/papers/2026-drafted-2bit-local-efficiency/paper/main.pdf"
+  institution:
+    name: Independent researcher

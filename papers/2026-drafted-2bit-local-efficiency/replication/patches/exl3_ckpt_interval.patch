@@ -1,0 +1,12 @@
+# H35: expose the recurrent checkpoint intervals via EXL3_CKPT_PP / EXL3_CKPT_GEN (extract of the lab patch set)
+--- /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py.orig_lab	2026-09-08 02:00:33.016123165 -0700
++++ /path/to/scratch/eff/exl3_147/exllamav3/generator/generator.py	2026-09-08 16:33:26.274149790 -0700
+@@ -23,6 +23,98 @@
+@@ -235,6 +327,15 @@
++        # edit before that costs a full re-prefill. EXL3_CKPT_PP / EXL3_CKPT_GEN override the two intervals; both
++        _ckpt_gen = _os.environ.get("EXL3_CKPT_GEN")
++        _ckpt_pp = _os.environ.get("EXL3_CKPT_PP")
+@@ -758,6 +859,17 @@
+@@ -766,6 +878,11 @@
+@@ -1148,9 +1265,23 @@
+@@ -1205,7 +1336,10 @@

@@ -1,0 +1,38 @@
+{
+  "schema": "paper7-software-v1",
+  "exl3_lane": {
+    "server": "TabbyAPI (theroyallab/tabbyAPI) checkout 4a4f9f44820303593844f092d424bb7506008733",
+    "engine": "exllamav3 1.4.7 wheel (exllamav3-1.4.7+cu128.torch2.10.0, CPython 3.12), staged in isolation from the lab's pinned 1.4.3 and loaded through PYTHONPATH",
+    "torch": "2.10.0+cu128",
+    "library_environment": "E7-E49 and the E32/E41/E42 conversions ran with LD_LIBRARY_PATH pointing at a system CUDA 12.1 toolkit, so libcublasLt 12.1 and libnvrtc 12.1 were loaded beside torch's bundled 12.8 libraries ('mixed' set). E50 and E51 ran with LD_LIBRARY_PATH unset; their loaded libraries are recorded per run in data/rows/EFF-h38*_cuda_libs.txt.",
+    "e51_development_branch": "exllamav3 dev branch at 08849e3 (1.4.9-dev), built in place against torch 2.10.0+cu128 with nvcc 12.6",
+    "daily_driver": "replication/serving/tabby-daily.yml: EXL3 SC_2.00bpw_H3, MTP draft (dynamic, draft_num_tokens 6), max_batch_size 1, 32K context, Q8 cache, chunk_size 1024, 16 GB recurrent stash; launched by replication/serving/launch.sh with EXL3_CKPT_PP=1024 and LD_LIBRARY_PATH unset",
+    "lab_patches": [
+      "replication/patches/exl3_spec_measure.patch (EXL3_SPEC_MEASURE; measurement only)",
+      "replication/patches/exl3_spec_sampled.patch (EXL3_SPEC_SAMPLED; sampled-draft verifier)",
+      "replication/patches/exl3_ckpt_interval.patch (historical incomplete excerpt; do not apply)",
+      "replication/patches/exl3_all_lab_patches.patch (complete generator patch including EXL3_CKPT_PP / EXL3_CKPT_GEN; apply this once, plus only the architecture section of exl3_spec_sampled.patch; see FULL_RERUN.md)"
+    ],
+    "withdrawn_patch": "replication/patches/withdrawn/exl3_cholesky_cpu_fallback.patch (history only; the failure it worked around was the library-path fault, E50)"
+  },
+  "gguf_lane": {
+    "engine": "llama.cpp v0.4.0 (ggml-org/llama.cpp tag v0.4.0, commit 5266f24da75dc449bd56cbed7addb9c8e4a6a73e), CUDA 12.6, sm_89",
+    "control_build": "llama.cpp 035e22731a7fd70b9854b3a2d64ec68e9b1a45d3 (the lab's 2026-08-26 pin)",
+    "lab_patch": "replication/patches/llamacpp-v0.4.0-qwen35-mtp-shared-embd.patch (working-tree diff of the patched v0.4.0 checkout used for the stripped MTP sidecar, E12, E18, E20, E22, E38, E48)",
+    "flags": "-ngl 99 -np 1 -fa on -ctk q8_0 -ctv q8_0 -ctxcp 4 -cms 1024 -b 512 -ub 256 (E4a)"
+  },
+  "evaluation": {
+    "harness": "replication/evals/run_eval.py (the lab's eval kit at the evidence freeze; scratch path made portable)",
+    "hardening_sets": "replication/evals/prepare_hardening.py builds GSM8K-500 and MMLU-500 as supersets of the campaign's GSM8K-100 and MMLU-200 from the public upstream sets; item order is in data/dataset_item_order.json",
+    "sampling": "temperature 1.0, top-p 0.95, top-k 20, reasoning_effort medium, 4,096-token completion cap, one run per item; the hardening block uses temperature 0"
+  },
+  "analysis": {
+    "python_tested": "3.12.3",
+    "python_minimum": "3.11",
+    "dependencies": "standard library only"
+  },
+  "paper_build": {
+    "engine": "Tectonic",
+    "mode": "untrusted, cached bundle, SOURCE_DATE_EPOCH fixed by the release manifest"
+  }
+}

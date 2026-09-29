@@ -1,0 +1,20 @@
+# License map
+
+Copyright (c) 2026 Matthew Schwartz.
+
+- Authored Python and shell code in this release (the checker, the measurement
+  and hardening tools, the evaluation harness, and the lab's hunks in the patch
+  files) is licensed under the MIT License in `LICENSES/MIT.txt`.
+- The paper, original documentation, and released measurement records are
+  offered under Creative Commons Attribution 4.0 International (CC BY 4.0), to
+  the extent the author holds the relevant rights:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+- The patch files in `replication/patches/` carry context lines and, for the
+  llama.cpp patch, changes from an upstream pull request, which remain under
+  their upstream MIT licenses (`LICENSES/EXLLAMAV3-MIT.txt`,
+  `LICENSES/LLAMACPP-MIT.txt`).
+- Model weights, engine source trees, and benchmark text are not redistributed.
+  Their upstream terms remain controlling and are identified in
+  `THIRD_PARTY_NOTICES.md`.
+
+Nothing in this file grants rights the author does not hold.
