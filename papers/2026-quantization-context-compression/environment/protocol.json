@@ -1,0 +1,13 @@
+{
+  "conditions_builder": "testsuite/paper2/make_conditions_r1.py",
+  "context_tokens": 8192,
+  "max_tokens": 2048,
+  "protocol": "paper2/R1_PROTOCOL.json",
+  "question_generator": "testsuite/paper2/gen_questions.py",
+  "runner": "testsuite/paper2/run_grid.py",
+  "seed": 42,
+  "study_status": "corrective exploratory rerun; not independent confirmation",
+  "temperature": 0.2,
+  "top_p": 0.95,
+  "window_char_cap": 14000
+}

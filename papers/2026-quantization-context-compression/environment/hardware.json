@@ -1,0 +1,15 @@
+{
+  "cpu_model": "Intel(R) Core(TM) i9-14900HX",
+  "cpu_threads_flag": 16,
+  "gpu_current_power_limit_w": 80.0,
+  "gpu_default_power_limit_w": 80.0,
+  "gpu_memory_total_mib": 12282.0,
+  "gpu_name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+  "gpu_requested_power_limit_w": 80.0,
+  "gpu_vram_gib": 11.994140625,
+  "logical_cpus": 32,
+  "mem_total_bytes": 67016003584,
+  "nvidia_driver": "580.167.08",
+  "ram_gib": 62.413516998291016,
+  "source": "validated campaign host receipt bound by promotion SHA-256"
+}

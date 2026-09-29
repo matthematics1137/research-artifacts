@@ -1,0 +1,2092 @@
+{
+  "analysis_harness_sha256": {
+    "paper2/Makefile": "7e51df172ee75ae2c94956eea7949d5e58b559ea5da383a9a10e0e6180504562",
+    "paper2/scripts/build_claims.py": "3febb1d6579343140900151b42e9b49a58636cc3f0cc6ad67ea770373400d485",
+    "paper2/scripts/build_public_allowlist.py": "20e4c7b734ec996adbd9d3fc84320e6e644b2906062d25d4d4b12dbc92cfb4c9",
+    "paper2/scripts/check_release_state.py": "5f217a45ac3fcb0ca246b6dc9edbf74b12d26308637f93635b71dbb0a0c2d874",
+    "paper2/scripts/make_figures.py": "21843870b15410603a9fac7f23159b33f8b2c4eb6e24630cbfe2b4aac76a52b1",
+    "paper2/scripts/test_claims.py": "eec0afb02d6f7569f4616a7a0017f570d2c9087c42331f03522cae16f3e98862",
+    "paper2/scripts/validate_r1.py": "2ea609ed32f8976770bbaef66cadffde509e154b85894d2382e83c170d242718",
+    "paper4/scripts/verify_claims.py": "fccf114d57b887aff1350de6ffa0cb147c417c65932ae8c1848cd26812668fb6"
+  },
+  "analysis_implementation": "paper4/scripts/verify_claims.py",
+  "analysis_implementation_sha256": "fccf114d57b887aff1350de6ffa0cb147c417c65932ae8c1848cd26812668fb6",
+  "artifacts": {
+    "Ex": {
+      "artifact_record_sha256": "7a1243abc113de3b54cd13566c153751c4008af281141fda24a48455f7bca842",
+      "artifact_sha256": "c341a93b3d6567dee6e8c9ec7cb8012c1a0133aa4caa5591d04eee5ce10539d1",
+      "file": "qwen38-exl3-2.0",
+      "note": "effective bpw not derived: EXL3 shard headers are not parsed here and mixed head/embedding precision makes a file-level ratio misleading; the vendor bulk label is reported as such",
+      "source_coverage": "upstream weight shards enumerated exactly; the artifact record's separate full local-tree hash covers all additional local files",
+      "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+      "upstream_license": "apache-2.0",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "upstream_revision": "d7e02d63dddd4e047a8d397acb22aeb2b0bedcec",
+      "upstream_weight_shards": [
+        {
+          "bytes": 8573967630,
+          "filename": "model-00001-of-00002.safetensors",
+          "sha256": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93"
+        },
+        {
+          "bytes": 1622158601,
+          "filename": "model-00002-of-00002.safetensors",
+          "sha256": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746"
+        }
+      ],
+      "vendor_label": "EXL3 SC_2.00bpw_H3",
+      "weight_safetensors_bytes": 10196126231
+    },
+    "Iq": {
+      "artifact_record_sha256": "f278ba3b9dd2894dfcbfec809d28862191c24e2a6ea83b850e807f9ecbff670f",
+      "artifact_sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe",
+      "effective_file_bpw": 2.4901756472676158,
+      "file": "Qwen3.8-27B-UD-IQ2_S.gguf",
+      "file_bytes": 8371970048,
+      "gguf_tensor_count": 851,
+      "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+      "stored_parameters_from_gguf_tensor_shapes": 26895998464,
+      "upstream_filename": "Qwen3.8-27B-UD-IQ2_S.gguf",
+      "upstream_license": "apache-2.0",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502"
+    },
+    "Qf": {
+      "artifact_record_sha256": "9500252a42b4f78e28c76c17f8b70302c71f4e9e4f18b3f0217732b53ce43223",
+      "artifact_sha256": "3f227079003add2511437e5b1e94812e363385225bf6a9b47b0054a72bc8b01e",
+      "effective_file_bpw": 5.141648500063848,
+      "file": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+      "file_bytes": 17559178144,
+      "gguf_tensor_count": 866,
+      "source_manifest_sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+      "stored_parameters_from_gguf_tensor_shapes": 27320697856,
+      "upstream_filename": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+      "upstream_license": "apache-2.0",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502"
+    }
+  },
+  "attempt_id": "p2r1-primary-v5",
+  "corpora": {
+    "Tsi": {
+      "candidate_pair_rejection_rate_after_successful_requests": 0.01968503937007874,
+      "char_retention_vs_O": {
+        "A": 0.650027947286232,
+        "E": 0.5257931363001634,
+        "L": 0.5770951340989545
+      },
+      "question_generation": {
+        "candidate_pairs_accepted_by_verifier": 249,
+        "candidate_pairs_rejected_or_unparsed_after_successful_requests": 5,
+        "identity_preserved_request_errors": 0,
+        "pairs_parsed_after_successful_requests": 254,
+        "request_error_type_counts": {},
+        "successful_http_attempts": 127,
+        "total_http_attempts": 127
+      },
+      "questions_in_file": 117,
+      "questions_kept": 117,
+      "strata_counts": {
+        "L-code": 40,
+        "L-nocode": 6,
+        "S-code": 40,
+        "S-nocode": 40
+      },
+      "windows": 126
+    },
+    "Wc": {
+      "candidate_pair_rejection_rate_after_successful_requests": 0.031055900621118012,
+      "char_retention_vs_O": {
+        "A": 0.6367531360497615,
+        "E": 0.5109271471229624,
+        "L": 0.5600408502652503
+      },
+      "question_generation": {
+        "candidate_pairs_accepted_by_verifier": 312,
+        "candidate_pairs_rejected_or_unparsed_after_successful_requests": 10,
+        "identity_preserved_request_errors": 0,
+        "pairs_parsed_after_successful_requests": 322,
+        "request_error_type_counts": {},
+        "successful_http_attempts": 161,
+        "total_http_attempts": 161
+      },
+      "questions_in_file": 120,
+      "questions_kept": 120,
+      "strata_counts": {
+        "L-code": 40,
+        "L-nocode": 40,
+        "S-code": 40,
+        "S-nocode": 40
+      },
+      "windows": 160
+    }
+  },
+  "grid": {
+    "Tsi": {
+      "cells": {
+        "Ex-A": {
+          "acc": 0.37606837606837606,
+          "acc_lenient": 0.4700854700854701,
+          "acc_per_min": 0.7979016912849477,
+          "k_exact": 44,
+          "k_lenient": 55,
+          "mean_wall_s": 28.279301586345984,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 66,
+            "ci": [
+              0.41812637442786327,
+              0.6216226124127574
+            ],
+            "cond_only": 4,
+            "delta": 0.5299145299145299,
+            "p_mcnemar": 1.6502251632246126e-15,
+            "phi": 0.008267666297140404
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.29355241516424746,
+            0.46646372264959246
+          ]
+        },
+        "Ex-E": {
+          "acc": 0.36752136752136755,
+          "acc_lenient": 0.46153846153846156,
+          "acc_per_min": 0.7919770412535997,
+          "k_exact": 43,
+          "k_lenient": 54,
+          "mean_wall_s": 27.84333497392507,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 68,
+            "ci": [
+              0.42325389494960025,
+              0.6319734030404056
+            ],
+            "cond_only": 5,
+            "delta": 0.5384615384615384,
+            "p_mcnemar": 3.4249061479387204e-15,
+            "phi": -0.058145841458906986
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.28566809393867315,
+            0.4577974326899144
+          ]
+        },
+        "Ex-L": {
+          "acc": 0.7521367521367521,
+          "acc_lenient": 0.8632478632478633,
+          "acc_per_min": 3.4489484055679895,
+          "k_exact": 88,
+          "k_lenient": 101,
+          "mean_wall_s": 13.084627492643861,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 23,
+            "ci": [
+              0.06905606851196582,
+              0.2399198498010467
+            ],
+            "cond_only": 5,
+            "delta": 0.15384615384615385,
+            "p_mcnemar": 0.0009122341871261597,
+            "phi": 0.22202872435200133
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.6667224221025372,
+            0.8215206078624093
+          ]
+        },
+        "Ex-O": {
+          "acc": 0.905982905982906,
+          "acc_lenient": 0.9914529914529915,
+          "acc_per_min": 5.4554693902824525,
+          "k_exact": 106,
+          "k_lenient": 116,
+          "mean_wall_s": 9.964124160571995,
+          "n": 117,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.8394644932391968,
+            0.9466895380602931
+          ]
+        },
+        "Iq-A": {
+          "acc": 0.4017094017094017,
+          "acc_lenient": 0.5299145299145299,
+          "acc_per_min": 0.9823768435431638,
+          "k_exact": 47,
+          "k_lenient": 62,
+          "mean_wall_s": 24.534947317806033,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 62,
+            "ci": [
+              0.37353709043007,
+              0.5822906990694497
+            ],
+            "cond_only": 5,
+            "delta": 0.4871794871794871,
+            "p_mcnemar": 1.4195339782113736e-13,
+            "phi": 0.012327841818038362
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.3173699518631661,
+            0.49229801950643115
+          ]
+        },
+        "Iq-E": {
+          "acc": 0.36752136752136755,
+          "acc_lenient": 0.48717948717948717,
+          "acc_per_min": 0.9189880255720374,
+          "k_exact": 43,
+          "k_lenient": 57,
+          "mean_wall_s": 23.995178868142393,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 67,
+            "ci": [
+              0.4035456318386263,
+              0.6174647133906146
+            ],
+            "cond_only": 6,
+            "delta": 0.5213675213675213,
+            "p_mcnemar": 3.947260651543665e-14,
+            "phi": -0.06894417895253635
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.28566809393867315,
+            0.4577974326899144
+          ]
+        },
+        "Iq-L": {
+          "acc": 0.717948717948718,
+          "acc_lenient": 0.8461538461538461,
+          "acc_per_min": 3.2451098970819525,
+          "k_exact": 84,
+          "k_lenient": 99,
+          "mean_wall_s": 13.274411173457773,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 25,
+            "ci": [
+              0.08380402662263434,
+              0.2581956880510141
+            ],
+            "cond_only": 5,
+            "delta": 0.1709401709401709,
+            "p_mcnemar": 0.00032491423189640045,
+            "phi": 0.2618924633082489
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.6304890994394947,
+            0.7915514857844421
+          ]
+        },
+        "Iq-O": {
+          "acc": 0.8888888888888888,
+          "acc_lenient": 0.9914529914529915,
+          "acc_per_min": 5.15808360150329,
+          "k_exact": 104,
+          "k_lenient": 116,
+          "mean_wall_s": 10.339757447473259,
+          "n": 117,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.8191460105557966,
+            0.9339067983731886
+          ]
+        },
+        "Qf-A": {
+          "acc": 0.41025641025641024,
+          "acc_lenient": 0.49572649572649574,
+          "acc_per_min": 0.15417898186345588,
+          "k_exact": 48,
+          "k_lenient": 58,
+          "mean_wall_s": 159.65460608103194,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 60,
+            "ci": [
+              0.3571024304058711,
+              0.565482233752625
+            ],
+            "cond_only": 5,
+            "delta": 0.4700854700854701,
+            "p_mcnemar": 4.869560700851427e-13,
+            "phi": 0.03980993407268345
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.3253629377243215,
+            0.5008556448305281
+          ]
+        },
+        "Qf-E": {
+          "acc": 0.38461538461538464,
+          "acc_lenient": 0.4700854700854701,
+          "acc_per_min": 0.13025182461659612,
+          "k_exact": 45,
+          "k_lenient": 55,
+          "mean_wall_s": 177.1715916061165,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 64,
+            "ci": [
+              0.37873178864786755,
+              0.5926083716439424
+            ],
+            "cond_only": 6,
+            "delta": 0.4957264957264957,
+            "p_mcnemar": 2.44272646814786e-13,
+            "phi": -0.0333102092699655
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.30146439061091146,
+            0.47510235838818093
+          ]
+        },
+        "Qf-L": {
+          "acc": 0.7094017094017094,
+          "acc_lenient": 0.811965811965812,
+          "acc_per_min": 0.49213923097168616,
+          "k_exact": 83,
+          "k_lenient": 95,
+          "mean_wall_s": 86.48792838576075,
+          "n": 117,
+          "paired_vs_O": {
+            "O_only": 26,
+            "ci": [
+              0.08033373185764066,
+              0.26066234313520675
+            ],
+            "cond_only": 6,
+            "delta": 0.1709401709401709,
+            "p_mcnemar": 0.0005350527353584766,
+            "phi": 0.22803247279133987
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.6215187946754995,
+            0.7839711793631848
+          ]
+        },
+        "Qf-O": {
+          "acc": 0.8803418803418803,
+          "acc_lenient": 1.0,
+          "acc_per_min": 1.0865168221937949,
+          "k_exact": 103,
+          "k_lenient": 117,
+          "mean_wall_s": 48.614537521713196,
+          "n": 117,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 117,
+            "total": 117
+          },
+          "wilson": [
+            0.8091336915104884,
+            0.9273685062332443
+          ]
+        }
+      },
+      "item_strata_counts": {
+        "L-code": 37,
+        "L-nocode": 6,
+        "S-code": 37,
+        "S-nocode": 37
+      },
+      "n_items": 117,
+      "n_source_clusters": 107,
+      "n_source_windows": 117
+    },
+    "Wc": {
+      "cells": {
+        "Ex-A": {
+          "acc": 0.24166666666666667,
+          "acc_lenient": 0.4083333333333333,
+          "acc_per_min": 0.5629389381063398,
+          "k_exact": 29,
+          "k_lenient": 49,
+          "mean_wall_s": 25.757678175143276,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 73,
+            "ci": [
+              0.4983387549763999,
+              0.6784724647289312
+            ],
+            "cond_only": 1,
+            "delta": 0.6,
+            "p_mcnemar": 7.940933880509066e-21,
+            "phi": 0.19152262595268849
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.17385841217535253,
+            0.32550149047431093
+          ]
+        },
+        "Ex-E": {
+          "acc": 0.23333333333333334,
+          "acc_lenient": 0.35833333333333334,
+          "acc_per_min": 0.5271696112364288,
+          "k_exact": 28,
+          "k_lenient": 43,
+          "mean_wall_s": 26.556917738798074,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 74,
+            "ci": [
+              0.5067031131807801,
+              0.6862739662402646
+            ],
+            "cond_only": 1,
+            "delta": 0.6083333333333334,
+            "p_mcnemar": 4.0234064994579266e-21,
+            "phi": 0.185304855558153
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.16665575133182917,
+            0.316554470758146
+          ]
+        },
+        "Ex-L": {
+          "acc": 0.6333333333333333,
+          "acc_lenient": 0.8166666666666667,
+          "acc_per_min": 2.4189968400839956,
+          "k_exact": 76,
+          "k_lenient": 98,
+          "mean_wall_s": 15.708991169529812,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 33,
+            "ci": [
+              0.10866373696613556,
+              0.303515694959994
+            ],
+            "cond_only": 8,
+            "delta": 0.20833333333333337,
+            "p_mcnemar": 0.00011222142620681552,
+            "phi": 0.1910621849270336
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.5442242408550699,
+            0.7141706480999424
+          ]
+        },
+        "Ex-O": {
+          "acc": 0.8416666666666667,
+          "acc_lenient": 0.9666666666666667,
+          "acc_per_min": 5.131910160185023,
+          "k_exact": 101,
+          "k_lenient": 116,
+          "mean_wall_s": 9.840390502506246,
+          "n": 120,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.7659066765413198,
+            0.8962302264058994
+          ]
+        },
+        "Iq-A": {
+          "acc": 0.2833333333333333,
+          "acc_lenient": 0.4166666666666667,
+          "acc_per_min": 0.7556133759628352,
+          "k_exact": 34,
+          "k_lenient": 50,
+          "mean_wall_s": 22.498278274041756,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 72,
+            "ci": [
+              0.46710057800566884,
+              0.6600234117972459
+            ],
+            "cond_only": 3,
+            "delta": 0.575,
+            "p_mcnemar": 3.72567441849804e-18,
+            "phi": 0.0963440139925497
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.21040628091756453,
+            0.36970202453054035
+          ]
+        },
+        "Iq-E": {
+          "acc": 0.25,
+          "acc_lenient": 0.375,
+          "acc_per_min": 0.6229822670878016,
+          "k_exact": 30,
+          "k_lenient": 45,
+          "mean_wall_s": 24.077731891341198,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 76,
+            "ci": [
+              0.5002808651716912,
+              0.6913469327527709
+            ],
+            "cond_only": 3,
+            "delta": 0.6083333333333333,
+            "p_mcnemar": 2.72109334305444e-19,
+            "phi": 0.06898684822115785
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.1810982165680957,
+            0.33441136664125615
+          ]
+        },
+        "Iq-L": {
+          "acc": 0.6833333333333333,
+          "acc_lenient": 0.8416666666666667,
+          "acc_per_min": 3.022330269202923,
+          "k_exact": 82,
+          "k_lenient": 101,
+          "mean_wall_s": 13.56569148573326,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 30,
+            "ci": [
+              0.07631789043462188,
+              0.2705580800139029
+            ],
+            "cond_only": 9,
+            "delta": 0.17499999999999993,
+            "p_mcnemar": 0.0010650196345523,
+            "phi": 0.1344274159826049
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.5955213183551313,
+            0.7597716539580108
+          ]
+        },
+        "Iq-O": {
+          "acc": 0.8583333333333333,
+          "acc_lenient": 0.9666666666666667,
+          "acc_per_min": 5.303541375576633,
+          "k_exact": 103,
+          "k_lenient": 116,
+          "mean_wall_s": 9.710492735507433,
+          "n": 120,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.7848050551014282,
+            0.9096312089651676
+          ]
+        },
+        "Qf-A": {
+          "acc": 0.25,
+          "acc_lenient": 0.38333333333333336,
+          "acc_per_min": 0.09271472510680685,
+          "k_exact": 30,
+          "k_lenient": 46,
+          "mean_wall_s": 161.78659843644127,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 76,
+            "ci": [
+              0.5237502240807944,
+              0.7023021920232465
+            ],
+            "cond_only": 1,
+            "delta": 0.625,
+            "p_mcnemar": 1.0323214044661785e-21,
+            "phi": 0.16002645283972777
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.1810982165680957,
+            0.33441136664125615
+          ]
+        },
+        "Qf-E": {
+          "acc": 0.25,
+          "acc_lenient": 0.35833333333333334,
+          "acc_per_min": 0.0832831504234291,
+          "k_exact": 30,
+          "k_lenient": 43,
+          "mean_wall_s": 180.10846039969474,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 76,
+            "ci": [
+              0.5237502240807944,
+              0.7023021920232465
+            ],
+            "cond_only": 1,
+            "delta": 0.625,
+            "p_mcnemar": 1.0323214044661785e-21,
+            "phi": 0.16002645283972777
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.1810982165680957,
+            0.33441136664125615
+          ]
+        },
+        "Qf-L": {
+          "acc": 0.7,
+          "acc_lenient": 0.8,
+          "acc_per_min": 0.4085093006819278,
+          "k_exact": 84,
+          "k_lenient": 96,
+          "mean_wall_s": 102.81283664751099,
+          "n": 120,
+          "paired_vs_O": {
+            "O_only": 28,
+            "ci": [
+              0.08232654895563651,
+              0.26596488285183345
+            ],
+            "cond_only": 7,
+            "delta": 0.17500000000000004,
+            "p_mcnemar": 0.0005082604475319386,
+            "phi": 0.19245008972987604
+          },
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.6128485756752643,
+            0.7747437577572543
+          ]
+        },
+        "Qf-O": {
+          "acc": 0.875,
+          "acc_lenient": 0.9666666666666667,
+          "acc_per_min": 1.0772749588537807,
+          "k_exact": 105,
+          "k_lenient": 116,
+          "mean_wall_s": 48.73407626207142,
+          "n": 120,
+          "request_outcomes": {
+            "identity_preserved_request_errors": 0,
+            "request_error_type_counts": {},
+            "success": 120,
+            "total": 120
+          },
+          "wilson": [
+            0.8039705979199262,
+            0.9227650272660463
+          ]
+        }
+      },
+      "item_strata_counts": {
+        "L-code": 30,
+        "L-nocode": 30,
+        "S-code": 30,
+        "S-nocode": 30
+      },
+      "n_items": 120,
+      "n_source_clusters": 120,
+      "n_source_windows": 120
+    }
+  },
+  "hardware": {
+    "cpu_model": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_threads_flag": 16,
+    "gpu_current_power_limit_w": 80.0,
+    "gpu_default_power_limit_w": 80.0,
+    "gpu_memory_total_mib": 12282.0,
+    "gpu_name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "gpu_requested_power_limit_w": 80.0,
+    "gpu_vram_gib": 11.994140625,
+    "logical_cpus": 32,
+    "mem_total_bytes": 67016003584,
+    "nvidia_driver": "580.167.08",
+    "ram_gib": 62.413516998291016,
+    "source": "validated campaign host receipt bound by promotion SHA-256"
+  },
+  "headline": {
+    "apm_l_range": [
+      0.4085093006819278,
+      3.4489484055679895
+    ],
+    "apm_naive_range": [
+      0.0832831504234291,
+      0.9823768435431638
+    ],
+    "apm_o_range": [
+      1.0772749588537807,
+      5.4554693902824525
+    ],
+    "destroyed_item_condition_pairs": 198,
+    "destroyed_recovered": 10,
+    "destroyed_trials": 594,
+    "evaluation_request_error_type_counts": {},
+    "evaluation_request_errors": 0,
+    "interaction_ci_pp_envelope": [
+      -11.565575792508941,
+      12.89237414651177
+    ],
+    "interaction_delta_pp_range": [
+      -5.0,
+      5.982905982905983
+    ],
+    "interaction_familywise_method": "Holm step-down over 12 model-assisted CR2 source-conversation-cluster-robust two-sided t tests with Satterthwaite degrees of freedom",
+    "interaction_holm_rejections_fwer_005": 0,
+    "interaction_inference": "Holm's procedure rejects none of 12 source-cluster-robust CR2/Satterthwaite hypotheses at familywise alpha 0.05, so this corrective exploratory rerun detects no deployed-tier by compression interaction in the tested family. The pointwise clustered 95% intervals are descriptive (0 exclude zero); the largest absolute pointwise interval endpoint is 12.9 percentage points; it is not a pre-specified resolution or equivalence bound. The unadjusted CR2/Satterthwaite tests have 0 of 12 p-values below 0.05. The conditional cluster-sign-symmetry sensitivity calculation has 0 below 0.05. No equivalence margin or equivalence test was pre-registered, so this does not establish independence.",
+    "interaction_max_abs_ci_endpoint_pp": 12.89237414651177,
+    "interaction_p_max": 1.0,
+    "interaction_p_min": 0.055366518985091616,
+    "interaction_pointwise_ci_excluding_zero": 0,
+    "interaction_result_branch": "no-interaction-detected",
+    "interaction_signflip_role": "secondary exhaustive sensitivity analysis, exact only conditional on cluster-sign symmetry",
+    "interaction_unadjusted_cluster_t_p_below_005": 0,
+    "interaction_unadjusted_signflip_p_below_005": 0,
+    "l2_delta_pp_max": 20.833333333333336,
+    "l2_delta_pp_min": 15.384615384615385,
+    "l_acc_range": [
+      0.6333333333333333,
+      0.7521367521367521
+    ],
+    "n_cells": 24,
+    "n_interaction_tests": 12,
+    "n_scored_requests": 2844,
+    "naive_delta_pp_max": 62.5,
+    "naive_delta_pp_min": 47.008547008547005,
+    "o_acc_range": [
+      0.8416666666666667,
+      0.905982905982906
+    ],
+    "qualitative_assertions": {
+      "destroyed_answer_recovery_observed": true,
+      "evaluation_request_errors_observed": false,
+      "interaction_holm_rejections_fwer_005": 0,
+      "interaction_pointwise_ci_excluding_zero": 0,
+      "interaction_primary_branch": "no-interaction-detected",
+      "interaction_unadjusted_cluster_t_p_below_005": 0,
+      "interaction_unadjusted_signflip_p_below_005": 0,
+      "llmlingua_cost_below_every_naive_cost": true,
+      "original_accuracy_per_minute_above_every_compressed_condition": false,
+      "question_generation_request_errors_observed": false
+    },
+    "question_generation_request_error_type_counts": {},
+    "question_generation_request_errors": 0,
+    "surv_acc_e_range": [
+      0.7777777777777778,
+      0.9347826086956522
+    ],
+    "surv_acc_l_range": [
+      0.7916666666666666,
+      0.8979591836734694
+    ],
+    "tier_delta_spread_pp_max": 5.982905982905984,
+    "wall_naive_range": [
+      22.498278274041756,
+      180.10846039969474
+    ],
+    "wall_o_range": [
+      9.710492735507433,
+      48.73407626207142
+    ]
+  },
+  "interaction": {
+    "Tsi": {
+      "A-Ex": {
+        "ci_cluster_95": [
+          -0.009265621806998046,
+          0.1289237414651177
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 1,
+            "raw_z_sum": -2.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 87,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 9,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 6,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.034815445697855565,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.05982905982905983,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.004545454545454546,
+          "p_holm": 0.9777523565018542,
+          "p_raw": 0.08888657786380492,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            66,
+            106
+          ],
+          "hurt_q4_reference": [
+            60,
+            103
+          ],
+          "p_fisher": 0.574326072678564
+        },
+        "item_value_counts": {
+          "-1": 2,
+          "-2": 1,
+          "0": 103,
+          "1": 11
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 14,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 0.08888657786380492,
+        "p_sign_symmetry_sensitivity": 0.1446533203125,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 1.7184631312287053,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0012121152591403296
+      },
+      "A-Iq": {
+        "ci_cluster_95": [
+          -0.046583444415319135,
+          0.08077147860335332
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 6,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 84,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 8,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 8,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": 0.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.03208581544717093,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.017094017094017096,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.01,
+          "p_holm": 1.0,
+          "p_raw": 0.5954125603292276,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            62,
+            104
+          ],
+          "hurt_q4_reference": [
+            60,
+            103
+          ],
+          "p_fisher": 0.8880788455220354
+        },
+        "item_value_counts": {
+          "-1": 6,
+          "0": 103,
+          "1": 8
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 14,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 0.5954125603292276,
+        "p_sign_symmetry_sensitivity": 0.79052734375,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 0.532759316095995,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0010294995529099124
+      },
+      "E-Ex": {
+        "ci_cluster_95": [
+          -0.0010001590209921876,
+          0.08647024449107765
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 93,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 4,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 7,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.02203730454743673,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.042735042735042736,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.004166666666666667,
+          "p_holm": 0.6643982278210994,
+          "p_raw": 0.055366518985091616,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            68,
+            106
+          ],
+          "hurt_q4_reference": [
+            64,
+            103
+          ],
+          "p_fisher": 0.776133942679793
+        },
+        "item_value_counts": {
+          "-1": 2,
+          "0": 108,
+          "1": 7
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 7,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 0.055366518985091616,
+        "p_sign_symmetry_sensitivity": 0.125,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 1.9392136929928423,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0004856427917164756
+      },
+      "E-Iq": {
+        "ci_cluster_95": [
+          -0.03058681287806487,
+          0.08186886416011616
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 4,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 88,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 6,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 7,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": 0.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.028332097526412102,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.02564102564102564,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.00625,
+          "p_holm": 1.0,
+          "p_raw": 0.3676877229070702,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            67,
+            104
+          ],
+          "hurt_q4_reference": [
+            64,
+            103
+          ],
+          "p_fisher": 0.7740694324459104
+        },
+        "item_value_counts": {
+          "-1": 4,
+          "0": 106,
+          "1": 7
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 11,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 0.3676877229070702,
+        "p_sign_symmetry_sensitivity": 0.548828125,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 0.9050168494274822,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0008027077502461268
+      },
+      "L-Ex": {
+        "ci_cluster_95": [
+          -0.08081109571510897,
+          0.04662306152707477
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 7,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 86,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 5,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 6,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": 0.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.03210577772748505,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": -0.017094017094017096,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.0125,
+          "p_holm": 1.0,
+          "p_raw": 0.5956410400861054,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            23,
+            106
+          ],
+          "hurt_q4_reference": [
+            26,
+            103
+          ],
+          "p_fisher": 0.6248955675775739
+        },
+        "item_value_counts": {
+          "-1": 10,
+          "0": 99,
+          "1": 8
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 14,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 0.5956410400861054,
+        "p_sign_symmetry_sensitivity": 0.79052734375,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": -0.5324280644783534,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0010307809634866754
+      },
+      "L-Iq": {
+        "ci_cluster_95": [
+          -0.059119323045396306,
+          0.059119323045396306
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 4,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 90,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 4,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 5,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 2,
+            "multiplicity": 2,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 3,
+            "multiplicity": 1,
+            "raw_z_sum": -1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 97.48493579985922,
+        "cluster_se_cr2": 0.029789059482500692,
+        "cluster_size_counts": {
+          "1": 98,
+          "2": 8,
+          "3": 1
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.0,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.025,
+          "p_holm": 1.0,
+          "p_raw": 1.0,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            25,
+            104
+          ],
+          "hurt_q4_reference": [
+            26,
+            103
+          ],
+          "p_fisher": 0.8728998863357836
+        },
+        "item_value_counts": {
+          "-1": 6,
+          "0": 105,
+          "1": 6
+        },
+        "n_items": 117,
+        "n_nonzero_source_clusters": 12,
+        "n_source_clusters": 107,
+        "p_cluster_cr2_satterthwaite": 1.0,
+        "p_sign_symmetry_sensitivity": 1.0,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 0.0,
+        "t_critical_975": 1.984598509399916,
+        "variance_cr2": 0.0008873880648519644
+      }
+    },
+    "Wc": {
+      "A-Ex": {
+        "ci_cluster_95": [
+          -0.07976886182658756,
+          0.029768861826587556
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 7,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 109,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 4,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.027659646100573365,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": -0.025,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.0071428571428571435,
+          "p_holm": 1.0,
+          "p_raw": 0.3679043110205682,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            73,
+            101
+          ],
+          "hurt_q4_reference": [
+            76,
+            105
+          ],
+          "p_fisher": 1.0
+        },
+        "item_value_counts": {
+          "-1": 7,
+          "0": 109,
+          "1": 4
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 11,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 0.3679043110205682,
+        "p_sign_symmetry_sensitivity": 0.548828125,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": -0.9038438130805213,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.0007650560224089634
+      },
+      "A-Iq": {
+        "ci_cluster_95": [
+          -0.1156557579250894,
+          0.0156557579250894
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 11,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 104,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 5,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.03315780113201664,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": -0.05,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.005,
+          "p_holm": 1.0,
+          "p_raw": 0.1342199961828956,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            72,
+            103
+          ],
+          "hurt_q4_reference": [
+            76,
+            105
+          ],
+          "p_fisher": 0.7601633875921702
+        },
+        "item_value_counts": {
+          "-1": 11,
+          "0": 104,
+          "1": 5
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 16,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 0.1342199961828956,
+        "p_sign_symmetry_sensitivity": 0.210113525390625,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": -1.5079407648573175,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.0010994397759103642
+      },
+      "E-Ex": {
+        "ci_cluster_95": [
+          -0.0739871164915859,
+          0.04065378315825258
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 7,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 108,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 5,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.02894826190660904,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": -0.016666666666666666,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.008333333333333333,
+          "p_holm": 1.0,
+          "p_raw": 0.5658782482417725,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            74,
+            101
+          ],
+          "hurt_q4_reference": [
+            76,
+            105
+          ],
+          "p_fisher": 1.0
+        },
+        "item_value_counts": {
+          "-1": 7,
+          "0": 108,
+          "1": 5
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 12,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 0.5658782482417725,
+        "p_sign_symmetry_sensitivity": 0.7744140625,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": -0.5757398050506645,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.000838001867413632
+      },
+      "E-Iq": {
+        "ci_cluster_95": [
+          -0.08287766287394221,
+          0.04954432954060889
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 9,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 104,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 7,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.03343821036227206,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": -0.016666666666666666,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.016666666666666666,
+          "p_holm": 1.0,
+          "p_raw": 0.6190997467265793,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            76,
+            103
+          ],
+          "hurt_q4_reference": [
+            76,
+            105
+          ],
+          "p_fisher": 0.8763187891754054
+        },
+        "item_value_counts": {
+          "-1": 9,
+          "0": 104,
+          "1": 7
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 16,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 0.6190997467265793,
+        "p_sign_symmetry_sensitivity": 0.803619384765625,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": -0.49843177867770905,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.001118113912231559
+      },
+      "L-Ex": {
+        "ci_cluster_95": [
+          -0.03266999588189747,
+          0.09933666254856413
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 6,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 104,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 10,
+            "raw_z_sum": 1.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.03333333333333333,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.03333333333333333,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.005555555555555556,
+          "p_holm": 1.0,
+          "p_raw": 0.3193395975454537,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            33,
+            101
+          ],
+          "hurt_q4_reference": [
+            28,
+            105
+          ],
+          "p_fisher": 0.3634740201744097
+        },
+        "item_value_counts": {
+          "-1": 6,
+          "0": 104,
+          "1": 10
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 16,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 0.3193395975454537,
+        "p_sign_symmetry_sensitivity": 0.454498291015625,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 1.0,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.0011111111111111111
+      },
+      "L-Iq": {
+        "ci_cluster_95": [
+          -0.07030063461896689,
+          0.07030063461896689
+        ],
+        "cluster_n_items_raw_z_sum_histogram": [
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 8,
+            "raw_z_sum": -1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 105,
+            "raw_z_sum": 0.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 6,
+            "raw_z_sum": 1.0
+          },
+          {
+            "cluster_n_items": 1,
+            "multiplicity": 1,
+            "raw_z_sum": 2.0
+          }
+        ],
+        "cluster_reference_df_satterthwaite": 118.99999999998498,
+        "cluster_se_cr2": 0.035503580124836315,
+        "cluster_size_counts": {
+          "1": 120
+        },
+        "cr2_working_model": "intercept-only iid working covariance",
+        "delta_low_minus_q4_reference": 0.0,
+        "estimand": "(O_low-C_low)-(O_Q4_reference-C_Q4_reference)",
+        "familywise": {
+          "holm_threshold": 0.05,
+          "p_holm": 1.0,
+          "p_raw": 1.0,
+          "reject_fwer_005": false
+        },
+        "historical_hurt_flip_sensitivity": {
+          "hurt_low": [
+            30,
+            103
+          ],
+          "hurt_q4_reference": [
+            28,
+            105
+          ],
+          "p_fisher": 0.7578359174355943
+        },
+        "item_value_counts": {
+          "-1": 8,
+          "0": 105,
+          "1": 6,
+          "2": 1
+        },
+        "n_items": 120,
+        "n_nonzero_source_clusters": 15,
+        "n_source_clusters": 120,
+        "p_cluster_cr2_satterthwaite": 1.0,
+        "p_sign_symmetry_sensitivity": 1.0,
+        "sign_symmetry_sensitivity_null": "cluster contrast signs are exchangeable/symmetric under a sharp zero-effect null; reported only as a secondary sensitivity analysis",
+        "t_cluster_cr2": 0.0,
+        "t_critical_975": 1.980099876456924,
+        "variance_cr2": 0.0012605042016806721
+      }
+    }
+  },
+  "promotion_completed_at": "2026-09-16T11:01:38.560119Z",
+  "promotion_sha256": "454b9bd0a19003957efbda9b3d6a47918142fd98103cdcd7580bc1e4cf57b711",
+  "protocol": {
+    "conditions_builder": "testsuite/paper2/make_conditions_r1.py",
+    "context_tokens": 8192,
+    "max_tokens": 2048,
+    "protocol": "paper2/R1_PROTOCOL.json",
+    "question_generator": "testsuite/paper2/gen_questions.py",
+    "runner": "testsuite/paper2/run_grid.py",
+    "seed": 42,
+    "study_status": "corrective exploratory rerun; not independent confirmation",
+    "temperature": 0.2,
+    "top_p": 0.95,
+    "window_char_cap": 14000
+  },
+  "schema": "paper2-r1-claims-v3",
+  "software": {
+    "llama_build": {
+      "cmake_cache_sha256": "34f33c3217b6e2b2ce8ee33ca7ada828f75ed4be50eb5e72f17aba8c356d9a8c",
+      "schema": "paper2-r1-llama-build-identity-v1",
+      "settings": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CUDA_ARCHITECTURES": "89",
+        "GGML_BLAS": "OFF",
+        "GGML_CUDA": "ON",
+        "GGML_NATIVE": "ON",
+        "GGML_OPENMP": "ON",
+        "LLAMA_CURL": "OFF"
+      },
+      "tool_sha256": {
+        "cmake": "1c5227af4edd22d8d689def545e18ee458260c0fd579eba2187967f38817e638",
+        "cxx": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769",
+        "nvcc": "874d5124e3a7a32f68873fc7fcb0d8ad41b3fb2730fb18e3bb45544b14c8173d"
+      },
+      "tool_versions": {
+        "cmake": "cmake version 3.28.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+        "cxx": "x86_64-linux-gnu-g++-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+        "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Oct_29_23:50:19_PDT_2024\nCuda compilation tools, release 12.6, V12.6.85\nBuild cuda_12.6.r12.6/compiler.35059454_0"
+      }
+    },
+    "llama_cpp_revision": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3",
+    "llama_cuda_runtime": {
+      "dynamic_resolution_verified": true,
+      "libraries": {
+        "libcublas.so.12": {
+          "bytes": 108244960,
+          "filename": "libcublas.so.12.6.4.1",
+          "sha256": "d9343511e1d2ed51e4d65fa94a25cb8f73b0ebc5ae5487da794e18e6950c98dc",
+          "soname": "libcublas.so.12"
+        },
+        "libcublasLt.so.12": {
+          "bytes": 491106832,
+          "filename": "libcublasLt.so.12.6.4.1",
+          "sha256": "a4ddaed1410acc604815f0e84cdd6c4a70c61cfd2b95dc96360f0799169f0374",
+          "soname": "libcublasLt.so.12"
+        },
+        "libcudart.so.12": {
+          "bytes": 716128,
+          "filename": "libcudart.so.12.6.77",
+          "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85",
+          "soname": "libcudart.so.12"
+        }
+      },
+      "privacy": "absolute toolkit and library paths omitted",
+      "schema": "paper2-r1-llama-cuda-runtime-public-v1",
+      "toolkit_release": "12.6"
+    },
+    "llama_server_sha256": "be5d18464c3aa74bca264f15a1d07b059928d92f8d192e3752df38a610cbf8a9",
+    "nvidia_driver": "580.167.08",
+    "privacy": "absolute executable/site-package paths omitted",
+    "python_runtime": {
+      "all_distribution_inventory_sha256": "d07ff118783076b90bcf705d328949baff9c65541515900eb7d9b2893ae88c2b",
+      "distributions": {
+        "exllamav3": {
+          "content_tree_sha256": "00b024048ee8c4545281792db72685614674ac25f883b041d2b309cf3e13560c",
+          "file_count": 447,
+          "total_bytes": 1265688849,
+          "version": "1.4.3+cu128.torch2.10.0"
+        },
+        "fastapi": {
+          "content_tree_sha256": "a3eea0c243dbaaf0dce554acee529faac7deadea06dc426a91a3195f29e21a8d",
+          "file_count": 64,
+          "total_bytes": 823069,
+          "version": "0.141.1"
+        },
+        "nvidia-cublas-cu12": {
+          "content_tree_sha256": "66d8b26fc5cc89670ef591ee01dd978750fa3e852228daaaf9243d305af9d0b4",
+          "file_count": 20,
+          "total_bytes": 869571305,
+          "version": "12.8.4.1"
+        },
+        "nvidia-cuda-cupti-cu12": {
+          "content_tree_sha256": "7008e95ebaa1244de65f9c1b6cfecdb523ffb13f1d6c8f0cb95ba6025f3dff53",
+          "file_count": 53,
+          "total_bytes": 42519396,
+          "version": "12.8.90"
+        },
+        "nvidia-cuda-nvrtc-cu12": {
+          "content_tree_sha256": "0a1c0b366a9ecae385f8137ae71b63dd74f549860fbb5f4fb4e23d12bb280f55",
+          "file_count": 16,
+          "total_bytes": 222208990,
+          "version": "12.8.93"
+        },
+        "nvidia-cuda-runtime-cu12": {
+          "content_tree_sha256": "ccf29d72da38fa4b89836bb7c92ac915250f977f447ffce6ff63ce867a58b42f",
+          "file_count": 107,
+          "total_bytes": 4992191,
+          "version": "12.8.90"
+        },
+        "nvidia-cudnn-cu12": {
+          "content_tree_sha256": "68ee4d10eeb246bf1cc4b43444fb03ede1912abd9fe31fcdddd9b73ce9a56c26",
+          "file_count": 29,
+          "total_bytes": 1053624959,
+          "version": "9.10.2.21"
+        },
+        "nvidia-cufft-cu12": {
+          "content_tree_sha256": "588701f66e9efa54e6abe8d3236be3cf02ce195eb0bdbcade2adf53f2f2cf5ee",
+          "file_count": 17,
+          "total_bytes": 281139430,
+          "version": "11.3.3.83"
+        },
+        "nvidia-cufile-cu12": {
+          "content_tree_sha256": "419a5e4b1cc541c60f70f046ed667a097051e8b56dc68a217c8dcd624c6cae68",
+          "file_count": 14,
+          "total_bytes": 3347901,
+          "version": "1.13.1.3"
+        },
+        "nvidia-curand-cu12": {
+          "content_tree_sha256": "6ebbd6e1b761240f97b5d9d804e35af70cfb3461ea6bc7ac576f1f9a3ba3e9ed",
+          "file_count": 29,
+          "total_bytes": 138917689,
+          "version": "10.3.9.90"
+        },
+        "nvidia-cusolver-cu12": {
+          "content_tree_sha256": "1ca92bcaff2a3a9b5f5144897b2369920ea86f47f554798ca3b0319f971d92bd",
+          "file_count": 19,
+          "total_bytes": 405119350,
+          "version": "11.7.3.90"
+        },
+        "nvidia-cusparse-cu12": {
+          "content_tree_sha256": "a79ab4f29019a964b52fe74b9ab7219e739748719c60202f11388864aa1cb493",
+          "file_count": 14,
+          "total_bytes": 388352060,
+          "version": "12.5.8.93"
+        },
+        "nvidia-cusparselt-cu12": {
+          "content_tree_sha256": "63e47df797ba3ab53a283239da83ea327b7f08bb9fb96cee0177a95f97b22b15",
+          "file_count": 9,
+          "total_bytes": 452024287,
+          "version": "0.7.1"
+        },
+        "nvidia-nccl-cu12": {
+          "content_tree_sha256": "5f06922f0630b0bd5bba3a7ccc47bd2bc8c6a67ebad6c70facf597129135a469",
+          "file_count": 9,
+          "total_bytes": 429655778,
+          "version": "2.27.5"
+        },
+        "nvidia-nvjitlink-cu12": {
+          "content_tree_sha256": "b5d903d670e4c398c0096f195ca6a9627e94c111f065ac8322d4e5f5940f2bb5",
+          "file_count": 13,
+          "total_bytes": 94180784,
+          "version": "12.8.93"
+        },
+        "nvidia-nvshmem-cu12": {
+          "content_tree_sha256": "0ac0574362de1f1d175d6c357507bbc6c3cd82b49caf6bd00f2979d16978410e",
+          "file_count": 66,
+          "total_bytes": 204181479,
+          "version": "3.4.5"
+        },
+        "nvidia-nvtx-cu12": {
+          "content_tree_sha256": "c37a908fab20ca2c2e5d69c244fd476f1211b1e5817c9d046c504d73dc232006",
+          "file_count": 33,
+          "total_bytes": 367445,
+          "version": "12.8.90"
+        },
+        "tabbyapi": {
+          "content_tree_sha256": "ec9f8ccbc23ab28ecb138c5c419435d54b648d4ee65235ec7eafdd08092a6582",
+          "file_count": 10,
+          "total_bytes": 44250,
+          "version": "0.0.1"
+        },
+        "torch": {
+          "content_tree_sha256": "4c951718a44a62f2a9a4df53724687963c006ea2936dbf3780948d3ccd74af34",
+          "file_count": 11784,
+          "total_bytes": 1761574718,
+          "version": "2.10.0+cu128"
+        },
+        "uvicorn": {
+          "content_tree_sha256": "03f033f82d966ec5ac73b26f93d8a983f5fbc69ead427e782f6e53f294b4dc57",
+          "file_count": 51,
+          "total_bytes": 267867,
+          "version": "0.52.4"
+        }
+      },
+      "loader_environment_contract": "all inherited LD_* variables removed; no LD_LIBRARY_PATH",
+      "observed_ld_variables": {},
+      "precompiled_extension": {
+        "bytes": 1261393912,
+        "filename": "exllamav3_ext.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "ca056802008bfb821a51e4fd834367535cfd33d81a292815b2c9fb2fcc22d347"
+      },
+      "schema": "paper2-r1-python-runtime-content-v1",
+      "torch_runtime": {
+        "cuda": "12.8",
+        "cudnn": 91002,
+        "torch": "2.10.0+cu128"
+      }
+    },
+    "tabbyapi_revision": "4a4f9f44820303593844f092d424bb7506008733"
+  },
+  "study_status": "corrective exploratory rerun after hypotheses, corpus frames, and contaminated outputs were observed; not independent confirmation",
+  "survival": {
+    "Tsi": {
+      "E": {
+        "gold_survives": 46,
+        "n": 117,
+        "tiers": {
+          "Ex": {
+            "dest_correct": 0,
+            "dest_n": 71,
+            "surv_correct": 43,
+            "surv_n": 46
+          },
+          "Iq": {
+            "dest_correct": 3,
+            "dest_n": 71,
+            "surv_correct": 40,
+            "surv_n": 46
+          },
+          "Qf": {
+            "dest_correct": 2,
+            "dest_n": 71,
+            "surv_correct": 43,
+            "surv_n": 46
+          }
+        }
+      },
+      "L": {
+        "gold_survives": 98,
+        "n": 117,
+        "tiers": {
+          "Ex": {
+            "dest_correct": 0,
+            "dest_n": 19,
+            "surv_correct": 88,
+            "surv_n": 98
+          },
+          "Iq": {
+            "dest_correct": 0,
+            "dest_n": 19,
+            "surv_correct": 84,
+            "surv_n": 98
+          },
+          "Qf": {
+            "dest_correct": 0,
+            "dest_n": 19,
+            "surv_correct": 83,
+            "surv_n": 98
+          }
+        }
+      }
+    },
+    "Wc": {
+      "E": {
+        "gold_survives": 36,
+        "n": 120,
+        "tiers": {
+          "Ex": {
+            "dest_correct": 0,
+            "dest_n": 84,
+            "surv_correct": 28,
+            "surv_n": 36
+          },
+          "Iq": {
+            "dest_correct": 2,
+            "dest_n": 84,
+            "surv_correct": 28,
+            "surv_n": 36
+          },
+          "Qf": {
+            "dest_correct": 2,
+            "dest_n": 84,
+            "surv_correct": 28,
+            "surv_n": 36
+          }
+        }
+      },
+      "L": {
+        "gold_survives": 96,
+        "n": 120,
+        "tiers": {
+          "Ex": {
+            "dest_correct": 0,
+            "dest_n": 24,
+            "surv_correct": 76,
+            "surv_n": 96
+          },
+          "Iq": {
+            "dest_correct": 1,
+            "dest_n": 24,
+            "surv_correct": 81,
+            "surv_n": 96
+          },
+          "Qf": {
+            "dest_correct": 0,
+            "dest_n": 24,
+            "surv_correct": 84,
+            "surv_n": 96
+          }
+        }
+      }
+    }
+  }
+}

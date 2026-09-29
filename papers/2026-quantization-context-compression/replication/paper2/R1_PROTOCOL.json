@@ -1,0 +1,298 @@
+{
+  "schema": "paper2-r1-prospective-recovery-protocol-v1",
+  "status": "frozen-before-rerun",
+  "official_attempt_id": "p2r1-primary-v5",
+  "study_status": "corrective exploratory rerun after hypotheses, input frames, and contaminated outputs were observed; not an independent confirmation",
+  "supersedes": "P2G (quarantined after endpoint-identity failure)",
+  "research_contract": "methodology/EMPIRICAL_RESEARCH_LOOP.md@1.1.0",
+  "prospective_operational_amendment": {
+    "date": "2026-08-31",
+    "failed_campaign_uuid": "725e2db91e9840f6a766a5b616decc78",
+    "boundary": "The Q4 question-generation server loaded, but the identity gate stopped before any question-generation or evaluation POST. No question, response, score, or timed result was created.",
+    "cause": "The pinned llama.cpp server defaults to log verbosity 3, while the authoritative library INFO placement readback is exposed at verbosity 4.",
+    "change": "Freeze -lv 4 in both llama.cpp deployed command lines and require exactly one tier-specific offload readback before any request. Q4_K_XL reports 33/66 for this artifact; IQ2_S reports 65/65.",
+    "timing_scope": "Verbosity 4 is part of the deployed llama.cpp configuration. Its bounded runtime logging overhead is included in llama.cpp request wall times and is not assumed to be zero.",
+    "unchanged": "The official attempt ID remains eligible because the stop preceded every request intent and POST. Frozen inputs, artifacts, question quotas, request/scoring rules, analysis, and campaign order are unchanged."
+  },
+  "prospective_runtime_mapping_amendment": {
+    "date": "2026-08-31",
+    "failed_campaign_uuid": "4c01d78c03714b9e9f932846b738e76c",
+    "boundary": "The intended Q4_K_XL server passed identity and its private log contained the exact 33/66 placement readback, but the live CUDA mapping guard stopped before a placement receipt, every question-generation or evaluation POST, and every durable request intent. No question, response, score, or timed result was created.",
+    "cause": "The live-map parser rejected every /proc/<pid>/maps pathname ending in ' (deleted)' before classifying the pathname. A normal non-CUDA /dev/zero mapping therefore produced the same fail-closed error reserved for a deleted pinned CUDA-family file.",
+    "change": "Normalize only the terminal ' (deleted)' marker, classify the basename first, ignore deleted mappings outside the frozen libcudart/libcublas/libcublasLt classifier, and continue to reject deleted absolute or nonabsolute CUDA-family mappings. Exact canonical set equality, private-directory containment, byte counts, and SHA-256 checks are unchanged.",
+    "diagnostic": {
+      "scope": "separate five-minute resource-capped GET-only diagnostic; no benchmark POST",
+      "observations": {
+        "proc_maps_lines": 327,
+        "dev_zero_deleted_mappings": 7,
+        "classified_cuda_family_segments": 12,
+        "deleted_classified_cuda_family_segments": 0,
+        "original_strict_error_reproduced": true
+      },
+      "private_files": {
+        ".publication/private/p2r1/llama-deleted-map-diagnostic-v1.sh": "e57ad5636150ce3e40eeda116fc0f25cbe35b670dd5e2d03c51e4fac158dc1a8",
+        ".publication/private/p2r1/llama-deleted-map-diagnostic-v1.log": "27eb9bf94b6969062df4866c89d5ac67eebc686058a249319316c3b395456221",
+        ".publication/private/p2r1/llama-deleted-map-diagnostic-v1.process.json": "56cea97ea1eefde5e3871a5e78300969e325590255220764f7b22101378f40cc",
+        ".publication/private/p2r1/llama-deleted-map-diagnostic-v1.maps.json": "44b952c69f65098c5fd5689a2824fb5800f1c35f9e577a0fbc26163400211370",
+        ".publication/private/p2r1/pre-request-runtime-map-failure-002.json": "2fb6b9f59e9027b19912d92d906d22a5b7825bee8c70d1247a9aff8d4def232a"
+      }
+    },
+    "unchanged": "The official p2r1-primary-v1 attempt remains eligible because the stop preceded every request intent and POST. Frozen inputs, artifacts, placement expectations, quotas, prompts, decode/scoring rules, analysis, and campaign order are unchanged."
+  },
+  "prospective_graphical_desktop_gate_amendment": {
+    "date": "2026-08-31",
+    "failed_campaign_uuid": "09ce310e6db745e98206790f096c02e0",
+    "boundary": "The campaign spent 1800 seconds in the first Q4 question-generation pre-model admission gate and then stopped. It launched no model, registered no inference session, wrote no durable request intent, sent no benchmark GET or POST, and created no question, response, score, or timed result.",
+    "cause": "The gate treated aggregate NVIDIA utilization as foreign compute. That device-total counter can include ordinary Xorg/GNOME/Chrome graphics on this 3440x1440 graphical host, so the frozen 5 percent ceiling rejected an otherwise-admissible 43 C, 993 MiB, zero-compute-process state.",
+    "change": "Device-total GPU utilization remains recorded and range-validated in every sample but is no longer an admission threshold. Admission still requires three consecutive ten-second samples with GPU temperature at most 50 C, baseline VRAM at most 1024 MiB, no NVIDIA compute process, one-minute load at most 2, and MemAvailable at least 32 GiB. The campaign-wide 36 GiB RAM and 4 GiB swap caps and independent thermal watchdog remain mandatory.",
+    "timing_scope": "The active graphical desktop is part of the observed deployed host state. The electronic gate excludes NVIDIA compute processes but cannot distinguish ordinary composition from intentionally heavy graphics or video activity. Avoiding the latter is an operator conduct control recorded in the private launch authorization, not a machine-enforced predicate. HTTP wall times are descriptive secondary measurements and must not be presented as isolated-GPU throughput or used for the primary accuracy-interaction branch.",
+    "private_incident_receipt": {
+      "path": ".publication/private/p2r1/pre-request-graphics-gate-failure-003.json",
+      "sha256": "5a51009cab487ce76d4eb9c54d859dd6f49c5bcf2b21e3ce4895e92e6a34a493"
+    },
+    "unchanged": "The official attempt ID remains p2r1-primary-v1 because the failure preceded model launch and every request boundary. Inputs, artifacts, question quotas, prompts, decode/scoring rules, statistical analysis, placement checks, and campaign order are unchanged."
+  },
+  "prospective_completion_cap_amendment": {
+    "date": "2026-09-01",
+    "failed_campaign_uuid": "90007baf553f4eea83a684138699943c",
+    "invalidated_attempt_id": "p2r1-primary-v1",
+    "boundary": "TSI question generation completed all 126 frame windows (three predeclared seeded attempts each, 378 generator requests). Deterministic selection then stopped with RunSafetyError 'TSI/L-nocode has 5 eligible windows; frozen quota is 6 after 3 attempts', and the harness permanently invalidated attempt p2r1-primary-v1 (reason label question-generation-final-evidence-ambiguity). No WildChat generation request, evaluation request, warmup, or timed result was created. The launched Q4 server was terminated through its scoped shutdown receipt.",
+    "cause": "The frozen 512-token completion cap truncates the deployed model's reasoning before the required Q1:/A1: output format on verbose windows. Six of the seven zero-accept windows show all three attempts returning HTTP 200 with exactly 512 completion tokens and zero parseable pairs; the seventh parsed two verifier-rejected pairs and then capped twice. Even accepted windows ran at a 445-token median with 32 percent of attempts at the cap. Under fixed seeds and temperature 0.2 the truncation is effectively deterministic, so the L-nocode quota of 6 of 6 frame windows is infeasible and a same-configuration retry cannot repair it.",
+    "change": "max completion tokens raised from 512 to 2048 for both question-generation and evaluation requests, recorded in every generation and run contract. The evaluation cap is amended prospectively in the same step because no evaluation request has ever been sent and the identical truncation mechanism would otherwise convert verbose-reasoning items into parse failures scored incorrect, contaminating the primary accuracy grid. The official attempt ID becomes p2r1-primary-v2; the p2r1-primary-v1 namespace is preserved forensic-only under its harness-written invalidation marker.",
+    "timing_scope": "Request wall times remain descriptive end-to-end chat-completion measurements. The larger cap permits longer completions, which is disclosed; timing is not part of the primary accuracy-interaction branch.",
+    "unchanged": "Frozen inputs, artifacts, question quotas, prompts, verbatim and scoring rules, retry seed offsets, condition order, temperature, top-p, seed, 600-second timeout, placement expectations, stage order, and statistical analysis are unchanged."
+  },
+  "prospective_warmup_cap_amendment": {
+    "date": "2026-09-01",
+    "interrupted_campaign_uuid": "409fc7a5727d45cb8c853fabe15f2395",
+    "superseded_attempt_id": "p2r1-primary-v2",
+    "boundary": "Under attempt p2r1-primary-v2 the campaign completed question generation exactly on quota (117 TSI + 120 WildChat items, all identity gates passing, normal generation post-state and scoped shutdown), passed the q4-evaluation cool gate and identity/placement gates, and then stopped inside the deterministic unmeasured warmup: the warmup response omitted its extractive token. No timed evaluation request, request intent, response row, or score was ever created. The abort host snapshot and scoped shutdown receipt were written and both ports verified free.",
+    "cause": "warmup_r1.py froze max_tokens=64 for the warmup request. The deployed model emits reasoning before its answer; 64 completion tokens are consumed before the extractive token can appear, so the deterministic warmup fails for the same completion-cap mechanism documented in the prospective_completion_cap_amendment. The warmup was the only remaining request path with a small cap; generation and evaluation had already been amended to 2048.",
+    "change": "Warmup max_tokens raised from 64 to 2048 in warmup_r1.py and in the post-run validator's warmup-receipt expectation. Because warmup_r1.py is part of the frozen measurement bundle whose source hashes are embedded in every question contract, the amended harness cannot resume attempt p2r1-primary-v2: its contracts would fail the immutable-contract equality check by design. The official attempt ID becomes p2r1-primary-v3; the v2 namespace, including its complete on-quota question set and generation journals, is preserved forensic-only under an explicit operator-written invalidation marker referencing this amendment. v3 regenerates questions under identical frozen inputs, prompts, seeds, and rules.",
+    "timing_scope": "The warmup remains a single recorded, unmeasured request excluded from analysis; its larger cap has no effect on any timed measurement.",
+    "unchanged": "Frozen inputs, artifacts, question quotas, prompts, verbatim and scoring rules, retry seed offsets, condition order, temperature, top-p, seed, the 600-second timeout, evaluation and generation completion caps (2048), placement expectations, stage order, and statistical analysis are unchanged."
+  },
+  "prospective_operator_pause_amendment": {
+    "date": "2026-09-11",
+    "interrupted_campaign_uuid": "e62d9382f15948a4862ae9d4ea8fa815",
+    "superseded_attempt_id": "p2r1-primary-v3",
+    "boundary": "The attempt had completed Q4KXL question generation for both corpora and the whole Q4KXL-TSI evaluation (468 rows), and was 404 of 480 requests into Q4KXL-WC when, at 2026-09-11 07:40:01, the operator's pause procedure ran `systemctl --user stop` on the auto-resume unit that had launched the campaign; systemd terminated the launcher, run_grid.py and the llama.cpp server together while evaluation request 034399bb03ef4baf881ae8285ef41c08 (wc0134q0, condition A) was in flight. The launcher's trap recorded host/q4-evaluation-abort.json and the scoped server shutdown; run_grid died before writing that request's terminal.",
+    "cause": "Operator tooling, not the harness: the pause script stopped a systemd unit whose cgroup contained the campaign, instead of freezing only the recorded evaluator PID at a ledger boundary. The request ledger therefore holds one durable intent with no terminal, which the protocol treats as ambiguous response completion.",
+    "change": "The official attempt is p2r1-primary-v4; p2r1-primary-v3 is forensic-only (questions, Q4KXL-TSI 468/468 and Q4KXL-WC 404/480 retained as evidence, never resumed). Questions are regenerated under identical seeds and all six grids are redone. Because a new attempt is the only point at which the immutable harness may change, the same amendment (i) keeps the cool gate's zero-compute-process, GPU <= 50 C and MemAvailable >= 32 GiB predicates, records device-total utilization, load and desktop VRAM in every gate receipt, and admits at desktop VRAM <= 1536 MiB and one-minute load <= 8 (this host is a working desktop: Xorg/GNOME/Chrome/Electron hold 0.9-1.35 GiB and the owner's own CPU jobs run alongside; the headroom analysis of the withdrawn 2026-09-10 note holds: worst admitted desktop leaves about 1.1 GiB of the 12,282 MiB device free on the tightest tier and placement readbacks still fail closed), and (ii) documents the operator pause procedure (testsuite/paper2/p2r1_pause.sh: freeze only the recorded run_grid PID at an even ledger count with consistent heads, let the launcher take its own abort path; never stop a unit that started the campaign; testsuite/paper2/p2r1_autoresume.sh launches the campaign as its own transient unit).",
+    "timing_scope": "Unchanged from 2026-08-31: HTTP wall times describe the deployed laptop, not isolated-GPU throughput, and are not part of the primary accuracy-interaction branch; a higher admitted load makes that description broader, and the per-gate receipts record the admitted state.",
+    "private_incident_receipt": {
+      "path": ".publication/private/p2r1/pre-request-operator-pause-failure-005.json",
+      "sha256": "07b4b1529c6087abf72106d29b7cae3c6b68f344e8347d3a540c434f4ecc0629"
+    },
+    "unchanged": "Inputs, artifacts, question quotas, prompts, decode/scoring rules, statistical analysis, placement checks, campaign order and the 2048-token completion/warmup caps are unchanged."
+  },
+  "prospective_exl3_provenance_gate_amendment": {
+    "date": "2026-09-13",
+    "interrupted_campaign_uuid": "f0682da7bb5f44a793bef23f0a937dd1",
+    "superseded_attempt_id": "p2r1-primary-v4",
+    "boundary": "Attempt p2r1-primary-v4 had completed Q4KXL question generation for both corpora (117 TSI + 120 WildChat items), the whole P2R1-Q4KXL-TSI grid (468 of 468 rows) and the whole P2R1-Q4KXL-WC grid (480 of 480 rows plus one retained failure row) under campaign a3c471b006994fe3a5c4c5beb2b04e4d. Its EXL3 stage first stopped inside tabbyAPI start.py's first-run dependency installer (operator runtime state, repaired outside the harness), and on relaunch (campaign f0682da7bb5f44a793bef23f0a937dd1, 2026-09-13 21:15:43 local) passed the EXL3 identity gate and then aborted inside the placement gate: 'live EXL3 mapping is unreadable: /dev/zero (deleted)'. The launcher's trap recorded host/exl3-evaluation-abort.json and the scoped shutdown; no EXL3 warmup, request intent, response row, or score was created.",
+    "cause": "Harness defects in the EXL3 branch of the placement gate, which no earlier attempt had reached (v1 stopped in question generation, v2 in the Q4 warmup, v3 in the operator pause, v4 launch #1 in the installer). (1) The EXL3 /proc/<pid>/maps parser resolved every absolute path as a file, but the NVIDIA driver maps anonymous shared memory that the kernel reports as '/dev/zero (deleted)' in every CUDA process; the llama.cpp parser strips that suffix, the EXL3 parser did not. (2) With (1) repaired, the classifier rejected Triton's runtime-compiled CUDA driver-API helper (cuda_utils.cpython-312-x86_64-linux-gnu.so beneath the user's Triton cache) as a CUDA user-space library outside the pinned site-packages tree; Triton 3.6.0, a pinned torch dependency, compiles it on first use and the model's Triton kernels load through it. (3) With (1) and (2) repaired, the gate required a per-process GPU allocation of at least 8,000 MiB, an unmeasured estimate; the frozen 8192-token Q8-cache deployment allocates 7,666 MiB at load and 7,706 MiB after a 2,048-token completion.",
+    "change": "The official attempt is p2r1-primary-v5; p2r1-primary-v4 is forensic-only (questions, Q4KXL-TSI 468/468 and Q4KXL-WC 480/480 retained as evidence, never resumed or relabelled). Questions are regenerated under identical seeds and all six grids are redone. Because a new attempt is the only point at which the immutable harness may change, the same amendment repairs the EXL3 placement gate: (i) anonymous shared memory reported as a deleted pseudo-file (/dev/zero, memfd, SysV segments) carries no file identity and is skipped, while any other deleted mapping, library or not, remains a fault; (ii) Triton's runtime-compiled cuda_utils helper is classified separately (triton_jit_cache), admitted only beneath the launching user's Triton cache root, and recorded with path, byte count and SHA-256, so it is the only runtime-compiled shared object allowed outside the pinned site-packages tree and the precompiled exllamav3_ext gate is unchanged; (iii) the resident-allocation bound is 7,000 MiB (campaign_guard.EXL3_MIN_RESIDENT_ALLOCATION_MIB, mirrored by the post-run validator), with the exact allocation recorded in every placement receipt as before. The repaired stage functions were rehearsed against a scratch campaign directory before this amendment: EXL3 identity, placement (20 classified CUDA user-space, 2 system-driver and 1 Triton-helper mappings; 7,666 MiB), warmup, six real requests through run_grid's request path, snapshot and scoped shutdown; IQ2S identity (exact 65/65 readback), placement, warmup and shutdown; and the post-campaign artifact and runtime verifications.",
+    "timing_scope": "Unchanged from 2026-08-31 and 2026-09-11: HTTP wall times describe the deployed laptop and are not part of the primary accuracy-interaction branch. tabbyAPI returns no token-usage object for chat completions, so EXL3 rows carry usage {} while llama.cpp rows carry usage; no analysis depends on it.",
+    "private_incident_receipt": {
+      "path": ".publication/private/p2r1/pre-request-exl3-provenance-gate-failure-006.json",
+      "sha256": "48f16e76417abe6065ff8f96991faa46941e639f67361a12784fb6841f07f4e4"
+    },
+    "unchanged": "Inputs, artifacts, question quotas, prompts, decode/scoring rules, statistical analysis, llama.cpp placement checks, campaign order, cool-gate thresholds and the 2048-token completion/warmup caps are unchanged."
+  },
+  "host": {
+    "cpu_model": "Intel(R) Core(TM) i9-14900HX",
+    "logical_cpus": 32,
+    "mem_total_bytes": 67016003584,
+    "gpu_name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+    "gpu_memory_total_mib": 12282.0,
+    "gpu_current_power_limit_w": 80.0,
+    "gpu_requested_power_limit_w": 80.0,
+    "gpu_default_power_limit_w": 80.0,
+    "nvidia_driver": "580.167.08",
+    "binding": "exclusive private campaign host receipt; required by toolchain, every session campaign, promotion, and claims rebuild"
+  },
+  "llama_cuda_runtime": {
+    "toolkit_release": "12.6",
+    "launch_environment": "all inherited LD_* loader controls are removed, then LD_LIBRARY_PATH is set to only the private CUDA 12.6 library directory",
+    "libraries": {
+      "libcudart.so.12": {"filename": "libcudart.so.12.6.77", "bytes": 716128, "sha256": "095296727cfb5f51e5b3ae69a3cb88cbd7b6592f314ace0fdfc4e1d758c2aa85"},
+      "libcublas.so.12": {"filename": "libcublas.so.12.6.4.1", "bytes": 108244960, "sha256": "d9343511e1d2ed51e4d65fa94a25cb8f73b0ebc5ae5487da794e18e6950c98dc"},
+      "libcublasLt.so.12": {"filename": "libcublasLt.so.12.6.4.1", "bytes": 491106832, "sha256": "a4ddaed1410acc604815f0e84cdd6c4a70c61cfd2b95dc96360f0799169f0374"}
+    },
+    "verification": "exact dynamic-loader resolution and hashes before timing, exact live process mappings for all three llama.cpp launches, and an identical resolution/hash check after all timed requests and shutdowns; private paths stay in campaign receipts and the public projection omits them"
+  },
+  "exl3_cuda_runtime": {
+    "launch_environment": "all inherited LD_* loader controls are removed and no LD_LIBRARY_PATH is set for package probes, installed-content fingerprinting, or the tabbyAPI launch",
+    "private_root": "the exact exl3-env site-packages tree located by its pinned Python environment",
+    "precompiled_extension_gate": "one exllamav3_ext shared object must be present in the installed-content fingerprint and the same filename, byte count, and SHA-256 must appear in the live mapping receipt; an out-of-tree JIT artifact is rejected",
+    "live_mapping_gate": "the launched tabbyAPI process tree must retain no LD_* environment keys; every observed mapping in the protocol's CUDA, PyTorch-CUDA, and ExLlama shared-library classifier is recorded with private path, byte count, and SHA-256; classified CUDA user-space mappings must resolve beneath the pinned site-packages tree; anonymous shared memory reported as a deleted pseudo-file (/dev/zero, memfd, SysV segments) carries no file identity and is skipped, while any other deleted mapping is a fault (2026-09-13 amendment)",
+    "driver_exception": "only system-root libcuda.so and libnvidia-*.so NVIDIA driver-family mappings may resolve outside site-packages",
+    "triton_runtime_helper_exception": "Triton's runtime-compiled cuda_utils helper, one shared object beneath the launching user's Triton cache root, is the only runtime-compiled shared object admitted outside the pinned site-packages tree; it is classified separately (triton_jit_cache) and recorded with path, byte count, and SHA-256; the precompiled exllamav3_ext gate is unchanged (2026-09-13 amendment)",
+    "resident_allocation_bound_mib": 7000,
+    "resident_allocation_bound_note": "per-process GPU allocation of the launched tabbyAPI tree must be at least 7,000 MiB; the frozen 8192-token Q8-cache deployment measured 7,666 MiB at load and 7,706 MiB after a 2,048-token completion on 2026-09-13; the exact allocation is recorded in every placement receipt",
+    "scope_limit": "this proves containment for the declared mapped-library classifier in the captured live process-tree snapshot, not a universal inventory of every possible GPU-runtime mechanism"
+  },
+  "campaign_order": [
+    "cool-gate-Q4KXL-question-generation",
+    "Q4KXL-question-generation-launch",
+    "Q4KXL-generate-TSI-then-WC",
+    "Q4KXL-question-generation-post-snapshot-and-shutdown",
+    "cool-gate-Q4KXL-evaluation",
+    "Q4KXL-evaluation-relaunch-and-warmup",
+    "Q4KXL-TSI",
+    "Q4KXL-WC",
+    "Q4KXL-evaluation-post-snapshot-and-shutdown",
+    "cool-gate-EXL3-evaluation",
+    "EXL3-launch-and-warmup",
+    "EXL3-TSI",
+    "EXL3-WC",
+    "EXL3-post-snapshot-and-shutdown",
+    "cool-gate-IQ2S-evaluation",
+    "IQ2S-launch-and-warmup",
+    "IQ2S-TSI",
+    "IQ2S-WC",
+    "IQ2S-post-snapshot-and-shutdown",
+    "post-campaign-full-artifact-verification",
+    "post-campaign-llama-CUDA-runtime-verification",
+    "promotion-validation"
+  ],
+  "deployment_tiers": {
+    "Q4KXL": {
+      "artifact": "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "artifact_sha256": "3f227079003add2511437e5b1e94812e363385225bf6a9b47b0054a72bc8b01e",
+      "license": "apache-2.0",
+      "engine": "llama.cpp",
+      "gpu_layers": 33,
+      "expected_placement_readback": "33/66",
+      "log_verbosity": 4,
+      "context_tokens": 8192,
+      "kv_cache": "Q8_0"
+    },
+    "EXL3": {
+      "artifact": "qwen38-exl3-2.0",
+      "upstream_repo": "turboderp/Qwen3.8-27B-exl3",
+      "upstream_revision": "d7e02d63dddd4e047a8d397acb22aeb2b0bedcec",
+      "upstream_weight_shards": {
+        "model-00001-of-00002.safetensors": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93",
+        "model-00002-of-00002.safetensors": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746"
+      },
+      "local_tree_scope": "the two source shards are tied to the immutable upstream revision; a separate full directory-tree hash covers every local config, tokenizer, calibration, and metadata file without claiming each is an independently inventoried upstream artifact",
+      "license": "apache-2.0",
+      "engine": "ExLlamaV3/tabbyAPI",
+      "expected_placement": "GPU-only engine load with exact config/path readback and live classified CUDA user-space mapping containment inside the pinned exl3-env site-packages tree; Triton's runtime helper admitted only beneath the user's Triton cache root; per-process GPU allocation at least 7,000 MiB (measured 7,666-7,706 MiB)",
+      "context_tokens": 8192,
+      "kv_cache": "Q8"
+    },
+    "IQ2S": {
+      "artifact": "Qwen3.8-27B-UD-IQ2_S.gguf",
+      "upstream_repo": "unsloth/Qwen3.8-27B-GGUF",
+      "upstream_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "artifact_sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe",
+      "license": "apache-2.0",
+      "engine": "llama.cpp",
+      "gpu_layers": 99,
+      "expected_placement_readback": "65/65",
+      "log_verbosity": 4,
+      "context_tokens": 8192,
+      "kv_cache": "Q8_0"
+    }
+  },
+  "model_source_manifest": {
+    "path": "publication/papers/qwen38_27b_12gb/public/environment/model_artifacts.json",
+    "sha256": "6d2a262b60774b58641611427cdec7b1e270ac6c69e8dd1fd55d9b77551a94db",
+    "binding": "committed prospective measurement source; validated into every artifact record and propagated through run contracts, promotion, and claims"
+  },
+  "corpora": {
+    "TSI": {
+      "frame": {"S-nocode": 40, "S-code": 40, "L-nocode": 6, "L-code": 40},
+      "question_quota": {"S-nocode": 37, "S-code": 37, "L-nocode": 6, "L-code": 37},
+      "questions": 117,
+      "condition_source": "freeze original text_O and opaque source-conversation grouping from the private legacy frame; discard all legacy derived A/L2/E text; recompute E from text_O with the same committed ladder.py used for WildChat, then recompute A and L2 under the pinned R1 toolchain"
+    },
+    "WC": {
+      "snapshot_revision": "7d6490e462285cf85d91eabea0f9a954fbddcd1f",
+      "frame": {"S-nocode": 40, "S-code": 40, "L-nocode": 40, "L-code": 40},
+      "question_quota": {"S-nocode": 30, "S-code": 30, "L-nocode": 30, "L-code": 30},
+      "questions": 120,
+      "public_boundary": "Aggregate-only release. No raw text, excerpts, golds, responses, upstream IDs/hashes, deterministic local IDs, or per-item rows; local IDs are reproducible pseudonyms, not anonymous identifiers"
+    }
+  },
+  "question_generation": {
+    "deployment": "verified Q4KXL only",
+    "all_frame_windows_attempted": true,
+    "max_questions_per_window": 1,
+    "retry_seed_offsets": [0, 1000000, 2000000],
+    "selection": "SHA256(seed, corpus, window_id, attempt_index, pair_index), stratified exact quotas, prefer distinct source clusters",
+    "question_character_bounds": [13, 500],
+    "verbatim_rule": "2-80 answer characters, at most 8 words, exact and normalized substring of text_O[:14000]",
+    "raw_generator_responses": "private checksummed append-only journal retaining exact HTTP response body bytes as base64 plus SHA-256, exact raw message content, and a separately hashed parser-visible projection",
+    "request_intent_policy": "fsync one immutable intent before every generator HTTP request and exactly one terminal afterward; unmatched/duplicate/identity-loss evidence invalidates the attempt rather than permitting resampling",
+    "request_error_policy": "an HTTP/model error with preserved endpoint identity is retained as that fixed attempt's terminal and advances only to the next predeclared retry seed; it is never silently reissued at the same attempt/seed"
+  },
+  "grid": {
+    "conditions": ["O", "A", "L2", "E"],
+    "condition_provenance": "O is frozen source text; E is the committed deterministic ladder.py transform of O in both corpora; A is recomputed by that same ladder.py; L2 is recomputed by the pinned LLMLingua-2 environment. No legacy derived condition text enters P2R1.",
+    "condition_order": "deterministically shuffled within item with seed 42",
+    "temperature": 0.2,
+    "top_p": 0.95,
+    "seed": 42,
+    "max_completion_tokens": 2048,
+    "request_timeout_seconds": 600,
+    "context_character_cap": 14000,
+    "response_key_policy": "strictly write-once (qid, condition); duplicate keys forbidden",
+    "resume_policy": "send only missing conditions; each retained row binds its own registered verified session",
+    "append_integrity": "question, request-intent, request-terminal, session, response, and failure journals use a previous-event SHA-256 chain, per-event checksum, and fsync; each append is anchored by an atomically replaced owner-only .head.json with path, event count, byte count, and head digest; deletion, stale/missing head, chain mismatch, append/head crash, or unterminated tail permanently marks the isolated attempt ineligible",
+    "attempt_namespace": "all generated questions and six result labels are isolated beneath the committed official_attempt_id; any ambiguity or quota infeasibility permanently invalidates it, and any retry requires a committed prospective protocol amendment with a new ID and reason before inference",
+    "request_intent_policy": "fsync one immutable intent before every HTTP request and exactly one terminal afterward; any unmatched intent, duplicate key, duplicate terminal, or endpoint-identity-loss terminal invalidates the named attempt rather than permitting resampling",
+    "request_error_policy": "an HTTP/model error followed by successful endpoint-identity revalidation is retained once as an incorrect terminal outcome with exact error telemetry; it is never retried; endpoint identity loss invalidates the attempt",
+    "primary_score": "last ANSWER marker, normalized exact match",
+    "lenient_score": "declared symmetric-substring sensitivity analysis"
+  },
+  "timing": {
+    "estimand": "end-to-end HTTP chat-completion wall time only",
+    "identity_guard_time_excluded": true,
+    "compressor_preprocessing_excluded": true,
+    "fixed_stage_order": true,
+    "cool_gate_before_each_stage": true,
+    "cool_gate_thresholds": "three consecutive 10-second samples: GPU <=50 C, device-total GPU utilization recorded but not capped, <=1536 MiB baseline allocation (was 1024 before the 2026-09-11 operator-pause amendment), no NVIDIA compute process, one-minute load <=8 (was 2), MemAvailable >=32 GiB",
+    "cool_gate_after_question_generation_before_Q4_evaluation": true,
+    "q4_relaunched_after_question_generation": true,
+    "warmup_policy": "one deterministic unmeasured request after each evaluation deployment is identity-verified and before TSI/WC timing",
+    "llama_logging_policy": "Both llama.cpp tiers run with exact -lv 4 so the authoritative loader placement line is available before any request. This trace setting is frozen as part of the deployed configuration; its bounded runtime logging overhead is included in llama.cpp wall times and is not assumed to be zero.",
+    "page_cache_policy": "Full artifact hashes only before the campaign and after all stages/shutdowns; never between model load and timed requests",
+    "post_campaign_artifact_gate": "full-hash all three artifacts against the immutable pre-campaign records after timing; bind the exclusive receipt through promotion and claims",
+    "post_campaign_runtime_gate": "re-resolve and full-hash the exact CUDA 12.6 libcudart, libcublas, and libcublasLt files after all timing and shutdowns; require byte-identical equality with the pre-campaign private receipt and expose only a path-free projection in public claims",
+    "mechanism_limit": "No prefill/decode split or recoverable output-token series is assumed"
+  },
+  "analysis": {
+    "primary_interaction": "paired item-level difference-in-differences; intercept-only CR2 source-conversation-cluster-robust variance under an iid working model with Satterthwaite reference degrees of freedom, treating source conversations as independent sampling clusters and allowing arbitrary dependence within cluster",
+    "primary_inference_scope": "associational deployed artifact-engine-placement contrasts conditional on this single frozen Q4-generated and eligibility-selected QA set and one seeded decode per cell, using an independent source-conversation-cluster superpopulation approximation; intervals and p-values do not integrate alternate question-generation seeds, decoder/run-to-run variation, or provide design-based inference for the deterministic stratified source frame; no tier randomization, causal weight-precision claim, population representativeness guarantee, or equivalence claim",
+    "conditional_sensitivity": "exhaustive source-cluster sign-flip calculation, exact only conditional on exchangeable/symmetric cluster-contrast signs under a sharp zero-effect null; secondary and never the result-branch rule",
+    "familywise_interaction_rule": "Holm step-down across all 12 two-sided model-assisted approximate CR2/Satterthwaite source-cluster-robust p-values at nominal familywise alpha 0.05; interaction-detected branch iff at least one Holm rejection",
+    "effective_df_gate": "all 12 Satterthwaite reference degrees of freedom must be at least 5 within 1e-12 numerical tolerance; a lower value or a nonzero estimate with zero CR2 standard error stops the result branch and canonical build for explicit statistical review",
+    "interval_role": "source-conversation-clustered 95% intervals are pointwise descriptive intervals and do not determine the study-level result branch",
+    "equivalence": "No equivalence margin or equivalence claim",
+    "tier_interpretation": "deployed artifact-engine-placement tiers, not a controlled weight-bit causal effect",
+    "compression_interpretation": "character-rate lossy transformations; no measured KV-cache bytes or changed VRAM budget",
+    "survival_classifier": "casefold, whitespace-collapse, trim quote/backtick/punctuation edges; require nonempty normalized gold as a substring of normalized condition text",
+    "multiplicity": "interaction intervals are pointwise; report all contrasts and do not infer exact independence from non-significance"
+  },
+  "provenance_bundles": {
+    "measurement": "prospective input/generation/deployment/scoring sources hash-bound to question and run contracts",
+    "analysis": "validator/statistics/release-gate sources separately committed and hash-bound at promotion so reviewed post-run analysis corrections do not relabel inference requests"
+  },
+  "promotion": {
+    "required_runs": 6,
+    "required_cells": 24,
+    "result_prefix": "P2R1-",
+    "legacy_prefix_forbidden": "P2G-",
+    "interrupted_session_terminal_state": "exactly one normal post-state or explicit pre-shutdown abort-state receipt",
+    "torn_append_policy": "any tail-recovery receipt makes the official attempt ineligible; no resampling is allowed without a committed prospective protocol amendment",
+    "orphan_session_policy": "any fsynced session not referenced by a durable request intent invalidates the official attempt; no later session may repair it and any retry requires a committed protocol amendment",
+    "canonical_build_gate": "exact promotion, claims, observed qualitative result branch, manuscript/explainer/bibliography hashes, four noncanonical reviewed light/dark PDF hashes, a hash-bound exact public-file/staged-tree allowlist, exhaustive private-text/ID scan, and explicit post-result narrative audit covering P2R1 protocol facts, rights/privacy, timing, multiplicity, reproducibility, host provenance, and rejection of stale P2G design assertions; canonical filenames receive byte-for-byte copies of reviewed PDFs and are never rerendered after review",
+    "manual_gate": "Commit this protocol and recovery plan before invoking run"
+  }
+}

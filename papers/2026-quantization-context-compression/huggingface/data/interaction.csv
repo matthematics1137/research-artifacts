@@ -1,0 +1,13 @@
+corpus,condition,low_deployment,interaction_estimate,ci_low,ci_high,cr2_se,satterthwaite_df,p_cr2,p_holm,holm_reject,p_sign_flip,source_clusters
+private,stopword-rung,EXL3-2.0bpw,0.059829,-0.009266,0.128924,0.034815,97.485,0.0888866,0.977752,false,0.144653,107
+private,stopword-rung,IQ2_S,0.017094,-0.046583,0.080771,0.032086,97.485,0.595413,1,false,0.790527,107
+private,full-ladder,EXL3-2.0bpw,0.042735,-0.001000,0.086470,0.022037,97.485,0.0553665,0.664398,false,0.125,107
+private,full-ladder,IQ2_S,0.025641,-0.030587,0.081869,0.028332,97.485,0.367688,1,false,0.548828,107
+private,LLMLingua-2,EXL3-2.0bpw,-0.017094,-0.080811,0.046623,0.032106,97.485,0.595641,1,false,0.790527,107
+private,LLMLingua-2,IQ2_S,0.000000,-0.059119,0.059119,0.029789,97.485,1,1,false,1,107
+WildChat,stopword-rung,EXL3-2.0bpw,-0.025000,-0.079769,0.029769,0.027660,119.000,0.367904,1,false,0.548828,120
+WildChat,stopword-rung,IQ2_S,-0.050000,-0.115656,0.015656,0.033158,119.000,0.13422,1,false,0.210114,120
+WildChat,full-ladder,EXL3-2.0bpw,-0.016667,-0.073987,0.040654,0.028948,119.000,0.565878,1,false,0.774414,120
+WildChat,full-ladder,IQ2_S,-0.016667,-0.082878,0.049544,0.033438,119.000,0.6191,1,false,0.803619,120
+WildChat,LLMLingua-2,EXL3-2.0bpw,0.033333,-0.032670,0.099337,0.033333,119.000,0.31934,1,false,0.454498,120
+WildChat,LLMLingua-2,IQ2_S,0.000000,-0.070301,0.070301,0.035504,119.000,1,1,false,1,120

@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Cite the report for scientific claims and this exact version DOI for the frozen aggregate dataset and reproducibility artifact."
+title: "Deployed Quantization Tier and Lossy Context Compression in Extractive QA: Aggregate Dataset and Reproducibility Artifact"
+type: dataset
+version: 1.0.0
+date-released: 2026-09-28
+doi: "10.5281/zenodo.22847291"
+repository-code: "https://github.com/matthematics1137/research-artifacts"
+url: "https://doi.org/10.5281/zenodo.22847291"
+authors:
+  - family-names: Schwartz
+    given-names: Matthew
+    orcid: "https://orcid.org/0009-0009-4171-7247"
+keywords:
+  - prompt compression
+  - post-training quantization
+  - LLMLingua-2
+  - GGUF
+  - EXL3
+  - paired benchmark
+  - cluster-robust inference
+  - consumer GPU
+preferred-citation:
+  type: report
+  title: "No Detected Interaction Between Deployed Quantization Tier and Lossy Context Compression in Extractive QA"
+  authors:
+    - family-names: Schwartz
+      given-names: Matthew
+      orcid: "https://orcid.org/0009-0009-4171-7247"
+  year: 2026
+  url: "https://github.com/matthematics1137/research-artifacts/blob/quantization-context-compression-v1.0.0/papers/2026-quantization-context-compression/paper/main.pdf"
+  institution:
+    name: Independent researcher
