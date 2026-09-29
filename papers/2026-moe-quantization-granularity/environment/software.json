@@ -1,0 +1,77 @@
+{
+  "schema": "paper4-p4r1-software-v1",
+  "campaign": "P4R1 campaign-003",
+  "python": "3.12.3",
+  "llama_cpp": {
+    "repository": "ggml-org/llama.cpp",
+    "commit": "035e22731a7fd70b9854b3a2d64ec68e9b1a45d3",
+    "executable_sha256": "be5d18464c3aa74bca264f15a1d07b059928d92f8d192e3752df38a610cbf8a9",
+    "checkout_readback": "clean including untracked files",
+    "toolchain": {
+      "cmake": "3.28.3",
+      "cxx_compiler": "GNU 13.3.0",
+      "cuda_toolkit": "12.6.85",
+      "cuda_architecture": "89",
+      "driver_reported_cuda_compatibility": "13.0"
+    },
+    "cmake_options": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CUDA_ARCHITECTURES": "89",
+      "GGML_BLAS": "OFF",
+      "GGML_CUDA": "ON",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "LLAMA_CURL": "OFF"
+    }
+  },
+  "evaluation": {
+    "concurrency": 1,
+    "context_tokens_all_cells": 4096,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "max_tokens": 2048,
+    "reasoning_effort_request": "medium",
+    "per_item_sampler_seed": "4200000 + integer GSM8K item suffix",
+    "same_seed_for_same_item_across_all_six_artifacts": true,
+    "numeric_absolute_tolerance": 0.0001,
+    "numeric_relative_tolerance": 0.0001,
+    "observed_gpu_layers": {
+      "P4R1-MIXTRAL-IQ1M": "29/33",
+      "P4R1-MIXTRAL-IQ2XXS": "26/33",
+      "P4R1-MIXTRAL-Q4KM": "12/33",
+      "P4R1-QWEN3MOE-IQ1M": "49/49",
+      "P4R1-QWEN3MOE-IQ2XXS": "49/49",
+      "P4R1-QWEN3MOE-Q4KM": "49/49"
+    },
+    "api_errors_by_cell": {
+      "P4R1-MIXTRAL-IQ1M": 0,
+      "P4R1-MIXTRAL-IQ2XXS": 0,
+      "P4R1-MIXTRAL-Q4KM": 0,
+      "P4R1-QWEN3MOE-IQ1M": 0,
+      "P4R1-QWEN3MOE-IQ2XXS": 0,
+      "P4R1-QWEN3MOE-Q4KM": 0
+    },
+    "chat_template_kwargs_dropped_by_cell": {
+      "P4R1-MIXTRAL-IQ1M": 0,
+      "P4R1-MIXTRAL-IQ2XXS": 0,
+      "P4R1-MIXTRAL-Q4KM": 0,
+      "P4R1-QWEN3MOE-IQ1M": 0,
+      "P4R1-QWEN3MOE-IQ2XXS": 0,
+      "P4R1-QWEN3MOE-Q4KM": 0
+    }
+  },
+  "dataset": {
+    "name": "openai/grade-school-math test.jsonl",
+    "upstream_revision": "b0bb162abedc65e1fdd8e93ed090fd7598ee68bc",
+    "upstream_sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+    "source_rows": 1319,
+    "selection": "sorted(random.Random(42).sample(range(1319), 100))",
+    "selected_rows": 100,
+    "rebuilt_subset_sha256": "184d25be0b9e2e53ba6611fda207ebef7987d69cfc1695e003be2328deca5d37"
+  },
+  "analysis_only": {
+    "minimum_python": "3.11",
+    "third_party_dependencies": []
+  }
+}

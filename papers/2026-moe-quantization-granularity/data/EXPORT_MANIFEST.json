@@ -1,0 +1,29 @@
+{
+  "authority": {
+    "claims_sha256": "4c25a8dab6dd84889f9639c1e0a78f2a5c4562800ffcfb018fde31489d0f9b8b",
+    "promoted_public_rows_sha256": "1305d1ccc4df54302696b92dcee1664520022c0136af91a1d0ccf9906c8245fb",
+    "promotion_receipt_sha256": "cfdce45819a8647c5c646c42e4561b3abd38c20b1b31afcceab33130adfe766d",
+    "public_checker_sha256": "975fd31b980f57632b4bbb71c72cb43c6c418d8cff0e329a082d9bc0891bb5db"
+  },
+  "files": {
+    "claims.json": {
+      "bytes": 38124,
+      "sha256": "4c25a8dab6dd84889f9639c1e0a78f2a5c4562800ffcfb018fde31489d0f9b8b"
+    },
+    "primary_gsm8k.jsonl": {
+      "bytes": 499584,
+      "sha256": "1305d1ccc4df54302696b92dcee1664520022c0136af91a1d0ccf9906c8245fb"
+    }
+  },
+  "no_inference": true,
+  "outcome_signature": {
+    "P4R1-MIXTRAL-IQ1M": 26,
+    "P4R1-MIXTRAL-IQ2XXS": 46,
+    "P4R1-MIXTRAL-Q4KM": 68,
+    "P4R1-QWEN3MOE-IQ1M": 96,
+    "P4R1-QWEN3MOE-IQ2XXS": 97,
+    "P4R1-QWEN3MOE-Q4KM": 91
+  },
+  "schema": "paper4-p4r1-public-data-export-v1",
+  "status": "unpublished-local-package-source"
+}

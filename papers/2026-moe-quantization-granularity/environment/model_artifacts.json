@@ -1,0 +1,81 @@
+{
+  "schema": "paper4-p4r1-model-artifacts-v1",
+  "identity_note": "P4R1 verified each full local artifact SHA-256 after the six-cell campaign; the same values are upstream Git LFS object identifiers bound to the exact basename and revision.",
+  "download_date_note": "Dates are the locally observed completion dates supported by Hugging Face metadata-file times and campaign logs; they are not upstream publication dates.",
+  "total_bytes": 90436239456,
+  "total_gib": 84.225311369,
+  "artifacts": [
+    {
+      "artifact_id": "mixtral_iq1_m",
+      "role": "Mixtral low tier",
+      "upstream_repo": "mradermacher/Mixtral-8x7B-Instruct-v0.1-i1-GGUF",
+      "revision": "0e8d21e9cc0d28b59173d329348f60f8628d1c05",
+      "filename": "Mixtral-8x7B-Instruct-v0.1.i1-IQ1_M.gguf",
+      "local_download_completed_date": "2026-08-27",
+      "bytes": 10847178368,
+      "sha256": "7e8d75c23bd4de55582ac91084a0575f081c1de374b693f5ea7ffa6fa66a2e3c",
+      "effective_file_bpw": 1.858077899,
+      "license": "apache-2.0"
+    },
+    {
+      "artifact_id": "mixtral_iq2_xxs",
+      "role": "Mixtral intermediate tier",
+      "upstream_repo": "mradermacher/Mixtral-8x7B-Instruct-v0.1-i1-GGUF",
+      "revision": "0e8d21e9cc0d28b59173d329348f60f8628d1c05",
+      "filename": "Mixtral-8x7B-Instruct-v0.1.i1-IQ2_XXS.gguf",
+      "local_download_completed_date": "2026-08-27",
+      "bytes": 12556357248,
+      "sha256": "db62b07756f50d2f046b0a00dc594f1aa73dba82ebdc182d9f55c96474655f03",
+      "effective_file_bpw": 2.150853347,
+      "license": "apache-2.0"
+    },
+    {
+      "artifact_id": "mixtral_q4_k_m",
+      "role": "Mixtral within-model anchor",
+      "upstream_repo": "mradermacher/Mixtral-8x7B-Instruct-v0.1-i1-GGUF",
+      "revision": "0e8d21e9cc0d28b59173d329348f60f8628d1c05",
+      "filename": "Mixtral-8x7B-Instruct-v0.1.i1-Q4_K_M.gguf",
+      "local_download_completed_date": "2026-08-27",
+      "bytes": 28448468608,
+      "sha256": "7f2f98f301a74b645d0a4c2bd64c98e9811f2dfa26dbae4787c280eb1183632c",
+      "effective_file_bpw": 4.873107917,
+      "license": "apache-2.0"
+    },
+    {
+      "artifact_id": "qwen3moe_iq1_m",
+      "role": "Qwen low tier",
+      "upstream_repo": "unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF",
+      "revision": "eea7b2be5805a5f151f8847ede8e5f9a9284bf77",
+      "filename": "Qwen3-30B-A3B-Instruct-2507-UD-IQ1_M.gguf",
+      "local_download_completed_date": "2026-08-29",
+      "bytes": 9685733792,
+      "sha256": "d527a854db2a1582a3ce746a17b1f42d860334ece18d385ede9e2e395058b39e",
+      "effective_file_bpw": 2.537847476,
+      "license": "apache-2.0"
+    },
+    {
+      "artifact_id": "qwen3moe_iq2_xxs",
+      "role": "Qwen intermediate tier",
+      "upstream_repo": "unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF",
+      "revision": "eea7b2be5805a5f151f8847ede8e5f9a9284bf77",
+      "filename": "Qwen3-30B-A3B-Instruct-2507-UD-IQ2_XXS.gguf",
+      "local_download_completed_date": "2026-08-29",
+      "bytes": 10341814688,
+      "sha256": "aa0b04ac05f71aa94b542b074500b3de956608365e74f0e1d97ae0d6a6380269",
+      "effective_file_bpw": 2.709753217,
+      "license": "apache-2.0"
+    },
+    {
+      "artifact_id": "qwen3moe_q4_k_m",
+      "role": "Qwen within-model anchor",
+      "upstream_repo": "unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF",
+      "revision": "eea7b2be5805a5f151f8847ede8e5f9a9284bf77",
+      "filename": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M.gguf",
+      "local_download_completed_date": "2026-08-29",
+      "bytes": 18556686752,
+      "sha256": "6c997b8af17debdfb01d890214400ccbab00db6acc0ba8da5de1cc906c4774d0",
+      "effective_file_bpw": 4.862206793,
+      "license": "apache-2.0"
+    }
+  ]
+}
