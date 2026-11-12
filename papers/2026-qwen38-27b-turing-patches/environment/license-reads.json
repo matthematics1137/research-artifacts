@@ -1,0 +1,61 @@
+{
+  "human_clearance": false,
+  "reads": [
+    {
+      "bytes": 1078,
+      "final_url": "https://raw.githubusercontent.com/spiritbuun/buun-llama-cpp/1e50db7be8e87d80d660f6ea18e01f2a599ffcba/LICENSE",
+      "public_notice": "LICENSES/BUUN-MIT.txt",
+      "retrieved_utc": "2026-11-14T08:35:51.173289+00:00",
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/spiritbuun/buun-llama-cpp/1e50db7be8e87d80d660f6ea18e01f2a599ffcba/LICENSE"
+    },
+    {
+      "bytes": 11357,
+      "final_url": "https://raw.githubusercontent.com/iamwavecut/ninfer-all/40d913db2e87e2211fce4089c0c7920480a5e7a0/LICENSE",
+      "public_notice": "LICENSES/NINFER-Apache-2.0.txt",
+      "retrieved_utc": "2026-11-14T08:34:57.451396+00:00",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/iamwavecut/ninfer-all/40d913db2e87e2211fce4089c0c7920480a5e7a0/LICENSE"
+    },
+    {
+      "bytes": 1065,
+      "final_url": "https://raw.githubusercontent.com/rafatxf/exllamav3/15654d3c6fda2714bd91a3a39c0a0903dcf37d26/LICENSE",
+      "public_notice": "LICENSES/RAFATXF-MIT.txt",
+      "retrieved_utc": "2026-11-14T08:35:51.138411+00:00",
+      "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/rafatxf/exllamav3/15654d3c6fda2714bd91a3a39c0a0903dcf37d26/LICENSE"
+    },
+    {
+      "bytes": 1062,
+      "final_url": "https://raw.githubusercontent.com/openai/grade-school-math/master/LICENSE",
+      "public_notice": "LICENSES/GSM8K-MIT.txt",
+      "retrieved_utc": "2026-11-14T08:47:18.884989+00:00",
+      "sha256": "86bbb73e855821d7c401912fd4bf82e34313e6e3b6fd6f909f2b6cc9e209a53b",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/LICENSE"
+    },
+    {
+      "bytes": 1070,
+      "final_url": "https://raw.githubusercontent.com/hendrycks/test/master/LICENSE",
+      "public_notice": "LICENSES/MMLU-MIT.txt",
+      "retrieved_utc": "2026-11-14T08:47:18.884341+00:00",
+      "sha256": "5d841b9eee8bf0d721359b79fbae956a8b426d3139bfefee32149c7d4f2a1a9c",
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/hendrycks/test/master/LICENSE"
+    },
+    {
+      "bytes": 2567,
+      "final_url": "https://huggingface.co/api/resolve-cache/models/WaveCut/Ternary-Bonsai-2-27B-NInfer-v3/841f7812793972b5de6dc48910bdd1e2722ae48b/NOTICE?%2FWaveCut%2FTernary-Bonsai-2-27B-NInfer-v3%2Fresolve%2F841f7812793972b5de6dc48910bdd1e2722ae48b%2FNOTICE=&etag=%22adc10ae2d460d7308a321cd1e142d03783da25cc%22",
+      "public_notice": "LICENSES/BONSAI-NOTICE.txt",
+      "retrieved_utc": "2026-11-14T08:34:58.578045+00:00",
+      "sha256": "470c41b4d483ad10d39a7a29b822d62928cccc09bed4987ee3b4dd52e6baecb6",
+      "status": 200,
+      "url": "https://huggingface.co/WaveCut/Ternary-Bonsai-2-27B-NInfer-v3/resolve/841f7812793972b5de6dc48910bdd1e2722ae48b/NOTICE"
+    }
+  ],
+  "schema": "p8-primary-license-reads-v1",
+  "scope": "Official repository license texts, not blanket clearance of all data or model contents."
+}

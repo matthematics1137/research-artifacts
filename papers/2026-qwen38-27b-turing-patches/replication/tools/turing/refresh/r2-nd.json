@@ -1,0 +1,35 @@
+{
+  "name": "R2-nd",
+  "kind": "speed",
+  "max_seconds": 2100,
+  "conditions": [
+    {
+      "id": "r2nd-w13-nd-0",
+      "engine": "w13",
+      "config": "nd",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-0",
+      "engine": "llama",
+      "config": "lcpp-nd",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r2nd-w13-nd-28k",
+      "engine": "w13",
+      "config": "nd",
+      "fill": 28000,
+      "priority": 1
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-28k",
+      "engine": "llama",
+      "config": "lcpp-nd",
+      "fill": 28000,
+      "priority": 1
+    }
+  ]
+}

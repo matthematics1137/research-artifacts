@@ -1,0 +1,27 @@
+{
+  "nodraft": {
+    "existing_output_tokens": 514632,
+    "existing_request_wall_h": 6.370777777777778,
+    "existing_prompt_tokens": 101666,
+    "prompt_counts_present": 1000,
+    "published_decode_rate": 58.5,
+    "published_prefill_rate": 1080,
+    "estimated_decode_h": 2.4436467236467236,
+    "estimated_prefill_h": 0.026148662551440327,
+    "output_cap_decode_h": 19.449192782526115
+  },
+  "mtp": {
+    "existing_output_tokens": 518423,
+    "existing_request_wall_h": 3.206141666666667,
+    "existing_prompt_tokens": 101666,
+    "prompt_counts_present": 1000,
+    "published_decode_rate": 95.9,
+    "published_prefill_rate": 962,
+    "estimated_decode_h": 1.5016307496234504,
+    "estimated_prefill_h": 0.029356086856086854,
+    "output_cap_decode_h": 11.86421040435639
+  },
+  "nominal_two_mode_gpu_h": 4.000782222677701,
+  "cap_h": 6,
+  "cap_gpu_board_kwh_at_260w": 1.56
+}

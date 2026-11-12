@@ -1,0 +1,18 @@
+{
+ "Qwen3.8-27B-UD-IQ2_XXS.gguf": {
+  "file_bytes": 7266070528,
+  "tensor_bytes": 7255074816,
+  "token_embd_bytes": 417177600,
+  "output_bytes": 546304000,
+  "per_token_bytes": 6837897216,
+  "tensors": 851
+ },
+ "Qwen3.8-27B-UD-IQ2_S.gguf": {
+  "file_bytes": 8371970048,
+  "tensor_bytes": 8360974336,
+  "token_embd_bytes": 417177600,
+  "output_bytes": 715161600,
+  "per_token_bytes": 7943796736,
+  "tensors": 851
+ }
+}

@@ -1,0 +1,190 @@
+{
+ "source": "tools/turing/census_groups.py",
+ "captures": {
+  "stock 1.6.5, undrafted, fill 0": {
+   "directory": "w2",
+   "section": "nodraft",
+   "ms_per_token_mean": 45.58133333333333,
+   "ms_per_token_by_task": {
+    "code": 45.218,
+    "math": 44.176,
+    "prose": 47.35
+   },
+   "kernel_us_per_token": 43871.299999999996,
+   "group_us_per_token": {
+    "matrix products": 40322.2,
+    "attention": 1343.7,
+    "GDN recurrent state": 691.5,
+    "small kernels": 1513.9
+   },
+   "group_share": {
+    "matrix products": 0.9191020097421321,
+    "attention": 0.030628223918598266,
+    "GDN recurrent state": 0.015762012978872295,
+    "small kernels": 0.03450775336039735
+   },
+   "families": [
+    "?",
+    "_paged_attn_decode_combine_kernel",
+    "_paged_attn_decode_split_kernel",
+    "act_mul_kernel_h",
+    "conv1d_update_kernel",
+    "cuda_recurrent_gated_delta_rule_kernel_128",
+    "deinterleave_qg_kernel",
+    "exl3_gemm_kernel",
+    "exl3_gemv_kernel",
+    "exl3_mgemm_kernel",
+    "gated_delta_net_fused_op_3_kernel",
+    "gated_rms_norm_kernel",
+    "gdn_ba_gemv_rows_kernel",
+    "mul_sigmoid_kernel_h",
+    "quant_cache_paged_kernel",
+    "rms_norm_kernel",
+    "rope_kernel",
+    "unrolled_elementwise_kernel",
+    "vectorized_elementwise_kernel"
+   ]
+  },
+  "stock 1.6.5, MTP, fill 0": {
+   "directory": "w2",
+   "section": "mtp",
+   "ms_per_token_mean": 26.281000000000002,
+   "ms_per_token_by_task": {
+    "code": 21.393,
+    "math": 20.432,
+    "prose": 37.018
+   },
+   "kernel_us_per_token": 23515.1,
+   "group_us_per_token": {
+    "matrix products": 20752.8,
+    "attention": 1263.8999999999999,
+    "GDN recurrent state": 549.2,
+    "small kernels": 949.2000000000002
+   },
+   "group_share": {
+    "matrix products": 0.8825307993587099,
+    "attention": 0.05374844249014463,
+    "GDN recurrent state": 0.023355205803930242,
+    "small kernels": 0.0403655523472152
+   },
+   "families": [
+    "?",
+    "_paged_attn_decode_combine_kernel",
+    "_paged_attn_decode_split_kernel",
+    "act_mul_kernel_h",
+    "batched_conv_rewind_kernel",
+    "conv1d_update_kernel",
+    "cuda_recurrent_gated_delta_rule_kernel_128",
+    "deinterleave_qg_kernel",
+    "exl3_gemm_kernel",
+    "exl3_gemv_kernel",
+    "exl3_mgemm_kernel",
+    "gated_delta_net_fused_op_3_kernel",
+    "gated_rms_norm_kernel",
+    "gdn_ba_gemv_rows_kernel",
+    "mul_sigmoid_kernel_h",
+    "quant_cache_paged_kernel",
+    "reduce_kernel",
+    "rms_norm_kernel",
+    "rope_kernel",
+    "scan_replay_kernel_128",
+    "unrolled_elementwise_kernel",
+    "vectorized_elementwise_kernel"
+   ]
+  },
+  "w13 mode 2, MTP, fill 0": {
+   "directory": "d0-w13-mtp-sk2",
+   "section": "mtp",
+   "ms_per_token_mean": 13.524666666666667,
+   "ms_per_token_by_task": {
+    "code": 11.246,
+    "math": 10.968,
+    "prose": 18.36
+   },
+   "kernel_us_per_token": 12442.6,
+   "group_us_per_token": {
+    "matrix products": 10695.0,
+    "attention": 390.3,
+    "GDN recurrent state": 453.6,
+    "small kernels": 903.7
+   },
+   "group_share": {
+    "matrix products": 0.8595470400077154,
+    "attention": 0.03136804204908942,
+    "GDN recurrent state": 0.03645540321154743,
+    "small kernels": 0.07262951473164773
+   },
+   "families": [
+    "?",
+    "_paged_attn_decode_combine_kernel",
+    "act_mul_kernel_h",
+    "batched_conv_rewind_kernel",
+    "conv1d_update_kernel",
+    "cuda_recurrent_gated_delta_rule_kernel_128",
+    "deinterleave_qg_kernel",
+    "exl3_gemm_kernel",
+    "exl3_gemv_int8_sq_kernel",
+    "exl3_gemv_sk_kernel",
+    "fd75d_split_kernel",
+    "gated_delta_net_fused_op_3_kernel",
+    "gated_rms_norm_kernel",
+    "gdn_ba_gemv_rows_kernel",
+    "mul_sigmoid_kernel_h",
+    "quant_cache_paged_kernel",
+    "reduce_kernel",
+    "rms_norm_kernel",
+    "rope_kernel",
+    "scan_replay_kernel_128",
+    "unrolled_elementwise_kernel",
+    "vectorized_elementwise_kernel"
+   ]
+  },
+  "w13 mode 2, MTP, 28K": {
+   "directory": "d28-w13-mtp-sk2",
+   "section": "mtp",
+   "ms_per_token_mean": 14.507666666666665,
+   "ms_per_token_by_task": {
+    "code": 11.618,
+    "math": 11.184,
+    "prose": 20.721
+   },
+   "kernel_us_per_token": 13709.7,
+   "group_us_per_token": {
+    "matrix products": 10823.0,
+    "attention": 1507.5,
+    "GDN recurrent state": 461.5,
+    "small kernels": 917.6999999999998
+   },
+   "group_share": {
+    "matrix products": 0.7894410526853249,
+    "attention": 0.10995864242105953,
+    "GDN recurrent state": 0.03366229749739236,
+    "small kernels": 0.06693800739622309
+   },
+   "families": [
+    "?",
+    "_paged_attn_decode_combine_kernel",
+    "act_mul_kernel_h",
+    "batched_conv_rewind_kernel",
+    "conv1d_update_kernel",
+    "cuda_recurrent_gated_delta_rule_kernel_128",
+    "deinterleave_qg_kernel",
+    "exl3_gemm_kernel",
+    "exl3_gemv_int8_sq_kernel",
+    "exl3_gemv_sk_kernel",
+    "fd75d_split_kernel",
+    "gated_delta_net_fused_op_3_kernel",
+    "gated_rms_norm_kernel",
+    "gdn_ba_gemv_rows_kernel",
+    "mul_sigmoid_kernel_h",
+    "quant_cache_paged_kernel",
+    "reduce_kernel",
+    "rms_norm_kernel",
+    "rope_kernel",
+    "scan_replay_kernel_128",
+    "unrolled_elementwise_kernel",
+    "vectorized_elementwise_kernel"
+   ]
+  }
+ }
+}

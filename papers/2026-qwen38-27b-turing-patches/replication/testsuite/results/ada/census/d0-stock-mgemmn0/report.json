@@ -1,0 +1,555 @@
+{
+ "nodraft": {
+  "stamp": "20261105T073418",
+  "tasks": [
+   {
+    "task": "code",
+    "tokens": 256,
+    "decode_wall_s": 8.0081,
+    "draft_accept": null,
+    "kernels": 238425,
+    "span_ms": 8007.31,
+    "kernel_ms": 7751.1,
+    "busy_ms": 7752.05,
+    "busy_frac": 0.9681,
+    "ms_per_token": 31.279,
+    "busy_ms_per_token": 30.281,
+    "idle_ms_per_token": 0.997,
+    "kernels_per_token": 931.3,
+    "memops_ms": 1.19,
+    "report": "nodraft-20261105T073418.1.nsys-rep"
+   },
+   {
+    "task": "math",
+    "tokens": 256,
+    "decode_wall_s": 8.0282,
+    "draft_accept": null,
+    "kernels": 238425,
+    "span_ms": 8027.26,
+    "kernel_ms": 7770.25,
+    "busy_ms": 7771.23,
+    "busy_frac": 0.9681,
+    "ms_per_token": 31.357,
+    "busy_ms_per_token": 30.356,
+    "idle_ms_per_token": 1.0,
+    "kernels_per_token": 931.3,
+    "memops_ms": 1.2,
+    "report": "nodraft-20261105T073418.2.nsys-rep"
+   },
+   {
+    "task": "prose",
+    "tokens": 256,
+    "decode_wall_s": 8.0358,
+    "draft_accept": null,
+    "kernels": 238425,
+    "span_ms": 8034.69,
+    "kernel_ms": 7776.77,
+    "busy_ms": 7777.74,
+    "busy_frac": 0.968,
+    "ms_per_token": 31.386,
+    "busy_ms_per_token": 30.382,
+    "idle_ms_per_token": 1.004,
+    "kernels_per_token": 931.3,
+    "memops_ms": 1.19,
+    "report": "nodraft-20261105T073418.3.nsys-rep"
+   }
+  ],
+  "families": [
+   {
+    "family": "exl3_gemv_int8_sq_kernel",
+    "launches_per_token": 399.43,
+    "us_per_token": 27548.3,
+    "share": 0.9081,
+    "mean_us": 68.97,
+    "top_shape": {
+     "gx": 290,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 48,
+     "smem": 8848
+    },
+    "shapes": 8
+   },
+   {
+    "family": "cuda_recurrent_gated_delta_rule_kernel_128",
+    "launches_per_token": 47.81,
+    "us_per_token": 635.6,
+    "share": 0.021,
+    "mean_us": 13.29,
+    "top_shape": {
+     "gx": 1,
+     "gy": 48,
+     "gz": 4,
+     "bx": 128,
+     "by": 4,
+     "bz": 1,
+     "regs": 64,
+     "smem": 5152
+    },
+    "shapes": 1
+   },
+   {
+    "family": "rms_norm_kernel",
+    "launches_per_token": 128.5,
+    "us_per_token": 620.3,
+    "share": 0.0204,
+    "mean_us": 4.83,
+    "top_shape": {
+     "gx": 1,
+     "gy": 1,
+     "gz": 1,
+     "bx": 1024,
+     "by": 1,
+     "bz": 1,
+     "regs": 30,
+     "smem": 128
+    },
+    "shapes": 2
+   },
+   {
+    "family": "_paged_attn_decode_split_kernel",
+    "launches_per_token": 15.94,
+    "us_per_token": 429.1,
+    "share": 0.0141,
+    "mean_us": 26.92,
+    "top_shape": {
+     "gx": 4,
+     "gy": 29,
+     "gz": 1,
+     "bx": 128,
+     "by": 1,
+     "bz": 1,
+     "regs": 168,
+     "smem": 43008
+    },
+    "shapes": 1
+   },
+   {
+    "family": "gdn_ba_gemv_rows_kernel",
+    "launches_per_token": 47.81,
+    "us_per_token": 242.1,
+    "share": 0.008,
+    "mean_us": 5.06,
+    "top_shape": {
+     "gx": 96,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 40,
+     "smem": 32
+    },
+    "shapes": 1
+   },
+   {
+    "family": "conv1d_update_kernel",
+    "launches_per_token": 47.81,
+    "us_per_token": 194.7,
+    "share": 0.0064,
+    "mean_us": 4.07,
+    "top_shape": {
+     "gx": 40,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 54,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "_paged_attn_decode_combine_kernel",
+    "launches_per_token": 15.94,
+    "us_per_token": 182.3,
+    "share": 0.006,
+    "mean_us": 11.44,
+    "top_shape": {
+     "gx": 4,
+     "gy": 8,
+     "gz": 1,
+     "bx": 128,
+     "by": 1,
+     "bz": 1,
+     "regs": 72,
+     "smem": 8192
+    },
+    "shapes": 1
+   },
+   {
+    "family": "gated_rms_norm_kernel",
+    "launches_per_token": 47.81,
+    "us_per_token": 113.5,
+    "share": 0.0037,
+    "mean_us": 2.37,
+    "top_shape": {
+     "gx": 48,
+     "gy": 1,
+     "gz": 1,
+     "bx": 32,
+     "by": 1,
+     "bz": 1,
+     "regs": 62,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "act_mul_kernel_h",
+    "launches_per_token": 63.75,
+    "us_per_token": 100.3,
+    "share": 0.0033,
+    "mean_us": 1.57,
+    "top_shape": {
+     "gx": 34,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 16,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "gated_delta_net_fused_op_3_kernel",
+    "launches_per_token": 47.81,
+    "us_per_token": 81.9,
+    "share": 0.0027,
+    "mean_us": 1.71,
+    "top_shape": {
+     "gx": 41,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 20,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "rope_kernel",
+    "launches_per_token": 15.94,
+    "us_per_token": 73.3,
+    "share": 0.0024,
+    "mean_us": 4.6,
+    "top_shape": {
+     "gx": 1,
+     "gy": 1,
+     "gz": 4,
+     "bx": 128,
+     "by": 8,
+     "bz": 1,
+     "regs": 40,
+     "smem": 4224
+    },
+    "shapes": 1
+   },
+   {
+    "family": "quant_cache_paged_kernel",
+    "launches_per_token": 15.94,
+    "us_per_token": 48.3,
+    "share": 0.0016,
+    "mean_us": 3.03,
+    "top_shape": {
+     "gx": 1,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 40,
+     "smem": 1024
+    },
+    "shapes": 1
+   },
+   {
+    "family": "deinterleave_qg_kernel",
+    "launches_per_token": 15.94,
+    "us_per_token": 27.4,
+    "share": 0.0009,
+    "mean_us": 1.72,
+    "top_shape": {
+     "gx": 3,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 22,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "mul_sigmoid_kernel_h",
+    "launches_per_token": 15.94,
+    "us_per_token": 22.8,
+    "share": 0.0008,
+    "mean_us": 1.43,
+    "top_shape": {
+     "gx": 12,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 16,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "?",
+    "launches_per_token": 2.99,
+    "us_per_token": 12.0,
+    "share": 0.0004,
+    "mean_us": 4.02,
+    "top_shape": {
+     "gx": 128,
+     "gy": 1,
+     "gz": 1,
+     "bx": 256,
+     "by": 1,
+     "bz": 1,
+     "regs": 18,
+     "smem": 32
+    },
+    "shapes": 3
+   },
+   {
+    "family": "vectorized_elementwise_kernel",
+    "launches_per_token": 1.0,
+    "us_per_token": 2.4,
+    "share": 0.0001,
+    "mean_us": 2.38,
+    "top_shape": {
+     "gx": 5,
+     "gy": 1,
+     "gz": 1,
+     "bx": 128,
+     "by": 1,
+     "bz": 1,
+     "regs": 38,
+     "smem": 0
+    },
+    "shapes": 1
+   },
+   {
+    "family": "unrolled_elementwise_kernel",
+    "launches_per_token": 1.0,
+    "us_per_token": 2.0,
+    "share": 0.0001,
+    "mean_us": 1.96,
+    "top_shape": {
+     "gx": 1,
+     "gy": 1,
+     "gz": 1,
+     "bx": 128,
+     "by": 1,
+     "bz": 1,
+     "regs": 16,
+     "smem": 0
+    },
+    "shapes": 1
+   }
+  ],
+  "shapes": [
+   {
+    "family": "exl3_gemv_int8_sq_kernel",
+    "grid": "290x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 384.49,
+    "us_per_token": 25721.6,
+    "share": 0.8479,
+    "mean_us": 66.9
+   },
+   {
+    "family": "exl3_gemv_int8_sq_kernel",
+    "grid": "116x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 1.0,
+    "us_per_token": 1568.9,
+    "share": 0.0517,
+    "mean_us": 1575.08
+   },
+   {
+    "family": "cuda_recurrent_gated_delta_rule_kernel_128",
+    "grid": "1x48x4",
+    "block": "128x4x1",
+    "launches_per_token": 47.81,
+    "us_per_token": 635.6,
+    "share": 0.021,
+    "mean_us": 13.29
+   },
+   {
+    "family": "rms_norm_kernel",
+    "grid": "1x1x1",
+    "block": "1024x1x1",
+    "launches_per_token": 128.5,
+    "us_per_token": 620.3,
+    "share": 0.0204,
+    "mean_us": 4.83
+   },
+   {
+    "family": "_paged_attn_decode_split_kernel",
+    "grid": "4x29x1",
+    "block": "128x1x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 429.1,
+    "share": 0.0141,
+    "mean_us": 26.92
+   },
+   {
+    "family": "exl3_gemv_int8_sq_kernel",
+    "grid": "232x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 13.95,
+    "us_per_token": 257.8,
+    "share": 0.0085,
+    "mean_us": 18.48
+   },
+   {
+    "family": "gdn_ba_gemv_rows_kernel",
+    "grid": "96x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 47.81,
+    "us_per_token": 242.1,
+    "share": 0.008,
+    "mean_us": 5.06
+   },
+   {
+    "family": "conv1d_update_kernel",
+    "grid": "40x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 47.81,
+    "us_per_token": 194.7,
+    "share": 0.0064,
+    "mean_us": 4.07
+   },
+   {
+    "family": "_paged_attn_decode_combine_kernel",
+    "grid": "4x8x1",
+    "block": "128x1x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 182.3,
+    "share": 0.006,
+    "mean_us": 11.44
+   },
+   {
+    "family": "gated_rms_norm_kernel",
+    "grid": "48x1x1",
+    "block": "32x1x1",
+    "launches_per_token": 47.81,
+    "us_per_token": 113.5,
+    "share": 0.0037,
+    "mean_us": 2.37
+   },
+   {
+    "family": "act_mul_kernel_h",
+    "grid": "34x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 63.75,
+    "us_per_token": 100.3,
+    "share": 0.0033,
+    "mean_us": 1.57
+   },
+   {
+    "family": "gated_delta_net_fused_op_3_kernel",
+    "grid": "41x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 47.81,
+    "us_per_token": 81.9,
+    "share": 0.0027,
+    "mean_us": 1.71
+   },
+   {
+    "family": "rope_kernel",
+    "grid": "1x1x4",
+    "block": "128x8x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 73.3,
+    "share": 0.0024,
+    "mean_us": 4.6
+   },
+   {
+    "family": "quant_cache_paged_kernel",
+    "grid": "1x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 48.3,
+    "share": 0.0016,
+    "mean_us": 3.03
+   },
+   {
+    "family": "deinterleave_qg_kernel",
+    "grid": "3x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 27.4,
+    "share": 0.0009,
+    "mean_us": 1.72
+   },
+   {
+    "family": "mul_sigmoid_kernel_h",
+    "grid": "12x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 15.94,
+    "us_per_token": 22.8,
+    "share": 0.0008,
+    "mean_us": 1.43
+   },
+   {
+    "family": "?",
+    "grid": "128x1x1",
+    "block": "256x1x1",
+    "launches_per_token": 1.99,
+    "us_per_token": 10.2,
+    "share": 0.0003,
+    "mean_us": 5.1
+   },
+   {
+    "family": "vectorized_elementwise_kernel",
+    "grid": "5x1x1",
+    "block": "128x1x1",
+    "launches_per_token": 1.0,
+    "us_per_token": 2.4,
+    "share": 0.0001,
+    "mean_us": 2.38
+   },
+   {
+    "family": "unrolled_elementwise_kernel",
+    "grid": "1x1x1",
+    "block": "128x1x1",
+    "launches_per_token": 1.0,
+    "us_per_token": 2.0,
+    "share": 0.0001,
+    "mean_us": 1.96
+   },
+   {
+    "family": "?",
+    "grid": "1x1x1",
+    "block": "128x1x1",
+    "launches_per_token": 1.0,
+    "us_per_token": 1.9,
+    "share": 0.0001,
+    "mean_us": 1.87
+   }
+  ],
+  "runtime_calls_per_token": {
+   "cudaLaunchKernel": 134.47,
+   "cudaGraphLaunch": 127.5,
+   "cudaMemcpyAsync": 2.99,
+   "cudaDeviceSynchronize": 1.0,
+   "cuProfilerStart": 0.0
+  }
+ }
+}

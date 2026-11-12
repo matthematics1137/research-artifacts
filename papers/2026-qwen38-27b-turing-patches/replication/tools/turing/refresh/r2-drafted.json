@@ -1,0 +1,53 @@
+{
+  "name": "R2-drafted",
+  "kind": "speed",
+  "max_seconds": 2700,
+  "conditions": [
+    {
+      "id": "r2draft-w13-mtp-0",
+      "engine": "w13",
+      "config": "mtp",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-0",
+      "engine": "llama",
+      "config": "lcpp-df2",
+      "fill": 0,
+      "priority": 1,
+      "requires_fit": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-0",
+      "engine": "llama",
+      "config": "lcpp-mtp",
+      "fill": 0,
+      "priority": 1,
+      "requires_fit": true
+    },
+    {
+      "id": "r2draft-w13-mtp-28k",
+      "engine": "w13",
+      "config": "mtp",
+      "fill": 28000,
+      "priority": 1
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-28k",
+      "engine": "llama",
+      "config": "lcpp-df2",
+      "fill": 28000,
+      "priority": 1,
+      "requires_fit": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-28k",
+      "engine": "llama",
+      "config": "lcpp-mtp",
+      "fill": 28000,
+      "priority": 1,
+      "requires_fit": true
+    }
+  ]
+}

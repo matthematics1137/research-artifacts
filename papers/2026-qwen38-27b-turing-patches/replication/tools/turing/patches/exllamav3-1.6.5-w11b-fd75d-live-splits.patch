@@ -1,0 +1,106 @@
+--- a/exllamav3/exllamav3_ext/turing/fd75d.cuh
++++ b/exllamav3/exllamav3_ext/turing/fd75d.cuh
+@@ -28,7 +28,7 @@
+     float* partial_o, float* partial_ml, const half* sk, const half* sv,
+     int split_len, int num_pages_per_seq, int num_splits,
+     int bsz, int q_len, int n_q_heads, int n_kv_heads, int page_size, float scale, bool causal,
+-    int kv_append_len, int splits_cap, cudaStream_t stream
++    int kv_append_len, int splits_cap, bool live, cudaStream_t stream
+ );
+ 
+ // The Triton decode row layout (decode_row_layout): rows per program and row blocks per kv head
+--- a/exllamav3/exllamav3_ext/turing/fd75d.cu
++++ b/exllamav3/exllamav3_ext/turing/fd75d.cu
+@@ -91,7 +91,8 @@
+     int num_pages_per_seq,                      // 10 (graph-patched)
+     int num_splits,                             // 11 (graph-patched)
+     int q_len, int n_q_heads, int n_kv_heads, int page_size,
+-    float scale_log2, int causal, int block_rows, int h_blocks, int kv_append_len
++    float scale_log2, int causal, int block_rows, int h_blocks, int kv_append_len,
++    int live                                    // W11b: split the live context instead of the block-table bound
+ )
+ {
+ #if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ < 750)
+@@ -120,8 +121,10 @@
+     const bool active = stream < streams;
+ 
+     const int total_k = cache_seqlens[b] + kv_append_len;
+-    const int n_start = split * split_len;
+-    const int n_end = min(n_start + split_len, total_k);
++    // W11b (live != 0): an equal 16-key-aligned share of the live context per split; else the Triton rule
++    const int span = live ? ((total_k + num_splits - 1) / num_splits + FD_KT - 1) / FD_KT * FD_KT : split_len;
++    const int n_start = split * span;
++    const int n_end = min(n_start + span, total_k);
+ 
+     // Q^T B fragments: query row g of this row tile, rotated dims 64c..64c+63, two dims per k-step
+     uint32_t qf[32];
+@@ -403,7 +406,7 @@
+     float* partial_o, float* partial_ml, const half* sk, const half* sv,
+     int split_len, int num_pages_per_seq, int num_splits,
+     int bsz, int q_len, int n_q_heads, int n_kv_heads, int page_size, float scale, bool causal,
+-    int kv_append_len, int splits_cap, cudaStream_t stream
++    int kv_append_len, int splits_cap, bool live, cudaStream_t stream
+ )
+ {
+     int block_rows, h_blocks;
+@@ -411,13 +414,15 @@
+     int programs = bsz * n_kv_heads * h_blocks;
+     float scale_log2 = scale * 1.4426950408889634f;
+     int causal_i = causal ? 1 : 0;
++    int live_i = live ? 1 : 0;
+     void* args[] =
+     {
+         (void*) &q, (void*) &qk, (void*) &qv, (void*) &block_table, (void*) &cache_seqlens,
+         (void*) &partial_o, (void*) &partial_ml, (void*) &sk, (void*) &sv,
+         (void*) &split_len, (void*) &num_pages_per_seq, (void*) &num_splits,
+         (void*) &q_len, (void*) &n_q_heads, (void*) &n_kv_heads, (void*) &page_size,
+-        (void*) &scale_log2, (void*) &causal_i, (void*) &block_rows, (void*) &h_blocks, (void*) &kv_append_len
++        (void*) &scale_log2, (void*) &causal_i, (void*) &block_rows, (void*) &h_blocks, (void*) &kv_append_len,
++        (void*) &live_i
+     };
+     return cudaLaunchKernel((void*) fd75d_split_kernel, dim3(programs, splits_cap), dim3(FD_THREADS), args, 0, stream);
+ }
+@@ -430,7 +435,7 @@
+ void fd75d_split_py(at::Tensor q, at::Tensor qk, at::Tensor qv, at::Tensor sk, at::Tensor sv, at::Tensor block_table,
+                     at::Tensor cache_seqlens, at::Tensor partial_o, at::Tensor partial_ml, int64_t split_len,
+                     int64_t num_splits, int64_t splits_cap, int64_t kv_append_len, double scale, bool causal,
+-                    int64_t n_kv_heads)
++                    int64_t n_kv_heads, bool live)
+ {
+     TORCH_CHECK(q.dtype() == at::kHalf && q.is_contiguous() && q.dim() == 4 && q.size(3) == FD_HD, "q (bsz, q_len, hq, 256) fp16");
+     TORCH_CHECK(qk.dtype() == at::kInt && qv.dtype() == at::kInt && qk.is_contiguous() && qv.is_contiguous(), "packed caches");
+@@ -444,7 +449,7 @@
+         (const half*) sk.data_ptr(), (const half*) sv.data_ptr(),
+         (int) split_len, (int) block_table.size(1), (int) num_splits,
+         (int) q.size(0), (int) q.size(1), (int) q.size(2), (int) n_kv_heads, (int) qk.size(1), (float) scale, causal,
+-        (int) kv_append_len, (int) splits_cap, at::cuda::getCurrentCUDAStream());
++        (int) kv_append_len, (int) splits_cap, live, at::cuda::getCurrentCUDAStream());
+     TORCH_CHECK(err == cudaSuccess, "fd75d launch: ", cudaGetErrorString(err));
+ }
+ 
+--- a/exllamav3/exllamav3_ext/libtorch/attention.cpp
++++ b/exllamav3/exllamav3_ext/libtorch/attention.cpp
+@@ -391,6 +391,14 @@
+     }
+ }
+ 
++// W11b: EXL3_FD75D_LIVE=1 cuts the splits from the live context (read on the device) instead of the block-table
++// bound; same combine, same graph sites
++static bool fd75d_live()
++{
++    static const bool on = [] { const char* e = getenv("EXL3_FD75D_LIVE"); return e && atoi(e) != 0; }();
++    return on;
++}
++
+ void BC_Attention::set_fd75d(bool on, float scale, bool causal)
+ {
+     fd75d = on;
+@@ -813,7 +821,7 @@
+                 (const half*) scales_k, (const half*) scales_v,
+                 split_len, (int) block_table.size(1), num_splits,
+                 bsz, q_len, num_q_heads, num_kv_heads, page_size, fd75d_scale, fd75d_causal,
+-                q_len, s.splits_cap, stream));
++                q_len, s.splits_cap, fd75d_live(), stream));
+             if (graph)
+             {
+                 graph->record_param(fd75d_split_fn(), GP_attn_block_table, FD75D_P_BLOCK_TABLE);

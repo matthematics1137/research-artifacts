@@ -1,0 +1,60 @@
+{
+ "name": "s2cliff",
+ "group": "stage2",
+ "arms": [
+  {
+   "arm": "cliff-64k-88",
+   "format": "8,8",
+   "length": 65536,
+   "items": "cliff-64k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-64k-88"
+   }
+  },
+  {
+   "arm": "cliff-64k-44",
+   "format": "4,4",
+   "length": 65536,
+   "items": "cliff-64k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-64k-44"
+   }
+  },
+  {
+   "arm": "cliff-32k-fp16",
+   "format": "fp16",
+   "length": 32768,
+   "items": "cliff-32k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-32k-fp16"
+   }
+  },
+  {
+   "arm": "cliff-32k-88",
+   "format": "8,8",
+   "length": 32768,
+   "items": "cliff-32k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-32k-88"
+   }
+  },
+  {
+   "arm": "cliff-32k-44",
+   "format": "4,4",
+   "length": 32768,
+   "items": "cliff-32k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-32k-44"
+   }
+  },
+  {
+   "arm": "cliff-64k-84",
+   "format": "8,4",
+   "length": 65536,
+   "items": "cliff-64k.jsonl",
+   "if_budget": {
+    "per_item_from": "s2-64k-84"
+   }
+  }
+ ]
+}

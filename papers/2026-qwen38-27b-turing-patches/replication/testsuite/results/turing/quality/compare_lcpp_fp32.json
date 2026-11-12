@@ -1,0 +1,6013 @@
+{
+ "generated": "2026-11-01T15:26:42",
+ "inputs": {
+  "turing_dir": "testsuite/results/turing/quality",
+  "laptop_dir": "/opt/p8/repository/testsuite/evals/results",
+  "datasets_dir": "/opt/p8/repository/testsuite/evals/datasets",
+  "runs": null
+ },
+ "lanes": {
+  "gsm8k_500": [
+   {
+    "label": "TURING-exl3-mtp",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 488,
+    "acc": 97.6,
+    "acc_ci": [
+     95.9,
+     98.6
+    ],
+    "mean_tok": 327.2,
+    "truncated": 0,
+    "mean_wall": 6.45,
+    "total_wall_h": 0.9,
+    "acc_per_min": 9.0831,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 53.4,
+    "prefill_tps_median": 315.0,
+    "draft_acceptance": 0.6217,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 97.6
+   },
+   {
+    "label": "TURING-exl3-mtp-fp32",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 488,
+    "acc": 97.6,
+    "acc_ci": [
+     95.9,
+     98.6
+    ],
+    "mean_tok": 325.5,
+    "truncated": 0,
+    "mean_wall": 5.95,
+    "total_wall_h": 0.83,
+    "acc_per_min": 9.8339,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 57.5,
+    "prefill_tps_median": 333.3,
+    "draft_acceptance": 0.6225,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.6
+   },
+   {
+    "label": "TURING-exl3-mtp-w11j2",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 488,
+    "acc": 97.6,
+    "acc_ci": [
+     95.9,
+     98.6
+    ],
+    "mean_tok": 323.8,
+    "truncated": 0,
+    "mean_wall": 5.44,
+    "total_wall_h": 0.76,
+    "acc_per_min": 10.7686,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 63.2,
+    "prefill_tps_median": 317.2,
+    "draft_acceptance": 0.6224,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.6
+   },
+   {
+    "label": "TURING-exl3-mtp-w11j2-mp05",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 485,
+    "acc": 97.0,
+    "acc_ci": [
+     95.1,
+     98.2
+    ],
+    "mean_tok": 321.6,
+    "truncated": 0,
+    "mean_wall": 5.23,
+    "total_wall_h": 0.73,
+    "acc_per_min": 11.1262,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 65.0,
+    "prefill_tps_median": 333.3,
+    "draft_acceptance": 0.6226,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.0
+   },
+   {
+    "label": "TURING-exl3-mtp-w13",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 486,
+    "acc": 97.2,
+    "acc_ci": [
+     95.4,
+     98.3
+    ],
+    "mean_tok": 330.5,
+    "truncated": 0,
+    "mean_wall": 4.47,
+    "total_wall_h": 0.62,
+    "acc_per_min": 13.0328,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 79.0,
+    "prefill_tps_median": 333.3,
+    "draft_acceptance": 0.6216,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.2
+   },
+   {
+    "label": "TURING-exl3-mtp-w13s2",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 488,
+    "acc": 97.6,
+    "acc_ci": [
+     95.9,
+     98.6
+    ],
+    "mean_tok": 325.9,
+    "truncated": 0,
+    "mean_wall": 4.07,
+    "total_wall_h": 0.57,
+    "acc_per_min": 14.3932,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 85.9,
+    "prefill_tps_median": 337.0,
+    "draft_acceptance": 0.6222,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.6
+   },
+   {
+    "label": "TURING-exl3-mtp-w9g1",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 487,
+    "acc": 97.4,
+    "acc_ci": [
+     95.6,
+     98.5
+    ],
+    "mean_tok": 324.7,
+    "truncated": 0,
+    "mean_wall": 5.62,
+    "total_wall_h": 0.78,
+    "acc_per_min": 10.3923,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 61.1,
+    "prefill_tps_median": 318.8,
+    "draft_acceptance": 0.6219,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.4
+   },
+   {
+    "label": "TURING-exl3-nodraft",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 488,
+    "acc": 97.6,
+    "acc_ci": [
+     95.9,
+     98.6
+    ],
+    "mean_tok": 325.8,
+    "truncated": 0,
+    "mean_wall": 14.22,
+    "total_wall_h": 1.98,
+    "acc_per_min": 4.117,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 23.6,
+    "prefill_tps_median": 319.2,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 97.6
+   },
+   {
+    "label": "TURING-exl3-nodraft-fp32",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 487,
+    "acc": 97.4,
+    "acc_ci": [
+     95.6,
+     98.5
+    ],
+    "mean_tok": 327.3,
+    "truncated": 0,
+    "mean_wall": 13.36,
+    "total_wall_h": 1.86,
+    "acc_per_min": 4.3747,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 25.0,
+    "prefill_tps_median": 350.0,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.4
+   },
+   {
+    "label": "TURING-exl3-nodraft-w11",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 484,
+    "acc": 96.8,
+    "acc_ci": [
+     94.9,
+     98.0
+    ],
+    "mean_tok": 328.5,
+    "truncated": 0,
+    "mean_wall": 7.95,
+    "total_wall_h": 1.1,
+    "acc_per_min": 7.3065,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 42.6,
+    "prefill_tps_median": 333.3,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 96.8
+   },
+   {
+    "label": "TURING-exl3-nodraft-w11-mp05",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 484,
+    "acc": 96.8,
+    "acc_ci": [
+     94.9,
+     98.0
+    ],
+    "mean_tok": 321.2,
+    "truncated": 0,
+    "mean_wall": 7.58,
+    "total_wall_h": 1.05,
+    "acc_per_min": 7.6598,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 43.8,
+    "prefill_tps_median": 334.0,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 96.8
+   },
+   {
+    "label": "TURING-exl3-nodraft-w9g1",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 485,
+    "acc": 97.0,
+    "acc_ci": [
+     95.1,
+     98.2
+    ],
+    "mean_tok": 328.5,
+    "truncated": 0,
+    "mean_wall": 8.32,
+    "total_wall_h": 1.16,
+    "acc_per_min": 6.9984,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 40.9,
+    "prefill_tps_median": 326.3,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": false,
+    "common_limited_by": [],
+    "acc_common": 97.0
+   },
+   {
+    "label": "TURING-lcpp-iq2xxs",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 482,
+    "acc": 96.4,
+    "acc_ci": [
+     94.4,
+     97.7
+    ],
+    "mean_tok": 376.4,
+    "truncated": 0,
+    "mean_wall": 15.69,
+    "total_wall_h": 2.18,
+    "acc_per_min": 3.6865,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 24.7,
+    "prefill_tps_median": 302.6,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 96.4
+   },
+   {
+    "label": "TURING-lcpp-iq2s",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 483,
+    "acc": 96.6,
+    "acc_ci": [
+     94.6,
+     97.9
+    ],
+    "mean_tok": 364.2,
+    "truncated": 0,
+    "mean_wall": 16.01,
+    "total_wall_h": 2.22,
+    "acc_per_min": 3.6199,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 23.4,
+    "prefill_tps_median": 295.7,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 96.6
+   },
+   {
+    "label": "TURING-lcpp-iq2s-mtp",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 487,
+    "acc": 97.4,
+    "acc_ci": [
+     95.6,
+     98.5
+    ],
+    "mean_tok": 367.6,
+    "truncated": 0,
+    "mean_wall": 8.17,
+    "total_wall_h": 1.13,
+    "acc_per_min": 7.1535,
+    "thinking_share": 1.0,
+    "ctk_dropped": 0,
+    "decode_tps_median": 48.7,
+    "prefill_tps_median": 234.6,
+    "draft_acceptance": 0.8507,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 97.4
+   },
+   {
+    "label": "TURING-lcpp-iq2xxs-dflash2",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 481,
+    "acc": 96.2,
+    "acc_ci": [
+     94.1,
+     97.6
+    ],
+    "mean_tok": 376.5,
+    "truncated": 1,
+    "mean_wall": 7.69,
+    "total_wall_h": 1.07,
+    "acc_per_min": 7.5091,
+    "thinking_share": 0.998,
+    "ctk_dropped": 0,
+    "decode_tps_median": 54.2,
+    "prefill_tps_median": 237.1,
+    "draft_acceptance": 0.7053,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 96.2
+   }
+  ],
+  "mmlu_500": [
+   {
+    "label": "TURING-exl3-mtp",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 434,
+    "acc": 86.8,
+    "acc_ci": [
+     83.6,
+     89.5
+    ],
+    "mean_tok": 709.6,
+    "truncated": 3,
+    "mean_wall": 16.64,
+    "total_wall_h": 2.31,
+    "acc_per_min": 3.1304,
+    "thinking_share": 0.994,
+    "ctk_dropped": 0,
+    "decode_tps_median": 43.9,
+    "prefill_tps_median": 348.1,
+    "draft_acceptance": 0.5508,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 86.8
+   },
+   {
+    "label": "TURING-exl3-nodraft",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 433,
+    "acc": 86.6,
+    "acc_ci": [
+     83.3,
+     89.3
+    ],
+    "mean_tok": 703.5,
+    "truncated": 1,
+    "mean_wall": 31.65,
+    "total_wall_h": 4.4,
+    "acc_per_min": 1.6419,
+    "thinking_share": 0.996,
+    "ctk_dropped": 0,
+    "decode_tps_median": 22.9,
+    "prefill_tps_median": 353.1,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 86.6
+   },
+   {
+    "label": "TURING-lcpp-iq2xxs",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 414,
+    "acc": 82.8,
+    "acc_ci": [
+     79.2,
+     85.9
+    ],
+    "mean_tok": 710.7,
+    "truncated": 2,
+    "mean_wall": 29.42,
+    "total_wall_h": 4.09,
+    "acc_per_min": 1.6885,
+    "thinking_share": 0.996,
+    "ctk_dropped": 0,
+    "decode_tps_median": 24.6,
+    "prefill_tps_median": 338.1,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 82.8
+   },
+   {
+    "label": "TURING-lcpp-iq2s",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 431,
+    "acc": 86.2,
+    "acc_ci": [
+     82.9,
+     88.9
+    ],
+    "mean_tok": 698.9,
+    "truncated": 6,
+    "mean_wall": 30.45,
+    "total_wall_h": 4.23,
+    "acc_per_min": 1.6985,
+    "thinking_share": 0.988,
+    "ctk_dropped": 0,
+    "decode_tps_median": 23.4,
+    "prefill_tps_median": 331.7,
+    "draft_acceptance": null,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 86.2
+   },
+   {
+    "label": "TURING-lcpp-iq2s-mtp",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 430,
+    "acc": 86.0,
+    "acc_ci": [
+     82.7,
+     88.8
+    ],
+    "mean_tok": 709.7,
+    "truncated": 1,
+    "mean_wall": 17.45,
+    "total_wall_h": 2.42,
+    "acc_per_min": 2.9562,
+    "thinking_share": 0.998,
+    "ctk_dropped": 0,
+    "decode_tps_median": 42.0,
+    "prefill_tps_median": 261.9,
+    "draft_acceptance": 0.7064,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 86.0
+   },
+   {
+    "label": "TURING-lcpp-iq2xxs-dflash2",
+    "planned": 500,
+    "rows": 500,
+    "errors": 0,
+    "n": 500,
+    "correct": 416,
+    "acc": 83.2,
+    "acc_ci": [
+     79.7,
+     86.2
+    ],
+    "mean_tok": 738.4,
+    "truncated": 5,
+    "mean_wall": 18.96,
+    "total_wall_h": 2.63,
+    "acc_per_min": 2.6334,
+    "thinking_share": 0.992,
+    "ctk_dropped": 0,
+    "decode_tps_median": 39.1,
+    "prefill_tps_median": 263.7,
+    "draft_acceptance": 0.5072,
+    "timed_items": 500,
+    "token_basis": "usage",
+    "response_shape": "inline",
+    "tool_call_items": 0,
+    "common_set_n": 500,
+    "common_n": 500,
+    "in_common_set": true,
+    "common_limited_by": [],
+    "acc_common": 83.2
+   }
+  ]
+ },
+ "pairs": [
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp",
+   "limit": 0,
+   "note": "E47 drafted daily config: laptop 4080 (exllamav3 1.4.7-lab) vs 2080 Ti (1.6.5)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.872,
+    "identity_ci": [
+     0.84,
+     0.898
+    ],
+    "token_identity_rate": 0.874,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 327.2,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 6.45,
+    "wall_ratio_A_over_B": 1.006,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.878,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 327.2,
+     "anatomy": {
+      "n": 500,
+      "identical": 436,
+      "non_identical": 64,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 63,
+      "non_identical_with_both_answers_parsed": 64,
+      "non_identical_correctness_agree": 64,
+      "token_delta_n": 64,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 29,
+       "6-50": 18,
+       ">50": 14
+      },
+      "token_delta_median": -1.0,
+      "token_delta_mean": -36.7,
+      "ref_len_median_identical": 268.0,
+      "ref_len_median_non_identical": 385.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.928
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.916
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.774
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft",
+   "limit": 0,
+   "note": "E47 undrafted control: laptop vs 2080 Ti",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.2,
+    "accA_ci": [
+     95.4,
+     98.3
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.4,
+    "A_only_correct": 0,
+    "B_only_correct": 2,
+    "mcnemar_p": 0.5,
+    "identity_rate": 0.628,
+    "identity_ci": [
+     0.585,
+     0.669
+    ],
+    "token_identity_rate": 0.67,
+    "mean_tok_A": 327.1,
+    "mean_tok_B": 325.8,
+    "mean_wall_A": 11.61,
+    "mean_wall_B": 14.22,
+    "wall_ratio_A_over_B": 0.816,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505"
+     ],
+     "same_final_answer": 498,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.996,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.674,
+     "mean_tok_A_matched": 327.1,
+     "mean_tok_B_matched": 325.8,
+     "anatomy": {
+      "n": 500,
+      "identical": 314,
+      "non_identical": 186,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 184,
+      "non_identical_with_both_answers_parsed": 186,
+      "non_identical_correctness_agree": 184,
+      "token_delta_n": 186,
+      "token_delta_buckets": {
+       "0": 23,
+       "1-5": 68,
+       "6-50": 67,
+       ">50": 28
+      },
+      "token_delta_median": 0.5,
+      "token_delta_mean": -3.4,
+      "ref_len_median_identical": 253.5,
+      "ref_len_median_non_identical": 330.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 227,
+        "identity": 0.753
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.669
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2110,
+        "identity": 0.464
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp",
+   "limit": 0,
+   "note": "E47 drafted daily config: laptop 4080 (exllamav3 1.4.7-lab) vs 2080 Ti (1.6.5)",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.8,
+    "accA_ci": [
+     83.6,
+     89.5
+    ],
+    "accB": 86.8,
+    "accB_ci": [
+     83.6,
+     89.5
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 4,
+    "B_only_correct": 4,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.518,
+    "identity_ci": [
+     0.474,
+     0.561
+    ],
+    "token_identity_rate": 0.53,
+    "mean_tok_A": 705.3,
+    "mean_tok_B": 709.6,
+    "mean_wall_A": 16.02,
+    "mean_wall_B": 16.64,
+    "wall_ratio_A_over_B": 0.963,
+    "truncated_A": 3,
+    "truncated_B": 3,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_6573",
+      "mmlu_10872",
+      "mmlu_11635",
+      "mmlu_12882"
+     ],
+     "B_only_ids": [
+      "mmlu_1021",
+      "mmlu_2546",
+      "mmlu_10654",
+      "mmlu_11727"
+     ],
+     "same_final_answer": 488,
+     "both_answers_parsed": 494,
+     "same_final_answer_rate": 0.9879,
+     "thinking_share_A": 0.992,
+     "thinking_share_B": 0.994,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.536,
+     "mean_tok_A_matched": 705.3,
+     "mean_tok_B_matched": 709.6,
+     "anatomy": {
+      "n": 500,
+      "identical": 259,
+      "non_identical": 241,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 230,
+      "non_identical_with_both_answers_parsed": 236,
+      "non_identical_correctness_agree": 233,
+      "token_delta_n": 241,
+      "token_delta_buckets": {
+       "0": 9,
+       "1-5": 43,
+       "6-50": 86,
+       ">50": 103
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 8.9,
+      "ref_len_median_identical": 468,
+      "ref_len_median_non_identical": 687,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 443,
+        "identity": 0.705
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 721,
+        "identity": 0.554
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4097,
+        "identity": 0.298
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft",
+   "limit": 0,
+   "note": "E47 undrafted control: laptop vs 2080 Ti",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.2,
+    "accA_ci": [
+     82.9,
+     88.9
+    ],
+    "accB": 86.6,
+    "accB_ci": [
+     83.3,
+     89.3
+    ],
+    "delta_acc_pts": 0.4,
+    "A_only_correct": 7,
+    "B_only_correct": 9,
+    "mcnemar_p": 0.8036,
+    "identity_rate": 0.198,
+    "identity_ci": [
+     0.165,
+     0.235
+    ],
+    "token_identity_rate": 0.234,
+    "mean_tok_A": 725.0,
+    "mean_tok_B": 703.5,
+    "mean_wall_A": 23.78,
+    "mean_wall_B": 31.65,
+    "wall_ratio_A_over_B": 0.751,
+    "truncated_A": 5,
+    "truncated_B": 1,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_1021",
+      "mmlu_2546",
+      "mmlu_7981",
+      "mmlu_8698",
+      "mmlu_9677",
+      "mmlu_11216",
+      "mmlu_12882"
+     ],
+     "B_only_ids": [
+      "mmlu_5",
+      "mmlu_1094",
+      "mmlu_1185",
+      "mmlu_11635",
+      "mmlu_11723",
+      "mmlu_11727",
+      "mmlu_11837",
+      "mmlu_12612",
+      "mmlu_13163"
+     ],
+     "same_final_answer": 479,
+     "both_answers_parsed": 494,
+     "same_final_answer_rate": 0.9696,
+     "thinking_share_A": 0.99,
+     "thinking_share_B": 0.996,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.238,
+     "mean_tok_A_matched": 725.0,
+     "mean_tok_B_matched": 703.5,
+     "anatomy": {
+      "n": 500,
+      "identical": 99,
+      "non_identical": 401,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 380,
+      "non_identical_with_both_answers_parsed": 395,
+      "non_identical_correctness_agree": 385,
+      "token_delta_n": 401,
+      "token_delta_buckets": {
+       "0": 20,
+       "1-5": 78,
+       "6-50": 133,
+       ">50": 170
+      },
+      "token_delta_median": -1,
+      "token_delta_mean": -26.9,
+      "ref_len_median_identical": 426,
+      "ref_len_median_non_identical": 616,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 450,
+        "identity": 0.343
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 708,
+        "identity": 0.187
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4097,
+        "identity": 0.065
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "engine-reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38f_nodraft_rel1",
+   "B": "TURING-exl3-nodraft",
+   "limit": 100,
+   "note": "laptop exllamav3 1.5.0 (reproducible greedy, E52) vs 2080 Ti 1.6.5; first 100 items",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38f_nodraft_rel1",
+    "B": "TURING-exl3-nodraft",
+    "n": 100,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     93.0,
+     99.4
+    ],
+    "accB": 99.0,
+    "accB_ci": [
+     94.6,
+     99.8
+    ],
+    "delta_acc_pts": 1.0,
+    "A_only_correct": 0,
+    "B_only_correct": 1,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.76,
+    "identity_ci": [
+     0.668,
+     0.833
+    ],
+    "token_identity_rate": 0.78,
+    "mean_tok_A": 323.2,
+    "mean_tok_B": 323.4,
+    "mean_wall_A": 12.09,
+    "mean_wall_B": 13.84,
+    "wall_ratio_A_over_B": 0.874,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": 100,
+     "pairs_total": 100,
+     "A_only_ids": [],
+     "B_only_ids": [
+      "gsm8k_12"
+     ],
+     "same_final_answer": 99,
+     "both_answers_parsed": 100,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 100,
+     "token_identity_rate_matched": 0.78,
+     "mean_tok_A_matched": 323.2,
+     "mean_tok_B_matched": 323.3,
+     "anatomy": {
+      "n": 100,
+      "identical": 76,
+      "non_identical": 24,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 23,
+      "non_identical_with_both_answers_parsed": 24,
+      "non_identical_correctness_agree": 23,
+      "token_delta_n": 24,
+      "token_delta_buckets": {
+       "0": 2,
+       "1-5": 9,
+       "6-50": 10,
+       ">50": 3
+      },
+      "token_delta_median": 2.0,
+      "token_delta_mean": 0.3,
+      "ref_len_median_identical": 277.5,
+      "ref_len_median_non_identical": 305.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 33,
+        "max_tokens": 240,
+        "identity": 0.788
+       },
+       "mid": {
+        "n": 33,
+        "max_tokens": 347,
+        "identity": 0.788
+       },
+       "long": {
+        "n": 34,
+        "max_tokens": 1301,
+        "identity": 0.706
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "engine-reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38f_nodraft_rel1",
+   "B": "TURING-exl3-mtp",
+   "limit": 100,
+   "note": "laptop 1.5.0 undrafted vs 2080 Ti 1.6.5 drafted; first 100 items",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38f_nodraft_rel1",
+    "B": "TURING-exl3-mtp",
+    "n": 100,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     93.0,
+     99.4
+    ],
+    "accB": 99.0,
+    "accB_ci": [
+     94.6,
+     99.8
+    ],
+    "delta_acc_pts": 1.0,
+    "A_only_correct": 0,
+    "B_only_correct": 1,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.75,
+    "identity_ci": [
+     0.657,
+     0.825
+    ],
+    "token_identity_rate": 0.78,
+    "mean_tok_A": 323.2,
+    "mean_tok_B": 325.4,
+    "mean_wall_A": 12.09,
+    "mean_wall_B": 6.5,
+    "wall_ratio_A_over_B": 1.861,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": 100,
+     "pairs_total": 100,
+     "A_only_ids": [],
+     "B_only_ids": [
+      "gsm8k_12"
+     ],
+     "same_final_answer": 99,
+     "both_answers_parsed": 100,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 100,
+     "token_identity_rate_matched": 0.78,
+     "mean_tok_A_matched": 323.2,
+     "mean_tok_B_matched": 325.3,
+     "anatomy": {
+      "n": 100,
+      "identical": 75,
+      "non_identical": 25,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 24,
+      "non_identical_with_both_answers_parsed": 25,
+      "non_identical_correctness_agree": 24,
+      "token_delta_n": 25,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 8,
+       "6-50": 7,
+       ">50": 7
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 8.4,
+      "ref_len_median_identical": 273,
+      "ref_len_median_non_identical": 343,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 33,
+        "max_tokens": 240,
+        "identity": 0.818
+       },
+       "mid": {
+        "n": 33,
+        "max_tokens": 347,
+        "identity": 0.788
+       },
+       "long": {
+        "n": 34,
+        "max_tokens": 1301,
+        "identity": 0.647
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-mtp",
+   "limit": 0,
+   "note": "H38a's design on the 2080 Ti: is the MTP drafter lossless (and sample-identical) on 1.6.5?",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.894,
+    "identity_ci": [
+     0.864,
+     0.918
+    ],
+    "token_identity_rate": 0.898,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 327.2,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 6.45,
+    "wall_ratio_A_over_B": 2.206,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 500,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 1.0,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.898,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 447,
+      "non_identical": 53,
+      "non_identical_same_final_answer": 53,
+      "non_identical_with_both_answers_parsed": 53,
+      "non_identical_correctness_agree": 53,
+      "token_delta_buckets": {
+       "0": 2,
+       "1-5": 18,
+       "6-50": 22,
+       ">50": 11
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 13.6,
+      "ref_len_median_identical": 272,
+      "ref_len_median_non_identical": 351,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.94
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.916
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.827
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-lcpp-iq2s",
+   "B": "TURING-lcpp-iq2s-mtp",
+   "limit": 0,
+   "note": "llama.cpp shared MTP sidecar: lossless?",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-lcpp-iq2s",
+    "B": "TURING-lcpp-iq2s-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 96.6,
+    "accA_ci": [
+     94.6,
+     97.9
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": 0.8,
+    "A_only_correct": 0,
+    "B_only_correct": 4,
+    "mcnemar_p": 0.125,
+    "identity_rate": 0.472,
+    "identity_ci": [
+     0.429,
+     0.516
+    ],
+    "token_identity_rate": 0.506,
+    "mean_tok_A": 364.2,
+    "mean_tok_B": 367.6,
+    "mean_wall_A": 16.01,
+    "mean_wall_B": 8.17,
+    "wall_ratio_A_over_B": 1.96,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [
+      "gsm8k_93",
+      "gsm8k_209",
+      "gsm8k_266",
+      "gsm8k_552"
+     ],
+     "same_final_answer": 494,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.988,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.506,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 236,
+      "non_identical": 264,
+      "non_identical_same_final_answer": 258,
+      "non_identical_with_both_answers_parsed": 264,
+      "non_identical_correctness_agree": 260,
+      "token_delta_buckets": {
+       "0": 17,
+       "1-5": 65,
+       "6-50": 94,
+       ">50": 88
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 6.3,
+      "ref_len_median_identical": 261.5,
+      "ref_len_median_non_identical": 360.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 247,
+        "identity": 0.639
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 379,
+        "identity": 0.524
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2309,
+        "identity": 0.256
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-lcpp-iq2xxs",
+   "B": "TURING-lcpp-iq2xxs-dflash2",
+   "limit": 0,
+   "note": "DFlash2 drafter: lossless?",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-lcpp-iq2xxs",
+    "B": "TURING-lcpp-iq2xxs-dflash2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 96.4,
+    "accA_ci": [
+     94.4,
+     97.7
+    ],
+    "accB": 96.2,
+    "accB_ci": [
+     94.1,
+     97.6
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 3,
+    "B_only_correct": 2,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.374,
+    "identity_ci": [
+     0.333,
+     0.417
+    ],
+    "token_identity_rate": 0.412,
+    "mean_tok_A": 376.4,
+    "mean_tok_B": 376.5,
+    "mean_wall_A": 15.69,
+    "mean_wall_B": 7.69,
+    "wall_ratio_A_over_B": 2.041,
+    "truncated_A": 0,
+    "truncated_B": 1,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_125",
+      "gsm8k_1031"
+     ],
+     "B_only_ids": [
+      "gsm8k_427",
+      "gsm8k_759"
+     ],
+     "same_final_answer": 491,
+     "both_answers_parsed": 499,
+     "same_final_answer_rate": 0.984,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 0.998,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.412,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 187,
+      "non_identical": 313,
+      "non_identical_same_final_answer": 304,
+      "non_identical_with_both_answers_parsed": 312,
+      "non_identical_correctness_agree": 308,
+      "token_delta_buckets": {
+       "0": 19,
+       "1-5": 70,
+       "6-50": 152,
+       ">50": 72
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 0.2,
+      "ref_len_median_identical": 257,
+      "ref_len_median_non_identical": 342,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 249,
+        "identity": 0.53
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 372,
+        "identity": 0.386
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2468,
+        "identity": 0.208
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-lcpp-iq2s",
+   "limit": 0,
+   "note": "EXL3 2.0 bpw vs UD-IQ2_S, undrafted, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-lcpp-iq2s",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 96.6,
+    "accB_ci": [
+     94.6,
+     97.9
+    ],
+    "delta_acc_pts": -1.0,
+    "A_only_correct": 8,
+    "B_only_correct": 3,
+    "mcnemar_p": 0.2266,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.006,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 364.2,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 16.01,
+    "wall_ratio_A_over_B": 0.888,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_93",
+      "gsm8k_209",
+      "gsm8k_266",
+      "gsm8k_552",
+      "gsm8k_590",
+      "gsm8k_926",
+      "gsm8k_1059"
+     ],
+     "B_only_ids": [
+      "gsm8k_187",
+      "gsm8k_1050",
+      "gsm8k_1176"
+     ],
+     "same_final_answer": 485,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.97,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.006,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 485,
+      "non_identical_with_both_answers_parsed": 500,
+      "non_identical_correctness_agree": 489,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 44,
+       "6-50": 249,
+       ">50": 204
+      },
+      "token_delta_median": 22.0,
+      "token_delta_mean": 38.5,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 277.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-lcpp-iq2xxs",
+   "limit": 0,
+   "note": "EXL3 2.0 bpw vs UD-IQ2_XXS, undrafted, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-lcpp-iq2xxs",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 96.4,
+    "accB_ci": [
+     94.4,
+     97.7
+    ],
+    "delta_acc_pts": -1.2,
+    "A_only_correct": 9,
+    "B_only_correct": 3,
+    "mcnemar_p": 0.146,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.012,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 376.4,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 15.69,
+    "wall_ratio_A_over_B": 0.907,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_147",
+      "gsm8k_230",
+      "gsm8k_252",
+      "gsm8k_410",
+      "gsm8k_427",
+      "gsm8k_590",
+      "gsm8k_759",
+      "gsm8k_789",
+      "gsm8k_926"
+     ],
+     "B_only_ids": [
+      "gsm8k_187",
+      "gsm8k_962",
+      "gsm8k_1050"
+     ],
+     "same_final_answer": 482,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.964,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.012,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 482,
+      "non_identical_with_both_answers_parsed": 500,
+      "non_identical_correctness_agree": 488,
+      "token_delta_buckets": {
+       "0": 6,
+       "1-5": 47,
+       "6-50": 257,
+       ">50": 190
+      },
+      "token_delta_median": 15.5,
+      "token_delta_mean": 50.6,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 277.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-lcpp-iq2s-mtp",
+   "limit": 0,
+   "note": "best drafted lanes: EXL3+MTP vs IQ2_S+MTP",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-lcpp-iq2s-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 4,
+    "B_only_correct": 3,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.004,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 367.6,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 8.17,
+    "wall_ratio_A_over_B": 0.789,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_590",
+      "gsm8k_926",
+      "gsm8k_1059"
+     ],
+     "B_only_ids": [
+      "gsm8k_187",
+      "gsm8k_1050",
+      "gsm8k_1176"
+     ],
+     "same_final_answer": 489,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.978,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.004,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 489,
+      "non_identical_with_both_answers_parsed": 500,
+      "non_identical_correctness_agree": 493,
+      "token_delta_buckets": {
+       "0": 2,
+       "1-5": 51,
+       "6-50": 248,
+       ">50": 199
+      },
+      "token_delta_median": 18.0,
+      "token_delta_mean": 40.3,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 277.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-lcpp-iq2xxs-dflash2",
+   "limit": 0,
+   "note": "EXL3+MTP vs IQ2_XXS+DFlash2",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-lcpp-iq2xxs-dflash2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 96.2,
+    "accB_ci": [
+     94.1,
+     97.6
+    ],
+    "delta_acc_pts": -1.4,
+    "A_only_correct": 10,
+    "B_only_correct": 3,
+    "mcnemar_p": 0.0923,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.014,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 376.5,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 7.69,
+    "wall_ratio_A_over_B": 0.839,
+    "truncated_A": 0,
+    "truncated_B": 1,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_125",
+      "gsm8k_147",
+      "gsm8k_230",
+      "gsm8k_252",
+      "gsm8k_410",
+      "gsm8k_590",
+      "gsm8k_789",
+      "gsm8k_926",
+      "gsm8k_1031"
+     ],
+     "B_only_ids": [
+      "gsm8k_187",
+      "gsm8k_962",
+      "gsm8k_1050"
+     ],
+     "same_final_answer": 481,
+     "both_answers_parsed": 499,
+     "same_final_answer_rate": 0.9639,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 0.998,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.014,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 481,
+      "non_identical_with_both_answers_parsed": 499,
+      "non_identical_correctness_agree": 487,
+      "token_delta_buckets": {
+       "0": 7,
+       "1-5": 54,
+       "6-50": 260,
+       ">50": 179
+      },
+      "token_delta_median": 16.0,
+      "token_delta_mean": 49.2,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 277.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-mtp",
+   "limit": 0,
+   "note": "H38a's design on the 2080 Ti: is the MTP drafter lossless (and sample-identical) on 1.6.5?",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.6,
+    "accA_ci": [
+     83.3,
+     89.3
+    ],
+    "accB": 86.8,
+    "accB_ci": [
+     83.6,
+     89.5
+    ],
+    "delta_acc_pts": 0.2,
+    "A_only_correct": 2,
+    "B_only_correct": 3,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.588,
+    "identity_ci": [
+     0.544,
+     0.63
+    ],
+    "token_identity_rate": 0.61,
+    "mean_tok_A": 703.5,
+    "mean_tok_B": 709.6,
+    "mean_wall_A": 31.65,
+    "mean_wall_B": 16.64,
+    "wall_ratio_A_over_B": 1.902,
+    "truncated_A": 1,
+    "truncated_B": 3,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_1185",
+      "mmlu_11635"
+     ],
+     "B_only_ids": [
+      "mmlu_1021",
+      "mmlu_2546",
+      "mmlu_7981"
+     ],
+     "same_final_answer": 492,
+     "both_answers_parsed": 496,
+     "same_final_answer_rate": 0.9919,
+     "thinking_share_A": 0.996,
+     "thinking_share_B": 0.994,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.61,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 294,
+      "non_identical": 206,
+      "non_identical_same_final_answer": 199,
+      "non_identical_with_both_answers_parsed": 203,
+      "non_identical_correctness_agree": 201,
+      "token_delta_buckets": {
+       "0": 11,
+       "1-5": 39,
+       "6-50": 76,
+       ">50": 80
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 14.9,
+      "ref_len_median_identical": 489.0,
+      "ref_len_median_non_identical": 736.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 447,
+        "identity": 0.783
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 716,
+        "identity": 0.608
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.375
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-lcpp-iq2s",
+   "B": "TURING-lcpp-iq2s-mtp",
+   "limit": 0,
+   "note": "llama.cpp shared MTP sidecar: lossless?",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-lcpp-iq2s",
+    "B": "TURING-lcpp-iq2s-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.2,
+    "accA_ci": [
+     82.9,
+     88.9
+    ],
+    "accB": 86.0,
+    "accB_ci": [
+     82.7,
+     88.8
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 11,
+    "B_only_correct": 10,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.128,
+    "identity_ci": [
+     0.102,
+     0.16
+    ],
+    "token_identity_rate": 0.164,
+    "mean_tok_A": 698.9,
+    "mean_tok_B": 709.7,
+    "mean_wall_A": 30.45,
+    "mean_wall_B": 17.45,
+    "wall_ratio_A_over_B": 1.745,
+    "truncated_A": 6,
+    "truncated_B": 1,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_1310",
+      "mmlu_1943",
+      "mmlu_2520",
+      "mmlu_2627",
+      "mmlu_5277",
+      "mmlu_10011",
+      "mmlu_10709",
+      "mmlu_11216",
+      "mmlu_11488",
+      "mmlu_12026",
+      "mmlu_13120"
+     ],
+     "B_only_ids": [
+      "mmlu_3",
+      "mmlu_1021",
+      "mmlu_2546",
+      "mmlu_6242",
+      "mmlu_6701",
+      "mmlu_8643",
+      "mmlu_9057",
+      "mmlu_10567",
+      "mmlu_10737",
+      "mmlu_13290"
+     ],
+     "same_final_answer": 473,
+     "both_answers_parsed": 494,
+     "same_final_answer_rate": 0.9575,
+     "thinking_share_A": 0.988,
+     "thinking_share_B": 0.998,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.164,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 64,
+      "non_identical": 436,
+      "non_identical_same_final_answer": 409,
+      "non_identical_with_both_answers_parsed": 430,
+      "non_identical_correctness_agree": 415,
+      "token_delta_buckets": {
+       "0": 18,
+       "1-5": 56,
+       "6-50": 168,
+       ">50": 194
+      },
+      "token_delta_median": 2.0,
+      "token_delta_mean": 12.4,
+      "ref_len_median_identical": 335.0,
+      "ref_len_median_non_identical": 560.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 428,
+        "identity": 0.247
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 660,
+        "identity": 0.102
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.036
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-lcpp-iq2xxs",
+   "B": "TURING-lcpp-iq2xxs-dflash2",
+   "limit": 0,
+   "note": "DFlash2 drafter: lossless?",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-lcpp-iq2xxs",
+    "B": "TURING-lcpp-iq2xxs-dflash2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 82.8,
+    "accA_ci": [
+     79.2,
+     85.9
+    ],
+    "accB": 83.2,
+    "accB_ci": [
+     79.7,
+     86.2
+    ],
+    "delta_acc_pts": 0.4,
+    "A_only_correct": 17,
+    "B_only_correct": 19,
+    "mcnemar_p": 0.8679,
+    "identity_rate": 0.07,
+    "identity_ci": [
+     0.051,
+     0.096
+    ],
+    "token_identity_rate": 0.098,
+    "mean_tok_A": 710.7,
+    "mean_tok_B": 738.4,
+    "mean_wall_A": 29.42,
+    "mean_wall_B": 18.96,
+    "wall_ratio_A_over_B": 1.552,
+    "truncated_A": 2,
+    "truncated_B": 5,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_261",
+      "mmlu_1723",
+      "mmlu_2017",
+      "mmlu_5935",
+      "mmlu_6067",
+      "mmlu_6242",
+      "mmlu_6370",
+      "mmlu_6474",
+      "mmlu_6566",
+      "mmlu_8119",
+      "mmlu_10737",
+      "mmlu_10853",
+      "mmlu_10872",
+      "mmlu_12799",
+      "mmlu_13163",
+      "mmlu_13290",
+      "mmlu_13732"
+     ],
+     "B_only_ids": [
+      "mmlu_5",
+      "mmlu_170",
+      "mmlu_173",
+      "mmlu_1241",
+      "mmlu_1916",
+      "mmlu_3664",
+      "mmlu_3997",
+      "mmlu_5766",
+      "mmlu_6573",
+      "mmlu_6591",
+      "mmlu_9951",
+      "mmlu_9987",
+      "mmlu_10654",
+      "mmlu_11216",
+      "mmlu_11280",
+      "mmlu_11837",
+      "mmlu_12166",
+      "mmlu_13471",
+      "mmlu_14034"
+     ],
+     "same_final_answer": 455,
+     "both_answers_parsed": 493,
+     "same_final_answer_rate": 0.9229,
+     "thinking_share_A": 0.996,
+     "thinking_share_B": 0.992,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.098,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 35,
+      "non_identical": 465,
+      "non_identical_same_final_answer": 420,
+      "non_identical_with_both_answers_parsed": 458,
+      "non_identical_correctness_agree": 429,
+      "token_delta_buckets": {
+       "0": 14,
+       "1-5": 35,
+       "6-50": 169,
+       ">50": 247
+      },
+      "token_delta_median": 4,
+      "token_delta_mean": 29.8,
+      "ref_len_median_identical": 283,
+      "ref_len_median_non_identical": 573,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 411,
+        "identity": 0.175
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 694,
+        "identity": 0.036
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-lcpp-iq2s",
+   "limit": 0,
+   "note": "EXL3 2.0 bpw vs UD-IQ2_S, undrafted, same card",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-lcpp-iq2s",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.6,
+    "accA_ci": [
+     83.3,
+     89.3
+    ],
+    "accB": 86.2,
+    "accB_ci": [
+     82.9,
+     88.9
+    ],
+    "delta_acc_pts": -0.4,
+    "A_only_correct": 18,
+    "B_only_correct": 16,
+    "mcnemar_p": 0.8642,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.01,
+    "mean_tok_A": 703.5,
+    "mean_tok_B": 698.9,
+    "mean_wall_A": 31.65,
+    "mean_wall_B": 30.45,
+    "wall_ratio_A_over_B": 1.039,
+    "truncated_A": 1,
+    "truncated_B": 6,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_221",
+      "mmlu_1185",
+      "mmlu_1491",
+      "mmlu_5935",
+      "mmlu_6158",
+      "mmlu_6242",
+      "mmlu_6701",
+      "mmlu_6830",
+      "mmlu_8643",
+      "mmlu_8819",
+      "mmlu_9238",
+      "mmlu_10654",
+      "mmlu_10737",
+      "mmlu_10853",
+      "mmlu_11635",
+      "mmlu_11721",
+      "mmlu_11723",
+      "mmlu_12488"
+     ],
+     "B_only_ids": [
+      "mmlu_14",
+      "mmlu_173",
+      "mmlu_1466",
+      "mmlu_2627",
+      "mmlu_2662",
+      "mmlu_4219",
+      "mmlu_7235",
+      "mmlu_9677",
+      "mmlu_10576",
+      "mmlu_10709",
+      "mmlu_10714",
+      "mmlu_10872",
+      "mmlu_11216",
+      "mmlu_12882",
+      "mmlu_12895",
+      "mmlu_14000"
+     ],
+     "same_final_answer": 452,
+     "both_answers_parsed": 493,
+     "same_final_answer_rate": 0.9168,
+     "thinking_share_A": 0.996,
+     "thinking_share_B": 0.988,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.01,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 452,
+      "non_identical_with_both_answers_parsed": 493,
+      "non_identical_correctness_agree": 466,
+      "token_delta_buckets": {
+       "0": 5,
+       "1-5": 16,
+       "6-50": 150,
+       ">50": 329
+      },
+      "token_delta_median": -25.0,
+      "token_delta_mean": -4.5,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 567.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 447,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 716,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-lcpp-iq2xxs",
+   "limit": 0,
+   "note": "EXL3 2.0 bpw vs UD-IQ2_XXS, undrafted, same card",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-lcpp-iq2xxs",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.6,
+    "accA_ci": [
+     83.3,
+     89.3
+    ],
+    "accB": 82.8,
+    "accB_ci": [
+     79.2,
+     85.9
+    ],
+    "delta_acc_pts": -3.8,
+    "A_only_correct": 38,
+    "B_only_correct": 19,
+    "mcnemar_p": 0.0163,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.002,
+    "mean_tok_A": 703.5,
+    "mean_tok_B": 710.7,
+    "mean_wall_A": 31.65,
+    "mean_wall_B": 29.42,
+    "wall_ratio_A_over_B": 1.076,
+    "truncated_A": 1,
+    "truncated_B": 2,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_5",
+      "mmlu_170",
+      "mmlu_221",
+      "mmlu_867",
+      "mmlu_1185",
+      "mmlu_1241",
+      "mmlu_1916",
+      "mmlu_1943",
+      "mmlu_2555",
+      "mmlu_2629",
+      "mmlu_3522",
+      "mmlu_3674",
+      "mmlu_3997",
+      "mmlu_4109",
+      "mmlu_5766",
+      "mmlu_6158",
+      "mmlu_6591",
+      "mmlu_6830",
+      "mmlu_6965",
+      "mmlu_8071",
+      "mmlu_8279",
+      "mmlu_9238",
+      "mmlu_9576",
+      "mmlu_9873",
+      "mmlu_9951",
+      "mmlu_9987",
+      "mmlu_10303",
+      "mmlu_10544",
+      "mmlu_10654",
+      "mmlu_11280",
+      "mmlu_11837",
+      "mmlu_12026",
+      "mmlu_12166",
+      "mmlu_13004",
+      "mmlu_13146",
+      "mmlu_13375",
+      "mmlu_13471",
+      "mmlu_13865"
+     ],
+     "B_only_ids": [
+      "mmlu_14",
+      "mmlu_1021",
+      "mmlu_1466",
+      "mmlu_2546",
+      "mmlu_4219",
+      "mmlu_6067",
+      "mmlu_6370",
+      "mmlu_7235",
+      "mmlu_8204",
+      "mmlu_10301",
+      "mmlu_10314",
+      "mmlu_10576",
+      "mmlu_10709",
+      "mmlu_10872",
+      "mmlu_12799",
+      "mmlu_12882",
+      "mmlu_13290",
+      "mmlu_13732",
+      "mmlu_14000"
+     ],
+     "same_final_answer": 432,
+     "both_answers_parsed": 495,
+     "same_final_answer_rate": 0.8727,
+     "thinking_share_A": 0.996,
+     "thinking_share_B": 0.996,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.002,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 432,
+      "non_identical_with_both_answers_parsed": 495,
+      "non_identical_correctness_agree": 443,
+      "token_delta_buckets": {
+       "0": 1,
+       "1-5": 12,
+       "6-50": 109,
+       ">50": 378
+      },
+      "token_delta_median": -37.0,
+      "token_delta_mean": 7.2,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 567.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 447,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 716,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-lcpp-iq2s-mtp",
+   "limit": 0,
+   "note": "best drafted lanes: EXL3+MTP vs IQ2_S+MTP",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-lcpp-iq2s-mtp",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.8,
+    "accA_ci": [
+     83.6,
+     89.5
+    ],
+    "accB": 86.0,
+    "accB_ci": [
+     82.7,
+     88.8
+    ],
+    "delta_acc_pts": -0.8,
+    "A_only_correct": 21,
+    "B_only_correct": 17,
+    "mcnemar_p": 0.6271,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.008,
+    "mean_tok_A": 709.6,
+    "mean_tok_B": 709.7,
+    "mean_wall_A": 16.64,
+    "mean_wall_B": 17.45,
+    "wall_ratio_A_over_B": 0.953,
+    "truncated_A": 3,
+    "truncated_B": 1,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_221",
+      "mmlu_1310",
+      "mmlu_1491",
+      "mmlu_1943",
+      "mmlu_2520",
+      "mmlu_5277",
+      "mmlu_5935",
+      "mmlu_6158",
+      "mmlu_6830",
+      "mmlu_7981",
+      "mmlu_8819",
+      "mmlu_9238",
+      "mmlu_10011",
+      "mmlu_10654",
+      "mmlu_10853",
+      "mmlu_11488",
+      "mmlu_11721",
+      "mmlu_11723",
+      "mmlu_12026",
+      "mmlu_12488",
+      "mmlu_13120"
+     ],
+     "B_only_ids": [
+      "mmlu_3",
+      "mmlu_14",
+      "mmlu_173",
+      "mmlu_1466",
+      "mmlu_2662",
+      "mmlu_4219",
+      "mmlu_7235",
+      "mmlu_9057",
+      "mmlu_9677",
+      "mmlu_10567",
+      "mmlu_10576",
+      "mmlu_10714",
+      "mmlu_10872",
+      "mmlu_12882",
+      "mmlu_12895",
+      "mmlu_13290",
+      "mmlu_14000"
+     ],
+     "same_final_answer": 450,
+     "both_answers_parsed": 496,
+     "same_final_answer_rate": 0.9073,
+     "thinking_share_A": 0.994,
+     "thinking_share_B": 0.998,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.008,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 450,
+      "non_identical_with_both_answers_parsed": 496,
+      "non_identical_correctness_agree": 462,
+      "token_delta_buckets": {
+       "0": 4,
+       "1-5": 12,
+       "6-50": 153,
+       ">50": 331
+      },
+      "token_delta_median": -15.0,
+      "token_delta_mean": 0.1,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 562.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 447,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 722,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "turing-internal",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-lcpp-iq2xxs-dflash2",
+   "limit": 0,
+   "note": "EXL3+MTP vs IQ2_XXS+DFlash2",
+   "stats": {
+    "suite": "mmlu_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-lcpp-iq2xxs-dflash2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 86.8,
+    "accA_ci": [
+     83.6,
+     89.5
+    ],
+    "accB": 83.2,
+    "accB_ci": [
+     79.7,
+     86.2
+    ],
+    "delta_acc_pts": -3.6,
+    "A_only_correct": 35,
+    "B_only_correct": 17,
+    "mcnemar_p": 0.0175,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.008
+    ],
+    "token_identity_rate": 0.006,
+    "mean_tok_A": 709.6,
+    "mean_tok_B": 738.4,
+    "mean_wall_A": 16.64,
+    "mean_wall_B": 18.96,
+    "wall_ratio_A_over_B": 0.878,
+    "truncated_A": 3,
+    "truncated_B": 5,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "mmlu_221",
+      "mmlu_261",
+      "mmlu_867",
+      "mmlu_1723",
+      "mmlu_1943",
+      "mmlu_2017",
+      "mmlu_2555",
+      "mmlu_2629",
+      "mmlu_3522",
+      "mmlu_3674",
+      "mmlu_4109",
+      "mmlu_5935",
+      "mmlu_6158",
+      "mmlu_6242",
+      "mmlu_6474",
+      "mmlu_6566",
+      "mmlu_6830",
+      "mmlu_6965",
+      "mmlu_7981",
+      "mmlu_8071",
+      "mmlu_8119",
+      "mmlu_8279",
+      "mmlu_9238",
+      "mmlu_9576",
+      "mmlu_9873",
+      "mmlu_10303",
+      "mmlu_10544",
+      "mmlu_10737",
+      "mmlu_10853",
+      "mmlu_12026",
+      "mmlu_13004",
+      "mmlu_13146",
+      "mmlu_13163",
+      "mmlu_13375",
+      "mmlu_13865"
+     ],
+     "B_only_ids": [
+      "mmlu_14",
+      "mmlu_173",
+      "mmlu_1466",
+      "mmlu_3664",
+      "mmlu_4219",
+      "mmlu_6573",
+      "mmlu_7235",
+      "mmlu_8204",
+      "mmlu_10301",
+      "mmlu_10314",
+      "mmlu_10576",
+      "mmlu_10709",
+      "mmlu_11216",
+      "mmlu_11635",
+      "mmlu_12882",
+      "mmlu_14000",
+      "mmlu_14034"
+     ],
+     "same_final_answer": 436,
+     "both_answers_parsed": 492,
+     "same_final_answer_rate": 0.8862,
+     "thinking_share_A": 0.994,
+     "thinking_share_B": 0.992,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.006,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 0,
+      "non_identical": 500,
+      "non_identical_same_final_answer": 436,
+      "non_identical_with_both_answers_parsed": 492,
+      "non_identical_correctness_agree": 448,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 11,
+       "6-50": 117,
+       ">50": 369
+      },
+      "token_delta_median": -32.0,
+      "token_delta_mean": 28.8,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 562.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 447,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 722,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 4096,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38b_q4kxl_mtp",
+   "B": "TURING-lcpp-iq2xxs",
+   "limit": 200,
+   "note": "laptop UD-Q4_K_XL + shared MTP (E48), first 200 items: a 4-bit reference, not a replication",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38b_q4kxl_mtp",
+    "B": "TURING-lcpp-iq2xxs",
+    "n": 200,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     95.0,
+     99.2
+    ],
+    "accB": 97.0,
+    "accB_ci": [
+     93.6,
+     98.6
+    ],
+    "delta_acc_pts": -1.0,
+    "A_only_correct": 5,
+    "B_only_correct": 3,
+    "mcnemar_p": 0.7266,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.019
+    ],
+    "token_identity_rate": 0.015,
+    "mean_tok_A": 321.9,
+    "mean_tok_B": 365.9,
+    "mean_wall_A": 30.24,
+    "mean_wall_B": 15.23,
+    "wall_ratio_A_over_B": 1.986,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": 200,
+     "pairs_total": 200,
+     "A_only_ids": [
+      "gsm8k_147",
+      "gsm8k_230",
+      "gsm8k_252",
+      "gsm8k_410",
+      "gsm8k_427"
+     ],
+     "B_only_ids": [
+      "gsm8k_93",
+      "gsm8k_125",
+      "gsm8k_241"
+     ],
+     "same_final_answer": 190,
+     "both_answers_parsed": 200,
+     "same_final_answer_rate": 0.95,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "split",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "shape_matched_n": 0,
+     "inline_scored_A": 0,
+     "inline_path_differs_A": [],
+     "token_identity_rate_matched": 0.015,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 200,
+      "identical": 0,
+      "non_identical": 200,
+      "non_identical_same_final_answer": 190,
+      "non_identical_with_both_answers_parsed": 200,
+      "non_identical_correctness_agree": 192,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 21,
+       "6-50": 89,
+       ">50": 87
+      },
+      "token_delta_median": 19.5,
+      "token_delta_mean": 43.9,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 290.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 66,
+        "max_tokens": 233,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 66,
+        "max_tokens": 338,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 68,
+        "max_tokens": 2722,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38b_q4kxl_mtp",
+   "B": "TURING-lcpp-iq2s",
+   "limit": 200,
+   "note": "laptop UD-Q4_K_XL + shared MTP (E48), first 200 items: a 4-bit reference, not a replication",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38b_q4kxl_mtp",
+    "B": "TURING-lcpp-iq2s",
+    "n": 200,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     95.0,
+     99.2
+    ],
+    "accB": 97.5,
+    "accB_ci": [
+     94.3,
+     98.9
+    ],
+    "delta_acc_pts": -0.5,
+    "A_only_correct": 3,
+    "B_only_correct": 2,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.019
+    ],
+    "token_identity_rate": 0.005,
+    "mean_tok_A": 321.9,
+    "mean_tok_B": 358.7,
+    "mean_wall_A": 30.24,
+    "mean_wall_B": 15.76,
+    "wall_ratio_A_over_B": 1.919,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": 200,
+     "pairs_total": 200,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_209",
+      "gsm8k_266"
+     ],
+     "B_only_ids": [
+      "gsm8k_125",
+      "gsm8k_241"
+     ],
+     "same_final_answer": 193,
+     "both_answers_parsed": 200,
+     "same_final_answer_rate": 0.965,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "split",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "shape_matched_n": 0,
+     "inline_scored_A": 0,
+     "inline_path_differs_A": [],
+     "token_identity_rate_matched": 0.005,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 200,
+      "identical": 0,
+      "non_identical": 200,
+      "non_identical_same_final_answer": 193,
+      "non_identical_with_both_answers_parsed": 200,
+      "non_identical_correctness_agree": 195,
+      "token_delta_buckets": {
+       "0": 1,
+       "1-5": 12,
+       "6-50": 99,
+       ">50": 88
+      },
+      "token_delta_median": 21.5,
+      "token_delta_mean": 36.7,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 290.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 66,
+        "max_tokens": 233,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 66,
+        "max_tokens": 338,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 68,
+        "max_tokens": 2722,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38b_q4kxl_mtp",
+   "B": "TURING-lcpp-iq2s-mtp",
+   "limit": 200,
+   "note": "laptop UD-Q4_K_XL + shared MTP (E48), first 200 items: a 4-bit reference, not a replication",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38b_q4kxl_mtp",
+    "B": "TURING-lcpp-iq2s-mtp",
+    "n": 200,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     95.0,
+     99.2
+    ],
+    "accB": 99.0,
+    "accB_ci": [
+     96.4,
+     99.7
+    ],
+    "delta_acc_pts": 1.0,
+    "A_only_correct": 1,
+    "B_only_correct": 3,
+    "mcnemar_p": 0.625,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.019
+    ],
+    "token_identity_rate": 0.005,
+    "mean_tok_A": 321.9,
+    "mean_tok_B": 359.2,
+    "mean_wall_A": 30.24,
+    "mean_wall_B": 7.95,
+    "wall_ratio_A_over_B": 3.804,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": 200,
+     "pairs_total": 200,
+     "A_only_ids": [
+      "gsm8k_12"
+     ],
+     "B_only_ids": [
+      "gsm8k_93",
+      "gsm8k_125",
+      "gsm8k_241"
+     ],
+     "same_final_answer": 195,
+     "both_answers_parsed": 200,
+     "same_final_answer_rate": 0.975,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "split",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "shape_matched_n": 0,
+     "inline_scored_A": 0,
+     "inline_path_differs_A": [],
+     "token_identity_rate_matched": 0.005,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 200,
+      "identical": 0,
+      "non_identical": 200,
+      "non_identical_same_final_answer": 195,
+      "non_identical_with_both_answers_parsed": 200,
+      "non_identical_correctness_agree": 196,
+      "token_delta_buckets": {
+       "0": 1,
+       "1-5": 9,
+       "6-50": 101,
+       ">50": 89
+      },
+      "token_delta_median": 21.0,
+      "token_delta_mean": 37.2,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 290.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 66,
+        "max_tokens": 233,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 66,
+        "max_tokens": 338,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 68,
+        "max_tokens": 2722,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "reference",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38b_q4kxl_mtp",
+   "B": "TURING-lcpp-iq2xxs-dflash2",
+   "limit": 200,
+   "note": "laptop UD-Q4_K_XL + shared MTP (E48), first 200 items: a 4-bit reference, not a replication",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38b_q4kxl_mtp",
+    "B": "TURING-lcpp-iq2xxs-dflash2",
+    "n": 200,
+    "errors": 0,
+    "missing": 0,
+    "accA": 98.0,
+    "accA_ci": [
+     95.0,
+     99.2
+    ],
+    "accB": 96.5,
+    "accB_ci": [
+     93.0,
+     98.3
+    ],
+    "delta_acc_pts": -1.5,
+    "A_only_correct": 5,
+    "B_only_correct": 2,
+    "mcnemar_p": 0.4531,
+    "identity_rate": 0.0,
+    "identity_ci": [
+     0.0,
+     0.019
+    ],
+    "token_identity_rate": 0.025,
+    "mean_tok_A": 321.9,
+    "mean_tok_B": 374.3,
+    "mean_wall_A": 30.24,
+    "mean_wall_B": 7.6,
+    "wall_ratio_A_over_B": 3.978,
+    "truncated_A": 0,
+    "truncated_B": 1,
+    "extra": {
+     "limit": 200,
+     "pairs_total": 200,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_147",
+      "gsm8k_230",
+      "gsm8k_252",
+      "gsm8k_410"
+     ],
+     "B_only_ids": [
+      "gsm8k_93",
+      "gsm8k_241"
+     ],
+     "same_final_answer": 191,
+     "both_answers_parsed": 199,
+     "same_final_answer_rate": 0.9598,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 0.995,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "split",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "shape_matched_n": 0,
+     "inline_scored_A": 0,
+     "inline_path_differs_A": [],
+     "token_identity_rate_matched": 0.025,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 200,
+      "identical": 0,
+      "non_identical": 200,
+      "non_identical_same_final_answer": 191,
+      "non_identical_with_both_answers_parsed": 199,
+      "non_identical_correctness_agree": 193,
+      "token_delta_buckets": {
+       "0": 5,
+       "1-5": 22,
+       "6-50": 87,
+       ">50": 86
+      },
+      "token_delta_median": 16.5,
+      "token_delta_mean": 52.4,
+      "ref_len_median_identical": null,
+      "ref_len_median_non_identical": 290.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 66,
+        "max_tokens": 233,
+        "identity": 0.0
+       },
+       "mid": {
+        "n": 66,
+        "max_tokens": 338,
+        "identity": 0.0
+       },
+       "long": {
+        "n": 68,
+        "max_tokens": 2722,
+        "identity": 0.0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-fp32",
+   "limit": 0,
+   "note": "variant 'fp32' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-fp32",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.882,
+    "identity_ci": [
+     0.851,
+     0.907
+    ],
+    "token_identity_rate": 0.89,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 325.5,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 5.95,
+    "wall_ratio_A_over_B": 1.083,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.89,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 441,
+      "non_identical": 59,
+      "non_identical_same_final_answer": 58,
+      "non_identical_with_both_answers_parsed": 59,
+      "non_identical_correctness_agree": 59,
+      "token_delta_buckets": {
+       "0": 4,
+       "1-5": 21,
+       "6-50": 24,
+       ">50": 10
+      },
+      "token_delta_median": -1,
+      "token_delta_mean": -14.5,
+      "ref_len_median_identical": 267,
+      "ref_len_median_non_identical": 407,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.94
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.928
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.78
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-fp32",
+   "limit": 0,
+   "note": "E47 replication with variant 'fp32' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-fp32",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.864,
+    "identity_ci": [
+     0.831,
+     0.891
+    ],
+    "token_identity_rate": 0.864,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 325.5,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 5.95,
+    "wall_ratio_A_over_B": 1.089,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 500,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 1.0,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.87,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 325.5,
+     "anatomy": {
+      "n": 500,
+      "identical": 432,
+      "non_identical": 68,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 68,
+      "non_identical_with_both_answers_parsed": 68,
+      "non_identical_correctness_agree": 68,
+      "token_delta_n": 68,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 31,
+       "6-50": 24,
+       ">50": 10
+      },
+      "token_delta_median": -1.0,
+      "token_delta_mean": -47.1,
+      "ref_len_median_identical": 268.0,
+      "ref_len_median_non_identical": 383.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.91
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.928
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.756
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-fp32",
+   "limit": 0,
+   "note": "variant 'fp32' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-fp32"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-fp32",
+   "limit": 0,
+   "note": "E47 replication with variant 'fp32' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-fp32"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w11j2",
+   "limit": 0,
+   "note": "variant 'w11j2' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-w11j2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.886,
+    "identity_ci": [
+     0.855,
+     0.911
+    ],
+    "token_identity_rate": 0.89,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 323.8,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 5.44,
+    "wall_ratio_A_over_B": 1.186,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.89,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 443,
+      "non_identical": 57,
+      "non_identical_same_final_answer": 56,
+      "non_identical_with_both_answers_parsed": 57,
+      "non_identical_correctness_agree": 57,
+      "token_delta_buckets": {
+       "0": 2,
+       "1-5": 17,
+       "6-50": 25,
+       ">50": 13
+      },
+      "token_delta_median": -1,
+      "token_delta_mean": -30.4,
+      "ref_len_median_identical": 273,
+      "ref_len_median_non_identical": 333,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.922
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.898
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.839
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w11j2",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11j2' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-w11j2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.87,
+    "identity_ci": [
+     0.838,
+     0.897
+    ],
+    "token_identity_rate": 0.874,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 323.8,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 5.44,
+    "wall_ratio_A_over_B": 1.193,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 500,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 1.0,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.878,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 323.8,
+     "anatomy": {
+      "n": 500,
+      "identical": 435,
+      "non_identical": 65,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 65,
+      "non_identical_with_both_answers_parsed": 65,
+      "non_identical_correctness_agree": 65,
+      "token_delta_n": 65,
+      "token_delta_buckets": {
+       "0": 4,
+       "1-5": 23,
+       "6-50": 26,
+       ">50": 12
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": -62.8,
+      "ref_len_median_identical": 272,
+      "ref_len_median_non_identical": 372,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.904
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.916
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.792
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w11j2",
+   "limit": 0,
+   "note": "variant 'w11j2' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-w11j2"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w11j2",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11j2' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-w11j2"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w11j2-mp05",
+   "limit": 0,
+   "note": "variant 'w11j2-mp05' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-w11j2-mp05",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.0,
+    "accB_ci": [
+     95.1,
+     98.2
+    ],
+    "delta_acc_pts": -0.6,
+    "A_only_correct": 3,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.25,
+    "identity_rate": 0.704,
+    "identity_ci": [
+     0.663,
+     0.742
+    ],
+    "token_identity_rate": 0.71,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 321.6,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 5.23,
+    "wall_ratio_A_over_B": 1.233,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505",
+      "gsm8k_1166"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 496,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.992,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.71,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 352,
+      "non_identical": 148,
+      "non_identical_same_final_answer": 144,
+      "non_identical_with_both_answers_parsed": 148,
+      "non_identical_correctness_agree": 145,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 28,
+       "6-50": 75,
+       ">50": 42
+      },
+      "token_delta_median": -6.0,
+      "token_delta_mean": -19.0,
+      "ref_len_median_identical": 255.0,
+      "ref_len_median_non_identical": 347.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.843
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.729
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.542
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w11j2-mp05",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11j2-mp05' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-w11j2-mp05",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.0,
+    "accB_ci": [
+     95.1,
+     98.2
+    ],
+    "delta_acc_pts": -0.6,
+    "A_only_correct": 3,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.25,
+    "identity_rate": 0.712,
+    "identity_ci": [
+     0.671,
+     0.75
+    ],
+    "token_identity_rate": 0.714,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 321.6,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 5.23,
+    "wall_ratio_A_over_B": 1.24,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505",
+      "gsm8k_1166"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 497,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.994,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.718,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 321.6,
+     "anatomy": {
+      "n": 500,
+      "identical": 356,
+      "non_identical": 144,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 141,
+      "non_identical_with_both_answers_parsed": 144,
+      "non_identical_correctness_agree": 141,
+      "token_delta_n": 144,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 32,
+       "6-50": 70,
+       ">50": 39
+      },
+      "token_delta_median": -6.0,
+      "token_delta_mean": -35.8,
+      "ref_len_median_identical": 257.5,
+      "ref_len_median_non_identical": 361.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.843
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.765
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.53
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w11j2-mp05",
+   "limit": 0,
+   "note": "variant 'w11j2-mp05' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-w11j2-mp05"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w11j2-mp05",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11j2-mp05' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-w11j2-mp05"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w13",
+   "limit": 0,
+   "note": "variant 'w13' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-w13",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.2,
+    "accB_ci": [
+     95.4,
+     98.3
+    ],
+    "delta_acc_pts": -0.4,
+    "A_only_correct": 2,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.5,
+    "identity_rate": 0.882,
+    "identity_ci": [
+     0.851,
+     0.907
+    ],
+    "token_identity_rate": 0.892,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 330.5,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 4.47,
+    "wall_ratio_A_over_B": 1.441,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 497,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.994,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.892,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 441,
+      "non_identical": 59,
+      "non_identical_same_final_answer": 56,
+      "non_identical_with_both_answers_parsed": 59,
+      "non_identical_correctness_agree": 57,
+      "token_delta_buckets": {
+       "0": 5,
+       "1-5": 14,
+       "6-50": 27,
+       ">50": 13
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 28.0,
+      "ref_len_median_identical": 269,
+      "ref_len_median_non_identical": 409,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.928
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.928
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.792
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w13",
+   "limit": 0,
+   "note": "E47 replication with variant 'w13' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-w13",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.2,
+    "accB_ci": [
+     95.4,
+     98.3
+    ],
+    "delta_acc_pts": -0.4,
+    "A_only_correct": 2,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.5,
+    "identity_rate": 0.86,
+    "identity_ci": [
+     0.827,
+     0.888
+    ],
+    "token_identity_rate": 0.86,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 330.5,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 4.47,
+    "wall_ratio_A_over_B": 1.45,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 498,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.996,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.866,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 330.5,
+     "anatomy": {
+      "n": 500,
+      "identical": 430,
+      "non_identical": 70,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 68,
+      "non_identical_with_both_answers_parsed": 70,
+      "non_identical_correctness_agree": 68,
+      "token_delta_n": 70,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 28,
+       "6-50": 27,
+       ">50": 12
+      },
+      "token_delta_median": -0.5,
+      "token_delta_mean": -9.9,
+      "ref_len_median_identical": 268.0,
+      "ref_len_median_non_identical": 376.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.922
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.892
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.768
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w13",
+   "limit": 0,
+   "note": "variant 'w13' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-w13"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w13",
+   "limit": 0,
+   "note": "E47 replication with variant 'w13' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-w13"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w13s2",
+   "limit": 0,
+   "note": "variant 'w13s2' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-w13s2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.874,
+    "identity_ci": [
+     0.842,
+     0.9
+    ],
+    "token_identity_rate": 0.878,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 325.9,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 4.07,
+    "wall_ratio_A_over_B": 1.585,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 500,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 1.0,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.878,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 437,
+      "non_identical": 63,
+      "non_identical_same_final_answer": 63,
+      "non_identical_with_both_answers_parsed": 63,
+      "non_identical_correctness_agree": 63,
+      "token_delta_buckets": {
+       "0": 2,
+       "1-5": 22,
+       "6-50": 29,
+       ">50": 10
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": -10.2,
+      "ref_len_median_identical": 272,
+      "ref_len_median_non_identical": 351,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.922
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.898
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.804
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w13s2",
+   "limit": 0,
+   "note": "E47 replication with variant 'w13s2' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-w13s2",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.6,
+    "accB_ci": [
+     95.9,
+     98.6
+    ],
+    "delta_acc_pts": 0.0,
+    "A_only_correct": 0,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.868,
+    "identity_ci": [
+     0.836,
+     0.895
+    ],
+    "token_identity_rate": 0.872,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 325.9,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 4.07,
+    "wall_ratio_A_over_B": 1.594,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.878,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 325.9,
+     "anatomy": {
+      "n": 500,
+      "identical": 434,
+      "non_identical": 66,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 65,
+      "non_identical_with_both_answers_parsed": 66,
+      "non_identical_correctness_agree": 66,
+      "token_delta_n": 66,
+      "token_delta_buckets": {
+       "0": 5,
+       "1-5": 26,
+       "6-50": 23,
+       ">50": 12
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": -45.4,
+      "ref_len_median_identical": 268.5,
+      "ref_len_median_non_identical": 396.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.916
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.916
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.774
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w13s2",
+   "limit": 0,
+   "note": "variant 'w13s2' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-w13s2"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w13s2",
+   "limit": 0,
+   "note": "E47 replication with variant 'w13s2' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-w13s2"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w9g1",
+   "limit": 0,
+   "note": "variant 'w9g1' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-mtp",
+    "B": "TURING-exl3-mtp-w9g1",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 1,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.886,
+    "identity_ci": [
+     0.855,
+     0.911
+    ],
+    "token_identity_rate": 0.896,
+    "mean_tok_A": 327.2,
+    "mean_tok_B": 324.7,
+    "mean_wall_A": 6.45,
+    "mean_wall_B": 5.62,
+    "wall_ratio_A_over_B": 1.146,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 498,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.996,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.896,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 443,
+      "non_identical": 57,
+      "non_identical_same_final_answer": 55,
+      "non_identical_with_both_answers_parsed": 57,
+      "non_identical_correctness_agree": 56,
+      "token_delta_buckets": {
+       "0": 5,
+       "1-5": 20,
+       "6-50": 24,
+       ">50": 8
+      },
+      "token_delta_median": -1,
+      "token_delta_mean": -22.2,
+      "ref_len_median_identical": 269,
+      "ref_len_median_non_identical": 340,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.934
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.904
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1805,
+        "identity": 0.821
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w9g1",
+   "limit": 0,
+   "note": "E47 replication with variant 'w9g1' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_mtp",
+    "B": "TURING-exl3-mtp-w9g1",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 1,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.858,
+    "identity_ci": [
+     0.825,
+     0.886
+    ],
+    "token_identity_rate": 0.866,
+    "mean_tok_A": 331.9,
+    "mean_tok_B": 324.7,
+    "mean_wall_A": 6.49,
+    "mean_wall_B": 5.62,
+    "wall_ratio_A_over_B": 1.154,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.87,
+     "mean_tok_A_matched": 331.9,
+     "mean_tok_B_matched": 324.7,
+     "anatomy": {
+      "n": 500,
+      "identical": 429,
+      "non_identical": 71,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 70,
+      "non_identical_with_both_answers_parsed": 71,
+      "non_identical_correctness_agree": 70,
+      "token_delta_n": 71,
+      "token_delta_buckets": {
+       "0": 6,
+       "1-5": 28,
+       "6-50": 30,
+       ">50": 7
+      },
+      "token_delta_median": -1,
+      "token_delta_mean": -50.9,
+      "ref_len_median_identical": 268,
+      "ref_len_median_non_identical": 372,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.916
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.892
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2957,
+        "identity": 0.768
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-mtp",
+   "B": "TURING-exl3-mtp-w9g1",
+   "limit": 0,
+   "note": "variant 'w9g1' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-mtp-w9g1"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_mtp",
+   "B": "TURING-exl3-mtp-w9g1",
+   "limit": 0,
+   "note": "E47 replication with variant 'w9g1' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-mtp-w9g1"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-fp32",
+   "limit": 0,
+   "note": "variant 'fp32' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-nodraft-fp32",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 1,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.896,
+    "identity_ci": [
+     0.866,
+     0.92
+    ],
+    "token_identity_rate": 0.902,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 327.3,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 13.36,
+    "wall_ratio_A_over_B": 1.065,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_505"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.902,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 448,
+      "non_identical": 52,
+      "non_identical_same_final_answer": 51,
+      "non_identical_with_both_answers_parsed": 52,
+      "non_identical_correctness_agree": 51,
+      "token_delta_buckets": {
+       "0": 3,
+       "1-5": 17,
+       "6-50": 25,
+       ">50": 7
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 14.4,
+      "ref_len_median_identical": 272.0,
+      "ref_len_median_non_identical": 401.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.94
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.934
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.815
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-fp32",
+   "limit": 0,
+   "note": "E47 replication with variant 'fp32' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft-fp32",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.2,
+    "accA_ci": [
+     95.4,
+     98.3
+    ],
+    "accB": 97.4,
+    "accB_ci": [
+     95.6,
+     98.5
+    ],
+    "delta_acc_pts": 0.2,
+    "A_only_correct": 0,
+    "B_only_correct": 1,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.644,
+    "identity_ci": [
+     0.601,
+     0.685
+    ],
+    "token_identity_rate": 0.684,
+    "mean_tok_A": 327.1,
+    "mean_tok_B": 327.3,
+    "mean_wall_A": 11.61,
+    "mean_wall_B": 13.36,
+    "wall_ratio_A_over_B": 0.869,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [],
+     "B_only_ids": [
+      "gsm8k_12"
+     ],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.69,
+     "mean_tok_A_matched": 327.1,
+     "mean_tok_B_matched": 327.3,
+     "anatomy": {
+      "n": 500,
+      "identical": 322,
+      "non_identical": 178,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 177,
+      "non_identical_with_both_answers_parsed": 178,
+      "non_identical_correctness_agree": 177,
+      "token_delta_n": 178,
+      "token_delta_buckets": {
+       "0": 23,
+       "1-5": 67,
+       "6-50": 62,
+       ">50": 26
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 0.7,
+      "ref_len_median_identical": 257.0,
+      "ref_len_median_non_identical": 330.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 227,
+        "identity": 0.765
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.681
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2110,
+        "identity": 0.488
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-fp32",
+   "limit": 0,
+   "note": "variant 'fp32' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-nodraft-fp32"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-fp32",
+   "limit": 0,
+   "note": "E47 replication with variant 'fp32' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-nodraft-fp32"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w11",
+   "limit": 0,
+   "note": "variant 'w11' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-nodraft-w11",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 96.8,
+    "accB_ci": [
+     94.9,
+     98.0
+    ],
+    "delta_acc_pts": -0.8,
+    "A_only_correct": 4,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.125,
+    "identity_rate": 0.666,
+    "identity_ci": [
+     0.624,
+     0.706
+    ],
+    "token_identity_rate": 0.694,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 328.5,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 7.95,
+    "wall_ratio_A_over_B": 1.789,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_154",
+      "gsm8k_252",
+      "gsm8k_1190"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 495,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.694,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 333,
+      "non_identical": 167,
+      "non_identical_same_final_answer": 162,
+      "non_identical_with_both_answers_parsed": 167,
+      "non_identical_correctness_agree": 163,
+      "token_delta_buckets": {
+       "0": 14,
+       "1-5": 44,
+       "6-50": 85,
+       ">50": 24
+      },
+      "token_delta_median": 0,
+      "token_delta_mean": 8.0,
+      "ref_len_median_identical": 263,
+      "ref_len_median_non_identical": 330,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.759
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.711
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.53
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w11",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft-w11",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.2,
+    "accA_ci": [
+     95.4,
+     98.3
+    ],
+    "accB": 96.8,
+    "accB_ci": [
+     94.9,
+     98.0
+    ],
+    "delta_acc_pts": -0.4,
+    "A_only_correct": 3,
+    "B_only_correct": 1,
+    "mcnemar_p": 0.625,
+    "identity_rate": 0.604,
+    "identity_ci": [
+     0.56,
+     0.646
+    ],
+    "token_identity_rate": 0.652,
+    "mean_tok_A": 327.1,
+    "mean_tok_B": 328.5,
+    "mean_wall_A": 11.61,
+    "mean_wall_B": 7.95,
+    "wall_ratio_A_over_B": 1.461,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_154",
+      "gsm8k_252",
+      "gsm8k_1190"
+     ],
+     "B_only_ids": [
+      "gsm8k_505"
+     ],
+     "same_final_answer": 495,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.654,
+     "mean_tok_A_matched": 327.1,
+     "mean_tok_B_matched": 328.5,
+     "anatomy": {
+      "n": 500,
+      "identical": 302,
+      "non_identical": 198,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 193,
+      "non_identical_with_both_answers_parsed": 198,
+      "non_identical_correctness_agree": 194,
+      "token_delta_n": 198,
+      "token_delta_buckets": {
+       "0": 25,
+       "1-5": 58,
+       "6-50": 85,
+       ">50": 30
+      },
+      "token_delta_median": 0.5,
+      "token_delta_mean": 3.6,
+      "ref_len_median_identical": 250.5,
+      "ref_len_median_non_identical": 335.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 227,
+        "identity": 0.753
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.639
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2110,
+        "identity": 0.423
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w11",
+   "limit": 0,
+   "note": "variant 'w11' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-nodraft-w11"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w11",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-nodraft-w11"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w11-mp05",
+   "limit": 0,
+   "note": "variant 'w11-mp05' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-nodraft-w11-mp05",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 96.8,
+    "accB_ci": [
+     94.9,
+     98.0
+    ],
+    "delta_acc_pts": -0.8,
+    "A_only_correct": 4,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.125,
+    "identity_rate": 0.572,
+    "identity_ci": [
+     0.528,
+     0.615
+    ],
+    "token_identity_rate": 0.594,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 321.2,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 7.58,
+    "wall_ratio_A_over_B": 1.876,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_154",
+      "gsm8k_505",
+      "gsm8k_1166",
+      "gsm8k_1190"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 495,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.594,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 286,
+      "non_identical": 214,
+      "non_identical_same_final_answer": 209,
+      "non_identical_with_both_answers_parsed": 214,
+      "non_identical_correctness_agree": 210,
+      "token_delta_buckets": {
+       "0": 11,
+       "1-5": 47,
+       "6-50": 111,
+       ">50": 45
+      },
+      "token_delta_median": -4.0,
+      "token_delta_mean": -10.8,
+      "ref_len_median_identical": 248.5,
+      "ref_len_median_non_identical": 332.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.717
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.62
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.381
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w11-mp05",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11-mp05' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft-w11-mp05",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.2,
+    "accA_ci": [
+     95.4,
+     98.3
+    ],
+    "accB": 96.8,
+    "accB_ci": [
+     94.9,
+     98.0
+    ],
+    "delta_acc_pts": -0.4,
+    "A_only_correct": 3,
+    "B_only_correct": 1,
+    "mcnemar_p": 0.625,
+    "identity_rate": 0.536,
+    "identity_ci": [
+     0.492,
+     0.579
+    ],
+    "token_identity_rate": 0.574,
+    "mean_tok_A": 327.1,
+    "mean_tok_B": 321.2,
+    "mean_wall_A": 11.61,
+    "mean_wall_B": 7.58,
+    "wall_ratio_A_over_B": 1.531,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_154",
+      "gsm8k_1166",
+      "gsm8k_1190"
+     ],
+     "B_only_ids": [
+      "gsm8k_12"
+     ],
+     "same_final_answer": 495,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.99,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.576,
+     "mean_tok_A_matched": 327.1,
+     "mean_tok_B_matched": 321.2,
+     "anatomy": {
+      "n": 500,
+      "identical": 268,
+      "non_identical": 232,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 227,
+      "non_identical_with_both_answers_parsed": 232,
+      "non_identical_correctness_agree": 228,
+      "token_delta_n": 232,
+      "token_delta_buckets": {
+       "0": 20,
+       "1-5": 59,
+       "6-50": 105,
+       ">50": 48
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": -12.7,
+      "ref_len_median_identical": 240.5,
+      "ref_len_median_non_identical": 331.0,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 227,
+        "identity": 0.723
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.554
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2110,
+        "identity": 0.333
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w11-mp05",
+   "limit": 0,
+   "note": "variant 'w11-mp05' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-nodraft-w11-mp05"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w11-mp05",
+   "limit": 0,
+   "note": "E47 replication with variant 'w11-mp05' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-nodraft-w11-mp05"
+  },
+  {
+   "group": "variant",
+   "suite": "gsm8k_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w9g1",
+   "limit": 0,
+   "note": "variant 'w9g1' against the stock lane, same card",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "TURING-exl3-nodraft",
+    "B": "TURING-exl3-nodraft-w9g1",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.6,
+    "accA_ci": [
+     95.9,
+     98.6
+    ],
+    "accB": 97.0,
+    "accB_ci": [
+     95.1,
+     98.2
+    ],
+    "delta_acc_pts": -0.6,
+    "A_only_correct": 3,
+    "B_only_correct": 0,
+    "mcnemar_p": 0.25,
+    "identity_rate": 0.692,
+    "identity_ci": [
+     0.65,
+     0.731
+    ],
+    "token_identity_rate": 0.716,
+    "mean_tok_A": 325.8,
+    "mean_tok_B": 328.5,
+    "mean_wall_A": 14.22,
+    "mean_wall_B": 8.32,
+    "wall_ratio_A_over_B": 1.71,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_12",
+      "gsm8k_505",
+      "gsm8k_1059"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 497,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.994,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "usage",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "token_identity_rate_matched": 0.716,
+     "matched_basis": "usage",
+     "anatomy": {
+      "n": 500,
+      "identical": 346,
+      "non_identical": 154,
+      "non_identical_same_final_answer": 151,
+      "non_identical_with_both_answers_parsed": 154,
+      "non_identical_correctness_agree": 151,
+      "token_delta_buckets": {
+       "0": 12,
+       "1-5": 52,
+       "6-50": 70,
+       ">50": 20
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 8.8,
+      "ref_len_median_identical": 259.0,
+      "ref_len_median_non_identical": 345.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 231,
+        "identity": 0.801
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 341,
+        "identity": 0.747
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 1789,
+        "identity": 0.53
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "replication",
+   "suite": "gsm8k_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w9g1",
+   "limit": 0,
+   "note": "E47 replication with variant 'w9g1' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "stats": {
+    "suite": "gsm8k_500",
+    "A": "EFF-h38a_nodraft",
+    "B": "TURING-exl3-nodraft-w9g1",
+    "n": 500,
+    "errors": 0,
+    "missing": 0,
+    "accA": 97.2,
+    "accA_ci": [
+     95.4,
+     98.3
+    ],
+    "accB": 97.0,
+    "accB_ci": [
+     95.1,
+     98.2
+    ],
+    "delta_acc_pts": -0.2,
+    "A_only_correct": 1,
+    "B_only_correct": 0,
+    "mcnemar_p": 1.0,
+    "identity_rate": 0.58,
+    "identity_ci": [
+     0.536,
+     0.622
+    ],
+    "token_identity_rate": 0.624,
+    "mean_tok_A": 327.1,
+    "mean_tok_B": 328.5,
+    "mean_wall_A": 11.61,
+    "mean_wall_B": 8.32,
+    "wall_ratio_A_over_B": 1.396,
+    "truncated_A": 0,
+    "truncated_B": 0,
+    "extra": {
+     "limit": null,
+     "pairs_total": 500,
+     "A_only_ids": [
+      "gsm8k_1059"
+     ],
+     "B_only_ids": [],
+     "same_final_answer": 499,
+     "both_answers_parsed": 500,
+     "same_final_answer_rate": 0.998,
+     "thinking_share_A": 1.0,
+     "thinking_share_B": 1.0,
+     "ctk_dropped_A": 0,
+     "ctk_dropped_B": 0,
+     "token_basis_A": "encode",
+     "token_basis_B": "usage",
+     "response_shape_A": "inline",
+     "response_shape_B": "inline",
+     "tool_call_items_A": 0,
+     "tool_call_items_B": 0,
+     "matched_basis": "encode",
+     "matched_n": 500,
+     "token_identity_rate_matched": 0.626,
+     "mean_tok_A_matched": 327.1,
+     "mean_tok_B_matched": 328.5,
+     "anatomy": {
+      "n": 500,
+      "identical": 290,
+      "non_identical": 210,
+      "token_basis": "encode (matched)",
+      "non_identical_same_final_answer": 209,
+      "non_identical_with_both_answers_parsed": 210,
+      "non_identical_correctness_agree": 209,
+      "token_delta_n": 210,
+      "token_delta_buckets": {
+       "0": 23,
+       "1-5": 72,
+       "6-50": 88,
+       ">50": 27
+      },
+      "token_delta_median": 0.0,
+      "token_delta_mean": 3.4,
+      "ref_len_median_identical": 253.5,
+      "ref_len_median_non_identical": 322.5,
+      "identity_by_ref_length_tercile": {
+       "short": {
+        "n": 166,
+        "max_tokens": 227,
+        "identity": 0.675
+       },
+       "mid": {
+        "n": 166,
+        "max_tokens": 339,
+        "identity": 0.657
+       },
+       "long": {
+        "n": 168,
+        "max_tokens": 2110,
+        "identity": 0.411
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "group": "variant",
+   "suite": "mmlu_500",
+   "A": "TURING-exl3-nodraft",
+   "B": "TURING-exl3-nodraft-w9g1",
+   "limit": 0,
+   "note": "variant 'w9g1' against the stock lane, same card",
+   "skipped": "no rows for TURING-exl3-nodraft-w9g1"
+  },
+  {
+   "group": "replication",
+   "suite": "mmlu_500",
+   "A": "EFF-h38a_nodraft",
+   "B": "TURING-exl3-nodraft-w9g1",
+   "limit": 0,
+   "note": "E47 replication with variant 'w9g1' (plan 6.2 item 6: fp32 GDN state for laptop comparisons)",
+   "skipped": "no rows for TURING-exl3-nodraft-w9g1"
+  }
+ ],
+ "runs": [],
+ "row_files": [
+  {
+   "label": "EFF-h38a_mtp",
+   "suite": "gsm8k_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38a_mtp/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "EFF-h38a_mtp",
+   "suite": "mmlu_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38a_mtp/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "EFF-h38a_nodraft",
+   "suite": "gsm8k_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38a_nodraft/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "EFF-h38a_nodraft",
+   "suite": "mmlu_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38a_nodraft/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "EFF-h38b_q4kxl_mtp",
+   "suite": "gsm8k_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38b_q4kxl_mtp/gsm8k_500.jsonl",
+   "lines": 200,
+   "unique_ids": 200,
+   "torn_lines": 0
+  },
+  {
+   "label": "EFF-h38f_nodraft_rel1",
+   "suite": "gsm8k_500",
+   "path": "/opt/p8/repository/testsuite/evals/results/EFF-h38f_nodraft_rel1/gsm8k_500.jsonl",
+   "lines": 100,
+   "unique_ids": 100,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-fp32",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-fp32/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-w11j2",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-w11j2/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-w11j2-mp05",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-w11j2-mp05/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-w13",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-w13/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-w13s2",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-w13s2/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-mtp-w9g1",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-mtp-w9g1/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft-fp32",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft-fp32/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft-w11",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft-w11/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft-w11-mp05",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft-w11-mp05/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-exl3-nodraft-w9g1",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-exl3-nodraft-w9g1/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2s",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2s/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2s",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2s/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2s-mtp",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2s-mtp/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2s-mtp",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2s-mtp/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2xxs",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2xxs/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2xxs",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2xxs/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2xxs-dflash2",
+   "suite": "gsm8k_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2xxs-dflash2/gsm8k_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  },
+  {
+   "label": "TURING-lcpp-iq2xxs-dflash2",
+   "suite": "mmlu_500",
+   "path": "testsuite/results/turing/quality/TURING-lcpp-iq2xxs-dflash2/mmlu_500.jsonl",
+   "lines": 500,
+   "unique_ids": 500,
+   "torn_lines": 0
+  }
+ ]
+}

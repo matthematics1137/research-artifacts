@@ -1,0 +1,13 @@
+{
+ "name": "s3-84",
+ "group": "stage3",
+ "arms": [
+  {
+   "arm": "s3-96k",
+   "format": "8,4",
+   "length": 98304,
+   "items": "stage3-96k.jsonl",
+   "max_tokens": 768
+  }
+ ]
+}

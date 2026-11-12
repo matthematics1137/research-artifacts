@@ -1,0 +1,47 @@
+{"time": "2026-11-05T05:46:00-0500", "kind": "session", "plan": "Amendment 2: x-p8-confirm-df2", "frozen": {"plan.json": true, "run_confirm.py": true, "analyze_confirm.py": true, "run_confirm_fit.py": true}, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "31", "power_w": "27.96", "power_limit_w": "260.00", "sm_mhz": "300", "throttle": "0x0000000000000001"}, "load": [4.5, 1.96875, 1.38818359375], "baseline_mib": 379, "conditions": ["w13-165-mtp-0", "nif-xxs-df2-0", "w13-165-nd-0", "nif-xxs-0", "w13-165-mtp-28k", "nif-xxs-df2-28k"]}
+{"time": "2026-11-05T05:46:05-0500", "kind": "preflight", "engine": "stock165", "imports": "1.6.5 /opt/p8/venv/lib/python3.12/site-packages/exllamav3", "expected": "1.6.5", "ok": true}
+{"time": "2026-11-05T05:46:07-0500", "kind": "preflight", "engine": "w13-165", "imports": "1.6.5+w13 /opt/p8/overlay/exl3-w13/exllamav3", "expected": "1.6.5+w13", "ok": true}
+{"time": "2026-11-05T05:46:09-0500", "kind": "preflight", "engine": "stock166", "imports": "1.6.6 /opt/p8/overlay/exl3-stock166/exllamav3", "expected": "1.6.6", "ok": true}
+{"time": "2026-11-05T05:46:11-0500", "kind": "preflight", "engine": "w13-166", "imports": "1.6.6+w13on166 /opt/p8/overlay/exl3-w13on166/exllamav3", "expected": "1.6.6+w13on166", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "preflight", "engine": "raf44", "imports": "1.5.3+rafatxf /opt/p8/overlay/exl3-rafatxf/exllamav3", "expected": "1.5.3+rafatxf", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "preflight", "engine": "ninferno", "bin": "/opt/p8/src/NInferno/build-sm75/apps/ninferno-serve", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "preflight", "engine": "lcpp9", "bin": "/opt/p8/src/llama.cpp-v0.9.0/build-sm75-cu134/bin/llama-server", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "preflight", "engine": "ik", "bin": "/opt/p8/src/ik_llama.cpp/build-sm75-cu134/bin/llama-server", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "preflight", "engine": "buun", "bin": "/opt/p8/src/buun-llama-cpp/build-sm75-cu134/bin/llama-server", "ok": true}
+{"time": "2026-11-05T05:46:13-0500", "kind": "model", "name": "exl3", "path": "/opt/p8/models/qwen38-exl3-2.0", "exists": true, "bytes": null}
+{"time": "2026-11-05T05:46:13-0500", "kind": "model", "name": "iq2xxs", "path": "/opt/p8/models/gguf/Qwen3.8-27B-UD-IQ2_XXS.gguf", "exists": true, "bytes": 7266070528}
+{"time": "2026-11-05T05:46:13-0500", "kind": "model", "name": "iq2s", "path": "/opt/p8/models/gguf/Qwen3.8-27B-UD-IQ2_S.gguf", "exists": true, "bytes": 8371970048}
+{"time": "2026-11-05T05:46:13-0500", "kind": "model", "name": "dflash2", "path": "/opt/p8/models/gguf/Qwen3.8-27B-DFlash2-Q4_K_M.gguf", "exists": true, "bytes": 1143006816}
+{"time": "2026-11-05T05:46:13-0500", "kind": "model", "name": "mtp_full", "path": "/opt/p8/models/gguf/mtp-Qwen3.8-27B-Q4_0.gguf", "exists": true, "bytes": 1369590656}
+{"time": "2026-11-05T05:46:21-0500", "kind": "drafter", "path": "/opt/p8/cache/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4/model.safetensors", "bytes": 3848817896, "sha256": "67fc76d68dc5a9415511a4f394ef744d67510cd20e93b37cc2cc7d28e4bab65c", "ok": true}
+{"time": "2026-11-05T05:46:25-0500", "kind": "filler", "path": "/opt/p8/runs/confirm-df2/20261105T054600/filler-28000.txt", "chars": 56207}
+{"time": "2026-11-05T05:46:29-0500", "kind": "prepare", "config": "nif-xxs-df2", "ok": false, "error": "exited 1", "seconds": 4.1}
+{"time": "2026-11-05T05:48:24-0500", "kind": "prepare", "config": "nif-xxs", "ok": true, "error": null, "seconds": 115.0}
+{"time": "2026-11-05T05:48:24-0500", "kind": "round", "round": 1, "conditions": ["w13-165-mtp-0", "w13-165-nd-0", "nif-xxs-0", "w13-165-mtp-28k"]}
+{"time": "2026-11-05T05:48:24-0500", "kind": "start", "condition": "w13-165-mtp-0", "round": 1, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "61", "power_w": "118.11", "power_limit_w": "260.00", "sm_mhz": "1935", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:49:14-0500", "kind": "end", "condition": "w13-165-mtp-0", "round": 1, "seconds": 50.1}
+{"time": "2026-11-05T05:49:14-0500", "kind": "start", "condition": "w13-165-nd-0", "round": 1, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "63", "power_w": "128.75", "power_limit_w": "260.00", "sm_mhz": "1935", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:49:58-0500", "kind": "end", "condition": "w13-165-nd-0", "round": 1, "seconds": 44.3}
+{"time": "2026-11-05T05:49:58-0500", "kind": "start", "condition": "nif-xxs-0", "round": 1, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "68", "power_w": "131.95", "power_limit_w": "260.00", "sm_mhz": "1920", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:52:15-0500", "kind": "end", "condition": "nif-xxs-0", "round": 1, "seconds": 136.2}
+{"time": "2026-11-05T05:52:15-0500", "kind": "start", "condition": "w13-165-mtp-28k", "round": 1, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "72", "power_w": "132.29", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:53:33-0500", "kind": "end", "condition": "w13-165-mtp-28k", "round": 1, "seconds": 78.6}
+{"time": "2026-11-05T05:53:33-0500", "kind": "round", "round": 2, "conditions": ["w13-165-nd-0", "nif-xxs-0", "w13-165-mtp-28k", "w13-165-mtp-0"]}
+{"time": "2026-11-05T05:53:33-0500", "kind": "start", "condition": "w13-165-nd-0", "round": 2, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "142.66", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:54:18-0500", "kind": "end", "condition": "w13-165-nd-0", "round": 2, "seconds": 45.3}
+{"time": "2026-11-05T05:54:19-0500", "kind": "start", "condition": "nif-xxs-0", "round": 2, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "142.71", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:56:36-0500", "kind": "end", "condition": "nif-xxs-0", "round": 2, "seconds": 137.4}
+{"time": "2026-11-05T05:56:36-0500", "kind": "start", "condition": "w13-165-mtp-28k", "round": 2, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "138.26", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:57:56-0500", "kind": "end", "condition": "w13-165-mtp-28k", "round": 2, "seconds": 79.7}
+{"time": "2026-11-05T05:57:56-0500", "kind": "start", "condition": "w13-165-mtp-0", "round": 2, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "75", "power_w": "142.46", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T05:58:31-0500", "kind": "end", "condition": "w13-165-mtp-0", "round": 2, "seconds": 35.4}
+{"time": "2026-11-05T05:58:31-0500", "kind": "round", "round": 3, "conditions": ["nif-xxs-0", "w13-165-mtp-28k", "w13-165-mtp-0", "w13-165-nd-0"]}
+{"time": "2026-11-05T05:58:31-0500", "kind": "start", "condition": "nif-xxs-0", "round": 3, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "143.04", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T06:00:48-0500", "kind": "end", "condition": "nif-xxs-0", "round": 3, "seconds": 137.0}
+{"time": "2026-11-05T06:00:48-0500", "kind": "start", "condition": "w13-165-mtp-28k", "round": 3, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "138.78", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T06:02:05-0500", "kind": "end", "condition": "w13-165-mtp-28k", "round": 3, "seconds": 76.5}
+{"time": "2026-11-05T06:02:05-0500", "kind": "start", "condition": "w13-165-mtp-0", "round": 3, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "75", "power_w": "141.50", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T06:02:39-0500", "kind": "end", "condition": "w13-165-mtp-0", "round": 3, "seconds": 34.8}
+{"time": "2026-11-05T06:02:40-0500", "kind": "start", "condition": "w13-165-nd-0", "round": 3, "gpu": {"mem_used_mib": "379", "mem_total_mib": "11264", "temp_c": "74", "power_w": "142.25", "power_limit_w": "260.00", "sm_mhz": "1905", "throttle": "0x0000000000000000"}}
+{"time": "2026-11-05T06:03:25-0500", "kind": "end", "condition": "w13-165-nd-0", "round": 3, "seconds": 45.9}
+{"time": "2026-11-05T06:03:25-0500", "kind": "done", "hours": 0.29, "dropped": {"nif-xxs-df2-0": "prepare: server exited 1", "nif-xxs-df2-28k": "prepare: server exited 1"}}

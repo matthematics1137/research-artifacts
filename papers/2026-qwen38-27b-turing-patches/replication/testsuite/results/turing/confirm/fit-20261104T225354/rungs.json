@@ -1,0 +1,26 @@
+{
+ "lcpp-xxs-df": {
+  "rung": null
+ },
+ "lcpp-s-mtp": {
+  "rung": "R3",
+  "gpu_layers": null,
+  "partial_offload": true,
+  "context": 29696
+ },
+ "ik-s-mtp": {
+  "rung": null
+ },
+ "buun-nd": {
+  "rung": "R0",
+  "gpu_layers": null,
+  "partial_offload": false,
+  "context": null
+ },
+ "buun-mtp": {
+  "rung": "R0",
+  "gpu_layers": null,
+  "partial_offload": false,
+  "context": null
+ }
+}

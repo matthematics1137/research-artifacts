@@ -1,0 +1,30 @@
+
+== 2026-11-05T06:13:45-0500 /opt/p8/src/NInferno/build-sm75/apps/ninferno-serve /opt/p8/models/gguf/ninferno-df2b/Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16.ninferno --spec dflash2 --max-concurrency 1 --host localhost --port 18361
+2026-11-05 06:13:46.725  INFO  choice | KV int8, activations fast, state f16 | 173.1 tok/s decode, 774 prefill (2 tail calls), KLD 1.1839 (estimates) | UD-IQ2_XXS: every stream holds 16384 tokens; KV int8, activations fast: the family's defaults (turing has no reference card); speculation dflash2:7
+2026-11-05 06:13:46.807  INFO  starting engine
+2026-11-05 06:13:47.516  INFO  loading weights | 8.83 GiB
+2026-11-05 06:13:57.621  INFO    loading weights 59.5% | 5.25 GiB/8.83 GiB | 537.9 MiB/s | ETA 6.8s
+2026-11-05 06:14:04.498  INFO  weights ready | 8.83 GiB | 17.0s | 532.2 MiB/s
+2026-11-05 06:14:04.719  INFO  warming up kernels
+2026-11-05 06:15:42.601  INFO  kernels warmed up | 1m 37.9s
+2026-11-05 06:15:42.620  INFO  pinning host state | 1.12 GiB
+2026-11-05 06:15:43.101  INFO  host state pinned | 1.12 GiB | 481 ms
+2026-11-05 06:15:43.101  INFO  pinning host KV | 4.79 GiB
+2026-11-05 06:15:44.979  INFO  host KV pinned | 4.79 GiB | 1.9s
+2026-11-05 06:15:45.480  INFO  CUDA graphs ready | 500 ms
+2026-11-05 06:15:45.530  INFO  engine ready | Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16 | total 1m 58.7s | weights 8.83 GiB | CUDA sync spin | decode 1 step(s) per round | CPU quota 4.00 CPUs
+2026-11-05 06:15:45.530  INFO  routes | gpu class tu102:68sm | loaded 84 problems (84 generic-path, 0 route_as) from /opt/p8/src/NInferno/routes/tu102.json
+2026-11-05 06:15:45.530  INFO  fingerprint | nf1-f328dbf52af726c3 | manifest nm1-08e79087b47fb971 | ninferno-fingerprint/1 | device 0000:b3:00.0 GPU-fd4ee215-daa5-a0e7-30f3-68f2329bc128
+2026-11-05 06:15:45.530  INFO  context | 22,144 tokens per request (auto: the model's own 262,144 does not fit the 1.20 GiB free after weights; the plan ladder's first rung that does)
+2026-11-05 06:15:45.530  INFO  plan | rung 60 of 132: 22,144 tokens x 1 context (22,144 KV tokens), 0 cached states, chunk 1024 for 1 lane (step context, reserve kept) | free 1.28 GiB after 8.83 GiB of weights | 0.00 GiB more would serve rung 59, 7.76 GiB the top | planned in 173 ms; the rungs are declared, the free memory picks one
+2026-11-05 06:15:45.530  INFO  capacity | KV 22,144 tokens, int8, auto | activations fast, state f16 | pages 346/346 | runtime 1.05 GiB | free 153.3 MiB
+2026-11-05 06:15:45.530  INFO  kernel warm-up | prefill widths 1..1024 | ran 1..49 + 143 class widths (192 of 1024) | decode graphs 1 pass | 97.9s | kept 72.0 MiB (kernel code, stack, graphs) | stack 112 B per thread (driver default 0 B; raised last by the decode graphs at a 1033-token context) | Host tier pinning takes 12.0 MiB | graphs given back 3.64 MiB
+2026-11-05 06:15:45.530  INFO  sampling | defaults: Qwen3.5 model card presets | thinking: temperature 1, top_k 20, top_p 0.95, min_p 0, presence 0, frequency 0 | non-thinking: temperature 0.7, top_k 20, top_p 0.8, min_p 0, presence 1.5, frequency 0
+2026-11-05 06:15:45.530  INFO  speculation | --draft-tokens 7 from the model's profile (registry qwen3.8-27b for /opt/p8/models/gguf/ninferno-df2b/Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16.ninferno.speculation.json (tu102, revision 8d233dc82b33): dflash2:7)
+2026-11-05 06:15:45.530  INFO  speculation | serves dflash2 K=7 (explicit) | fallback none | --spec
+2026-11-05 06:15:45.530  INFO  context cache | 1 active + 0 (auto: the default 2 would leave the KV pool fewer whole slot contexts) cached device states | host 10 states, 4.79 GiB KV (auto: the default 18 states, 8.00 GiB KV does not fit the 6.00 GiB this host can pin for it) | private 9 | shared 7 | anchors 2
+2026-11-05 06:15:46.279  INFO  warmup complete | 748 ms
+2026-11-05 06:15:46.279  INFO  listening on http://localhost:18361 | model Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16 | auth disabled
+2026-11-05 06:15:47.990  INFO  draining | 0 requests in flight | /health and new requests answer 503
+2026-11-05 06:15:47.990  INFO  drain finished | requests in flight finished | 0 us
+2026-11-05 06:15:47.992  INFO  server stopped

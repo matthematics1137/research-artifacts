@@ -1,0 +1,33 @@
+{
+  "abstract": "Fitting a large model in an older GPU's memory does not ensure fast decoding. We adapted exllamav3's kernels to run the original Qwen3.8-27B weights at 2 bits per weight on a stock 11 GiB RTX 2080 Ti, a 2018 consumer card. Pre-registered rotated rounds compared the patched and stock engines on three prompts. The patched engine decoded 47.53 tokens/s undrafted, 1.88 times stock, and 71.61 with the model's multi-token-prediction (MTP) head, 1.54 times stock; a second session matched within 1%. Most of the undrafted gain comes from an int8 path fitted to Turing's shared memory with unfused projections. Split-K verification and tensor-core attention support drafting and filled contexts. The patches changed no GSM8K outcome in the registered MTP check. On 500 GSM8K and 500 MMLU items, the stock engine's EXL3 weights scored 97.6% and 86.6%; differences from llama.cpp's 2-bit GGUFs were unresolved after adjustment. An 8-bit key-value cache held 72K tokens, and the tensor-core kernel retained the reference kernel's retrieval accuracy at 64K. These measurements show how kernels adapted to an older card recover decode speed after low-bit weights make the model fit. They cover our fastest measured configuration of the original weights on one card and three prompts, not the fastest model on the card; dated comparisons and detailed limits are in the appendix.",
+  "abstract_characters": 1368,
+  "affiliation": "Independent researcher",
+  "ai_disclosure": "Claude Code (Anthropic) wrote the Turing patches W7 to W12p, including the fd75d kernel, and ported rafatxf's split-K kernel (W13); wrote the registrations, harnesses and analysis scripts; operated the runs under the author's standing rules and registrations; and drafted the manuscript, figures, claim checks and bibliography. fd75d was checked against an fp64 reference in the run that first timed it, W12p for bit identity, and the builds in registered accuracy checks , with the test outputs in the artifact; every number is recomputed from the archived outputs by a script that refuses to build on any disagreement; and every citation was checked against arXiv, Crossref, GitHub or the source page. Codex (OpenAI) performed the registered Bonsai analysis and formatted its results; in a separate review, independently recalculated the counts, rates and paired tests and checked the timing boundaries and provenance. Codex also implemented the replacement speed harness, revised the manuscript from the independently reviewed comparison, and prepared candidate reading copies and the release package. Matthew Schwartz directed the research and is responsible for its methods, results, claims, citations, rights and released files.",
+  "author": "Matthew Schwartz",
+  "author_approval": false,
+  "contract_version": "1.6.0",
+  "evidence_freeze_commit": "def4d933f6b591927a8a8ac605221a2d35deb4f1",
+  "identifiers": {
+    "arxiv": "",
+    "github": "",
+    "huggingface_collection": "",
+    "huggingface_dataset": "",
+    "landing_page": "",
+    "ssrn": "",
+    "venue_doi": "",
+    "zenodo_concept_doi": "",
+    "zenodo_version_doi": ""
+  },
+  "light_figure_count": 3,
+  "orcid": "0009-0009-4171-7247",
+  "public_contact": "matthew.schwartz.research@gmail.com",
+  "release_hold": [
+    "Independent review returned READY WITH FIXES; four requested fixes are applied. Final editorial/rendered review and author approval remain pending.",
+    "All release gates remain pending; exact-hash author approval, rights/citation/disclosure attestations, current policy review and public identifiers/provider operations are still required.",
+    "Controller analysis verification and its canonical stage must pass; direct numeric replay is separate evidence."
+  ],
+  "release_ready": false,
+  "scientific_macro_count": 1027,
+  "title": "A 27-Billion-Parameter Model at Up to 72 Tokens per Second on a 2018 Gaming GPU: Turing Kernels Nearly Double exllamav3\u2019s 2-Bit Decode Speed",
+  "version": "1.0.0"
+}

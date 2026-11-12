@@ -1,0 +1,54 @@
+{
+  "schema": "p8-refresh-baselines-v1",
+  "warning": "External figures use different prompts/timing/driver/power and cannot be divided by lab rates. New engine measurements use only old pinned weights.",
+  "historical_lab": {
+    "F2": {
+      "date": "2026-10-31",
+      "w13_nd_0": 47.53,
+      "w13_mtp_0": 71.61,
+      "w13_nd_28k": 43.88,
+      "w13_mtp_28k": 66.57
+    },
+    "confirmation": {
+      "date": "2026-11-04",
+      "w13_nd_0": 47.87,
+      "w13_mtp_0": 71.8,
+      "w13_nd_28k": 44.25,
+      "w13_mtp_28k": 67.12,
+      "nif_xxs_nd_0": 45.91,
+      "nif_xxs_nd_28k": 40.64
+    },
+    "DFlash2": {
+      "date": "2026-11-05",
+      "w13_mtp_0": 72.5,
+      "w13_mtp_28k": 65.61,
+      "nif_df2_0": 57.52,
+      "nif_df2_28k": 48.9
+    }
+  },
+  "external_ninferno": {
+    "date": "2026-11-08",
+    "engine_commit": "ddb36ce8ad5b5c3774ca9bb970c43e05b080ad42",
+    "document_snapshot": "72fded0c659ad1f3d9b24b4b56eb9e4c6886092b",
+    "source": "https://github.com/Brontir/NInferno/blob/72fded0c659ad1f3d9b24b4b56eb9e4c6886092b/docs/performance/data/bench.jsonl",
+    "driver": "615.71.09",
+    "power_limit_w": 260,
+    "short_chat_c1_prefill_included": 48.29,
+    "long_decode_prompt_tokens": 22224,
+    "long_decode_first_to_last_median": 43.3,
+    "llama_cpp_b12198_short_c1": 25.51,
+    "llama_cpp_b12198_long": 24.24
+  },
+  "superseded_public_summary": {
+    "date": "before-November-8",
+    "nd_short": 43.7,
+    "nd_deep": 40.4,
+    "power_limit_w": 240,
+    "status": "historical only; do not call current public baseline"
+  },
+  "current_quants": {
+    "UD3.1_XXS_changed": "2026-11-10",
+    "UD3.1_S_changed": "2026-11-11",
+    "not_measured_by_this_plan": true
+  }
+}

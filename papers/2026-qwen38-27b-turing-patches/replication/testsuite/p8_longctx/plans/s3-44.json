@@ -1,0 +1,42 @@
+{
+ "name": "s3-44",
+ "group": "stage3",
+ "probe": {
+  "format": "4,4",
+  "lengths": [
+   147456,
+   151552,
+   155648,
+   172032
+  ],
+  "prompts": "probe"
+ },
+ "arms": [
+  {
+   "arm": "s3-96k",
+   "format": "4,4",
+   "length": 98304,
+   "items": "stage3-96k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s3-128k",
+   "format": "4,4",
+   "length": 131072,
+   "items": "stage3-128k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s3",
+   "format": "4,4",
+   "length": "longest_probe",
+   "max_tokens": 768,
+   "items_by_length": {
+    "147456": "stage3-144k.jsonl",
+    "151552": "stage3-148k.jsonl",
+    "155648": "stage3-152k.jsonl",
+    "172032": "stage3-168k.jsonl"
+   }
+  }
+ ]
+}

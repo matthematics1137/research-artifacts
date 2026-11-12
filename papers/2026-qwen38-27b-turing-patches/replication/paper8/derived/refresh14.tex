@@ -1,0 +1,16 @@
+% Generated from reviewed 14 November aggregate tables; descriptive ranges.
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llrrll@{}}\toprule
+Drafting & Fill & Patched EXL3 & NInferno & Excess (\%) & Round range (\%)\\\midrule
+none / none & empty & \PeFreshWNifNdZero & \PeFreshNifNdZero & \PeFreshPNifNdZero & \PeFreshPNifNdZeroLo--\PeFreshPNifNdZeroHi\\
+none / none & 28K & \PeFreshWNifNdDeep & \PeFreshNifNdDeep & \PeFreshPNifNdDeep & \PeFreshPNifNdDeepLo--\PeFreshPNifNdDeepHi\\
+MTP / DFlash2 & empty & \PeFreshWNifDfZero & \PeFreshNifDfZero & \PeFreshPNifDfZero & \PeFreshPNifDfZeroLo--\PeFreshPNifDfZeroHi\\
+MTP / DFlash2 & 28K & \PeFreshWNifDfDeep & \PeFreshNifDfDeep & \PeFreshPNifDfDeep & \PeFreshPNifDfDeepLo--\PeFreshPNifDfDeepHi\\
+\bottomrule\end{tabular}
+\caption{Replacement comparison, 14 November 2026: NInferno f8143b9e
+against unchanged patched exllamav3, tokens per second pooled over three
+prompts and three rotated rounds. Both use neutral penalties; top-k and
+sampling order still differ. All four pooled leads hold in every round.
+Ranges describe those rounds, not confidence intervals.}
+\label{tab:refresh14}
+\end{table}

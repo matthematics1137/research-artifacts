@@ -1,0 +1,472 @@
+{
+ "pooled": {
+  "stock165-nd-0": {
+   "pooled": 25.65515859097059,
+   "rounds": {
+    "1": 25.65515859097059
+   }
+  },
+  "stock165-mtp-0": {
+   "pooled": 47.844039717450535,
+   "rounds": {
+    "1": 48.01114770711933,
+    "2": 47.680244361252356
+   }
+  },
+  "stock165-nd-28k": {
+   "pooled": 20.40187203990696,
+   "rounds": {
+    "1": 20.445155798873962,
+    "2": 20.359357944177027
+   }
+  },
+  "stock165-mtp-28k": {
+   "pooled": 36.84009667981173,
+   "rounds": {
+    "1": 36.915090485231566,
+    "2": 36.755763357747085
+   }
+  },
+  "w13-165-nd-0": {
+   "pooled": 47.68499575084196,
+   "rounds": {
+    "1": 47.642610637434025,
+    "2": 47.72673321755643
+   }
+  },
+  "w13-165-mtp-0": {
+   "pooled": 73.25378430194294,
+   "rounds": {
+    "1": 73.0690921545868,
+    "2": 73.43941248470013
+   }
+  },
+  "w13-165-nd-28k": {
+   "pooled": 44.16861542374988,
+   "rounds": {
+    "1": 44.19609716235736,
+    "2": 44.140879100455344
+   }
+  },
+  "w13-165-mtp-28k": {
+   "pooled": 66.94556727063724,
+   "rounds": {
+    "1": 68.80201277336947,
+    "2": 65.18426029635887
+   }
+  },
+  "stock166-nd-0": {
+   "pooled": 25.202390289203993,
+   "rounds": {
+    "1": 25.186438676924897,
+    "2": 25.218362119918567
+   }
+  },
+  "stock166-mtp-0": {
+   "pooled": 47.05464281666151,
+   "rounds": {
+    "1": 46.676715126173,
+    "2": 47.43874040261159
+   }
+  },
+  "w13-166-nd-0": {
+   "pooled": 47.71519990059333,
+   "rounds": {
+    "1": 47.746050692877255,
+    "2": 47.684388950633
+   }
+  },
+  "w13-166-mtp-0": {
+   "pooled": 73.1888615701298,
+   "rounds": {
+    "1": 75.11590148862503,
+    "2": 71.35822199096873
+   }
+  },
+  "nif-xxs-0": {
+   "pooled": 45.88183634880949,
+   "rounds": {
+    "1": 45.872929595804536,
+    "2": 45.89074656118169
+   }
+  },
+  "nif-s-0": {
+   "pooled": 42.846024887515235,
+   "rounds": {
+    "1": 42.82082162451493,
+    "2": 42.87125783600627
+   }
+  },
+  "nif-xxs-28k": {
+   "pooled": 40.58864099399891,
+   "rounds": {
+    "1": 40.54375082486472,
+    "2": 40.633630678391164
+   }
+  },
+  "nif-s-28k": {
+   "pooled": 38.11745436948619,
+   "rounds": {
+    "1": 38.07956049840592,
+    "2": 38.15542373386592
+   }
+  },
+  "lcpp9-xxs-0": {
+   "pooled": 25.194949200027555,
+   "rounds": {
+    "1": 25.41514716296801,
+    "2": 24.978534072281636
+   }
+  },
+  "lcpp9-xxs-28k": {
+   "pooled": 21.11319891080086,
+   "rounds": {
+    "1": 21.181766029742732,
+    "2": 21.04507427431487
+   }
+  },
+  "raf44-mtp-0": {
+   "pooled": 67.66102531121429,
+   "rounds": {
+    "1": 67.66102531121429
+   }
+  },
+  "raf44-mtp-28k": {
+   "pooled": 61.0108212608903,
+   "rounds": {
+    "1": 61.0108212608903
+   }
+  },
+  "ik-xxs-0": {
+   "pooled": 20.203774001846753,
+   "rounds": {
+    "1": 20.203774001846753
+   }
+  },
+  "ik-s-0": {
+   "pooled": 19.24286347839813,
+   "rounds": {
+    "1": 19.24286347839813
+   }
+  }
+ },
+ "f2": {
+  "w13-165-nd-0": {
+   "now": 47.68499575084196,
+   "f2": 47.53,
+   "change_pct": 0.3261008854238634,
+   "within_floor": true
+  },
+  "w13-165-mtp-0": {
+   "now": 73.25378430194294,
+   "f2": 71.61,
+   "change_pct": 2.295467535180773,
+   "within_floor": true
+  },
+  "w13-165-nd-28k": {
+   "now": 44.16861542374988,
+   "f2": 43.88,
+   "change_pct": 0.657737975728967,
+   "within_floor": true
+  },
+  "w13-165-mtp-28k": {
+   "now": 66.94556727063724,
+   "f2": 66.57,
+   "change_pct": 0.5641689509347181,
+   "within_floor": true
+  }
+ },
+ "comparisons": {
+  "over_stock_nd_0": {
+   "a": "w13-165-nd-0",
+   "b": "stock165-nd-0",
+   "pooled_pct": 85.8690351952252,
+   "ratio": 1.858690351952252,
+   "per_round_pct": [
+    85.70382431470132
+   ],
+   "rounds": 1,
+   "wins": 1,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_stock_mtp_0": {
+   "a": "w13-165-mtp-0",
+   "b": "stock165-mtp-0",
+   "pooled_pct": 53.10952991125561,
+   "ratio": 1.5310952991125562,
+   "per_round_pct": [
+    52.19192967501536,
+    54.024824051407585
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_stock_nd_28k": {
+   "a": "w13-165-nd-28k",
+   "b": "stock165-nd-28k",
+   "pooled_pct": 116.49295386891029,
+   "ratio": 2.164929538689103,
+   "per_round_pct": [
+    116.1690407113039,
+    116.8087973180906
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_stock_mtp_28k": {
+   "a": "w13-165-mtp-28k",
+   "b": "stock165-mtp-28k",
+   "pooled_pct": 81.71930397599425,
+   "ratio": 1.8171930397599425,
+   "per_round_pct": [
+    86.37909827390169,
+    77.34432464893932
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "stock166_vs_165_nd": {
+   "a": "stock166-nd-0",
+   "b": "stock165-nd-0",
+   "pooled_pct": -1.7648236324913968,
+   "ratio": 0.982351763675086,
+   "per_round_pct": [
+    -1.8270006493378732
+   ],
+   "rounds": 1,
+   "wins": 0,
+   "faster_every_round": false,
+   "slower_every_round": true
+  },
+  "stock166_vs_165_mtp": {
+   "a": "stock166-mtp-0",
+   "b": "stock165-mtp-0",
+   "pooled_pct": -1.6499378092880823,
+   "ratio": 0.9835006219071192,
+   "per_round_pct": [
+    -2.779422373084517,
+    -0.5065073845070822
+   ],
+   "rounds": 2,
+   "wins": 0,
+   "faster_every_round": false,
+   "slower_every_round": true
+  },
+  "w13_166_vs_165_nd": {
+   "a": "w13-166-nd-0",
+   "b": "w13-165-nd-0",
+   "pooled_pct": 0.0633409928548323,
+   "ratio": 1.0006334099285483,
+   "per_round_pct": [
+    0.21711668201900292,
+    -0.08872232409121716
+   ],
+   "rounds": 2,
+   "wins": 1,
+   "faster_every_round": false,
+   "slower_every_round": false
+  },
+  "w13_166_vs_165_mtp": {
+   "a": "w13-166-mtp-0",
+   "b": "w13-165-mtp-0",
+   "pooled_pct": -0.08862713705757308,
+   "ratio": 0.9991137286294243,
+   "per_round_pct": [
+    2.801197159679969,
+    -2.83388772229759
+   ],
+   "rounds": 2,
+   "wins": 1,
+   "faster_every_round": false,
+   "slower_every_round": false
+  },
+  "over_raf_0": {
+   "a": "w13-165-mtp-0",
+   "b": "raf44-mtp-0",
+   "pooled_pct": 8.265850192195789,
+   "ratio": 1.082658501921958,
+   "per_round_pct": [
+    7.99288337487869
+   ],
+   "rounds": 1,
+   "wins": 1,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_raf_28k": {
+   "a": "w13-165-mtp-28k",
+   "b": "raf44-mtp-28k",
+   "pooled_pct": 9.727366206675336,
+   "ratio": 1.0972736620667534,
+   "per_round_pct": [
+    12.770179701668006
+   ],
+   "rounds": 1,
+   "wins": 1,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_nif_xxs_0": {
+   "a": "w13-165-nd-0",
+   "b": "nif-xxs-0",
+   "pooled_pct": 3.930007047504014,
+   "ratio": 1.0393000704750401,
+   "per_round_pct": [
+    3.857789457142813,
+    4.000777485559093
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_nif_xxs_28k": {
+   "a": "w13-165-nd-28k",
+   "b": "nif-xxs-28k",
+   "pooled_pct": 8.820138694173751,
+   "ratio": 1.0882013869417375,
+   "per_round_pct": [
+    9.008407616921122,
+    8.631393167456537
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_nif_s_0": {
+   "a": "w13-165-nd-0",
+   "b": "nif-s-0",
+   "pooled_pct": 11.293861860068933,
+   "ratio": 1.1129386186006893,
+   "per_round_pct": [
+    11.260384154232629,
+    11.325712439144219
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_nif_s_28k": {
+   "a": "w13-165-nd-28k",
+   "b": "nif-s-28k",
+   "pooled_pct": 15.875039806193803,
+   "ratio": 1.158750398061938,
+   "per_round_pct": [
+    16.062519062444245,
+    15.687036811169941
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_lcpp_nd_0": {
+   "a": "w13-165-nd-0",
+   "b": "lcpp9-xxs-0",
+   "pooled_pct": 89.26410754894403,
+   "ratio": 1.8926410754894403,
+   "per_round_pct": [
+    87.45754384949336,
+    91.07099351566103
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_lcpp_nd_28k": {
+   "a": "w13-165-nd-28k",
+   "b": "lcpp9-xxs-28k",
+   "pooled_pct": 109.1990683664453,
+   "ratio": 2.091990683664453,
+   "per_round_pct": [
+    108.6516162075375,
+    109.74446811208685
+   ],
+   "rounds": 2,
+   "wins": 2,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_ik_xxs_0": {
+   "a": "w13-165-nd-0",
+   "b": "ik-xxs-0",
+   "pooled_pct": 136.02023932005602,
+   "ratio": 2.3602023932005602,
+   "per_round_pct": [
+    135.81045122104013
+   ],
+   "rounds": 1,
+   "wins": 1,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "over_ik_s_0": {
+   "a": "w13-165-nd-0",
+   "b": "ik-s-0",
+   "pooled_pct": 147.80613241045293,
+   "ratio": 2.4780613241045293,
+   "per_round_pct": [
+    147.58586834499553
+   ],
+   "rounds": 1,
+   "wins": 1,
+   "faster_every_round": true,
+   "slower_every_round": false
+  },
+  "ik_vs_lcpp_nd_0": {
+   "a": "ik-xxs-0",
+   "b": "lcpp9-xxs-0",
+   "pooled_pct": -19.810221320769095,
+   "ratio": 0.801897786792309,
+   "per_round_pct": [
+    -20.50498912205656
+   ],
+   "rounds": 1,
+   "wins": 0,
+   "faster_every_round": false,
+   "slower_every_round": true
+  }
+ },
+ "fastest": {
+  "nd-0": {
+   "rivals": [
+    "ik-s-0",
+    "ik-xxs-0",
+    "lcpp9-xxs-0",
+    "nif-s-0",
+    "nif-xxs-0"
+   ],
+   "holds": true
+  },
+  "mtp-0": {
+   "rivals": [
+    "raf44-mtp-0"
+   ],
+   "holds": true
+  },
+  "nd-28k": {
+   "rivals": [
+    "lcpp9-xxs-28k",
+    "nif-s-28k",
+    "nif-xxs-28k"
+   ],
+   "holds": true
+  },
+  "mtp-28k": {
+   "rivals": [
+    "raf44-mtp-28k"
+   ],
+   "holds": true
+  }
+ }
+}

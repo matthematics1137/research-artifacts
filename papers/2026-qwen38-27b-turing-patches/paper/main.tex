@@ -1,0 +1,1789 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[font=small,labelfont=bf,skip=5pt]{caption}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\Urlmuskip=0mu plus 1mu\relax
+\emergencystretch=1.3em
+\renewcommand{\bibfont}{\footnotesize\raggedright}
+\setlength{\bibsep}{1pt}
+\usepackage[compact]{titlesec}
+\setlength{\textfloatsep}{9pt plus 2pt minus 3pt}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newif\ifdarkmode
+\ifdefined\DARKMODE \darkmodetrue \else \darkmodefalse \fi
+\ifdarkmode
+  \input{darkstyle}
+\fi
+
+\newcommand{\singleauthorinfo}[1]{\\[0.25em]{\small #1}}
+\newcommand{\q}[1]{\texttt{#1}}
+\newcommand{\fmt}[1]{\texttt{#1}}
+\newcommand{\fig}[1]{\ifdarkmode figures/dark/#1\else figures/#1\fi}
+\newcommand{\slot}[1]{$\langle$\textit{#1}$\rangle$}
+\input{derived/claims}
+
+
+\title{\textbf{A 27-Billion-Parameter Model at Up to \PeTitleMtpRate{} Tokens per Second on a 2018 Gaming GPU: Turing Kernels Nearly Double exllamav3’s 2-Bit Decode Speed}}
+
+\hypersetup{
+  pdftitle={A 27-Billion-Parameter Model at Up to \PeTitleMtpRate{} Tokens per Second on a 2018 Gaming GPU: Turing Kernels Nearly Double exllamav3’s 2-Bit Decode Speed},
+  pdfauthor={Matthew Schwartz},
+  pdfsubject={Turing kernel patches improve original-weight Qwen3.8-27B decode speed on one stock RTX 2080 Ti, with bounded quality checks, 72K memory reach and tensor-core retrieval accuracy at 64K}
+}
+
+\author{Matthew Schwartz\singleauthorinfo{Independent researcher \enspace
+\href{https://orcid.org/0009-0009-4171-7247}{ORCID 0009-0009-4171-7247}
+\enspace \href{mailto:matthew.schwartz.research@gmail.com}{\texttt{matthew.schwartz.research@gmail.com}}}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Fitting a large model in an older GPU's memory does not ensure fast decoding.
+We adapted exllamav3's kernels to run the original Qwen3.8-27B weights at
+2 bits per weight on a stock 11\,GiB RTX 2080 Ti, a 2018 consumer card.
+Pre-registered rotated rounds compared the patched and stock engines on
+three prompts. The patched engine decoded \PeFtWZero{} tokens/s undrafted,
+\PeFtUndraftedRatio{} times stock, and \PeFtSTwoMtpZero{} with the model's
+multi-token-prediction (MTP) head, \PeFtMtpRatio{} times stock; a second
+session matched within 1\%. Most of the undrafted gain comes from an int8
+path fitted to Turing's shared memory with unfused projections. Split-K
+verification and tensor-core attention support drafting and filled contexts.
+The patches changed no GSM8K outcome in the registered MTP check. On 500
+GSM8K and 500 MMLU items, the stock engine's EXL3 weights scored
+\PeQGsmExlNoAcc\% and \PeQMmluExlNoAcc\%; differences from llama.cpp's 2-bit
+GGUFs were unresolved after adjustment. An 8-bit key-value cache held
+\PeReachEE{} tokens, and the tensor-core kernel retained the reference
+kernel's retrieval accuracy at 64K. These measurements show how kernels
+adapted to an older card recover decode speed after low-bit weights make
+the model fit. They cover our fastest measured configuration of the original
+weights on one card and three prompts, not the fastest model on the card;
+dated comparisons and detailed limits are in the appendix.
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:intro}
+A stock RTX 2080 Ti can hold the original weights and multi-token-prediction
+(MTP) head of a 27-billion-parameter model at about 2 bits per weight.
+The remaining constraint is execution: exllamav3 disables its int8 decode
+path below 80\,KB of shared memory per block, while Turing provides 64\,KB;
+its Triton attention kernel uses scalar arithmetic on this architecture
+\citep{triton5066}. A model that fits can therefore leave substantial speed
+unused.
+
+We adapted the matrix and attention paths of exllamav3 to this card.
+In pre-registered rotated rounds, the patched engine decoded
+\PeFtWZero{} tokens/s undrafted and \PeFtSTwoMtpZero{} with MTP at an empty
+context, \PeFtUndraftedRatio{} and \PeFtMtpRatio{} times the stock engine
+(Figure~\ref{fig:speed}). A second session reproduced the rates within 1\%.
+The main undrafted gain comes from an int8 path whose memory requests fit
+the hardware, combined with unfused projections. Split-K verification
+reduces the cost of checking drafts; tensor-core attention preserves speed
+at filled contexts.
+
+For a reader deciding whether an older consumer GPU remains useful, the
+contribution is a measured configuration, credited kernel patches and a
+reproducible explanation of their costs. We retain the original model
+weights and test the faster build's GSM8K outcomes, descriptive quality
+against llama.cpp's 2-bit files, filled-context memory reach and paired
+retrieval accuracy. The int8 path, slice-height selection and split-K have
+prior implementations; our attention kernel serves exllamav3's 8-bit cache
+on Turing (Section~\ref{sec:related}). Methods and Results describe the
+configuration and its measurements; Performance analysis explains the gains.
+Appendix~\ref{app:null} preserves the comparison protocols, null results and
+limits, followed by the registered prediction ledger and prompts.
+
+
+\section{Methods}
+\label{sec:setup}
+A drafter proposes several next tokens; a verification pass evaluates them
+as rows of one forward pass and retains accepted tokens. Here the drafter
+is the model's MTP layer. We use arm for one configuration in a session and
+anchor for a patched configuration repeated within that session. TabbyAPI
+is the HTTP server used for the quality and long-context runs.
+
+
+\subsection{Model and card}
+\label{sec:model}
+Qwen3.8-27B \citep{qwen2026qwen38card} has 64 layers: 16 full-attention
+layers, each with 4 KV heads of 256 dimensions, and 48 Gated DeltaNet (GDN)
+layers \citep{yang2025gated} that carry the sequence in a fixed-size recurrent
+state.
+One MTP layer \citep{gloeckle2024multitoken} drafts tokens for
+self-speculative decoding. We used turboderp's EXL3 conversion at 2.0 bits per
+weight, revision \q{SC\_2.00bpw\_H3} \citep{turboderp2026qwen38exl3sc}, whose
+weight-file revisions and hashes are frozen in the artifact. Table~\ref{tab:files} lists every model file with
+its size and average bits per weight: the EXL3 file's \PeFilesExlTrellisParams\,B
+trellis-coded weights average \PeFilesExlTrellisBpw{} bits, and its embedding
+table and vision encoder, both stored at 16 bits, bring the whole file to
+\PeFilesExlBpw. EXL3 stores each tensor at a whole number of bits, chosen per
+tensor: 1 to 4 in this file, most at 2. exllamav3 keeps a 16-bit embedding
+table (\PeEmbedGiB\,GiB here) in host memory and copies to the card the one
+row each token needs, as llama.cpp does with its input embeddings, and a
+text-only run does not load the vision encoder (\PeVisionGiB\,GiB).
+Everything else, the 64 layers, the output head and the MTP layer
+(\PeOnCardGiB\,GiB of the file), sits on the card; that is what we mean by
+the whole model on the card, or full offload.
+Weights, the MTP layer and working buffers together occupy about
+\PeRestGiB\,GiB; the remaining memory holds context.
+\input{derived/model_files}
+Every run used one RTX 2080 Ti (sm\_75, \PeCardMiB\,MiB, driver \PeDriver) in
+a desktop at a 260\,W power limit, except the laptop-GPU measurements that
+Section~\ref{sec:bytes} cites, which ran on an RTX 4080 Laptop GPU (Ada). By
+stock we mean 11\,GiB of memory, unmodified firmware (no firmware change that
+raises the card's tensor-core rate) and no raised power limit. All desktop GPU work ran as queued jobs, one at a
+time, while other projects shared the desktop's CPU. The original measurements
+ran between 30~October and 5~November~2026; the engine-version rerun ran on
+12~November~2026 and the replacement comparison on 14~November.
+
+
+
+\subsection{Turing kernel patches}
+\label{sec:build}
+The w13 build is exllamav3 1.6.5 \citep{turboderp2025exllamav3} with a chain
+of patches and four dispatch settings. We wrote every patch except W13, which
+is rafatxf's kernel; W13 is the only patch that borrows code. Build labels identify the last patch in the chain: w9 includes patches
+through W9, w11b through W11b, and w13 through W13. The patches are listed
+below with citations to prior work on the same or similar techniques:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item \textbf{Int8 matrix-vector products on 64\,KB parts (W7).} For
+single-token decode, exllamav3 multiplies its trellis-coded weights with
+activations quantized to int8 per slice. Upstream declines that path on any
+GPU with less than 80\,KB of opt-in shared memory per block. W7 checks, per
+kernel instance and device, whether the instance's largest request plus its
+static shared memory fits, and runs the instances that fit. Running this
+kernel class on 64\,KB Turing parts is prior art
+\citep{vcruz3052026exl3turing,weicj2026turing,spiritbuun2026buun}.
+\item \textbf{Slice height chosen by the host (W9).} The int8 kernel splits a
+matrix's inner dimension into slices, multiplies each with its own thread
+blocks and adds their partial sums at the end. W9 lets the host choose the
+slice height, so that wide outputs such
+as the 248K-column head no longer run as one slice with one block per
+multiprocessor; partly prior art
+\citep{ghazni2026rocm,yamz2026kyojin,spiritbuun2026buun}.
+\item \textbf{Two-row verify passes on the int8 path (W10, W10b),} with a row
+cap that fits 64\,KB; prior art \citep{weicj2026turing}.
+\item \textbf{Tensor-core attention (W11, W11b):} our decode-attention kernel
+for the 8-bit cache, called fd75d for flash decoding on sm\_75, Turing's
+architecture (Section~\ref{sec:kernels}).
+\item \textbf{A stepped row pointer in the int8 kernel (W12p):} the kernel's
+row pointer steps by the row stride instead of being recomputed for each row,
+which leaves its one- and two-row products bit-identical (its gain is in
+Section~\ref{sec:verify}).
+\item \textbf{Split-K matrix-vector products for verify passes of 3 to 16
+rows (W13):} rafatxf's kernel \citep{rafatxf2026turing}, MIT-licensed, ported
+unchanged. Mode~1 sends it the shapes rafatxf's own dispatch sends it;
+mode~2, our change, sends it every shape.
+\end{itemize}
+The dispatch settings unfuse the attention layers' q, k and v projections
+and the GDN layers' qkv and z projections through the upstream setting
+\q{EXL3\_MGEMM\_N\_THRESHOLD=0}. Stock runs these bundles as one call on its
+fp16 multi-matrix kernel. Only matrices 8,192 columns or wider, such as gate
+and up, run as separate matrix-vector calls, using int8 where that path is
+available. rafatxf's branch also lists unfusing among its Turing speedups.
+We disable fd75d's live splits with \q{EXL3\_FD75D\_LIVE=0}; W11b's live
+splits divide the filled context rather than the cache's allocated length.
+The maximum int8 pass height (\q{EXL3\_INT8\_SQ\_MAX\_M}) and split-K mode
+(\q{EXL3\_GEMV\_SK}) are both 1 undrafted and both 2 with MTP. Undrafted, the two split-K modes run the
+same code, because only verify passes have three or more rows. Mode~2 became
+the drafted configuration of record after a registered GSM8K check
+(Section~\ref{sec:quality}).
+
+
+
+\subsection{Decode measurements}
+\label{sec:speedsetup}
+The speed of record, F2, was pre-registered on 31~October at 13:42 EDT and
+ran the same afternoon. Its rows span \PeFtFirst{} to \PeFtLast{} EDT. Its 14
+arms (Table~\ref{tab:speed} in Appendix~\ref{app:engine-comparisons} lists them with their results) ran as fresh
+processes in three rounds, in rotated order. Each process loaded the model with exllamav3's own loader and
+generator (a 32K-token cache), warmed up on three prompts (code, math and
+prose; Appendix~\ref{app:prompts}), then sampled up to 256 tokens from each
+with exllamav3's default sampler (temperature 0.8, min-p 0.08, unseeded),
+thinking off, either from the bare prompt or with 28,000 tokens of
+deterministic filler ahead of it (28,050-token prompts); a run ends early if
+the model emits its end-of-sequence token. Drafted arms used the MTP layer
+with up to 6 draft tokens per step. The generator adapted the draft length
+to the acceptance rate. Pooled speed is the total decoded tokens divided by the total decode wall
+time across an arm's three prompts and three rounds
+(\PeFtRows{} rows in all), so each prompt counts by the tokens it decoded.
+Our arms used the 8-bit cache. The stock arms ran the official 1.6.5 wheel
+(CUDA 12.8, torch 2.10.0); exllamav3 1.6.6, released on 31~October, leaves
+every CUDA file on this model's decode path unchanged. The rafatxf arms ran rafatxf's Turing branch
+\citep{rafatxf2026turing} at commit 15654d3 (exllamav3 1.5.3), built with
+gcc~13 so that its fdq4 attention kernel compiled; the arms used its best
+configuration, the 4-bit cache that fdq4 reads. An earlier session's rafatxf build had
+silently fallen back to Triton attention; this session's log shows no
+fallback. The registration required w13 to beat w11b undrafted by at least
+3\% in every round (it did) and allowed the phrase ``w13 closes rafatxf's MTP
+lead'' only if mode~1 won every round at an empty context; everything else is
+reported as measured. Other projects raised the desktop's load average from
+\PeFtLoadStart{} to \PeFtLoadEnd{} during the session; the card ran at 260\,W
+and \PeFtTempLo--\PeFtTempHi\,$^\circ$C.
+
+A confirmation session on 4~November repeated these anchors in three rotated
+rounds. The session audit and other-engine protocols are retained in
+Appendix~\ref{app:engine-comparisons}; speedups use comparisons within a session.
+
+
+\subsection{Quality measurements}
+\label{sec:qualitysetup}
+On the same card we ran the EXL3 weights on the stock 1.6.5 wheel, undrafted
+and with MTP, through TabbyAPI \citep{theroyallab2025tabbyapi}; the w13 build
+with MTP in mode~2, and the w11b build undrafted; and unsloth's UD-IQ2\_S and
+UD-IQ2\_XXS GGUFs of the same model \citep{unsloth2026qwen38gguf} through
+llama.cpp's server \citep{gerganov2023llamacpp}. The undrafted GGUF lanes ran
+llama.cpp at commit d63fbfe7. The drafted ones ran llama.cpp v0.4.0 (5266f24)
+with our patch for a shared-embedding MTP sidecar: UD-IQ2\_S with unsloth's
+MTP layer (up to 3 drafts) and UD-IQ2\_XXS with z-lab's DFlash2 block-diffusion
+drafter \citep{chen2026dflash,zlab2026dflash2} (Q4\_K\_M, up to 7 drafts).
+Both engines used an 8-bit cache and flash attention. Each lane answered 500
+GSM8K items \citep{cobbe2021gsm8k} (a seeded sample of the 1,319-item test
+set); the stock EXL3 and GGUF lanes also answered 500 MMLU items
+\citep{hendrycks2021mmlu} (all 57 subjects). The patched checks used GSM8K
+only. All lanes used
+thinking on at medium effort, greedy decoding, at most 4,096 output tokens and
+one request at a time, scored by one scorer on one response shape. The lanes
+ran between 30~October and 1~November. Paired comparisons use exact McNemar
+tests \citep{mcnemar1947}, Holm-adjusted \citep{holm1979} across the 14
+same-card pairs of the batch. The w11b and w13 lanes had registered rules (no
+more than 1.0 point below the configuration each replaced); the comparisons
+with llama.cpp are descriptive. Time per answer is wall time per request.
+
+
+
+\subsection{Context and retrieval measurements}
+\label{sec:lcsetup}
+Memory reach is the longest registered ladder step at which a fresh server
+holds a filled prompt below \PeLimitMiB\,MiB, leaving \PeHeadroomMiB\,MiB
+of the card unused. Each step fills all but \PeFillGapMin--\PeFillGapMax{}
+tokens, decodes at most 64 tokens and samples memory once per second.
+The cache formats and their byte costs are:
+\paragraph{Cache formats.}
+exllamav3 quantizes the cache in groups of 32 values: each group is rotated by
+a 32-point Hadamard transform, scaled by its largest magnitude and stored at
+$b$ bits with one fp16 scale, so each cached value costs $(b+\tfrac12)/8$ bytes. We
+write a format as key bits,value bits: \fmt{8,8} (the 8-bit cache, the default
+in our serving setup), \fmt{8,4} (the split cache), \fmt{4,4} (the 4-bit cache)
+and \fmt{fp16}. With the MTP layer's cache, they cost \PeCacheMiBEE,
+\PeCacheMiBEF, \PeCacheMiBFF{} and \PeCacheMiBFp\,MiB per 1,024 tokens (K).
+During prefill, exllamav3 1.6.5 reads a quantized cache by staging up to 64K
+tokens of it at a time as fp16, so the quantization acts on prefill as well as
+decode.
+
+\paragraph{Decode kernels.}
+\label{sec:kernels}
+exllamav3 decodes attention over its paged cache with a Triton kernel in the
+flash-decoding pattern \citep{dao2023flashdecoding}: the keys are split across
+thread blocks, each block keeps an online softmax \citep{milakov2018online},
+and a combine kernel merges the partial results through their log-sum-exp.
+For the 8-bit cache, w13 replaces the split phase with fd75d, a CUDA kernel
+that keeps the splits, the combine and the precision (fp16 operands, fp32
+accumulators and row sums, probabilities rounded to fp16 for the value
+product) but computes its tiles on Turing's fp16 tensor cores. It reads the
+packed 8-bit keys and values straight into registers, computes
+$S^{\top}=KQ^{\top}$ with the grouped query rows in the small dimension, and
+accumulates $O^{\top}\mathrel{+}=V^{\top}P^{\top}$. The other quantized
+formats are read by Triton; the run records do not name the kernel that read
+fp16, and prefill never uses fd75d. The
+environment variable \q{EXL3\_FD75D=0} selects Triton for a whole server
+process, so stage~2's 8-bit arms differ from its other arms in kernel as well
+as in format; the accuracy arm separates the two.
+
+
+Retrieval uses \PeNeedles{} seven-digit values for one key, inserted into
+LongMemEval-S chat haystacks using RULER-style wording
+\citep{wu2025longmemeval,hsieh2024ruler}. An answer is right only if it
+contains every value. The same \PeHTwoN{} items run at 32K and 64K with
+greedy decoding, thinking off and a 768-token answer allowance; none was
+truncated. Calibration used separate items before the test set was built.
+The direct kernel control compares Triton with the tensor-core kernel on
+the same 8-bit cache at 64K. Paired accuracy differences have registered
+90\% bootstrap intervals (10,000 item resamples): a lower bound above
+$-10$ points is usable, and an interval within $\pm5$ is equivalent.
+Single-arm accuracies use Wilson 95\% intervals \citep{wilson1927}.
+Appendix~\ref{app:lc-methods} gives the full system envelope, calibration,
+other cache comparisons, numerical checks and replication protocol.
+
+
+\section{Results}
+\label{sec:results}
+\subsection{Decode throughput}
+\label{sec:speed}
+At an empty context, the patched build decoded \PeFtWZero{} tokens/s
+undrafted against the stock wheel's \PeFtStockZero{}:
+\PeFtUndraftedRatio{} times as fast, with per-round gains of
+\PeFtUndraftedOverStockLo--\PeFtUndraftedOverStockHi\%.
+With MTP the rates were \PeFtSTwoMtpZero{} against \PeFtStockMtpZero{},
+\PeFtMtpRatio{} times as fast (\PeFtMtpOverStockLo--\PeFtMtpOverStockHi\%
+per round). At 28K the patched build retained \PeFtWTwentyEight{} undrafted
+and \PeFtSTwoMtpTwentyEight{} with MTP. The confirmation session reproduced its four rates within
+\PeCfFtwoMin--\PeCfFtwoMax\% and supplied the missing stock 28K arms.
+There, the pooled patched-to-stock ratios were \PeCfXStockNdDeep{}
+undrafted and \PeCfXStockMtpDeep{} with MTP; the patched build was
+faster in every round.
+
+\begin{figure}[!tbp]\centering
+\includegraphics[width=\linewidth]{\fig{fig_speed.pdf}}
+\caption{Turing kernel patches nearly double undrafted decode speed and reach
+\PeFtSTwoMtpZero{} tokens/s with MTP on a stock RTX 2080 Ti. Points pool
+three prompts in three rotated rounds; lines span the round rates.
+Filled points use empty context and open points 28K. Stock is exllamav3
+1.6.5; the patched build uses the same weights and 8-bit cache. Its MTP
+configuration uses all-shape split-K dispatch (Section~\ref{sec:build});
+that setting does not change one-row undrafted code. F2 had no stock 28K arm.}
+\label{fig:speed}
+\end{figure}
+
+Drafting gains depend on accepted proposals. At empty context, the patched
+MTP build decoded \PeFtPpSTwoCode{}, \PeFtPpSTwoMath{} and
+\PeFtPpSTwoProse{} tokens/s on code, math and prose; undrafted rates varied
+by less than 0.5\%. Pooling weights prompts by the tokens actually decoded,
+including early end-of-sequence finishes. Appendix~\ref{app:prompts} gives
+per-prompt rates and lengths, and Appendix~\ref{app:engine-comparisons}
+retains every measured build and the dated competitor comparisons.
+
+
+\subsection{Quality and answer time}
+\label{sec:quality}
+The descriptive GGUF comparisons and answer-time measurements are in
+Appendix~\ref{sec:answers} (Table~\ref{tab:quality}).
+
+On GSM8K the faster builds stayed within their registered bound. w13 in
+mode~2 with MTP answered every item as the stock wheel with MTP did: no discordant item, with the
+same final answer on \PeQWSame{} of 500 and identical text on \PeQWIdent,
+and against w11b with MTP, the registered reference, it scored the same
+\PeQWModeTwoRefAcc\% with no discordant item and the same final answer on
+\PeQWModeTwoRefSame{} of 500 (the registered bound was $-1.0$ point). Undrafted, the
+w11b build scored
+\PeQWElevenAcc\% (\PeQWElevenDiff{} points against stock; \PeQWElevenTen{}
+against \PeQWElevenOtt, $p=\PeQWElevenP$), inside the same bound; a registered
+bit-identity check found w13's one-row products identical to its predecessor's,
+so undrafted w13 inherits that result. The MTP drafter changed no GSM8K
+outcome on the stock wheel (\PeQMtpGsmTen{} against \PeQMtpGsmOtt) and
+\PeQMtpMmluTen{} against \PeQMtpMmluOtt{} on MMLU. No MMLU lane ran on w13 in this 2080 Ti study.
+
+
+
+
+
+\subsection{Context reach by cache format}
+\label{sec:reach}
+The 8-bit cache passed at 64K and 72K and failed at 80K, where it peaked at
+\PePeakEEEighty\,MiB, \PeEEEightyOver\,MiB over the limit, so its reach is
+\PeReachEE{} (Table~\ref{tab:reach}, Figure~\ref{fig:reach}a). The other
+three formats passed every step of their ladders, so their reaches are lower
+bounds: at least \PeReachEF{} for the split cache, \PeReachFF{} for the 4-bit
+cache and \PeReachFp{} for fp16. Reach is a memory-fit result; paired retrieval accuracy was tested at 32K
+and 64K, rather than at the 72K memory limit. The ladder and peaks appear in
+Table~\ref{tab:reach}; failed projection predictions and longer-context
+accuracy are retained in Appendix~\ref{app:cache-results}.
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lrrlrl@{}}\toprule
+Format & Bytes/token/layer & MiB per 1K tokens & Ladder & Reach & Peak at reach (free)\\\midrule
+\fmt{8,8} & \PeBytesEE & \PeCacheMiBEE & 64K, 72K, 80K & \PeReachEE & \PeReachPeakEE\,MiB (\PeReachFreeEE)\\
+\fmt{8,4} & \PeBytesEF & \PeCacheMiBEF & 64K, 88K, 96K & $\geq$\PeReachEF & \PeReachPeakEF\,MiB (\PeReachFreeEF)\\
+\fmt{4,4} & \PeBytesFF & \PeCacheMiBFF & 64K, 96K, 128K, 136K & $\geq$\PeReachFF & \PeReachPeakFF\,MiB (\PeReachFreeFF)\\
+\fmt{fp16} & \PeBytesFp & \PeCacheMiBFp & 32K, 36K, 40K & $\geq$\PeReachFp & \PeReachPeakFp\,MiB (\PeReachFreeFp)\\
+\bottomrule\end{tabular}
+\caption{Reach: the longest ladder step with a filled prompt whose peak stayed
+at or under \PeLimitMiB\,MiB. Bytes per token in one attention layer; MiB per
+1K tokens over the 16 attention layers and the MTP layer. Free: the card's
+\PeCardMiB\,MiB minus the peak. The 8-bit cache failed at 80K
+(\PePeakEEEighty\,MiB); the others passed their whole ladders.}
+\label{tab:reach}
+\end{table}
+
+
+
+\subsection{Retrieval accuracy of tensor-core attention}
+\label{sec:kernel}
+On the same 8-bit cache at 64K, Triton and the tensor-core kernel each
+answered \PeArmTritonK{} of \PeArmTritonN{} items correctly. Their paired
+difference was \PeKOneDiff{} points (90\% interval
+\PeKOneLo{} to \PeKOneHi{}), within the registered equivalence margin.
+\PeKOneSame{} of \PeHTwoN{} answer texts were identical, bounding the
+accuracy difference by \PeKOneBound{} points on these items.
+The tensor-core kernel decoded at \PeArmEESixtyFourDecode{} tokens/s
+against Triton's \PeArmTritonDecode{}, \PeDecodeRatio{} times as fast.
+Appendix~\ref{app:kernel-control} retains the logit check and its 48K
+trigger; these retrieval results apply to the tested 64K task.
+
+
+\section{Performance analysis}
+\label{sec:why}
+Nsight Systems censuses explain where each build spends decode time.
+They ran in separate sessions; their ratios describe kernel costs rather
+than replacing the interleaved speed comparisons. The capture-to-session
+spread is retained in Appendix~\ref{app:cost-model}.
+
+
+\subsection{Kernel time breakdown}
+\label{sec:census}
+A registered census of the stock wheel, undrafted at an empty context, found
+the card busy \PeCensusBusy\% of the decode time, with
+\PeCensusIdleLo--\PeCensusIdleHi\,ms per token idle between kernels and about
+\PeCensusKernels{} kernel launches per token (\PeCensusMs\,ms per token under
+the profiler). The EXL3 matrix kernels took \PeCensusMatrix\% of kernel time:
+the matrix-vector kernel \PeCensusGemv\%, the multi-matrix kernel that runs
+fused projections \PeCensusMgemm\%, and the matrix-matrix kernel
+\PeCensusGemm\%. Attention, the recurrent-state update and the norms share the
+rest. At an empty context, matrix kernels offer more scope for reducing decode
+time than host gaps or attention.
+
+Table~\ref{tab:census} puts w13's drafted censuses beside the stock wheel's,
+with the same prompts, profiler, report and grouping. With MTP at an empty
+context, w13 took \PeCgWMs{} ms per token against \PeCgStockMtpMs{}
+(\PeCgMsCut\% less, in captures a day apart): its matrix kernels took \PeCgMatrixCut\% less time and
+attention \PeCgAttnCut\% less, while the small kernels took only
+\PeCgSmallCut\% less. Matrix products still took \PeCgWMatrixShare\% of kernel
+time, against \PeCgStockMtpMatrixShare\% on the stock wheel, so they remain the
+largest component of kernel time after w13. At 28K, attention rose to \PeCgWDeepAttnShare\% of w13's
+kernel time.
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+Capture & ms/token & Matrix products & Attention & GDN state & Small kernels\\\midrule
+stock 1.6.5, undrafted, empty & \PeCgStockNdMs & \PeCgStockNdMatrixUs{} (\PeCgStockNdMatrixShare\%) & \PeCgStockNdAttnUs{} (\PeCgStockNdAttnShare\%) & \PeCgStockNdGdnUs{} (\PeCgStockNdGdnShare\%) & \PeCgStockNdSmallUs{} (\PeCgStockNdSmallShare\%)\\
+stock 1.6.5, MTP, empty & \PeCgStockMtpMs & \PeCgStockMtpMatrixUs{} (\PeCgStockMtpMatrixShare\%) & \PeCgStockMtpAttnUs{} (\PeCgStockMtpAttnShare\%) & \PeCgStockMtpGdnUs{} (\PeCgStockMtpGdnShare\%) & \PeCgStockMtpSmallUs{} (\PeCgStockMtpSmallShare\%)\\
+w13 mode 2, MTP, empty & \PeCgWMs & \PeCgWMatrixUs{} (\PeCgWMatrixShare\%) & \PeCgWAttnUs{} (\PeCgWAttnShare\%) & \PeCgWGdnUs{} (\PeCgWGdnShare\%) & \PeCgWSmallUs{} (\PeCgWSmallShare\%)\\
+w13 mode 2, MTP, 28K & \PeCgWDeepMs & \PeCgWDeepMatrixUs{} (\PeCgWDeepMatrixShare\%) & \PeCgWDeepAttnUs{} (\PeCgWDeepAttnShare\%) & \PeCgWDeepGdnUs{} (\PeCgWDeepGdnShare\%) & \PeCgWDeepSmallUs{} (\PeCgWDeepSmallShare\%)\\
+\bottomrule\end{tabular}
+\caption{Decode kernel time per decoded token by group, in \textmu s (share of
+kernel time), under Nsight Systems: the three speed prompts, the 8-bit cache,
+and MTP drafting up to 6 tokens where stated. ms/token is decode wall time per
+token, the mean over the prompts. Matrix products are the EXL3 matrix
+kernels, w13's split-K kernel included; attention includes fd75d. No stock
+census ran at 28K. w13 is our full patch chain; mode 2 selects its
+all-shape split-K dispatch (Section~\ref{sec:build}).}
+\label{tab:census}
+\end{table}
+
+
+
+\subsection{Int8 decoding with 64\,KB of shared memory}
+\label{sec:int8}
+In the same census design, the build with W7's int8 path and unfused
+projections took \PeIntEightAfter{} ms per token against \PeIntEightBefore{}
+for the stock wheel, \PeIntEightChange\% less. Unfusing alone cut
+\PeIntEightUnfused\% and the int8 path alone \PeIntEightAlone\%. They interact
+because the fused projections run in the multi-matrix kernel, which the int8
+path does not cover; unfused, they become matrix-vector products and move to
+int8 too. In an interleaved session without the profiler, planned before W9
+first ran, the host's choice of slice height (W9) then made the build
+\PeWNineGain\% faster undrafted at an empty context, in every round, and
+\PeWNineFitGain\% faster than the same build with that choice switched off.
+
+
+
+\subsection{Verify passes and drafting}
+\label{sec:verify}
+Drafting turns most decode steps into verify passes of several rows, one per
+drafted token plus one. On quantized weights, the verify pass's cost limits
+what drafting gains \citep{zhang2025specmquant}. Composed from kernel benchmarks of each shape with the
+census's mix of matrix shapes, a verify pass of 3 to 5 rows costs
+\PeVerifyAdoptLo--\PeVerifyAdoptHi{} single-row passes' worth of matrix time
+on w11b, whose int8 path stops at two rows and hands taller passes to the fp16
+path. Split-K cuts that to \PeVerifySOneLo--\PeVerifySOneHi{} in mode~1 and
+\PeVerifySTwoLo--\PeVerifySTwoHi{} in mode~2. Over w11b in F2, w13 in mode~1
+was \PeFtSplitKMtpPct\% faster with MTP (mode~2, the configuration of record,
+\PeFtModeTwoOverAdoptPct\%) but \PeFtSplitKUndraftedPct\%
+undrafted at an empty context (\PeFtSplitKMtpTwentyEightPct\% and
+\PeFtSplitKUndraftedTwentyEightPct\% at 28K), each in every round. The
+undrafted gain is the stepped pointer, W12p.
+
+
+
+\subsection{Attention kernel at long context}
+\label{sec:depth}
+At 28K, attention also accounts for substantial kernel time. In a census of w9, the build before fd75d,
+Triton's split kernel took \PeDepthTritonUs\,\textmu s per token
+(\PeDepthTritonCall\,\textmu s per call, one call per attention layer); with
+fd75d the split phase took \PeDepthFdUs\,\textmu s (\PeDepthFdCall\,\textmu s
+per call, \PeDepthCallRatio{} times faster), and the token fell from
+\PeDepthBefore{} to \PeDepthAfter{} ms, \PeDepthChange\% less (two captures,
+23 minutes apart; the token fell by less than the split phase saved because
+its other kernels, the matrix kernels among them, ran longer in the second
+capture). In registered
+interleaved repeats without the profiler, undrafted, w11b decoded
+\PeDepthTwoGain\% faster than w9 at 28K in every round (\PeDepthTwoW{}
+against \PeDepthTwoFOne{} tokens per second), while the same w11b with fd75d
+switched off gained only \PeDepthTwoOff\%, attributing the long-context gain
+to fd75d.
+In a kernel
+benchmark at 28,050 tokens with one query token, Triton's split kernel took
+\PeBenchDefault\,\textmu s at its default launch setting and \PeBenchBest\,\textmu s
+at the best of \PeBenchConfigs{} settings, against \PeBenchFd\,\textmu s for
+fd75d and a floor of \PeBenchFloor\,\textmu s to stream the layer's cache at
+550\,GB/s. No Triton setting closes the gap, consistent with Triton emitting
+scalar fused multiply-adds on Turing \citep{triton5066}; fd75d runs on the tensor
+cores within \PeBenchFdOverFloor{} times the floor.
+
+
+
+\section{Discussion}
+\label{sec:discussion}
+The gains come from matching kernel geometry and precision to the card:
+unfused projections expose the int8 path, each instance stays within
+64\,KB, split-K lowers verification cost, and tensor-core attention avoids
+Triton's scalar path at filled contexts. This is an implementation and
+measurement result for the original weights; it does not require a new
+model or training.
+
+For short prompts, MTP with all-shape split-K is the fastest configuration
+we measured. The 8-bit cache with tensor-core attention combines
+\PeReachEE{} memory reach with the tested 64K retrieval result.
+For a single short answer over a long prompt, prefill remains important:
+at 64K it ran near \PeArmEESixtyFourPrefill{} tokens/s and a request took
+\PeArmEESixtyFourItemS{} seconds on average. Decode throughput matters most
+for longer answers or follow-up turns that reuse the prompt.
+
+
+\section{Related work}
+\label{sec:related}
+\textbf{Turing engines and kernels.} rafatxf's Turing branch of exllamav3
+adds fdq4, tensor-core decode attention over the 4-bit cache, an fp16 split-K
+matrix-vector kernel, unfused projections and prefill work, and reports 1.86
+to 2.57 times over v1.5.3 on a 22\,GiB 2080 Ti \citep{rafatxf2026turing}. exllamav3's int8 path has run
+on 64\,KB Turing parts in vcruz305's patch, weicj's branch and an EXL3 kernel
+in a llama.cpp fork \citep{vcruz3052026exl3turing,weicj2026turing,spiritbuun2026buun};
+host-chosen slice heights appear in AMD ports and kyojin
+\citep{ghazni2026rocm,yamz2026kyojin}. On sm\_75, TurboMind decodes 8- and
+4-bit caches on tensor cores \citep{lmdeploy2024turbomind}, a vLLM fork
+decodes an FP8 cache for this model \citep{cookjohn2026vllmturing}, NInfer
+reads a rotated int8 cache with int8 tensor cores \citep{ninfer2026titan},
+and Brontir's NInferno, which builds on NInfer, runs this model's 2-bit GGUF on the stock
+card \citep{brontir2026ninferno}.
+Trellis-coded weights descend from QTIP \citep{tseng2024qtip};
+ik\_llama.cpp decodes its trellis quantizations with int8 products on Turing
+\citep{ikawrakow2025ikllama}, and Mirai~S runs a 2.4-bit trellis quantization
+of this model on later cards \citep{trymirai2026mirais}. \textbf{Key and value precision.} Keys tolerate quantization worse than
+values \citep{liu2024kivi,hooper2024kvquant}. QuaRot rotates caches with
+Hadamard transforms \citep{ashkboos2024quarot}, as exllamav3 does per group of
+32 values. Allocation studies give keys the extra bits
+\citep{dong2024qaq,tao2024asymkv,zhang2024diffkv,hariri2026quantize}. In
+KVTuner \citep{li2025kvtuner}, 8-bit keys with 4-bit values match an 8-bit
+cache, and KV-COBRA \citep{ha2026kvcobra} finds retrieval the task that needs
+key precision most. On this model, community llama.cpp tests found 4-bit
+values nearly doubling tail divergence at 64K \citep{llamacpp23470} but
+changing no short multiple-choice answers \citep{churnharness2026}, and FP8 or
+NVFP4 caches keep its RULER scores near the full cache's to 64K and beyond on
+data-center GPUs \citep{kozyrev2026gdn,tang2026jetqsparse}. Losses from
+quantized caches grow with length \citep{li2024evaluating}, and quantization
+moves the retrieval cliff shorter \citep{salammagari2026length}. In hybrids,
+exact retrieval runs through the few attention layers
+\citep{afendulev2026hybrid,bick2025gather}.
+
+\textbf{Decode-kernel numerics.} Flash attention's deviation from standard
+attention grows with sequence length \citep{golden2024flash}. FP8 tensor-core
+sums cut long-context retrieval in vLLM until partial sums were promoted to
+fp32 \citep{kubler2026fp8}, while Turing's fp16 tensor cores accumulate at
+fp32 width with truncation \citep{fasi2021tensorcores}. Small kernel
+differences change greedy outputs
+\citep{yuan2025nondeterminism,du2026greedy,chen2026integer,he2025nondeterminism},
+compressed models flip answers that an unchanged aggregate accuracy hides
+\citep{dutta2024accuracy}, and evaluations under nominally deterministic settings vary in accuracy by up
+to 15\% \citep{atil2024nondeterminism}. We compared fd75d with Triton on the
+same cache by teacher-forced logits and by free-running accuracy.
+
+
+
+\section{Artifact availability and reproducibility}
+\label{sec:artifacts}
+The prepared artifact includes frozen numeric outcomes, registrations,
+analysis, figures and the credited patches. Its public identifier awaits
+release. The model-free quick check, \q{python3 -B check\_claims.py},
+rebuilds the claim macros and tables without a GPU, tokenizer or network;
+\q{--figures} redraws the light figures. The replacement comparison uses a
+hash-bound reviewed numeric projection, and the Bonsai tables replay nine
+numeric lanes, five paired tests, Holm adjustment and fixed-seed bootstrap
+intervals. These projections reproduce recorded scores, not response
+rescoring or byte/token identity.
+
+The full-item check, \q{scripts/repro\_check.sh}, also regenerates the
+long-context prompts from committed manifests, using the pinned tokenizer,
+LongMemEval-S data and dependencies. Full hardware replication needs the
+revision-pinned EXL3 weights, GGUFs and drafters in Table~\ref{tab:files},
+exllamav3 1.6.5, the patch overlay, TabbyAPI and an 11\,GiB sm\_75 card;
+the artifact documents exact versions, commands and resource limits.
+Weights and benchmark response text are linked or omitted rather than
+redistributed. The patch set targets exllamav3 1.6.5 under MIT: W7--W12p
+are ours; W13 is rafatxf's kernel from commit \q{15654d3}, ported unchanged
+with its notice. The earlier 16K study's registration, outcomes and analysis
+remain included.
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+Turing-fitted kernels run the original 2-bit Qwen3.8-27B weights on a stock
+RTX 2080 Ti at \PeFtWZero{} tokens/s undrafted and \PeFtSTwoMtpZero{} with
+MTP, \PeFtUndraftedRatio{} and \PeFtMtpRatio{} times stock exllamav3.
+An int8 path within the card's shared-memory limit supplies most of the
+undrafted gain; split-K verification and tensor-core attention support
+MTP and filled contexts. The registered MTP check changed no GSM8K
+outcome, while quality differences against llama.cpp's 2-bit GGUFs remain
+unresolved after adjustment. An 8-bit cache holds \PeReachEE{} tokens and
+the attention kernel retains reference retrieval accuracy at the tested
+64K length. These results concern the fastest configuration we measured
+for the original weights; they do not establish the fastest model on the
+card. Appendix~\ref{app:null} preserves the null results, dated comparisons
+and detailed limits.
+
+
+\section*{AI assistance}
+Claude Code (Anthropic) wrote the Turing patches W7 to W12p, including the
+fd75d kernel, and ported rafatxf's split-K kernel (W13); wrote the
+registrations, harnesses and analysis scripts; operated the runs under the
+author's standing rules and registrations; and drafted the manuscript,
+figures, claim checks and bibliography. fd75d was checked against an fp64
+reference in the run that first timed it, W12p for bit identity, and the builds in
+registered accuracy checks (Section~\ref{sec:quality}), with the test outputs
+in the artifact; every number is recomputed from the archived
+outputs by a script that refuses to build on any disagreement; and every
+citation was checked against arXiv, Crossref, GitHub or the source page.
+Codex (OpenAI) performed the registered Bonsai analysis and formatted its results;
+in a separate review, independently recalculated the counts, rates and paired
+tests and checked the timing boundaries and provenance. Codex also implemented the replacement speed harness, revised the manuscript
+from the independently reviewed comparison, and prepared candidate reading
+copies and the release package.
+Matthew Schwartz directed the research and is responsible for its methods,
+results, claims, citations, rights and released files.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+
+
+\appendix
+\section{Null results and limits}
+\label{app:null}
+This appendix retains incomplete and weaker comparisons, failed predictions,
+replication outcomes and the detailed boundaries of the positive results.
+
+\subsection{Engine comparisons at the measured versions}
+\label{app:engine-comparisons}
+\subsubsection{Protocols and session variability}
+A registered audit of the \PeAuditSessions{} speed sessions
+run with this harness found them \PeAuditChi{} times more variable than their
+own round-to-round noise allows. The audit fits the logarithm of each
+configuration's time per token in each session as a session effect plus a
+configuration effect, weighting each cell by its round-to-round variance; the
+factor is the weighted residual sum of squares (chi-squared) over its 33 degrees
+of freedom, and 1 would mean the sessions agree within that noise. Three
+sessions took \PeAuditSlowLo--\PeAuditSlowHi\% longer per token than F2, and
+\PeAuditCloseWord{} others were within 2\% of it. The residuals' root mean square,
+the cross-session floor, is \PeAuditFloorUndrafted\% undrafted and
+\PeAuditFloorDrafted\% drafted. Speed claims are therefore comparisons
+within one session, as performance studies elsewhere also advise
+\citep{mytkowicz2009producing,hoefler2015scientific}.
+
+A second session, registered on 4~November before it ran, repeated F2's
+protocol and included the competing engines. Its conditions, each a fresh process in
+three rotated rounds:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item the stock 1.6.5 wheel and w13 on 1.6.5, undrafted and with MTP, at an
+empty context and 28K;
+\item the 1.6.6 wheel and w13 rebuilt on 1.6.6, at an empty context;
+\item rafatxf's branch with MTP;
+\item NInferno \citep{brontir2026ninferno} at commit 1d3b43e3, undrafted on
+both GGUFs;
+\item llama.cpp v0.9.0 \citep{ggml2026llamacpp090}, undrafted on UD-IQ2\_XXS,
+and with drafting: UD-IQ2\_XXS with DFlash2, and UD-IQ2\_S with unsloth's
+full MTP sidecar;
+\item ik\_llama.cpp \citep{ikawrakow2025ikllama} at 009dce19, undrafted and
+with MTP;
+\item buun-llama-cpp \citep{spiritbuun2026buun} at a8022d24, which loads the
+EXL3 folder itself.
+\end{itemize}
+Every engine received the same prompts, filler, cap of 256 tokens and
+nominal requested temperature and min-p settings. This did not establish
+identical resolved sampling: defaults and the order of sampling operations
+can differ by engine and version. The 4~November resolved presence penalty
+is not established by our later audit. Timing spans the first decoded token
+to the last; exllamav3 can stop at end of sequence, while the other engines'
+servers decoded all 256. The exllamav3 builds ran in-process,
+as in F2; the other engines ran as HTTP servers read by a streaming client,
+whose timed span differed from each server's reported decode time by at most
+\PeCfTimingMaxMs\,ms on all \PeCfTimingN{} rows with server timings
+(\PeCfTimingCloseN{} within \PeCfTimingCloseMs\,ms). The analysis was fixed before any measurement was collected. There were four departures from the registration:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item FFmpeg, which NInferno links, had to be rebuilt without x86 assembly;
+\item a memory stall caused by other programs on the desktop made its guard
+stop the first attempt in its second round, and the queue restarted the
+session from the beginning; the stopped attempt is not pooled;
+\item seven competitor lanes failed before decoding, so a dated amendment,
+written before any row was read, added a follow-up session of three rounds;
+\item a registered 240\,W repeat never ran at 240\,W, since the power limit
+could not be lowered without a password, so its rows are an unplanned repeat
+at 260\,W.
+\end{itemize}
+The follow-up session tried each failed lane on a fit ladder with fixed rungs in
+order:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item as registered;
+\item a smaller prefill batch;
+\item the smallest context that holds the 28K prompts;
+\item the engine's own fit to free memory, reported as partial offload.
+\end{itemize}
+Same-session w13 anchors ran beside them. The session also used available ports, since the harness's port reuse had
+caused two failures. In
+both sessions the drafter for NInferno's DFlash2 was not on the machine, so
+that arm did not run. It was downloaded on 5~November, at the revision
+NInferno pins and matching the Hub's SHA-256, and two more dated amendments
+ran it in sessions of three rotated rounds beside w13 anchors and NInferno
+undrafted. The first session's lane could not start because NInferno serves a local
+GGUF from its own text-only conversion and attaches no separate drafter to
+it. The second session served NInferno's conversion of the same GGUF with the
+drafter embedded, made beforehand by NInferno's own converter. With the
+drafter's weights on the card, NInferno's memory plan cannot hold the
+registered 32K context, and holds 29,696 tokens, the smallest that takes the
+28K prompts, only on the last of its six plan rungs, a survival rung. That
+rung keeps every weight and the whole context on the card but drops cached
+prompt states and prefills 128 tokens at a time instead of 1,024; decode,
+which we time, stays fully on the card. The lane therefore ran at NInferno's
+automatic context when empty, as NInferno's published command does, and on
+the survival rung at 28K.
+
+
+\subsubsection{Registered comparison results}
+The confirmation session's fork ran \PeCfRafVsFtPct\% faster than its F2
+empty-context rate. The sessions therefore retain their own anchors.
+Against rafatxf's branch with MTP, mode~2 was \PeFtOverRafZeroPct\% faster at
+an empty context (\PeFtOverRafZeroLo\% to \PeFtOverRafZeroHi\% per round) and
+\PeFtOverRafTwentyEightPct\% at 28K (\PeFtOverRafTwentyEightLo\% to
+\PeFtOverRafTwentyEightHi\%), faster in every round at both. Mode~1 was
+\PeFtSOneOverRafZeroPct\% slower at an empty context, in all three rounds, so
+the registered phrase that w13 closes rafatxf's lead is not used. The two
+builds ran different caches, each its best configuration: at an empty context
+the cache is small and the comparison is mostly of matrix kernels; at 28K
+rafatxf's 4-bit cache reads half the bytes of our 8-bit cache. Draft
+acceptance was the same across the nine drafted arms (\PeFtAcceptLo--\PeFtAcceptHi{}
+of drafted tokens, pooled), so their differences are kernel time. Some runs
+ended at the end-of-sequence token before 256 tokens, most often on code
+(Table~\ref{tab:f2prompts}), so the pooled rate counts each prompt by the
+tokens it decoded. With the three prompts weighted equally instead, mode~2
+led the fork by \PeFtOverRafZeroEqPct\% at an empty context and
+\PeFtOverRafTwentyEightEqPct\% at 28K, and in the confirmation session by
+\PeCfPRafZeroEq\% and \PeCfPRafDeepEq\%.
+
+The confirmation session (Table~\ref{tab:confirm}) reproduced F2. w13's four
+rates came within \PeCfFtwoMin\% to \PeCfFtwoMax\% of F2's, inside the
+cross-session spread, so we retain F2 as the primary speed estimate. The stopped first attempt, not
+pooled, agreed within \PeCfStopMax\%. In this session:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item exllamav3 1.6.6 changed no rate by more than \PeCfSixMax\%.
+\item w13 led rafatxf's branch with MTP in every round, by \PeCfPRafZero\% at
+an empty context and \PeCfPRafDeep\% at 28K.
+\item Undrafted, w13 led NInferno in every round, on UD-IQ2\_XXS by
+\PeCfPNifXxsZero\% and \PeCfPNifXxsDeep\% and on UD-IQ2\_S by
+\PeCfPNifSZero\% and \PeCfPNifSDeep\%, at an empty context and 28K.
+\item Undrafted, w13 ran \PeCfXLcppZero{} times as fast as llama.cpp v0.9.0 and
+\PeCfXIkXxsZero{} times as fast as ik\_llama.cpp, which ran \PeCfIkVsLcpp\% slower
+than llama.cpp on the same GGUF. ik\_llama.cpp turns CUDA graphs off below
+Ampere (\texttt{ggml-cuda.cu} at the commit we built), and llama.cpp turned
+them on for Turing \citep{llamacpp25749}: a likely cause, which we did not
+test.
+\end{itemize}
+The follow-up session measured drafted competitors on the fit ladder:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item llama.cpp v0.9.0 with DFlash2 failed every rung, running out of
+memory at load or on the first decode; its automatic fit cannot measure the
+DFlash drafter's memory, a gap reported upstream the day before our session,
+with a fix under review \citep{llamacpp31643}.
+\item ik\_llama.cpp with MTP ran out of memory on its first request at all
+three rungs that apply to it.
+\item llama.cpp v0.9.0 with the MTP sidecar fit only by leaving layers in
+host memory (the log does not record how many), and decoded at
+\PeCfLcppMtpZero{} tokens per second.
+\item buun-llama-cpp ran at full offload: \PeCfBuunNdZero{} tokens per second
+undrafted (one round, before the time cap cut it) and \PeCfBuunMtpZero{} with
+MTP, which w13 led by \PeCfXBuunMtpZero{} times in every round. Its
+activations are int8; on 100 GSM8K items it scored \PeCfBuunAcc\% against the
+stock EXL3 lane's \PeCfBuunRefAcc\% (\PeCfBuunTen{} items right only with
+buun, \PeCfBuunOtt{} only with the stock lane; $p=\PeCfBuunP$).
+\end{itemize}
+In the 5~November DFlash2 session, NInferno with its drafter decoded \PeDfbNifDfZero{}
+tokens per second at an empty context, \PeDfbNifDfGain{} times its undrafted
+rate, and \PeDfbNifDfDeep{} at 28K. w13 with MTP decoded \PeDfbWMtpZero{} and
+\PeDfbWMtpDeep, ahead by \PeDfbPNifDfZero\% and \PeDfbPNifDfDeep\% in every
+round (\PeDfbPNifDfZeroLo\% to \PeDfbPNifDfZeroHi\% and \PeDfbPNifDfDeepLo\%
+to \PeDfbPNifDfDeepHi\%), and its anchors came within \PeDfbFtwoMax\% of F2. The pooled
+rate hides a split by prompt, which we did not register and report as
+exploration (each prompt pooled over the three rounds). At an empty context
+NInferno's DFlash2 kept pace on code (\PeDfbPpNifDfZeroCode{} against w13's
+\PeDfbPpWMtpZeroCode) and math (\PeDfbPpNifDfZeroMath{} against
+\PeDfbPpWMtpZeroMath), where it accepted \PeDfbAccZeroCode\% and
+\PeDfbAccZeroMath\% of its drafted tokens. On prose it accepted
+\PeDfbAccZeroProse\% and fell to \PeDfbPpNifDfZeroProse, below its own
+undrafted \PeDfbPpNifXxsZeroProse, against w13's \PeDfbPpWMtpZeroProse.
+NInferno drafts a fixed block of seven tokens; exllamav3 shortens its drafts
+when acceptance falls. At 28K, w13 led on every prompt when pooled over rounds, though
+NInferno's DFlash2 was faster on math in two of the three rounds. The lead
+over NInferno's drafted lane is therefore a lead on this mix of prompts
+under sampling, not on every kind of text.
+
+\paragraph{Replacement comparison, 14 November.}
+The 12~November rerun used NInferno 65e573fd and llama.cpp dd6b945b against
+unchanged w13. We replaced its NInferno comparison: startup logs and the
+pinned source reconstruct NInferno's default presence penalty of 1.5,
+whereas exllamav3 used a neutral penalty. The 14~November replacement used
+NInferno f8143b9e with presence penalty 0, frequency penalty 0 and repetition
+penalty 1 asserted on every request; all 49 requests, including warmups and
+the early diagnostic, resolved those values. The engine version also changed,
+so differences between the earlier and replacement margins cannot be
+attributed to the penalty. The reconstruction of the earlier default is not
+an archived per-request receipt, and does not establish the 4~November setting.
+
+The replacement kept the same card, frozen GGUFs (Hub revision 4ca72078,
+Table~\ref{tab:files}), three prompts and three rotated rounds, with unchanged
+w13 anchors. NInferno served its own UD-IQ2\_XXS conversion, loading the
+DFlash2 drafter only when requested. Table~\ref{tab:refresh14} gives the four
+eligible comparisons: w13 led undrafted by \PeFreshPNifNdZero\% empty and
+\PeFreshPNifNdDeep\% at 28K, and with MTP against DFlash2 by
+\PeFreshPNifDfZero\% and \PeFreshPNifDfDeep\%. Each pooled lead held in
+every round. The empty-context undrafted margin is small and descriptive;
+three prompts and three unpaired sampled rounds do not establish significance.
+Neutral penalties do not make the samplers identical: NInferno's requested
+top-k of 0 resolved to 64, with min-p applied after temperature within that
+set; exllamav3 applied min-p before temperature. Seeds were not paired or
+forwarded. The rates compare these configured stacks, without a fresh
+quality-equivalence test or equal-output assumption.
+
+Both code and prose favored w13 with drafting. At empty fill, code ran at
+\PeFreshWNifDfZeroCode{} against \PeFreshNifDfZeroCode{} tokens/s and prose
+at \PeFreshWNifDfZeroProse{} against \PeFreshNifDfZeroProse; at 28K the pairs
+were \PeFreshWNifDfDeepCode{} against \PeFreshNifDfDeepCode{} and
+\PeFreshWNifDfDeepProse{} against \PeFreshNifDfDeepProse. NInferno drafted
+math faster at both fills: \PeFreshNifDfZeroMath{} against
+\PeFreshWNifDfZeroMath{} tokens/s empty and \PeFreshNifDfDeepMath{} against
+\PeFreshWNifDfDeepMath{} at 28K. These exploratory prompt splits limit the
+pooled claim. NInferno's drafted context was 22,144 tokens when empty and
+29,696 at 28K, against w13's 32,768; exllamav3 sometimes stopped before the
+256-token cap, so equal requested caps did not mean equal generated work.
+
+Only \PeFreshComplete{} of \PeFreshPlanned{} planned comparisons completed;
+just the \PeFreshEligible{} NInferno comparisons qualified current
+full-residency leads. The completed stock exllamav3 1.6.7 MTP comparison at
+empty fill measured \PeFreshWStockMtpZero{} against \PeFreshStockMtpZero{}
+tokens/s, but failed the registered all-module residency rule because its
+embedding module was on CPU. This proves neither a compute-layer spill nor
+an inability to fit. w13's existing CPU embedding policy was not freshly
+audited by the same all-module rule. The other three stock pairs lacked
+round-three cells and are not complete comparisons.
+
+llama.cpp 61dbf492 decoded undrafted at \PeFreshLcppNdZero{} and
+\PeFreshLcppNdDeep{} tokens/s and with its full MTP sidecar at
+\PeFreshLcppMtpZero{} and \PeFreshLcppMtpDeep, at empty fill and 28K.
+Its placement was unknown under the registered rule, so these are
+measurements, not full-residency leads. DFlash2 had no successful measured
+fit on the attempted ladder: all applicable rungs were tried and none
+completed both warmups; four retained fit logs explicitly record CUDA
+allocation failures. This is an unmeasured cell, not zero throughput or a
+failure under every possible configuration. Full MTP failed the first three
+rungs with allocation errors, then warmed up and measured at the last rung,
+with context 29,696 and placement still unknown. Optional engines and newer
+quantizations were not staged. This incomplete refresh does not revalidate
+an all-engines or all-quantizations ranking. Earlier stock, fork, quality
+and long-context results retain their original dates and scope.
+
+\input{derived/refresh14}
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}llllrr@{}}\toprule
+Build & Version & Drafting & Cache & Empty context & 28K tokens\\\midrule
+stock & 1.6.5 wheel & none & \fmt{8,8} & \PeFtStockZero & --\\
+w11b & 1.6.5 + chain to W11b & none & \fmt{8,8} & \PeFtAdoptZero & \PeFtAdoptTwentyEight\\
+w13 & 1.6.5 + full chain & none & \fmt{8,8} & \PeFtWZero & \PeFtWTwentyEight\\\midrule
+stock & 1.6.5 wheel & MTP & \fmt{8,8} & \PeFtStockMtpZero & --\\
+w11b & 1.6.5 + chain to W11b & MTP & \fmt{8,8} & \PeFtAdoptMtpZero & \PeFtAdoptMtpTwentyEight\\
+w13, mode 1 & 1.6.5 + full chain & MTP & \fmt{8,8} & \PeFtSOneMtpZero & \PeFtSOneMtpTwentyEight\\
+w13, mode 2 & 1.6.5 + full chain & MTP & \fmt{8,8} & \PeFtSTwoMtpZero & \PeFtSTwoMtpTwentyEight\\
+rafatxf & 1.5.3 + 15654d3 & MTP & \fmt{4,4} & \PeFtRafMtpZero & \PeFtRafMtpTwentyEight\\
+\bottomrule\end{tabular}
+\caption{Decode speed of record (F2): tokens per second, pooled over three
+rotated rounds and three prompts, up to 256 tokens each, in one session on
+31~October 2026. MTP: the model's MTP layer drafting up to 6 tokens per
+step.
+Stock had no 28K arm in this session. w11b and w13 are our patch chains
+through the decode-attention and split-K patches, respectively; modes select
+split-K dispatch (Section~\ref{sec:build}).}
+\label{tab:speed}
+\end{table}
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrr@{}}\toprule
+Engine & Weights & \multicolumn{2}{c}{Undrafted} & \multicolumn{2}{c}{Drafted}\\
+ & & empty & 28K & empty & 28K\\\midrule
+\multicolumn{6}{@{}l}{\emph{Registered session, 4~November}}\\
+exllamav3 1.6.5, stock & EXL3 2.0 & \PeCfStockNdZero & \PeCfStockNdDeep & \PeCfStockMtpZero & \PeCfStockMtpDeep\\
+exllamav3 1.6.5 + w13 & EXL3 2.0 & \PeCfWNdZero & \PeCfWNdDeep & \PeCfWMtpZero & \PeCfWMtpDeep\\
+exllamav3 1.6.6, stock & EXL3 2.0 & \PeCfSixNdZero & -- & \PeCfSixMtpZero & --\\
+exllamav3 1.6.6 + w13 & EXL3 2.0 & \PeCfWSixNdZero & -- & \PeCfWSixMtpZero & --\\
+rafatxf (4-bit cache) & EXL3 2.0 & -- & -- & \PeCfRafZero & \PeCfRafDeep\\
+NInferno & UD-IQ2\_XXS & \PeCfNifXxsZero & \PeCfNifXxsDeep & -- & --\\
+NInferno & UD-IQ2\_S & \PeCfNifSZero & \PeCfNifSDeep & -- & --\\
+llama.cpp v0.9.0 & UD-IQ2\_XXS & \PeCfLcppZero & \PeCfLcppDeep & -- & --\\
+ik\_llama.cpp & UD-IQ2\_XXS & \PeCfIkXxsZero & -- & -- & --\\
+ik\_llama.cpp & UD-IQ2\_S & \PeCfIkSZero & -- & -- & --\\\midrule
+\multicolumn{6}{@{}l}{\emph{Follow-up session with the fit ladder, 4~November}}\\
+exllamav3 1.6.5 + w13 & EXL3 2.0 & \PeCfFitWNdZero & \PeCfFitWNdDeep & \PeCfFitWMtpZero & \PeCfFitWMtpDeep\\
+llama.cpp v0.9.0 & UD-IQ2\_XXS & -- & -- & no fit & no fit\\
+llama.cpp v0.9.0 & UD-IQ2\_S & -- & -- & \PeCfLcppMtpZero$^{\dagger}$ & \PeCfLcppMtpDeep$^{\dagger}$\\
+ik\_llama.cpp & UD-IQ2\_S & -- & -- & no fit & --\\
+buun-llama-cpp & EXL3 2.0 & \PeCfBuunNdZero$^{\ast}$ & -- & \PeCfBuunMtpZero & --\\\midrule
+\multicolumn{6}{@{}l}{\emph{DFlash2 sessions, 5~November (Amendments 2 and 3)}}\\
+exllamav3 1.6.5 + w13 & EXL3 2.0 & \PeDfaWNdZero & -- & \PeDfaWMtpZero & \PeDfaWMtpDeep\\
+NInferno & UD-IQ2\_XXS & \PeDfaNifXxsZero & -- & no start & no start\\
+exllamav3 1.6.5 + w13 & EXL3 2.0 & \PeDfbWNdZero & -- & \PeDfbWMtpZero & \PeDfbWMtpDeep\\
+NInferno & UD-IQ2\_XXS & \PeDfbNifXxsZero & -- & \PeDfbNifDfZero$^{\ddagger}$ & \PeDfbNifDfDeep$^{\ddagger}$\\
+\bottomrule\end{tabular}
+\caption{The confirmation sessions: pooled decode tokens per second over three
+rotated rounds, up to 256 tokens on each of the three prompts; each block is one
+session with its own w13 anchors (our full patch chain; the DFlash2 block holds the two sessions of
+Amendments 2 and 3), and comparisons stay within a block.
+Drafted means the MTP head or sidecar, or DFlash2 for llama.cpp and NInferno
+on UD-IQ2\_XXS. No fit: the lane failed every rung of the fit ladder. No
+start: NInferno attaches no separate drafter to a local GGUF.
+$^{\dagger}$ Fitted by the engine leaving layers in host memory, not a
+full-offload speed. $^{\ast}$ One round, before the session's time cap cut
+it. $^{\ddagger}$ On NInferno's own conversion of the same GGUF with the
+drafter attached, at NInferno's automatic context of \PeDfbNifCtx{} tokens
+when empty and \PeDfbNifDeepCtx{} at 28K (a survival rung).}
+\label{tab:confirm}
+\end{table}
+
+\subsubsection{Version freshness at release preparation}
+The comparisons above retain the versions and dates they measured.
+The separate NInfer/Bonsai evaluation used NInfer
+\q{f4ab369a06c728325b706c989d71be7dc0c05a1b}, tagged
+\q{2026-11-12.3}. A newer release, \href{https://github.com/iamwavecut/ninfer-all/releases/tag/2026-11-16.2}{\q{2026-11-16.2}} at
+\q{a3171940a3574cda4d4f3bc3000df7c0944e8ad8}, was published on
+16~November 2026 Pacific time (17~November, 00:15 UTC) and was not measured
+here. Its changes include a Turing position-split prefill shared-memory fix,
+DSpine drafting, wider BF16 matrix-vector products and adaptive masked-draft
+widths. NInferno had no formal release or tag at the 16~November check,
+although its source had advanced beyond \q{f8143b9e}. The measured DFlash2
+model payloads retained their recorded revisions and hashes. A comparison
+against the newer NInfer release is follow-up work for the ternary decode
+study, not evidence for a current engine ranking in this paper.
+
+\subsection{Vendor reports and the ternary derivative}
+\label{app:ternary}
+The frozen EXL3 shard hashes begin \q{\PeShaOne} and \q{\PeShaTwo}; full
+digests for these and the compared artifacts remain in the artifact inventory.
+Public reports for this model on small cards were measured elsewhere, with
+other harnesses. NInferno's own rows on this card give \PeNifUndrafted{}
+tokens per second undrafted and \PeNifDflash{} with the DFlash2 drafter on
+short chats, and \PeNifDeepUndrafted{} and \PeNifDeepDflash{} after a
+\PeNifDeepTokens-token prompt, at 240\,W \citep{brontir2026ninferno}, as
+listed when we surveyed it through 5~November; rows it posted on 8~November
+give 48.29 undrafted on short chats and 43.30 over long prompts, at 260\,W
+with a newer driver and its own timing; those rates are not directly comparable to ours. With
+our prompts at 260\,W it decoded \PeCfNifXxsZero{} undrafted and, in a later
+session, \PeDfbNifDfZero{} with DFlash2 (Table~\ref{tab:confirm}), and
+\PeRfNifNdZero{} and \PeRfNifDfZero{} at its 12~November version
+(the replaced presence-1.5 comparison). The replacement measured
+\PeFreshNifNdZero{} and \PeFreshNifDfZero{} on 14~November.
+For the derivative Ternary Bonsai~2 27B on this card, NInfer's vendor-reported October CLI runs list 58.5 tokens/s undrafted and 95.9 with drafting
+\citep{ninfer2026smallcards}. These rates exceed our reported rates, but they
+are not a matched P8 arm: prompts, harness and operating conditions differ. NInfer is a separate engine
+from Brontir's NInferno \citep{brontir2026ninferno}. On later-generation cards with 10--12\,GiB, the original
+weights decode at 45.1 tokens per second undrafted and 64.4 drafted (RTX 3080
+10\,GiB, llama.cpp, a UD-IQ2\_XXS file its author lists at 9.0\,GB, larger
+than the \PeFileGbIxxs\,GB file of that name we ran) \citep{sudoingx2026mtp}
+and at 39.6 and 70.1 (RTX 4070 12\,GiB, Mirai~S at 2.4 bits per weight)
+\citep{trymirai2026mirais}, at or below w13's rates here, though with other prompts
+and harnesses; and the only other
+original-weights report on a Turing card of 12\,GiB or less, QWENgine on an
+8\,GiB Quadro RTX 4000 Mobile with some of its layers in host memory, gives
+about 9 and 15 \citep{bensaad2026qwengine}.
+
+
+\input{derived/bonsai_counterpoint}
+\input{derived/bonsai_sentence}
+The vendor CLI rates above and the registered request-level table are different
+measurements. The table's paired accuracy differences are unresolved; they
+were not equivalence tests and do not establish indistinguishable quality.
+\textbf{Long context on small cards.} rafatxf runs this model at 4.0 bits per
+weight with a 4-bit cache on a modified 22\,GiB 2080 Ti, with single needles
+found from 32K to 250K \citep{rafatxf2026turing}. On a stock 11\,GiB 2080 Ti,
+NInfer running a ternary derivative allocates 200,704 tokens with a rotated 4-bit cache, or
+143,360 with MTP \citep{ninfer2026smallcards}, and a registry entry recalls
+one needle at 116,351 tokens \citep{sybil2026registry}. None measures accuracy
+per cache format against a reference; our reach is a filled-context peak on
+the original weights, and our accuracy is paired.
+
+
+\subsection{Cross-card deployment replication}
+\label{app:fleet}
+% Fleet program parent: rife_f58bf36010d4b3dd. Result evidence:
+% research/raw/2026-11-12-fleet-lanes/results-2026-11-13-7c2e/REPORT.md and
+% research/raw/2026-11-12-fleet-lanes/results-2026-11-14-c4d8/REPORT.md.
+\paragraph{A cross-card deployment replication, 13--14 November.}
+Registered fleet tests ran the same EXL3 weights with w13 through TabbyAPI
+HTTP on an RTX 4080 SUPER card and an RTX 4070 card
+(Table~\ref{tab:fleet-replication}). All \PeFleetAssessedPredictions{} assessed
+P8 predictions held: MTP exceeded undrafted speed at both fills on each card,
+the 4080 SUPER was faster on the matched prompt mixture, GSM8K MTP scores
+were within five percentage points of archived w13, and within-card
+undrafted/MTP accuracy gaps were at most three points on either suite.
+These are descriptive deployment replications, not equivalence tests or
+speedup ratios against the 2080 Ti: HTTP scheduling/event coalescing,
+stopping/batching and recurrent-cache settings differ from its direct client.
+TabbyAPI did not forward request seeds; recorded seeds are nominal labels,
+not controlled random streams. MMLU on w13 also extends the original
+stock-build lane. The separate cross-card vote comparison remains unassessed.
+
+\input{derived/fleet_replication}
+
+
+\subsection{The earlier 16K cache study}
+\paragraph{The earlier 16K study.}
+\label{sec:p6}
+The design builds on our earlier pre-registered study (unpublished; its
+registration, data and analysis ship in this paper's artifact), which crossed
+llama.cpp's q4\_0 cache with 2- and 4-bit GGUF weights of this model and of
+the full-attention Qwen3-8B \citep{qwen2025qwen3} on \PeSixItems{} retrieval
+items of about 16K tokens on a 12\,GiB laptop GPU. On the hybrid, the q4\_0
+cache's cost in accuracy was larger at 2-bit than at 4-bit weights by
+\PeSixI{} points (90\% interval \PeSixILo{} to \PeSixIHi), within that
+study's equivalence margin of $\pm$\PeSixMargin{} points by two one-sided
+tests (Holm-adjusted $p=\PeSixHolm$); the same 10-point margin is this
+study's usability bound. Its memory measurements motivated the focus on context
+length. At 16K the 4-bit cache freed \PeSixFreedHyb\,GiB on the hybrid, less
+than the step from its 2-bit to its 3-bit weight file (\PeSixStepHyb\,GiB),
+so reducing cache precision mainly permits longer contexts rather than
+higher weight precision on this hybrid. Three of four task families were
+answered fully in every configuration, which motivated difficulty
+calibration in the present study.
+
+\subsection{Long-context design and controls}
+\label{app:lc-methods}
+The long-context study comprised three stages, two decode-kernel checks
+and a replication. Each was pre-registered before its first GPU step.
+Stage~1 measured reach, stage~2 compared cache formats at 32K and 64K tokens,
+and stage~3 ran the adopted format at 96K. A logit check and an accuracy arm
+separated decode-kernel effects from cache-format effects. A replication
+tested the large format difference on fresh items. Here, an arm is one cache
+format at one length, run on a set of items in one TabbyAPI server session,
+with the w13 build in its drafted configuration (Table~\ref{tab:envelope}).
+Deviations were recorded as dated amendments before the steps they affected,
+apart from one implementation note on where the logit check's analysis ran.
+
+\paragraph{Reach.}
+Stage~1 measured each format's reach: the longest length on a registered
+ladder at which a server holding a filled prompt of that length peaked at most
+\PeLimitMiB\,MiB, \PeHeadroomMiB\,MiB below the card's \PeCardMiB\,MiB. Each
+step started a fresh server with context and cache sized to the step, sent one
+prompt filling all but \PeFillGapMin--\PeFillGapMax{} tokens of it, decoded at
+most 64 tokens and sampled the card's memory once per second. The ladders were
+64K, 72K and 80K for \fmt{8,8}; 64K, 96K, 128K and 136K for \fmt{4,4}; 64K, 88K
+and 96K for \fmt{8,4}; and 32K, 36K and 40K for \fmt{fp16}; a ladder stopped at
+its first failure.
+
+\paragraph{Items and scoring.}
+The items come from the earlier study's generator, which follows RULER's
+needle tasks
+\citep{hsieh2024ruler} and builds each haystack from LongMemEval-S chat
+sessions \citep{wu2025longmemeval}. A request is one user message with Qwen's
+thinking mode off: a fixed instruction, the haystack with its needles, and a
+question (Appendix~\ref{app:prompts}). The graded family is multi-value
+retrieval: \PeNeedles{} needles give one key different seven-digit values,
+spread through the haystack, and an answer is right only if it contains all
+\PeNeedles. The generator keys its randomness by a registered seed and the
+item identifier, so an item has the same key, values and question at every
+length. Difficulty was fixed by calibration before any test item was built: on
+separate items, the 8-bit cache at 64K answered \PeCalMvTwelve,
+\PeCalMvTwentyFour{} and \PeCalMvFortyEight{} items at 12, 24 and 48 values,
+and the 12-value level (\PeCalMvAcc\%), closest to the registered 65\%, was
+chosen, after an amendment had replaced the registered multi-key and
+variable-tracking families, which sat at ceiling and floor
+(\PeCalMkSixteen, \PeCalMkFortyEight{} and \PeCalMkOneTwentyEight{} at 16, 48
+and 128 keys; \PeCalVtTwo, \PeCalVtThree{} and \PeCalVtFour{} at 2, 3 and 4
+links). The test set has \PeHTwoN{} items at each of 32K and 64K; stage~3 used
+the \PeArmEFNinetySixN{} even-numbered items at 96K. Answers could use up to 768
+tokens; the longest used \PeAnswerMax. A descriptive check set of 48 items
+reuses the earlier study's single-needle, multi-key, multi-value and
+variable-tracking questions.
+
+\paragraph{Comparisons and statistics.}
+Stage~2 ran \fmt{8,8} and \fmt{4,4} at 64K, and \fmt{fp16}, \fmt{8,8} and
+\fmt{4,4} at 32K. Its comparisons are paired differences in the share of
+items fully right: H2 (primary), \fmt{4,4} minus \fmt{8,8} at 64K; H1,
+\fmt{8,8} minus \fmt{fp16} at 32K; and H3, \fmt{4,4} minus \fmt{fp16} at 32K.
+Each has a 90\% percentile bootstrap interval over items (10,000 resamples). A
+format is usable if the lower bound lies above $-10$ points, the earlier
+study's margin, and equivalent if the whole interval lies within $\pm5$.
+Exact McNemar tests give $p$-values, Holm-adjusted across H1 and H3 only, and
+single accuracies carry 95\% Wilson intervals \citep{wilson1927}. If H2 was
+not usable, a rescue rule ran \fmt{8,4} at 64K and tested it as H2s,
+\fmt{8,4} minus \fmt{8,8}, with the same bound. Stage~3 ran the adopted
+format at 96K. Because stage~2's 8-bit arms were read by fd75d and every other
+arm by Triton, a logit check teacher-forced the gold answers on three items at
+each of 28K, 48K and 64K through both kernels without drafting; divergence
+from Triton at 48K or 64K triggered an accuracy arm, \fmt{8,8} at 64K read by
+Triton, with K1 (primary), Triton minus fd75d on the same cache, and K2,
+\fmt{8,4} minus \fmt{8,8} with Triton reading both.
+
+\paragraph{Execution.}
+Stage~1 took \PeStageOneMin{} GPU-minutes; stage~2, \PeStageTwoHours{} of its
+budgeted 22 GPU-hours; stage~3, \PeStageThreeHours{} of 8; the logit check
+\PeKlMinutes{} minutes; and the accuracy arm \PeArmHours{} hours. No arm was
+interrupted, restarted or resumed; no item was excluded, timed out or
+truncated; and the server's prompt-token count matched the generator's on
+every item. The budget rule skipped one descriptive check-set arm.
+
+\paragraph{Replication.}
+\label{sec:replication}
+A fifth registration, committed on 4~November before any of its arms ran,
+tested the split cache's 64K lead again. Its primary pair of arms, R1, ran the
+split cache and the 8-bit cache at 64K, both read by Triton, on \PeROneN{}
+fresh items from a new seed. The lead counted as replicated if R1's 90\%
+interval lay above 0. Three further arms measured the spread that a harmless
+numerical change produces (N: the 8-bit arm rerun with its prefill attention
+summed in a different order), the split cache against fp16 at 32K (R2) and
+6-bit values at 64K (R3). K2's discordant items count as beyond the harmless
+spread if the Wilson 95\% upper bound of N's discordance lies below K2's 17 of
+96. Every arm closed with no item excluded, in \PeRepHours{} of the 15
+budgeted GPU-hours; an fp16 check reproduced stage~2's fp16 arm on
+\PeRTwoCheck{} of 16 items, so R2 reused that arm, as registered.
+
+\begin{table}[!tbp]\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabular}{@{}L{2.3cm}L{13.85cm}@{}}\toprule
+Item & The long-context runs\\\midrule
+Versions & exllamav3 \PeExlVersionShort{} with the w13 overlay on \q{PYTHONPATH} and its drafted settings (\q{EXL3\_MGEMM\_N\_THRESHOLD=0}, \q{EXL3\_FD75D\_LIVE=0}, \q{EXL3\_INT8\_SQ\_MAX\_M=2}, \q{EXL3\_GEMV\_SK=2}), journaled by stage~1, whose launcher stages~2--3 reuse; TabbyAPI commit \q{b1c2253}; torch \PeTorch, Triton \PeTriton, CUDA \PeCuda{} and Python \PePython. Items from the earlier study's frozen generator with registered seeds; committed manifests carry each item's SHA-256. Five registrations, changed only by dated amendments.\\
+Processes, state & One TabbyAPI server per arm (\PeNStarts{} starts across stages~2--3 and the accuracy arm, none restarted), driven over HTTP by a separate harness process. The server owns the paged KV cache and the MTP layer's cache (context = cache size = the arm's length), the fp16 recurrent state and its checkpoints in a \PeRecurrentMiB\,MiB host-RAM cache, and a prefix cache, which the server reported unused at all \PeNRequests{} requests of stages~2--3 and the accuracy arm. Prefill in chunks of \PeChunk{} tokens; MTP drafting of up to \PeDraftTokens{} tokens per step, adjusted by the server's dynamic drafting.\\
+Placement, memory & Weights (all but the 16-bit embedding table, which stays in host memory), caches and state on the card; everything but the cache took \PeRestMin--\PeRestMax\,MiB at 64K. The display and a streaming server held \PeBaselineMiB\,MiB before every session. Pass limit \PeLimitMiB\,MiB; card memory sampled at 1\,Hz. Server resident memory peaked at \PePeakRss\,GiB.\\
+Decoding & Qwen's chat template with thinking off; temperature 0 and greedy sampling, logged at each of the \PeNRequests{} requests; at most 768 output tokens for graded items. Graded prompts left at least \PeRoomSixtyFour{} tokens of the context for the answer, and none stopped on length.\\
+Failures & A time-out or server error excludes the item (listed, never scored wrong); an out-of-memory error stops the arm; 86\,$^\circ$C on three samples pauses the run. None occurred; the card peaked at \PeMaxTemp\,$^\circ$C.\\
+Claims & Paired differences with 90\% percentile bootstrap intervals: usable if the lower bound lies above $-10$ points, equivalent if within $\pm$5. H2 and K1 primary; H1 and H3 Holm-adjusted; H2s under the rescue rule; reach as the longest passing step. Everything else is descriptive.\\
+\bottomrule\end{tabular}
+\caption{The long-context system. Values come from the run records
+(journals, per-arm server configurations, server logs and the logit check's
+run records), except the TabbyAPI commit and the weight revision, which come
+from our serving-lane and artifact records.}
+\label{tab:envelope}
+\end{table}
+
+\begin{figure}[!tbp]\centering
+\includegraphics[width=\linewidth]{\fig{fig_reach.pdf}}
+\caption{(a) Peak card memory with one filled prompt at each ladder step,
+per cache format; the open cross marks the failed step. (b) Share of graded
+items fully right per arm, with 95\% Wilson intervals, in the colours and
+markers of (a); the open circle is the 8-bit cache read by Triton, the filled
+\fmt{8,8} circles are read by fd75d. Arms at one length are paired on the same
+items. Across lengths an item keeps its key, values and question but not its
+haystack; only the 96K--64K comparison (Figure~\ref{fig:comparisons}) pairs
+items across lengths.}
+\label{fig:reach}
+\end{figure}
+
+\subsection{Cache-format comparisons}
+\label{app:cache-results}
+\label{sec:accuracy}
+Table~\ref{tab:comparisons} and Figure~\ref{fig:comparisons} give the
+registered comparisons, Table~\ref{tab:arms} the arms. At 32K the 8-bit cache
+and fp16, read by an unrecorded kernel (Table~\ref{tab:arms}), answered the
+same \PeArmEEThirtyTwoK{} of \PeArmEEThirtyTwoN{} items
+correctly, with no discordant item and \PeHOneSameTexts{} of \PeHTwoN{} answers
+identical in text: H1 is equivalent. The 4-bit cache scored \PeHThreeAbs{}
+points below fp16 (\PeHThreeLo{} to \PeHThreeHi): usable, not shown
+equivalent. At 64K the 4-bit cache answered \PeArmFFSixtyFourAcc\% and the
+8-bit cache \PeArmEESixtyFourAcc\%; H2 is \PeHTwoDiff{} points (\PeHTwoLo{} to
+\PeHTwoHi), so the 4-bit cache is not shown usable at 64K, and the data do not
+resolve whether it costs anything there. Under the rescue rule the split cache
+ran at 64K and answered \PeArmEFSixtyFourAcc\%: H2s is \PeHTwoSDiff{} points
+(\PeHTwoSLo{} to \PeHTwoSHi; \PeHTwoSTen{} items right only with the split
+cache, \PeHTwoSOtt{} only with the 8-bit cache), usable, and the rule adopted
+it for stage~3. A rerun of the 8-bit arm on 16 items changed no outcome
+(\PeNoiseK{} of \PeNoiseN), and the check set stayed at ceiling (single
+needles, four keys or four values) or floor (variable tracking, 0 to
+\PeCliffVtMax{} of 16) in all \PeCliffArmsWord{} arms that ran.
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{@{}llrrrl@{}}\toprule
+Comparison & Accuracy (a / b) & Difference & 90\% interval & Discordant & Verdict\\\midrule
+H1: \fmt{8,8} $-$ \fmt{fp16}, 32K & \PeArmEEThirtyTwoAcc\% / \PeArmFpThirtyTwoAcc\% & \PeHOneDiff & [\PeHOneLo, \PeHOneHi] & \PeHOneTen{} / \PeHOneOtt & usable, equivalent\\
+H3: \fmt{4,4} $-$ \fmt{fp16}, 32K & \PeArmFFThirtyTwoAcc\% / \PeArmFpThirtyTwoAcc\% & \PeHThreeDiff & [\PeHThreeLo, \PeHThreeHi] & \PeHThreeTen{} / \PeHThreeOtt & usable\\
+H2: \fmt{4,4} $-$ \fmt{8,8}, 64K & \PeArmFFSixtyFourAcc\% / \PeArmEESixtyFourAcc\% & \PeHTwoDiff & [\PeHTwoLo, \PeHTwoHi] & \PeHTwoTen{} / \PeHTwoOtt & not shown usable\\
+H2s: \fmt{8,4} $-$ \fmt{8,8}, 64K & \PeArmEFSixtyFourAcc\% / \PeArmEESixtyFourAcc\% & \PeHTwoSDiff & [\PeHTwoSLo, \PeHTwoSHi] & \PeHTwoSTen{} / \PeHTwoSOtt & usable; above $+5$\\
+K1: \fmt{8,8} Triton $-$ fd75d, 64K & \PeArmTritonAcc\% / \PeArmEESixtyFourAcc\% & \PeKOneDiff & [\PeKOneLo, \PeKOneHi] & \PeKOneTen{} / \PeKOneOtt & usable, equivalent\\
+K2: \fmt{8,4} $-$ \fmt{8,8}, Triton, 64K & \PeArmEFSixtyFourAcc\% / \PeArmTritonAcc\% & \PeKTwoDiff & [\PeKTwoLo, \PeKTwoHi] & \PeKTwoTen{} / \PeKTwoOtt & usable; above $+5$\\
+R1: \fmt{8,4} $-$ \fmt{8,8}, 64K, fresh & \PeROneSplitAcc\% / \PeROneEightAcc\% & \PeROneDiff & [\PeROneLo, \PeROneHi] & \PeROneTen{} / \PeROneOtt & not replicated\\
+N: \fmt{8,8} reordered $-$ \fmt{8,8}, 64K & \PeNzAccA\% / \PeNzAccB\% & \PeNzDiff & [\PeNzLo, \PeNzHi] & \PeNzTen{} / \PeNzOtt & equivalent\\
+R2: \fmt{8,4} $-$ \fmt{fp16}, 32K & \PeRTwoAccA\% / \PeRTwoAccB\% & \PeRTwoDiff & [\PeRTwoLo, \PeRTwoHi] & \PeRTwoTen{} / \PeRTwoOtt & usable\\
+R3: \fmt{8,6} $-$ \fmt{8,8}, 64K & \PeRThreeSixAcc\% / \PeRThreeEightAcc\% & \PeRThreeADiff & [\PeRThreeALo, \PeRThreeAHi] & \PeRThreeATen{} / \PeRThreeAOtt & descriptive\\
+R3: \fmt{8,4} $-$ \fmt{8,6}, 64K & \PeRThreeFourAcc\% / \PeRThreeSixAcc\% & \PeRThreeBDiff & [\PeRThreeBLo, \PeRThreeBHi] & \PeRThreeBTen{} / \PeRThreeBOtt & descriptive\\
+\bottomrule\end{tabular}
+\caption{The registered paired comparisons on \PeHTwoN{} items each, in points
+of items fully right; R1 uses fresh items. K2, R1, N and R3 have Triton
+reading both arms; N reorders the prefill attention sums of the 8-bit arm. Discordant: items right only in arm a / only in arm b.
+Exact McNemar $p$: H1 \PeHOneP, H3 \PeHThreeP{} (Holm \PeHThreeHolm), H2
+\PeHTwoP, H2s \PeHTwoSP, K1 \PeKOneP, K2 \PeKTwoP, R1 \PeROneP, N \PeNzP, R2
+\PeRTwoP, R3 \PeRThreeAP{} and \PeRThreeBP; all but H1's and H3's are
+unadjusted. Usable: lower bound above $-10$; equivalent: interval
+within $\pm5$ points. With few discordant items the percentile bootstrap is
+narrow (H1's [0.0, 0.0]); Tango's score interval gives $\pm$\PeTangoHOneHalf{}
+for H1, \PeTangoKOneLo{} to \PeTangoKOneHi{} for K1 and \PeTangoHTwoSLo{} to
+\PeTangoHTwoSHi{} for H2s and K2; no usable or equivalent verdict changes
+under it, though their lower bounds no longer clear $+5$.}
+\label{tab:comparisons}
+\end{table}
+
+\begin{figure}[!tbp]\centering
+\includegraphics[width=\linewidth]{\fig{fig_comparisons.pdf}}
+\caption{Paired differences with 90\% bootstrap intervals. The hatched region
+left of the dashed line marks differences below $-10$ points, where a lower
+bound makes a format not usable; the light band marks the $\pm5$-point
+equivalence region. The last row, the split cache at 96K against its own 64K
+accuracy on \PeGapN{} items, is descriptive (Section~\ref{sec:ninetysix}).
+The split cache's 64K lead (H2s) did not replicate: on fresh items, R1 gave
+\PeROneDiff{} points (Section~\ref{sec:rep}), which this figure does not plot.}
+\label{fig:comparisons}
+\end{figure}
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{@{}llrrrrr@{}}\toprule
+Arm & Kernel & Items right (Wilson 95\%) & Decode tok/s & Prefill tok/s & s per request & Peak MiB\\\midrule
+\fmt{fp16}, 32K & unrecorded & \PeArmFpThirtyTwoK{} (\PeArmFpThirtyTwoLo--\PeArmFpThirtyTwoHi\%) & \PeArmFpThirtyTwoDecode & \PeArmFpThirtyTwoPrefill & \PeArmFpThirtyTwoItemS & \PeArmFpThirtyTwoPeak\\
+\fmt{8,8}, 32K & fd75d & \PeArmEEThirtyTwoK{} (\PeArmEEThirtyTwoLo--\PeArmEEThirtyTwoHi\%) & \PeArmEEThirtyTwoDecode & \PeArmEEThirtyTwoPrefill & \PeArmEEThirtyTwoItemS & \PeArmEEThirtyTwoPeak\\
+\fmt{4,4}, 32K & Triton & \PeArmFFThirtyTwoK{} (\PeArmFFThirtyTwoLo--\PeArmFFThirtyTwoHi\%) & \PeArmFFThirtyTwoDecode & \PeArmFFThirtyTwoPrefill & \PeArmFFThirtyTwoItemS & \PeArmFFThirtyTwoPeak\\
+\fmt{8,8}, 64K & fd75d & \PeArmEESixtyFourK{} (\PeArmEESixtyFourLo--\PeArmEESixtyFourHi\%) & \PeArmEESixtyFourDecode & \PeArmEESixtyFourPrefill & \PeArmEESixtyFourItemS & \PeArmEESixtyFourPeak\\
+\fmt{8,8}, 64K & Triton & \PeArmTritonK{} (\PeArmTritonLo--\PeArmTritonHi\%) & \PeArmTritonDecode & \PeArmTritonPrefill & \PeArmTritonItemS & \PeArmTritonPeak\\
+\fmt{8,4}, 64K & Triton & \PeArmEFSixtyFourK{} (\PeArmEFSixtyFourLo--\PeArmEFSixtyFourHi\%) & \PeArmEFSixtyFourDecode & \PeArmEFSixtyFourPrefill & \PeArmEFSixtyFourItemS & \PeArmEFSixtyFourPeak\\
+\fmt{4,4}, 64K & Triton & \PeArmFFSixtyFourK{} (\PeArmFFSixtyFourLo--\PeArmFFSixtyFourHi\%) & \PeArmFFSixtyFourDecode & \PeArmFFSixtyFourPrefill & \PeArmFFSixtyFourItemS & \PeArmFFSixtyFourPeak\\
+\fmt{8,4}, 96K & Triton & \PeArmEFNinetySixK{} of \PeArmEFNinetySixN{} (\PeArmEFNinetySixLo--\PeArmEFNinetySixHi\%) & \PeArmEFNinetySixDecode & \PeArmEFNinetySixPrefill & \PeArmEFNinetySixItemS & \PeArmEFNinetySixPeak\\
+\bottomrule\end{tabular}
+\caption{The graded long-context arms: items fully right of \PeHTwoN{} unless
+stated, decode and prefill rates pooled over the arm's requests with MTP
+drafting on, mean wall time per request, and the arm's peak card memory.
+Speeds are descriptive and single-stream. fp16's decode rate reflects about
+\PeCycleFpMs\,ms per draft-and-verify cycle, against \PeCycleEEMs\,ms for the
+8-bit cache and \PeCycleFFMs\,ms for the 4-bit cache at 32K; drafting
+accepted \PeAcceptFp\%, \PeAcceptEE\% and \PeAcceptFF\% of drafted tokens, so
+drafting is not the cause. The run records do not name the attention path that
+read the fp16 cache.}
+\label{tab:arms}
+\end{table}
+
+\subsection{Effect of the decode kernel on accuracy}
+\label{app:kernel-control}
+The logit check found that the two kernels agreed on the most likely token at all \PeKlPositions{}
+teacher-forced positions. Two Triton runs gave identical distributions, so the
+registered divergence threshold reduced to $10^{-4}$ nats. The mean KL
+divergence of fd75d from Triton was \PeKlTwentyEight{} nats at 28K,
+\PeKlFortyEight{} at 48K and \PeKlSixtyFour{} at 64K, and the 48K result diverged by the registered rule
+(the largest divergence at any one position was \PeKlMax{} nats), which
+triggered the accuracy arm. There, Triton reading the 8-bit cache
+answered \PeArmTritonK{} of \PeArmTritonN{} items correctly, the same count as
+fd75d: K1 is \PeKOneDiff{} points (\PeKOneLo{} to \PeKOneHi), usable and
+equivalent. \PeKOneSame{} of \PeHTwoN{} answer texts were identical between
+the kernels, so $|K1|$ cannot exceed \PeKOneBound{} points on these items.
+fd75d decoded at \PeArmEESixtyFourDecode{} tokens per second at 64K against
+\PeArmTritonDecode{} for Triton on the same cache and items, \PeDecodeRatio{}
+times as fast.
+
+\subsection{Results at 96K}
+\label{sec:ninetysix}
+The split cache answered \PeArmEFNinetySixK{} of \PeArmEFNinetySixN{} items
+correctly at 96K, \PeArmEFNinetySixAcc\%. On the same \PeGapN{} items it
+answered \PeGapSixtyFourK{} at 64K, \PeGapAbs{} points more (\PeGapLo{} to
+\PeGapHi{} for 96K minus 64K); the 8-bit cache answered \PeGapEEK{} of them at
+64K, \PeGapEEAbs{} points above the 96K result (descriptive, across formats).
+The registered usable context is measured against the format's own 32K
+accuracy, which the replication's R2 arm later supplied: on the \PeUseGapN{}
+shared items the split cache at 96K scored \PeUseGapAbs{} points below its
+own 32K accuracy (90\% interval of the difference \PeUseGapLo{} to
+\PeUseGapHi; \PeUseGapTen{} against \PeUseGapOtt{} discordant items), beyond
+the registered 10 points, so its usable context ends below 96K. The 96K arm peaked at \PeArmEFNinetySixPeak\,MiB,
+\PeNinetySixUnderLimit\,MiB under the pass limit, and each request took
+\PeArmEFNinetySixItemS{} seconds on average, most of it prefill. 96K is a
+length this card can hold; on this task, accuracy there fell more than 10
+points below 64K.
+
+\subsection{Replication of the split-cache result}
+\label{sec:rep}
+On the first item set, the split cache led the 8-bit cache at 64K by
+\PeHTwoSAbs{} points, and with the kernel fixed (K2) the lead stayed:
+\PeKTwoTen{} items right only with the split cache against \PeKTwoOtt{} (exact
+McNemar $p=\PeKTwoP$). With the kernel held fixed, the registered design
+attributes such a difference to the value bits plus numerical noise. On
+\PeROneN{} fresh items, R1 gave \PeROneDiff{} points (\PeROneLo{} to
+\PeROneHi; \PeROneTen{} against \PeROneOtt, $p=\PeROneP$): the lead did not
+replicate, and the interval reaches below $-5$, so it is not equivalent to no
+lead either. Greedy decoding turns small numerical differences into different
+texts where the top two logits are close
+\citep{yuan2025nondeterminism,du2026greedy}; changing the value bits changed
+\PeKTwoDiffer{} of \PeHTwoN{} texts on the first set and \PeROneDiffer{} on the
+fresh one. An imbalance in such flips on one item set can arise by chance; that set
+alone cannot establish whether the imbalance generalizes. The 4-bit values showed no
+accuracy advantage on fresh items. A cost of several points is not excluded (R1's interval
+runs from \PeROneLo{} to \PeROneHi). A paired difference of this size between two long-context configurations
+requires validation on fresh items.
+
+The replication's other arms bound the contribution of numerical noise. A harmless change, rerunning the same 8-bit arm
+with its prefill attention summed in another order (N), changed
+\PeNzDisc{} of \PeNzN{} outcomes on the original items (N: \PeNzDiff{}
+points, \PeNzLo{} to \PeNzHi), with a Wilson 95\% upper bound of
+\PeNzWilsonHi\%, below K2's \PeNzKTwoDisc\%: the value bits change which
+items succeed beyond numerical noise, but on fresh items not which way on
+balance. At 32K the split cache answered as many original items as fp16
+(\PeRTwoAccA\% each, \PeRTwoTen{} items each way; R2 \PeRTwoDiff{} points,
+\PeRTwoLo{} to \PeRTwoHi), so it has no lead there, and the interval just
+misses equivalence. On the original 64K items, 6-bit values (R3,
+descriptive) scored \PeRThreeSixAcc\%, between 8-bit (\PeRThreeEightAcc\%)
+and 4-bit values (\PeRThreeFourAcc\%). A graded pattern on one item set is what
+perturbations that grow as the bits fall would produce if they flip the same
+near-tie items; it is not evidence that fewer bits help. Of the registered
+predictions, N's held (equivalent, at most 6 flips); R2's equivalence failed
+narrowly, and R3's, that 6-bit values are equivalent to 8-bit, did not hold.
+
+
+\subsection{Reach predictions and request costs}
+Of stage~1's registered predictions, two
+held (the 8-bit cache fit 64K, and the 4-bit cache reached at least 128K); the
+third, that every peak would fall within $-150$ to $+250$\,MiB of a projection
+from our earlier memory measurements, failed for the three quantized formats,
+whose 64K peaks fell \PePOneMin--\PePOneMax\,MiB below their projections,
+outside the band.
+Beyond each ladder's first interval, the measured growth matched the cache
+arithmetic within \PeSlopeDev\,MiB per 1K tokens. Over their 48 or 96
+requests, the graded arms peaked \PeRiseMin--\PeRiseMax\,MiB above stage~1's
+single-request peaks, and none exceeded \PeArmPeakMax\,MiB.
+
+
+\subsection{Profiler scope and cost-model tests}
+\label{app:cost-model}
+Each census below ran the three speed prompts under Nsight
+Systems, in its own session, so a comparison between censuses is also a
+comparison between sessions. Against F2, the stock wheel's captures took
+\PeProfStockPct\% longer per token undrafted and \PeProfStockMtpPct\% longer
+with MTP, w13's drafted capture \PeProfWMtpPct\% less, and the undrafted
+capture of w12p, the chain up to W12p, which runs w13's one-row kernels
+unchanged when undrafted, \PeProfFinPct\% more. Ratios between censuses therefore overstate w13's
+gain over the stock wheel (with MTP, \PeCgMsCut\% less time per token in the
+censuses against \PeFtMtpCutPct\% in F2): we use censuses to
+measure the distribution of time within a build and registered sessions to
+measure speedups.
+
+\subsection{A bandwidth model}
+\label{sec:bytes}
+If decoding were bound by memory bandwidth, a token would take the bytes it
+reads (weights, recurrent state and cache) over the card's streaming rate. A
+registered test compared this bandwidth model with a per-kernel cost model
+at 598\,GB/s, 97\% of the card's rated 616\,GB/s. Bytes alone
+underpredicted the undrafted w11b and w13 tokens of F2 by
+\PeBytesErrMin--\PeBytesErrMax\%. The per-kernel model (the priced graph) sums each kernel class in a census.
+It uses the larger of the time to read the class's bytes at the streaming rate
+and its weight count times a per-class number of SM cycles per weight, then
+adds launch costs and measured host idle time. Its constants were fitted on
+declared configurations and tested on held-out ones. The test's claim that it would
+come within $\pm12\%$ of every held-out
+configuration was refuted (largest error \PeTTwoMaxErr\%, median
+\PeTTwoMedErr\%; \PeTTwoKillN{} of \PeTTwoKillOf{} configurations missed by more
+than 20\%), although it predicted time per token for F2's four undrafted w11b and w13 arms within
+$+$\PePricedMin\% to $+$\PePricedMax\%.
+
+Extended to drafting, by composing a draft-and-verify cycle from undrafted
+kernel costs and the measured counts of drafted kernels, the priced graph
+underpredicted w13 mode~2's time per
+token by \PeTThreeErrZero\% at an empty context and \PeTThreeErrTwentyEight\% at
+28K, outside the registered $\pm10\%$ at an empty context. Its matrix time
+matches the drafted census; the missing time is in the non-matrix kernels,
+including the extra recurrent-state work of the GDN layers that drafting
+adds, and in the host gaps of each pass.
+
+Matrix-call time beyond the weight-read time was measured
+in a separately registered benchmark of w13's one-row int8 matrix
+kernel on this card, whose registration and results ship in the artifact. The
+bench ran without the profiler, warmed up before every timing and read each
+weight tensor from memory, as decoding does. Because EXL3 stores each tensor
+at a whole number of bits, it fitted each bit width separately, as a fixed
+time per call plus a time per weight. A 2-bit call has a fixed time cost of
+about \PeNineFixedTwo\,\textmu s, which CUDA-graph replay does not remove (an
+empty kernel accounts for \PeNinePhNull\,\textmu s of it), plus a time per
+weight \PeNinePerWeightTwoPct\% above the time to read the weight at
+550\,GB/s, 89\% of the rated rate and a little below the
+\PeNineFourBitGbs\,GB/s at which the bench's 4-bit calls read their weights.
+Applied to the calls of the undrafted w12p census, those fits put the fixed
+parts at \PeNineShare\% of the matrix time above the read (\PeNineShareRated\%
+at the rated rate). A 1-bit call takes
+\PeNineOneTwoLo--\PeNineOneTwoHi\% of a 2-bit call's time on six of the
+model's seven matrix shapes (\PeNineOneTwoKv\% on the smallest): a 1-bit
+weight takes \PeNineOneTwoPerWeight\% of a 2-bit weight's time,
+\PeNinePerWeightOneX{} times as long as reading it, so fewer bits would barely
+speed this card's matrix calls. rafatxf reported the same for whole tokens on
+Turing, from one comparison at 3.5 and 4.0 bits per weight
+\citep{rafatxf2026turing}. A registered repeat of the undrafted census on an
+RTX 4080 Laptop GPU (Ada), with the stock engine and unfused projections,
+found 1-bit calls quicker there: a 1-bit call took
+\PeAdaOneFasterLo--\PeAdaOneFasterHi\% less time than a 2-bit call in the same
+role at 80\,W and \PeAdaBoostOneFasterLo--\PeAdaBoostOneFasterHi\% less at
+175\,W (Appendix~\ref{sec:predictions} lists its predictions). These
+measurements are reported here, not analysed further.
+
+\subsection{Time per answer}
+\label{sec:answers}
+Table~\ref{tab:quality} gives the lanes. On GSM8K every lane scored
+\PeQGsmMin--\PeQGsmMax\%; against EXL3 undrafted, UD-IQ2\_S scored
+\PeQPGsmIsAbs{} point lower (\PeQPGsmIsTen{} items right only with EXL3,
+\PeQPGsmIsOtt{} only with the GGUF) and UD-IQ2\_XXS \PeQPGsmIxxsAbs{} lower
+(\PeQPGsmIxxsTen{} against \PeQPGsmIxxsOtt). On MMLU, UD-IQ2\_S was
+\PeQPMmluIsAbs{} point below EXL3 (\PeQPMmluIsTen{} against \PeQPMmluIsOtt,
+$p=\PeQPMmluIsP$) and UD-IQ2\_XXS \PeQPMmluIxxsAbs{} points below
+(\PeQPMmluIxxsTen{} against \PeQPMmluIxxsOtt, $p=\PeQPMmluIxxsP$, Holm
+$p=\PeQPMmluIxxsHolm$); with drafting, IQ2\_XXS with DFlash2 was
+\PeQPMmluDfAbs{} points below EXL3 with MTP (\PeQPMmluDfTen{} against
+\PeQPMmluDfOtt, Holm $p=\PeQPMmluDfHolm$). The IQ2\_XXS gap is suggestive, not
+significant after adjustment.
+
+With drafting, w13 answered a GSM8K item in \PeQGsmExlWWall\,s on average,
+against \PeQGsmIsMtpWall\,s for IQ2\_S with MTP and \PeQGsmIxxsDfWall\,s for
+IQ2\_XXS with DFlash2: \PeQRatioIsMtp{} and \PeQRatioIxxsDf{} times faster per
+answer. Section~\ref{sec:answers} decomposes the gap. The lanes ran in
+different sessions, so these times are descriptive.
+
+\begin{table}[!tbp]\centering\small\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lllrrrrr@{}}\toprule
+Lane & Engine & Drafter & GSM8K & MMLU & Tokens & tok/s & s/answer\\\midrule
+EXL3 2.0 bpw & exllamav3 1.6.5 & none & \PeQGsmExlNoAcc & \PeQMmluExlNoAcc & \PeQGsmExlNoTok & \PeQGsmExlNoTps & \PeQGsmExlNoWall\\
+EXL3 2.0 bpw & 1.6.5 + w11b & none & \PeQWElevenAcc & -- & \PeQWElevenTok & \PeQWElevenTps & \PeQWElevenWall\\
+UD-IQ2\_S & llama.cpp d63fbfe7 & none & \PeQGsmIsAcc & \PeQMmluIsAcc & \PeQGsmIsTok & \PeQGsmIsTps & \PeQGsmIsWall\\
+UD-IQ2\_XXS & llama.cpp d63fbfe7 & none & \PeQGsmIxxsAcc & \PeQMmluIxxsAcc & \PeQGsmIxxsTok & \PeQGsmIxxsTps & \PeQGsmIxxsWall\\\midrule
+EXL3 2.0 bpw & exllamav3 1.6.5 & MTP & \PeQGsmExlMtpAcc & \PeQMmluExlMtpAcc & \PeQGsmExlMtpTok & \PeQGsmExlMtpTps & \PeQGsmExlMtpWall\\
+EXL3 2.0 bpw & 1.6.5 + w11b & MTP & \PeQWElevenMtpAcc & -- & \PeQWElevenMtpTok & \PeQWElevenMtpTps & \PeQWElevenMtpWall\\
+EXL3 2.0 bpw & 1.6.5 + w13, mode 2 & MTP & \PeQGsmExlWAcc & -- & \PeQGsmExlWTok & \PeQGsmExlWTps & \PeQGsmExlWWall\\
+UD-IQ2\_S & llama.cpp v0.4.0 & MTP & \PeQGsmIsMtpAcc & \PeQMmluIsMtpAcc & \PeQGsmIsMtpTok & \PeQGsmIsMtpTps & \PeQGsmIsMtpWall\\
+UD-IQ2\_XXS & llama.cpp v0.4.0 & DFlash2 & \PeQGsmIxxsDfAcc & \PeQMmluIxxsDfAcc & \PeQGsmIxxsDfTok & \PeQGsmIxxsDfTps & \PeQGsmIxxsDfWall\\
+\bottomrule\end{tabular}
+\caption{Same-card lanes: accuracy (\%) on 500 GSM8K and 500 MMLU items;
+on GSM8K, mean tokens per answer (thinking included), median decode rate in
+tokens per second and mean wall time per answer in seconds. One request at a time, greedy, thinking on. Each
+lane ran in its own session (a few items of the stock lanes came from earlier
+attempts); no MMLU lane in this 2080 Ti study ran on w11b or w13. w11b and w13 are our patch
+chains through decode attention and split-K, respectively (Section~\ref{sec:build}).}
+\label{tab:quality}
+\end{table}
+
+GSM8K prompts are short, so time per answer is close to the token count divided by the decode
+rate. Against IQ2\_S with MTP, w13 generated \PeQTokRatioIsMtp{} times fewer
+tokens per answer (means) and decoded \PeQTpsRatioIsMtp{} times faster
+(medians), which
+together account for the measured \PeQRatioIsMtp{} times shorter answer time;
+against IQ2\_XXS with DFlash2 the factors are \PeQTokRatioIxxsDf{} and
+\PeQTpsRatioIxxsDf, against \PeQRatioIxxsDf{} measured. Undrafted, the stock
+wheel and llama.cpp decoded at about the same rate (\PeQGsmExlNoTps{} against
+\PeQGsmIsTps{} and \PeQGsmIxxsTps{} tokens per second), so the stock wheel's
+shorter answer time (\PeQGsmExlNoWall{} against \PeQGsmIsWall{} and
+\PeQGsmIxxsWall{} s) comes from reasoning length: on the same items the 2-bit
+GGUFs thought \PeQLongerMin--\PeQLongerMax\% longer than the 2-bit EXL3
+weights, as low-bit quantization lengthens reasoning in other models
+\citep{liu2025quantization}. Differences between weight formats therefore account for part of the
+per-answer gap against llama.cpp, independently of engine speed. The drafted llama.cpp lanes ran v0.4.0; v0.9.0 adds
+CUDA graphs for MTP drafts and device copies for DFlash
+\citep{ggml2026llamacpp090}, so the per-answer ratio is against the builds we
+measured. On v0.9.0 at the confirmation's 32K context, the DFlash2 lane did
+not fit on the card at full offload, and the MTP lane, with unsloth's full
+1.28\,GiB sidecar, fit only with layers in host memory
+(Appendix~\ref{app:engine-comparisons}). The per-answer lanes fit at smaller contexts,
+8,192 tokens for DFlash2 and 16,384 for MTP, and the MTP lane used our
+0.26\,GiB shared-embedding sidecar.
+
+
+\paragraph{Empty-context attention control.}
+At an empty context, where attention is small, w11b was
+\PeDepthTwoZeroGain\% faster than w9, in two of the three rounds, outside the
+registered $\pm3\%$. \subsection{Contributions and prior work}
+\label{sec:new}
+\textbf{Measurement contribution.} To our knowledge (public web, GitHub, Hugging Face
+and forks searched through 5~November 2026; Reddit, X, Zhihu and Bilibili only
+through search-engine snippets and mirrors; Discord and video not at all),
+this is the first published EXL3 measurement of the unmodified Qwen3.8-27B
+weights on a single stock 11\,GiB RTX 2080 Ti, and the first with every
+layer, the output head and the model's own MTP layer on one Turing card of
+12\,GiB or less (Section~\ref{sec:model}: only the embedding table, read one
+row per token, stays in host memory).
+NInferno measured the unmodified weights on this card first, as a 2-bit GGUF
+undrafted and with DFlash2 \citep{brontir2026ninferno}. QWENgine ran the MTP
+head on an 8\,GiB Turing card with some of its layers in host memory
+\citep{bensaad2026qwengine}, and a fork of exllamav3 split the model at
+4.0 bits per weight across a 6\,GiB RTX 2060, which held the MTP layer, and a
+16\,GiB Tesla P100 \citep{trisert2026pascal}. The dated sessions establish the comparisons in Section~\ref{sec:speed} and Appendix~\ref{app:engine-comparisons}, within their measured versions and conditions. They cover only the tested configurations and
+do not rank all engines or quantizations. In the replacement of 14~November, w13 led
+NInferno f8143b9e undrafted by \PeFreshPNifNdZero\% empty and
+\PeFreshPNifNdDeep\% at 28K, and with MTP against DFlash2 by
+\PeFreshPNifDfZero\% and \PeFreshPNifDfDeep\%, pooled in every round.
+Code and prose favored w13; math favored NInferno at both fills.
+Only \PeFreshComplete{} of \PeFreshPlanned{} comparisons completed and
+\PeFreshEligible{} qualified current full-residency leads. Missing and
+placement-unknown cells cannot support a wider ranking. Older measurements
+of other engines remain dated observations. The ternary derivative and the
+later-generation cards in Appendix~\ref{app:ternary} provide further context,
+not controlled cross-model or cross-card comparisons. The Tesla T4 has the
+same 64\,KB of shared memory as this card; we did not measure one.
+
+\textbf{fd75d.} To our knowledge it is the first tensor-core decode-attention
+kernel for exllamav3's 8-bit quantized cache on Turing. Its techniques have prior art: LMDeploy's TurboMind decodes 8- and 4-bit caches on Turing's tensor
+cores with the same $S^{\top}=KQ^{\top}$ orientation
+\citep{lmdeploy2024turbomind}. rafatxf's fdq4 reads exllamav3's 4-bit cache
+straight into tensor-core fragments on Turing \citep{rafatxf2026turing}.
+kyojin's \q{qdec} is a drop-in split kernel for exllamav3's 2- to 8-bit caches
+on later GPUs \citep{yamz2026kyojin}. llama.cpp uses the same orientation
+for fp16 caches \citep{gerganov2023llamacpp}. Two llama.cpp forks read
+its 8-bit cache in place in the tensor-core FlashAttention kernel, with
+Turing tiles, though neither reports a Turing measurement
+\citep{piggidragon2026mmaq,twoxforever2026q8}. Its speedup over Triton is
+expected of any tensor-core kernel on Turing, since Triton's runs on scalar
+units there.
+
+\textbf{Other optimizations and efficiency.} Running exllamav3's int8 path on 64\,KB Turing parts,
+the host's choice of slice height and int8 verify rows have prior art
+(Section~\ref{sec:build}), and the split-K kernel is rafatxf's. Comparable speedups over stock engines have been reported: rafatxf's branch reports
+1.86 times at 4K and 2.57 times at 64K over exllamav3 1.5.3 on a 22\,GiB card at
+4.0 bits per weight in its documentation \citep{rafatxf2026turing}, against
+1.6 to 2.2 times in its upstream issue \citep{rafatxf2026issue417}, and a GTX~16 branch reports
+1.93 times for another model \citep{nalimcos2026gtx16}; ours comes from
+partly different mechanisms and a newer baseline. We make no efficiency claim. Our
+absolute speed on the 11\,GiB card comes largely from a 2.0 bits-per-weight
+quantization that fits it; reading a token's bytes at the card's streaming
+rate would take \PeBytesErrMin--\PeBytesErrMax\% less time than the token
+takes, while earlier Turing engines report 70--85\% of the bandwidth at 3.5 to
+4 bits per weight on 22--24\,GiB cards
+\citep{ninfer2026titan,rafatxf2026turing,vcruz3052026exl3turing}. Against
+NInferno on this card the engines are close per byte. A token reads
+\PeTokGbExl\,GB of EXL3 weights and \PeTokGbIxxs\,GB of UD-IQ2\_XXS (all
+but the embedding table, which decoding reads one row at a time; the GGUF file
+is \PeFileGbIxxs\,GB). In the 4~November confirmation session, w13's undrafted rate moved
+about \PeCfGbsW\,GB/s and NInferno's about \PeCfGbsNif\,GB/s. Those dated rates imply similar weight-byte throughput; this arithmetic
+is not a bandwidth measurement or an explanation of the replacement margin. UD-IQ2\_XXS reads
+\PeTokBytesPct\% more weight bytes per token than EXL3, which accounts for
+part of the dated undrafted rate difference.
+
+\subsection{Configuration selection}
+\label{sec:choice}
+For short prompts, drafting with the MTP layer in mode~2 is the fastest
+configuration we measured, and on GSM8K it answered every item as the stock
+engine did. Up to \PeReachEE, the 8-bit cache read by fd75d keeps the decode
+rate at depth (its accuracy was tested at 32K and 64K, not at 48K), and on
+fresh items the split cache showed no accuracy advantage over it. The 8-bit cache failed at 80K (73--79K were not tried); past it
+only the split and 4-bit caches fit: the split cache
+reached \PeReachEF, where accuracy on this task fell, and the 4-bit cache was
+not shown usable at 64K. For one question over a long prompt with a short
+answer, prefill dominates: it ran at about \PeArmEESixtyFourPrefill{} tokens
+per second at 64K, and a 64K request took \PeArmEESixtyFourItemS{} seconds on
+average with fd75d's 8-bit cache. The decode rate matters when answers are
+long or follow-up turns reuse a cached prompt. An fd75d path for the split
+cache would carry the decode rate past \PeReachEE; it is future work.
+
+\subsection{Detailed limitations and threats to validity}
+\label{sec:limitations}
+\textbf{Sessions.} Sessions of this harness differ by up to
+\PeAuditSlowHi\% in time per token, so only comparisons within a session are
+claims. F2 and the confirmation session agree within 1\%, but both ran on one
+card in one desktop. The speed workload is three prompts of 256 sampled
+tokens each, without a seed, and other programs raised the desktop's load
+during F2. Rotation within a session spreads both across the arms, but the
+absolute rates still reflect both.
+
+\textbf{Competitors measured.} Each competitor ran the configuration
+registered for it, or the first rung of the fit ladder that fit, with our
+prompts, requested sampling knobs and timing. Engine-specific defaults and
+sampling order remained different; neutral penalties in the replacement do
+not establish matching distributions or quality. No competitor was tuned
+further for these sessions. The replacement completed only
+\PeFreshComplete{} of \PeFreshPlanned{} comparisons, with
+\PeFreshEligible{} eligible current leads. Its incomplete stock cells,
+unknown llama.cpp placement and unmeasured DFlash2 cells are not losses.
+The following limitations describe the older confirmation sessions:
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item rafatxf ran its 4-bit cache against our 8-bit one, and no same-cache arm
+ran;
+\item NInferno's DFlash2 lane ran on NInferno's own drafter-attached
+conversion, at its automatic context when empty and on a survival rung at
+28K, in the DFlash2 sessions rather than the confirmation session;
+\item two drafted llama.cpp-family lanes did not fit at full offload;
+\item llama.cpp's MTP lane is a partial-offload speed;
+\item buun-llama-cpp's undrafted lane has one round;
+\item formats that need a download, such as ik\_llama.cpp's trellis
+quantizations, were not run.
+\end{itemize}
+The per-answer comparison with llama.cpp ran in other sessions, on builds of
+September and October. Public reports we cite were measured elsewhere.
+
+\textbf{Accuracy of the faster builds.} w13's accuracy rests on GSM8K with
+MTP (identical outcomes to the stock wheel), on bit-identity for undrafted
+decoding, and on K1 at 64K. Among the exllamav3 builds in the original 2080 Ti study, MMLU tested only the stock wheel. The cross-card replication in Appendix~\ref{app:fleet} tested w13 under different deployment conditions. The comparisons
+with llama.cpp are descriptive; each lane ran once, and the MMLU gap to
+UD-IQ2\_XXS is not significant after adjustment.
+
+\textbf{One deployed configuration.} Apart from the laptop-GPU measurements
+that Section~\ref{sec:bytes} cites, the results cover one card, one model at
+one weight precision and single-stream requests, with sampled decoding for
+speed and greedy decoding for accuracy and long context. Drafting
+makes most decode steps run attention on several query tokens, which the
+logit check, run one token at a time on gold answers, did not cover. fd75d's
+accuracy is established at 64K (and, combined with the format change, at
+32K); at 48K, where its logits diverged by the registered rule, no accuracy arm
+ran. The 1-bit results of Section~\ref{sec:bytes} come from our patched
+kernels on the 2080 Ti and the stock kernels on the laptop GPU, so the
+difference between the two cards confounds the card with the kernels.
+
+\textbf{Long-context design.} The graded task is one family, multi-value
+retrieval with \PeNeedles{} values, scored all-or-nothing on chat-session
+haystacks; it is a harder variant of a RULER task and not comparable with
+RULER scores. fp16 was tested only to \PeReachFp, so every 64K comparison is against
+the 8-bit cache, and at 96K only the split cache ran. Each comparison rests on
+\PeHTwoN{} items, so where arms disagree on a fifth of the items the 90\%
+interval is \PeWidthMin--\PeWidthMax{} points wide. The change of graded task
+was registered before any test item ran, but after seeing that the planned
+families could not separate the formats. Reach is the longest ladder step
+that passed with one filled prompt and a short answer; for three formats it
+is a lower bound.
+
+
+\section{Registered predictions and their outcomes}
+\label{sec:predictions}
+Every prediction registered for this paper's measurements, with its outcome
+(Tables~\ref{tab:predictions} and~\ref{tab:predictions-context}).
+Failed predictions are kept: several of them changed what the paper claims.
+The registrations, with their amendments and dated outcomes, ship in the
+artifact, as does the separate registration of the kernel bench that
+Section~\ref{sec:bytes} cites, with its own predictions and outcomes.
+
+The laptop-GPU repeat that Section~\ref{sec:bytes} cites registered nine
+predictions over three runs: at 80\,W, a replicate at 80\,W in the
+performance power profile, and at 175\,W. Five held and four failed. As
+predicted, the fixed parts were most of the calls' time above their reads in
+all three runs, and the raised limit lifted the memory clock to
+\PeAdaBoostMemMhz\,MHz. Against the predictions, at 80\,W a 1-bit call took
+up to \PeAdaOneFasterHi\% less time than a 2-bit call in the same role,
+against a predicted 10\% at most; the performance profile alone left decode's
+memory clock at \PeAdaMemMhz\,MHz, not \PeAdaBoostMemMhz; and the faster
+memory did not shrink the 1-bit advantage in either later run, which at
+175\,W grew to \PeAdaBoostOneFasterLo--\PeAdaBoostOneFasterHi\% less time.
+
+\begin{table}[!tbp]\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.75in}>{\raggedright\arraybackslash}p{1.95in}l@{}}
+\toprule
+Prediction & Outcome & Section\\\midrule
+\multicolumn{3}{@{}l}{\textit{Confirmation sessions (4--5 November)}}\\
+w13 at 43--48 tok/s undrafted and 64--72 with MTP at an empty context, in the registered session & held & \ref{sec:speed}\\
+w13 over stock: 1.75--1.95$\times$ undrafted, 1.45--1.65$\times$ with MTP, $\geq$1.9$\times$ undrafted at 28K & held & \ref{sec:speed}\\
+exllamav3 1.6.6 within $\pm5\%$ of 1.6.5 & held & \ref{app:engine-comparisons}\\
+w13 over rafatxf's fork: $+3$ to $+12\%$ empty, $-3$ to $+10\%$ at 28K & held & \ref{app:engine-comparisons}\\
+NInferno UD-IQ2\_XXS at 42--48 tok/s; w13 ahead by 0--12\% & held & \ref{app:engine-comparisons}\\
+NInferno UD-IQ2\_S 8--18\% slower than UD-IQ2\_XXS & failed: 6.5\% slower & \ref{app:engine-comparisons}\\
+llama.cpp with DFlash2 at 50--65 tok/s; with MTP at 40--55 & failed: no full-offload fit & \ref{app:engine-comparisons}\\
+ik\_llama.cpp 0--25\% faster than llama.cpp & failed: 19.6\% slower & \ref{app:engine-comparisons}\\
+The ``fastest'' sentence survives every session & held then; no current ranking & \ref{sec:new}\\
+w13 with MTP leads NInferno with DFlash2 in every round, by 20--50\% empty and 5--35\% at 28K & held & \ref{app:engine-comparisons}\\
+NInferno's DFlash2 fits the registered 32K context & failed & \ref{sec:speedsetup}\\
+NInferno's DFlash2 cannot start at 29,696 tokens & failed: it started on a survival rung & \ref{sec:speedsetup}\\
+\multicolumn{3}{@{}l}{\textit{Earlier release refresh (12 November; NInferno comparison replaced)}}\\
+w13 over NInferno 65e573fd undrafted: 0.95--1.10$\times$ empty, 1.00--1.20$\times$ at 28K & held: \PeRfXNifNdZero, \PeRfXNifNdDeep & \ref{app:engine-comparisons}\\
+w13 with MTP over NInferno's DFlash2: 1.05--1.35$\times$ empty, 1.10--1.45$\times$ at 28K & held: \PeRfXNifDfZero, \PeRfXNifDfDeep & \ref{app:engine-comparisons}\\
+w13 at least 1.6$\times$ llama.cpp dd6b945b undrafted & held: \PeRfXLcppNdZero, \PeRfXLcppNdDeep; residency unrecorded & \ref{app:engine-comparisons}\\
+\multicolumn{3}{@{}l}{\textit{Replacement comparison (14 November)}}\\
+Four NInferno pooled leads hold in every round & held; neutral penalties, sampling order differs & \ref{app:engine-comparisons}\\
+Every tested lead revalidated & not established: \PeFreshComplete/\PeFreshPlanned{} complete, \PeFreshEligible{} eligible & \ref{app:engine-comparisons}\\
+\multicolumn{3}{@{}l}{\textit{Fleet deployment replication (13--14 November)}}\\
+MTP faster at both fills on each card; 4080 SUPER faster than 4070 on the mixture; GSM8K MTP within 5 points of archived w13; within-card nd/MTP accuracy gaps $\leq3$ points & all \PeFleetAssessedPredictions{} held, descriptive & \ref{app:fleet}\\
+\bottomrule\end{tabular}
+\caption{Registered predictions and outcomes for the speed sessions and
+cross-card deployment replication. Earlier and replacement comparisons retain
+their dates and scope.}
+\label{tab:predictions}
+\end{table}
+
+\begin{table}[!tbp]\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.75in}>{\raggedright\arraybackslash}p{1.95in}l@{}}
+\toprule
+Prediction & Outcome & Section\\\midrule
+\multicolumn{3}{@{}l}{\textit{Long context}}\\
+Peak memory within $-150$ to $+250$\,MiB of projection & failed for the quantized caches & \ref{sec:reach}\\
+8-bit cache passes 64K; 4-bit cache reaches $\geq$128K & held & \ref{sec:reach}\\
+H1 (fd75d's 8-bit cache against fp16, 32K) equivalent & held & \ref{sec:accuracy}\\
+H2 (4-bit cache at 64K) usable and equivalent & failed: not shown usable & \ref{sec:accuracy}\\
+H3 (4-bit cache at 32K) equivalent & failed: usable, not equivalent & \ref{sec:accuracy}\\
+fd75d's logits do not diverge from Triton's at 28K, 48K and 64K & failed at 48K & \ref{sec:kernel}\\
+K1: Triton reading the 8-bit cache is more accurate than fd75d at 64K & failed: equivalent & \ref{sec:kernel}\\
+K2: 4-bit values cost nothing at 64K (equivalent) & failed: $+11.5$ & \ref{sec:rep}\\
+R1: the split cache's 64K lead replicates on fresh items & failed: not replicated & \ref{sec:rep}\\
+N: a harmless reordering changes at most 6 of 96 outcomes & held & \ref{sec:rep}\\
+R2 and R3 equivalent & failed & \ref{sec:rep}\\
+\multicolumn{3}{@{}l}{\textit{Mechanism}}\\
+Bytes alone underpredict w13's undrafted F2 token at an empty context by 37--45\% & held & \ref{sec:bytes}\\
+The priced graph within $\pm12\%$ of every held-out configuration & failed & \ref{sec:bytes}\\
+The priced graph, extended to drafting, within $\pm10\%$ for w13 mode~2 & failed empty, held at 28K & \ref{sec:bytes}\\
+Mode~2 ahead of rafatxf's fork by $\geq$10\% in F2 & failed: 8.2\% & \ref{app:engine-comparisons}\\
+fd75d makes the 28K token $\geq$20\% faster, every round & held & \ref{sec:depth}\\
+w11b within $\pm3\%$ of w9 at an empty context & failed: $+4.2\%$ & \ref{sec:depth}\\
+W12p's products bit-identical for 1--7 rows & failed (narrowed to 1--2 rows, which held) & \ref{sec:build}\\
+Accuracy checks of w11b and w13 mode~2 within $-1.0$ point & held & \ref{sec:quality}\\
+\bottomrule\end{tabular}
+\caption{Registered predictions and outcomes for long context and the
+mechanism. The laptop-GPU repeat's nine predictions are given in the text.}
+\label{tab:predictions-context}
+\end{table}
+
+\clearpage
+\section{Prompts}
+\label{app:prompts}
+\textbf{Speed.} The speed harness decodes from three fixed prompts, each sent
+as one user message through Qwen's chat template with thinking off (an empty
+think block opens the assistant turn):
+\begin{quote}\small
+\textbf{Code.} Write a Python function that returns the n-th Fibonacci number
+iteratively, with a docstring.\\
+\textbf{Math.} A train travels 180 km in 2.5 hours, then 120 km in 1.5 hours.
+What is its average speed? Show the steps.\\
+\textbf{Prose.} Describe, in two paragraphs, how a lighthouse keeper's day
+might have looked in 1890.
+\end{quote}
+The 28K arms put a fixed synthetic log ahead of the same prompt in the same
+message. It opens with ``Here is a log for reference; the question after it
+does not depend on it.'' and a blank line. Then come lines such as ``Record
+00000: basalt nectar 78357 fjord batch 25.'', drawn from twenty fixed words by
+a generator seeded with 1030. The text is cut to exactly 28,000 tokens of the
+model's tokenizer and followed by a blank line. \q{tools/turing/census.py}
+(\q{filler}) rebuilds it.
+Table~\ref{tab:f2prompts} gives F2's rates by prompt.
+\input{derived/f2_per_prompt}
+
+\textbf{Long context.} Every request is one user message, sent with Qwen's
+thinking mode off: the instruction below, a blank line, the haystack with its
+needles, a blank line, and ``Question:'' followed by the family's question. The
+instruction is the earlier study's, unchanged:
+\begin{quote}\small
+Below is a long text made of chat conversations. A few special facts are
+hidden in it. Read the text, then answer the question that follows it. Reply
+with the answer only.
+\end{quote}
+Each graded needle reads ``One of the special magic numbers for \slot{key}
+is: \slot{value}.'', following RULER's wording \citep{hsieh2024ruler}, with
+\PeNeedles{} values for one key, and the question is ``What are all the
+special magic numbers for \slot{key} mentioned in the provided text?''. The
+check set uses the earlier study's single-needle, multi-key and
+variable-tracking questions with the same instruction.
+
+\end{document}

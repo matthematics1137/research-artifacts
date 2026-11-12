@@ -1,0 +1,29 @@
+{
+  "amendment": "research/prereg/2026-11-04-p8-confirmation-speed.md, Amendment 2 (follow-up step x-p8-confirm-df2)",
+  "registered_plan": "plan.json",
+  "frozen_sha256": {
+    "plan.json": "f670ed92af01d5e93b5aee44ffd6d294802c33bacfbdf0d5d45664dd53673934",
+    "run_confirm.py": "9088eadffce1830af72795c93bf12b7bea187df69aa5189a63aad4fc017187a0",
+    "analyze_confirm.py": "d713742661b4b82eb5332135ff6f7c2c82fe7886a09057b44abb0f0919ac4221",
+    "run_confirm_fit.py": "a4ab18a638b1638249a1ec3a6a71a9f6f509eb75dce06cd56abee42b60680810"
+  },
+  "drafter": {
+    "repo": "z-lab/Qwen3.8-27B-DFlash2",
+    "revision": "50307d4c4cde6860d4eee73e2547cd786fe8e8a4",
+    "file": "model.safetensors",
+    "bytes": 3848817896,
+    "sha256": "67fc76d68dc5a9415511a4f394ef744d67510cd20e93b37cc2cc7d28e4bab65c"
+  },
+  "rounds": 3,
+  "cap_hours": 1.0,
+  "port_range": [18341, 18360],
+  "port_wait_s": 120,
+  "conditions": [
+    {"id": "w13-165-mtp-0", "priority": 1, "why": "same-session anchor, drafted"},
+    {"id": "nif-xxs-df2-0", "priority": 1, "why": "the registered conditional arm (plan.json conditional nif-dflash2)"},
+    {"id": "w13-165-nd-0", "priority": 2, "why": "same-session anchor, undrafted: w13's drafting gain"},
+    {"id": "nif-xxs-0", "priority": 2, "why": "NInferno undrafted: its DFlash2 gain"},
+    {"id": "w13-165-mtp-28k", "priority": 1, "why": "same-session anchor, drafted"},
+    {"id": "nif-xxs-df2-28k", "priority": 1, "why": "the registered conditional arm (plan.json conditional nif-dflash2)"}
+  ]
+}

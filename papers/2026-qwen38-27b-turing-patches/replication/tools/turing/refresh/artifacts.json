@@ -1,0 +1,82 @@
+{
+  "schema": "p8-refresh-artifacts-v1",
+  "gguf_repo": "unsloth/Qwen3.8-27B-GGUF",
+  "gguf_revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+  "audits": [
+    "2026-09-06",
+    "2026-11-04",
+    "2026-11-05"
+  ],
+  "files": [
+    {
+      "key": "iq2xxs",
+      "path": "{L}/models/gguf/Qwen3.8-27B-UD-IQ2_XXS.gguf",
+      "bytes": 7266070528,
+      "sha256": "e792d8fb3142fe6d9171876d6da0f71f05a71028718debc72dbec93ff645e67d"
+    },
+    {
+      "key": "iq2s",
+      "path": "{L}/models/gguf/Qwen3.8-27B-UD-IQ2_S.gguf",
+      "bytes": 8371970048,
+      "sha256": "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe"
+    },
+    {
+      "key": "mtp_full",
+      "path": "{L}/models/gguf/mtp-Qwen3.8-27B-Q4_0.gguf",
+      "bytes": 1369590656,
+      "sha256": "50d9ce5a6da381bbcfb31061cf73df94a90e6faf8efeddee379a9cb8f1501c6e"
+    },
+    {
+      "key": "dflash2",
+      "path": "{L}/models/gguf/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+      "bytes": 1143006816,
+      "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
+    },
+    {
+      "key": "exl3-shard-1",
+      "path": "{L}/models/qwen38-exl3-2.0/model-00001-of-00002.safetensors",
+      "bytes": 8573967630,
+      "sha256": "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93"
+    },
+    {
+      "key": "exl3-shard-2",
+      "path": "{L}/models/qwen38-exl3-2.0/model-00002-of-00002.safetensors",
+      "bytes": 1622158601,
+      "sha256": "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746"
+    },
+    {
+      "key": "nif-attached",
+      "path": "{L}/models/gguf/ninferno-df2b/Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16.ninferno",
+      "bytes": 9486035968,
+      "sha256": "98fafe128d9dcceffe2dd45278e8c09c2cf2a172aac589eb784a3366df9f5896"
+    },
+    {
+      "key": "exl3-tokenizer.json",
+      "path": "{L}/models/qwen38-exl3-2.0/tokenizer.json",
+      "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+    },
+    {
+      "key": "exl3-config.json",
+      "path": "{L}/models/qwen38-exl3-2.0/config.json",
+      "sha256": "c5d904f9215e045dc30e4953a989185fc23b68a91d0ebad2028d1a39cdb4000c"
+    },
+    {
+      "key": "exl3-quantization_config.json",
+      "path": "{L}/models/qwen38-exl3-2.0/quantization_config.json",
+      "sha256": "bb8649aa7e85b03fbae9e29ec2fb6df63fe71c990c1aace65950d5ee5135706e"
+    }
+  ],
+  "attached_conversion_provenance": {
+    "path": "{L}/models/gguf/ninferno-df2b/Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16.ninferno",
+    "made_by": "ninferno-convert (NInferno 1d3b43e3) --model {L}/models/gguf/Qwen3.8-27B-UD-IQ2_XXS.gguf --out <path> --components text,dflash2 --source dflash2={L}/cache/huggingface/hub/models--z-lab--Qwen3.8-27B-DFlash2/snapshots/50307d4c4cde6860d4eee73e2547cd786fe8e8a4 --drafter-quant q8 --with-drafters --model-id unsloth/Qwen3.8-27B-GGUF --threads 4, HF_HUB_OFFLINE=1, CPU only",
+    "bytes": 9486035968,
+    "sha256": "98fafe128d9dcceffe2dd45278e8c09c2cf2a172aac589eb784a3366df9f5896"
+  },
+  "drafter_source": {
+    "repo": "z-lab/Qwen3.8-27B-DFlash2",
+    "revision": "50307d4c4cde6860d4eee73e2547cd786fe8e8a4",
+    "file": "model.safetensors",
+    "bytes": 3848817896,
+    "sha256": "67fc76d68dc5a9415511a4f394ef744d67510cd20e93b37cc2cc7d28e4bab65c"
+  }
+}

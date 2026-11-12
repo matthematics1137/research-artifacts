@@ -1,0 +1,5 @@
+# Default checker: Python standard library only (verified with CPython 3.12.3).
+# Optional exact figure replay; install separately, never during verification.
+numpy==2.3.3
+matplotlib==3.10.6
+# Full prompt regeneration additionally needs tokenizers==0.23.1 and pinned data.

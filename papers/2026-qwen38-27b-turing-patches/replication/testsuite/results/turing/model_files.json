@@ -1,0 +1,118 @@
+[
+ {
+  "key": "exl3",
+  "files": [
+   "qwen38-exl3-2.0/model-00001-of-00002.safetensors",
+   "qwen38-exl3-2.0/model-00002-of-00002.safetensors"
+  ],
+  "format": "EXL3, 2.0 bpw",
+  "source": "turboderp, revision SC_2.00bpw_H3",
+  "used_by": "every exllamav3 arm; rafatxf's fork",
+  "parameters": 27781428361,
+  "tensor_bytes": 10195824708,
+  "file_bytes": 10196126231,
+  "bits_per_weight": 2.9360116623270693,
+  "sha256": [
+   "cf8966ebc88599d904d4b1ac65d567a15b00b7f9c97ef54c8d77eb534ff8eb93",
+   "2a72afda6bf041732018ee34aca772a4a268ef90905da0c710397e68a9e1a746"
+  ],
+  "trellis_parameters": 26023034880,
+  "trellis_bits_per_weight": 2.0488566535710686,
+  "hub_digest_checked": true
+ },
+ {
+  "key": "iq2xxs",
+  "files": [
+   "qwen38/Qwen3.8-27B-UD-IQ2_XXS.gguf"
+  ],
+  "format": "GGUF UD-IQ2_XXS",
+  "source": "unsloth",
+  "used_by": "llama.cpp, NInferno",
+  "parameters": 26895998464,
+  "tensor_bytes": 7255074816,
+  "file_bytes": 7266070528,
+  "bits_per_weight": 2.1579640780276925,
+  "sha256": [
+   "e792d8fb3142fe6d9171876d6da0f71f05a71028718debc72dbec93ff645e67d"
+  ],
+  "trellis_parameters": null,
+  "trellis_bits_per_weight": null,
+  "hub_digest_checked": true
+ },
+ {
+  "key": "iq2s",
+  "files": [
+   "qwen38/Qwen3.8-27B-UD-IQ2_S.gguf"
+  ],
+  "format": "GGUF UD-IQ2_S",
+  "source": "unsloth",
+  "used_by": "llama.cpp with MTP; quality lanes",
+  "parameters": 26895998464,
+  "tensor_bytes": 8360974336,
+  "file_bytes": 8371970048,
+  "bits_per_weight": 2.4869050605252148,
+  "sha256": [
+   "7897d2c5a5cee46aef50895141b2c8a0803c1185f3d03c4fda4cd137a7ad77fe"
+  ],
+  "trellis_parameters": null,
+  "trellis_bits_per_weight": null,
+  "hub_digest_checked": true
+ },
+ {
+  "key": "mtp_full",
+  "files": [
+   "qwen38/MTP/mtp-Qwen3.8-27B-Q4_0.gguf"
+  ],
+  "format": "GGUF Q4_0, MTP layer with embedding and output tables",
+  "source": "unsloth",
+  "used_by": "llama.cpp with MTP",
+  "parameters": 2967501312,
+  "tensor_bytes": 1358645248,
+  "file_bytes": 1369590656,
+  "bits_per_weight": 3.6627319893835315,
+  "sha256": [
+   "50d9ce5a6da381bbcfb31061cf73df94a90e6faf8efeddee379a9cb8f1501c6e"
+  ],
+  "trellis_parameters": null,
+  "trellis_bits_per_weight": null,
+  "hub_digest_checked": true
+ },
+ {
+  "key": "mtp_shared",
+  "files": [
+   "qwen38/MTP-shared/mtp-Qwen3.8-27B-Q4_0-shared.gguf"
+  ],
+  "format": "GGUF Q4_0, MTP layer only",
+  "source": "ours, from unsloth's with the tables stripped",
+  "used_by": "the quality lanes' MTP arm",
+  "parameters": 424699392,
+  "tensor_bytes": 266016768,
+  "file_bytes": 276962016,
+  "bits_per_weight": 5.010918744145506,
+  "sha256": [
+   "0dcbd3f1403adec338e76a9adfb181982bd9bf8c3462640e16783c3385533ae0"
+  ],
+  "trellis_parameters": null,
+  "trellis_bits_per_weight": null,
+  "hub_digest_checked": false
+ },
+ {
+  "key": "dflash2",
+  "files": [
+   "qwen38-dflash2/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
+  ],
+  "format": "GGUF Q4_K_M, block-diffusion drafter",
+  "source": "z-lab",
+  "used_by": "llama.cpp and NInferno with DFlash2",
+  "parameters": 1924404480,
+  "tensor_bytes": 1132057600,
+  "file_bytes": 1143006816,
+  "bits_per_weight": 4.706110848380482,
+  "sha256": [
+   "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
+  ],
+  "trellis_parameters": null,
+  "trellis_bits_per_weight": null,
+  "hub_digest_checked": true
+ }
+]

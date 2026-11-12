@@ -1,0 +1,13 @@
+{
+ "name": "calib2",
+ "group": "stage2",
+ "arms": [
+  {
+   "arm": "calib2-64k-88",
+   "format": "8,8",
+   "length": 65536,
+   "items": "calib2-64k.jsonl",
+   "max_tokens": 768
+  }
+ ]
+}

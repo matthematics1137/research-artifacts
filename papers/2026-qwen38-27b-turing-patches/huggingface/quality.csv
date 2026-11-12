@@ -1,0 +1,16 @@
+benchmark,lane,n,correct,accuracy_pct,mean_tokens,mean_wall_seconds,median_decode_tokens_per_second
+gsm8k_500,TURING-exl3-mtp,500,488,97.6,327.2,6.45,53.4
+gsm8k_500,TURING-exl3-mtp-w11j2,500,488,97.6,323.8,5.44,63.2
+gsm8k_500,TURING-exl3-mtp-w13s2,500,488,97.6,325.9,4.07,85.9
+gsm8k_500,TURING-exl3-nodraft,500,488,97.6,325.8,14.22,23.6
+gsm8k_500,TURING-exl3-nodraft-w11,500,484,96.8,328.5,7.95,42.6
+gsm8k_500,TURING-lcpp-iq2xxs,500,482,96.4,376.4,15.69,24.7
+gsm8k_500,TURING-lcpp-iq2s,500,483,96.6,364.2,16.01,23.4
+gsm8k_500,TURING-lcpp-iq2s-mtp,500,487,97.4,367.6,8.17,48.7
+gsm8k_500,TURING-lcpp-iq2xxs-dflash2,500,481,96.2,376.5,7.69,54.2
+mmlu_500,TURING-exl3-mtp,500,434,86.8,709.6,16.64,43.9
+mmlu_500,TURING-exl3-nodraft,500,433,86.6,703.5,31.65,22.9
+mmlu_500,TURING-lcpp-iq2xxs,500,414,82.8,710.7,29.42,24.6
+mmlu_500,TURING-lcpp-iq2s,500,431,86.2,698.9,30.45,23.4
+mmlu_500,TURING-lcpp-iq2s-mtp,500,430,86.0,709.7,17.45,42.0
+mmlu_500,TURING-lcpp-iq2xxs-dflash2,500,416,83.2,738.4,18.96,39.1

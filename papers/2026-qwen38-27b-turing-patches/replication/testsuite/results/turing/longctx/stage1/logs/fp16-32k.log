@@ -1,0 +1,58 @@
+== 2026-11-01T22:37:24-0500 stage1_run.py fp16-32k config /opt/p8/runs/longctx/stage1/configs/fp16-32k-20261101T223724.yml
+22:37:25.315 INFO:     Using config file
+                       /opt/p8/runs/longctx/stage1/confi
+                       gs/fp16-32k-20261101T223724.yml
+22:37:25.321 INFO:     The 'config.yml' file cannot be found
+22:37:27.358 WARNING:  No sampler overrides are configured
+                       (sampling.override_preset or inline overrides in the
+                       sampling section), so sampling parameters have no
+                       fallback values. Requests that omit them run untruncated:
+                       temperature 1.0, top_k 0, top_p 1.0, min_p 0. Set
+                       override_preset to safe_defaults unless this is
+                       intentional.
+22:37:27.362 INFO:     exllamav3 version: 1.6.5
+22:37:28.685 INFO:     The provided model has vision capabilities, vision is
+                       disabled in config.
+22:37:28.686 INFO:     Using main model MTP component for drafting
+22:37:28.686 INFO:     Disabling GPU split because one GPU is in use.
+22:37:28.687 INFO:     Context: max_seq_len 32,768 tokens (configured),
+                       cache_size 32,768 tokens
+22:37:28.687 INFO:     Recurrent state storage: fp16
+22:37:28.968 INFO:     Using template "chat_template" for chat completions.
+22:37:28.969 INFO:     Response parsing: tool format qwen3_coder (template,
+                       tokenizer, architecture), reasoning tags <think> </think>
+                       (template)
+22:37:29.510 INFO:     Loading model
+                       /opt/p8/models/qwen38-exl3-2.0
+                       (single GPU)
+In file included from /opt/p8/python/cpython-3.12.16-linux-x86_64-gnu/include/python3.12/Python.h:12,
+                 from /opt/p8/tmp/tmp5sjx2d8d/__triton_launcher.c:7:
+/opt/p8/python/cpython-3.12.16-linux-x86_64-gnu/include/python3.12/pyconfig.h:1877:9: warning: ‘_POSIX_C_SOURCE’ redefined
+ 1877 | #define _POSIX_C_SOURCE 200809L
+      |         ^~~~~~~~~~~~~~~
+In file included from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/stdlib.h:26,
+                 from /opt/p8/venv/lib/python3.12/site-packages/triton/backends/nvidia/include/cuda.h:56,
+                 from /opt/p8/tmp/tmp5sjx2d8d/__triton_launcher.c:2:
+/usr/include/features.h:319:10: note: this is the location of the previous definition
+  319 | # define _POSIX_C_SOURCE        202405L
+      |          ^~~~~~~~~~~~~~~
+Loading draft modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 3/3   0:00:00
+Loading model modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 67/67 0:00:00
+22:37:34.496 INFO:     Using recurrent checkpoint intervals: 2048 tokens
+                       (generation), 1024 tokens (prompt ingestion).
+22:37:34.668 INFO:     Model loaded in 5.7 s
+
+22:37:34.669 WARNING:  Disabling authentication makes your instance vulnerable.
+                       Set the `disable_auth` flag to False in config.yml if you
+                       want to share this instance with others.
+22:37:34.670 INFO:     Serving OAI API on http://localhost:8097 (docs at
+                       http://localhost:8097/redoc)
+22:37:35.050 INFO:     #3 chat/completions: 32,215 prompt tokens · temperature:
+                       0, greedy (req), max_tokens: 64 (req)
+22:38:35.280 INFO:     #3 chat/completions: 8 tokens generated at 0.9 T/s ·
+                       prompt 32,215 tokens, none cached, 32,215 new in 51.3 s
+                       (628 T/s) · first token 51.3 s, total 60.2 s · draft 4/24
+                       accepted (17%)
+22:38:35.480 WARNING:  Shutdown signal called. Exiting gracefully.
+22:38:36.365 INFO:     Model unloaded.

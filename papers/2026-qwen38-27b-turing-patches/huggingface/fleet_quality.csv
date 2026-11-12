@@ -1,0 +1,9 @@
+card,mode,suite,n,correct,accuracy_percent
+card-4070,nd,gsm8k_500,500,485,97.0
+card-4070,nd,mmlu_500,500,436,87.2
+card-4070,mtp,gsm8k_500,500,488,97.6
+card-4070,mtp,mmlu_500,500,431,86.2
+card-4080-super,nd,gsm8k_500,500,486,97.2
+card-4080-super,nd,mmlu_500,500,431,86.2
+card-4080-super,mtp,gsm8k_500,500,488,97.6
+card-4080-super,mtp,mmlu_500,500,434,86.8

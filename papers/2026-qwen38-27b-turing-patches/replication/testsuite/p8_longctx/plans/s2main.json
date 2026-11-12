@@ -1,0 +1,51 @@
+{
+ "name": "s2main",
+ "group": "stage2",
+ "arms": [
+  {
+   "arm": "s2-64k-88",
+   "format": "8,8",
+   "length": 65536,
+   "items": "graded-64k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s2-64k-44",
+   "format": "4,4",
+   "length": 65536,
+   "items": "graded-64k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s2-64k-88-noise",
+   "format": "8,8",
+   "length": 65536,
+   "items": "graded-64k.jsonl",
+   "max_tokens": 768,
+   "select": {
+    "first_per_family": 16
+   }
+  },
+  {
+   "arm": "s2-32k-fp16",
+   "format": "fp16",
+   "length": 32768,
+   "items": "graded-32k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s2-32k-88",
+   "format": "8,8",
+   "length": 32768,
+   "items": "graded-32k.jsonl",
+   "max_tokens": 768
+  },
+  {
+   "arm": "s2-32k-44",
+   "format": "4,4",
+   "length": 32768,
+   "items": "graded-32k.jsonl",
+   "max_tokens": 768
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "p8-bonsai-numeric-projection-v1",
+  "registered_analyzer_commit": "e42ef4a8dd7d0577afb05dc7e5e5ec7e38bbec16",
+  "analysis_commit": "0cdce0948ea48d5ea3899dfe7072221013bbf1bb",
+  "independent_review_commit": "553c4898",
+  "original_registered_analysis_sha256": "581083c34db2eeffa3b1f57c1bbf30c2fc49d56f6285153abeab546e4da45c41",
+  "retained_fields": [
+    "id",
+    "correct",
+    "wall_s",
+    "completion_tokens",
+    "truncated"
+  ],
+  "scoring": "Archived registered scorer outcomes; no rescoring, response text or prompt text redistributed.",
+  "interpretation": "Descriptive derivative-and-engine comparison. No equivalence, isolated engine or quantization claim, or patched-build MMLU result.",
+  "projections": [
+    {
+      "source_relative": "input/lane/TURING-bonsai-ninfer-none/gsm8k_500.jsonl",
+      "original_sha256": "cd44a45f4e635df0d836c4d502882023f36ba2f354c1f7805dd3bbd226cdb7d7",
+      "projection": "testsuite/results/turing/bonsai/TURING-bonsai-ninfer-none/gsm8k_500.jsonl",
+      "projection_sha256": "cca9c4787aafbc599cda516e9ecc8f5baf2a4cedfc9115af21ec15a63733c670",
+      "fields": [
+        "id",
+        "correct",
+        "wall_s",
+        "completion_tokens",
+        "truncated"
+      ],
+      "rows": 500
+    },
+    {
+      "source_relative": "input/lane/TURING-bonsai-ninfer-mtp3/gsm8k_500.jsonl",
+      "original_sha256": "f567d679220c8d788c0d3bf2e016cb57f091d0645c5157cb5b607b31652e6800",
+      "projection": "testsuite/results/turing/bonsai/TURING-bonsai-ninfer-mtp3/gsm8k_500.jsonl",
+      "projection_sha256": "c04dd1c9c91f733a22939544dd801bdd75baa7878e333280867ca546c965f123",
+      "fields": [
+        "id",
+        "correct",
+        "wall_s",
+        "completion_tokens",
+        "truncated"
+      ],
+      "rows": 500
+    },
+    {
+      "source_relative": "input/lane/TURING-bonsai-ninfer-none/mmlu_500.jsonl",
+      "original_sha256": "c8ad6c3e474dad5af0c72ff83f092c2d39602527c5ac67383018aa15ff9c0903",
+      "projection": "testsuite/results/turing/bonsai/TURING-bonsai-ninfer-none/mmlu_500.jsonl",
+      "projection_sha256": "644d6b3bbba311f9e69512579955e474da3dce1b3217f782910145a78dc38646",
+      "fields": [
+        "id",
+        "correct",
+        "wall_s",
+        "completion_tokens",
+        "truncated"
+      ],
+      "rows": 500
+    },
+    {
+      "source_relative": "input/lane/TURING-bonsai-ninfer-mtp3/mmlu_500.jsonl",
+      "original_sha256": "3d4b11a352c676de7c6aa9befafd949531a89eb533a19453299b07044ae40546",
+      "projection": "testsuite/results/turing/bonsai/TURING-bonsai-ninfer-mtp3/mmlu_500.jsonl",
+      "projection_sha256": "bdd9b390ca35788994c0c28c87d355e4e1c9ed45e7015705572568c26972baff",
+      "fields": [
+        "id",
+        "correct",
+        "wall_s",
+        "completion_tokens",
+        "truncated"
+      ],
+      "rows": 500
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+ "memory_clock_mhz_during_decode": 7001.0,
+ "rated_gbs_at_clock": 336.01066548161316,
+ "max_temperature_c": 62.0,
+ "one_bit_over_two_bit": {
+  "attn_q": 0.8785357737104824,
+  "gdn_qkv": 0.8999999999999999,
+  "mlp_down": 0.8852657004830918,
+  "mlp_gate_up": 0.8352803738317758
+ },
+ "primary": {
+  "rate_gbs": 300.00952275144033,
+  "calls": 401.0,
+  "matrix_ms": 26.069699999999997,
+  "floor_ms": 21.859006140392644,
+  "gap_ms": 4.167539534034819,
+  "fixed_ms": 3.8341999999999996,
+  "per_weight_ms": 0.1895897740348171,
+  "residual_ms": 0.14374976000000173,
+  "fixed_share": 0.9200152676867123,
+  "fits": {
+   "1": {
+    "fixed_us": 8.8,
+    "us_per_mweights": 0.712,
+    "per_weight_over_read": 1.7088542415922037
+   },
+   "2": {
+    "fixed_us": 9.7,
+    "us_per_mweights": 0.828,
+    "per_weight_over_read": 0.9936315393527702
+   },
+   "3": {
+    "fixed_us": 12.4,
+    "us_per_mweights": 1.215,
+    "per_weight_over_read": 0.9720308537146667
+   }
+  }
+ },
+ "rated": {
+  "rate_gbs": 336.01066548161316,
+  "calls": 401.0,
+  "matrix_ms": 26.069699999999997,
+  "floor_ms": 19.516969768207716,
+  "gap_ms": 6.326206726816803,
+  "fixed_ms": 3.8341999999999996,
+  "per_weight_ms": 2.3482569668168023,
+  "residual_ms": 0.14374976000000106,
+  "fixed_share": 0.6060819959845476,
+  "fits": {
+   "1": {
+    "fixed_us": 8.8,
+    "us_per_mweights": 0.712,
+    "per_weight_over_read": 1.9139167505832684
+   },
+   "2": {
+    "fixed_us": 9.7,
+    "us_per_mweights": 0.828,
+    "per_weight_over_read": 1.1128673240751026
+   },
+   "3": {
+    "fixed_us": 12.4,
+    "us_per_mweights": 1.215,
+    "per_weight_over_read": 1.0886745561604265
+   }
+  }
+ },
+ "verdict": {
+  "P1": false,
+  "P2": true,
+  "P3": true
+ }
+}

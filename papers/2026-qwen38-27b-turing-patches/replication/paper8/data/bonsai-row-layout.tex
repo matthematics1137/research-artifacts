@@ -1,0 +1,24 @@
+\begin{table}[!tbp]\centering\footnotesize\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.55in}*{4}{>{\raggedright\arraybackslash}p{1.08in}}@{}}\toprule
+Counterpoint & None: GSM8K & None: MMLU & MTP-3: GSM8K & MTP-3: MMLU\\\midrule
+@@BONSAI_ROW@@
+\bottomrule\end{tabular}
+\caption{One descriptive counterpoint row, outside the original-weight kernel
+ablations: WaveCut/Ternary-Bonsai-2-27B-NInfer-v3 at revision \texttt{841f7812}
+(artifact SHA-256 \texttt{cdc4810b\ldots c14a}), NInfer \texttt{f4ab369a}.
+NInfer is a separate engine from Brontir's NInferno. All four cells have
+500 requests, zero missing rows and zero transport errors; accuracy includes
+wrong and length-capped answers, and brackets are Wilson 95\% intervals.
+Tokens are mean native generated tokens (reasoning included), wall is mean
+request time, and correct/min is 60 times correct answers divided by the sum
+of all request wall seconds, excluding qualification and startup.
+\emph{Normalized-shape footnote:} native split reasoning is scored through
+P8's existing logical inline normalization and unchanged scorer; byte and
+token identity to the original lanes is unverified. Length finishes were
+0/4 for none and 0/3 for MTP-3 on GSM8K/MMLU; the MTP-3 MMLU count includes
+one legacy-correct capped answer. The five registered paired accuracy
+differences remain unresolved after Holm correction. The sentence's archived
+w13 MTP control is \texttt{TURING-exl3-mtp-w13}; P8's mode-2 quality row uses
+\texttt{TURING-exl3-mtp-w13s2}. No w13 MMLU control was registered.}
+\label{tab:bonsai-counterpoint}
+\end{table}

@@ -1,0 +1,151 @@
+{
+ "registration": "research/prereg/2026-11-04-p8-value-bits-replication.md (0ca1050)",
+ "analysis": "testsuite/p8_longctx/replication_analyze.py (c0260db), run unchanged on journal_at_r1.jsonl",
+ "journal": "journal_at_r1.jsonl: the desktop journal copied 2026-11-04 10:30 EST, after both R1 arms closed and while N ran; R1's rows are final",
+ "written": "2026-11-04 10:31 EST",
+ "interim": "N, R2 and R3 are still running; only R1 is judged here",
+ "R1": {
+  "a": "rep-64k-84",
+  "b": "rep-64k-88-triton",
+  "n": 96,
+  "acc_a": 0.625,
+  "acc_b": 0.6458333333333334,
+  "diff_points": -2.0833333333333335,
+  "ci90": [
+   -8.333333333333334,
+   4.166666666666667
+  ],
+  "ci95_points": [
+   -10.416666666666666,
+   5.208333333333333
+  ],
+  "usable": true,
+  "equivalent": false,
+  "n10": 6,
+  "n01": 8,
+  "mcnemar_p": 0.79052734375,
+  "by_family": {
+   "multivalue": {
+    "n": 96,
+    "acc_a": 0.625,
+    "acc_b": 0.6458333333333334,
+    "diff_points": -2.0833333333333335,
+    "n10": 6,
+    "n01": 8,
+    "mcnemar_p": 0.79052734375
+   }
+  },
+  "outcome": "not replicated",
+  "text_identity": {
+   "n": 96,
+   "identical": 64
+  }
+ },
+ "rule": {
+  "replicated": "90% lower bound > 0",
+  "equivalent": "interval within +-5 with lower bound <= 0",
+  "not replicated": "otherwise (reversed if upper bound < 0)"
+ },
+ "verdict": "not replicated",
+ "prediction": {
+  "text": "D1's point estimate between 0 and +6; the outcome equivalent or not replicated",
+  "point_estimate_in_0_to_6": false,
+  "outcome_not_replicated_or_equivalent": true
+ },
+ "arms": {
+  "rep-64k-88-triton": {
+   "items_ok": 96,
+   "excluded": [],
+   "accuracy": {
+    "k": 62,
+    "n": 96,
+    "acc": 0.6458333333333334,
+    "wilson95": [
+     0.5462430234225731,
+     0.7342015967856051
+    ]
+   },
+   "by_family": {
+    "multivalue": {
+     "k": 62,
+     "n": 96,
+     "acc": 0.6458333333333334,
+     "wilson95": [
+      0.5462430234225731,
+      0.7342015967856051
+     ]
+    }
+   },
+   "prefill_tok_s_pooled": 571.2809072795361,
+   "decode_tok_s_pooled": 34.655635695092634,
+   "answer_tokens": {
+    "mean": 102.10416666666667,
+    "median": 107.0,
+    "max": 107
+   },
+   "finish_length": 0,
+   "prompt_token_mismatches": [],
+   "peak_mib": 10234,
+   "gpu_s": 11228.3,
+   "sessions": 1,
+   "mean_item_s": 116.6971875
+  },
+  "rep-64k-84": {
+   "items_ok": 96,
+   "excluded": [],
+   "accuracy": {
+    "k": 60,
+    "n": 96,
+    "acc": 0.625,
+    "wilson95": [
+     0.5251071844189874,
+     0.7152739186165937
+    ]
+   },
+   "by_family": {
+    "multivalue": {
+     "k": 60,
+     "n": 96,
+     "acc": 0.625,
+     "wilson95": [
+      0.5251071844189874,
+      0.7152739186165937
+     ]
+    }
+   },
+   "prefill_tok_s_pooled": 574.1249962005414,
+   "decode_tok_s_pooled": 34.67844974446337,
+   "answer_tokens": {
+    "mean": 101.78125,
+    "median": 107.0,
+    "max": 107
+   },
+   "finish_length": 0,
+   "prompt_token_mismatches": [],
+   "peak_mib": 9689,
+   "gpu_s": 11186.0,
+   "sessions": 1,
+   "mean_item_s": 116.1096875
+  }
+ },
+ "arm_env": {
+  "rep-64k-88-triton": {
+   "EXL3_FD75D": "0"
+  },
+  "rep-64k-84": {}
+ },
+ "status": {
+  "rep-64k-88-triton": "done",
+  "rep-64k-84": "done",
+  "noise-64k-88-triton-qcs128": "not closed",
+  "rep-32k-84": "not run",
+  "rep-32k-fp16-check": "not run",
+  "rep-32k-fp16": "not run",
+  "rep-64k-86": "not run"
+ },
+ "excluded": {},
+ "checks": {
+  "logged_requests_matched": 192,
+  "configs_as_registered": true
+ }
+}

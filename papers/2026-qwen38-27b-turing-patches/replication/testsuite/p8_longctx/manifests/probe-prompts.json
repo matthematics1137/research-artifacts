@@ -1,0 +1,55 @@
+{
+ "schema": "p8-longctx-stage1-prompts-v1",
+ "registration": "research/prereg/2026-11-01-p8-longctx-stage1.md (Amendment 1, item 4)",
+ "generator": {
+  "make_longctx.py": "c2d7e451d7cfdee10db114214aa129f9b64ddabcb206b1516f3f9b8571398c4f",
+  "p6common.py": "a5564715108b0e4efb19765018a855e43c23205239ad00925f37b94d0fcc15f6",
+  "p5common.py": "e1d62130e90704541f90729999a46c9f0758682ee2e143ba773786cdec88ed7e"
+ },
+ "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+ "family": "single",
+ "index": 0,
+ "seed": "p8-longctx-stage1",
+ "prompts": [
+  {
+   "length": 155648,
+   "role": "ladder",
+   "want_prompt_tokens": 155136,
+   "target_tokens": 155056,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 155109,
+   "haystack_tokens": 155038,
+   "content_tokens": 155097,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.010056
+   ],
+   "n_sessions": 69,
+   "sha256": "d21db705abcdb157c58e17fbe7aaeaa69f36d7e9c88cf45d421d0d0f21ce2d09",
+   "file": "ladder-155648.json"
+  },
+  {
+   "length": 172032,
+   "role": "ladder",
+   "want_prompt_tokens": 171520,
+   "target_tokens": 171440,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 171493,
+   "haystack_tokens": 171422,
+   "content_tokens": 171481,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.009853
+   ],
+   "n_sessions": 76,
+   "sha256": "3425cd4d355f73758b98965da1e8cbcb60f923e46a1cac31b6fde52937d4cfe3",
+   "file": "ladder-172032.json"
+  }
+ ]
+}

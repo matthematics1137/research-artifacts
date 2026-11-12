@@ -1,0 +1,626 @@
+{
+ "predictions_written": "2026-11-01 18:49:21 EST",
+ "compared": "2026-11-01 18:54:34 EST",
+ "two_ti": {
+  "final2-adopt-0": {
+   "build": "1.6.5+w11b",
+   "fill": 0,
+   "drafting": "none",
+   "measure": "pooled unprofiled ms/token (final2)",
+   "priced_graph_ms": 22.973802083333336,
+   "bytes_only_ms": 11.593691811817171,
+   "measured_ms": 22.003211805555555,
+   "priced_err": 0.04411130003905694,
+   "bytes_err": -0.4730909326205777,
+   "two_bit": true,
+   "attention_on_cpu": false,
+   "sm_mhz_snapshot_median": 1740,
+   "rows": 9
+  },
+  "final2-adopt-28k": {
+   "build": "1.6.5+w11b",
+   "fill": 28000,
+   "drafting": "none",
+   "measure": "pooled unprofiled ms/token (final2)",
+   "priced_graph_ms": 24.603982685340025,
+   "bytes_only_ms": 13.223872413823862,
+   "measured_ms": 23.86106800547695,
+   "priced_err": 0.03113501372581262,
+   "bytes_err": -0.4457971281592039,
+   "two_bit": true,
+   "attention_on_cpu": false,
+   "sm_mhz_snapshot_median": 1755,
+   "rows": 9
+  },
+  "final2-w13-0": {
+   "build": "1.6.5+w13",
+   "fill": 0,
+   "drafting": "none",
+   "measure": "pooled unprofiled ms/token (final2)",
+   "priced_graph_ms": 22.973802083333336,
+   "bytes_only_ms": 11.593691811817171,
+   "measured_ms": 21.03858506944444,
+   "priced_err": 0.09198418085156893,
+   "bytes_err": -0.44893196127265406,
+   "two_bit": true,
+   "attention_on_cpu": false,
+   "sm_mhz_snapshot_median": 1770,
+   "rows": 9
+  },
+  "final2-w13-28k": {
+   "build": "1.6.5+w13",
+   "fill": 28000,
+   "drafting": "none",
+   "measure": "pooled unprofiled ms/token (final2)",
+   "priced_graph_ms": 24.603982685340025,
+   "bytes_only_ms": 13.223872413823862,
+   "measured_ms": 22.788867562380037,
+   "priced_err": 0.07964920231299197,
+   "bytes_err": -0.41972226668893853,
+   "two_bit": true,
+   "attention_on_cpu": false,
+   "sm_mhz_snapshot_median": 1770,
+   "rows": 9
+  },
+  "census-d28-f1-mgemmn0": {
+   "build": "1.6.5+w9",
+   "fill": 28000,
+   "drafting": "none",
+   "measure": "pooled profiled span ms/token (census)",
+   "priced_graph_ms": 24.603982685340025,
+   "bytes_only_ms": 13.223872413823862,
+   "priced_graph_attention_us": 2843.4806020066894,
+   "priced_graph_busy_ms": 23.438891539506688,
+   "measured_ms": 32.750898437500005,
+   "priced_err": -0.24875396220678042,
+   "bytes_err": -0.5962287129600562,
+   "two_bit": true,
+   "attention_on_cpu": false,
+   "busy_ms": 31.572734375,
+   "attention_us": 11350.9,
+   "classes_us": {
+    "matrix products": 18162.3,
+    "attention": 11350.9,
+    "GDN recurrent state": 612.0,
+    "small kernels": 1444.7
+   },
+   "families_us": {
+    "exl3_gemv_int8_sq_kernel": 18162.3,
+    "_paged_attn_decode_split_kernel": 11140.3,
+    "cuda_recurrent_gated_delta_rule_kernel_128": 612.0,
+    "rms_norm_kernel": 542.4,
+    "_paged_attn_decode_combine_kernel": 210.6,
+    "gdn_ba_gemv_rows_kernel": 194.6,
+    "conv1d_update_kernel": 179.2,
+    "gated_rms_norm_kernel": 122.4,
+    "act_mul_kernel_h": 118.4,
+    "gated_delta_net_fused_op_3_kernel": 98.4,
+    "rope_kernel": 66.3,
+    "quant_cache_paged_kernel": 50.7,
+    "deinterleave_qg_kernel": 31.8,
+    "mul_sigmoid_kernel_h": 27.8,
+    "?": 9.6,
+    "vectorized_elementwise_kernel": 1.7,
+    "unrolled_elementwise_kernel": 1.4
+   }
+  }
+ },
+ "laptop": {
+  "qwen38-27b__Q4_K_XL__f16|longctx": {
+   "cell": "qwen38-27b__Q4_K_XL__f16",
+   "task": "longctx",
+   "depth": 16455.588643533123,
+   "attention_on_cpu": true,
+   "two_bit": false,
+   "priced_graph_ms_primary": 441.8623226145047,
+   "priced_graph_ms_secondary_F0": 442.36379620263193,
+   "priced_graph_ms_first_structure": 323.30695019799435,
+   "bytes_only_ms": 118.98350325508083,
+   "measured_ms": 297.16976340694004,
+   "naive_ms_per_token": 279.5335756676558,
+   "steps": 3170,
+   "priced_err": 0.4869020237749584,
+   "priced_err_secondary": 0.4885895224705794,
+   "priced_err_first_structure": 0.08795372211291372,
+   "bytes_err": -0.599611003855239,
+   "parts_primary": {
+    "fixed": 1.905291145833337,
+    "device weights": 27.20180930834219,
+    "device state": 0.4669135751840743,
+    "host weights and state": 210.58477766554228,
+    "device KV": 2.859707521049988,
+    "host KV": 198.84382339855281
+   }
+  },
+  "qwen38-27b__Q4_K_XL__q4_0|longctx": {
+   "cell": "qwen38-27b__Q4_K_XL__q4_0",
+   "task": "longctx",
+   "depth": 16455.553157216495,
+   "attention_on_cpu": true,
+   "two_bit": false,
+   "priced_graph_ms_primary": 246.3588481395702,
+   "priced_graph_ms_secondary_F0": 247.43711664549772,
+   "priced_graph_ms_first_structure": 298.8087522446799,
+   "bytes_only_ms": 109.55455898819065,
+   "measured_ms": 237.91429091494828,
+   "naive_ms_per_token": 224.19124438372782,
+   "steps": 3104,
+   "priced_err": 0.035494115095594456,
+   "priced_err_secondary": 0.04002628717227309,
+   "priced_err_first_structure": 0.25595125494794563,
+   "bytes_err": -0.539520898190369,
+   "parts_primary": {
+    "fixed": 1.951553645833337,
+    "device weights": 28.56232345554868,
+    "device state": 0.4863865113500188,
+    "host weights and state": 197.56380023924783,
+    "device KV": 3.656817249585511,
+    "host KV": 14.137967038004842
+   }
+  },
+  "qwen3-8b__Q2_K_XL__f16|longctx": {
+   "cell": "qwen3-8b__Q2_K_XL__f16",
+   "task": "longctx",
+   "depth": 16095.898629237461,
+   "attention_on_cpu": false,
+   "two_bit": true,
+   "priced_graph_ms_primary": 25.864016516429153,
+   "priced_graph_ms_secondary_F0": 24.459498202245676,
+   "priced_graph_ms_first_structure": 34.75000336527998,
+   "bytes_only_ms": 16.42624705487173,
+   "measured_ms": 21.09580612328655,
+   "naive_ms_per_token": 20.75508406686587,
+   "steps": 12183,
+   "priced_err": 0.22602646067548118,
+   "priced_err_secondary": 0.15944837847396232,
+   "priced_err_first_structure": 0.647247000763876,
+   "bytes_err": -0.22135011296204224,
+   "parts_primary": {
+    "fixed": 1.9978161458333368,
+    "device weights": 11.278803155984496,
+    "device state": 0.0,
+    "host weights and state": 0.0,
+    "device KV": 12.587397214611322,
+    "host KV": 0.0
+   }
+  },
+  "qwen3-8b__Q2_K_XL__q4_0|longctx": {
+   "cell": "qwen3-8b__Q2_K_XL__q4_0",
+   "task": "longctx",
+   "depth": 16097.168617148316,
+   "attention_on_cpu": false,
+   "two_bit": true,
+   "priced_graph_ms_primary": 27.58532185500058,
+   "priced_graph_ms_secondary_F0": 26.33351306300507,
+   "priced_graph_ms_first_structure": 21.039278641248487,
+   "bytes_only_ms": 11.349458647166234,
+   "measured_ms": 21.616364142982246,
+   "naive_ms_per_token": 21.277576208761065,
+   "steps": 12561,
+   "priced_err": 0.2761314378558966,
+   "priced_err_secondary": 0.21822119986603986,
+   "priced_err_first_structure": -0.026696695980721146,
+   "bytes_err": -0.47495986965731996,
+   "parts_primary": {
+    "fixed": 1.9978161458333368,
+    "device weights": 11.278803155984496,
+    "device state": 0.0,
+    "host weights and state": 0.0,
+    "device KV": 14.308702553182748,
+    "host KV": 0.0
+   }
+  },
+  "qwen3-8b__Q4_K_XL__f16|longctx": {
+   "cell": "qwen3-8b__Q4_K_XL__f16",
+   "task": "longctx",
+   "depth": 16081.42116207951,
+   "attention_on_cpu": false,
+   "two_bit": false,
+   "priced_graph_ms_primary": 28.798750560848603,
+   "priced_graph_ms_secondary_F0": 26.645338212309817,
+   "priced_graph_ms_first_structure": 37.622036791016455,
+   "bytes_only_ms": 21.282081473889722,
+   "measured_ms": 25.043263241590214,
+   "naive_ms_per_token": 24.445215164179103,
+   "steps": 8175,
+   "priced_err": 0.14995998257214024,
+   "priced_err_secondary": 0.06397229287830913,
+   "priced_err_first_structure": 0.5022817285463117,
+   "bytes_err": -0.15018736701430216,
+   "parts_primary": {
+    "fixed": 1.9978161458333368,
+    "device weights": 14.224858943537166,
+    "device state": 0.0,
+    "host weights and state": 0.0,
+    "device KV": 12.576075471478099,
+    "host KV": 0.0
+   }
+  },
+  "qwen3-8b__Q4_K_XL__q4_0|longctx": {
+   "cell": "qwen3-8b__Q4_K_XL__q4_0",
+   "task": "longctx",
+   "depth": 16090.111857614333,
+   "attention_on_cpu": false,
+   "two_bit": false,
+   "priced_graph_ms_primary": 30.525104919966896,
+   "priced_graph_ms_secondary_F0": 28.52426334339703,
+   "priced_graph_ms_first_structure": 23.9271980358942,
+   "bytes_only_ms": 16.210775426284933,
+   "measured_ms": 28.339777109853816,
+   "naive_ms_per_token": 27.687087632427428,
+   "steps": 8484,
+   "priced_err": 0.07711167951822866,
+   "priced_err_secondary": 0.00650979832438655,
+   "priced_err_first_structure": -0.15570267390795217,
+   "bytes_err": -0.4279850768251666,
+   "parts_primary": {
+    "fixed": 1.9978161458333368,
+    "device weights": 14.224858943537166,
+    "device state": 0.0,
+    "host weights and state": 0.0,
+    "device KV": 14.302429830596392,
+    "host KV": 0.0
+   }
+  }
+ },
+ "judgments": [
+  {
+   "claim": "Kill 1: bytes-only predicts every held-out 2-bit configuration within \u00b115%",
+   "verdict": "not triggered",
+   "evidence": "0 of 7 2-bit configurations within \u00b115%; errors final2-adopt-0 -47.3%, final2-adopt-28k -44.6%, final2-w13-0 -44.9%, final2-w13-28k -42.0%, census-d28-f1-mgemmn0 -59.6%, qwen3-8b__Q2_K_XL__f16|longctx -22.1%, qwen3-8b__Q2_K_XL__q4_0|longctx -47.5%"
+  },
+  {
+   "claim": "Kill 2: the priced graph misses 2 or more held-out configurations by more than 20%",
+   "verdict": "TRIGGERED",
+   "evidence": "4 of 11 miss by more than 20% (literal reading, every held-out configuration): census-d28-f1-mgemmn0 -24.9%, qwen38-27b__Q4_K_XL__f16|longctx +48.7%, qwen3-8b__Q2_K_XL__f16|longctx +22.6%, qwen3-8b__Q2_K_XL__q4_0|longctx +27.6%. Excluding cells with attention on the CPU: 3 of 9."
+  },
+  {
+   "claim": "Priced graph within \u00b112%, median at most 8%, except cells with attention on the CPU",
+   "verdict": "refuted",
+   "evidence": "max |error| 27.6%, median 9.2% over 9 configurations"
+  },
+  {
+   "claim": "Bytes-only underpredicts 2080 Ti undrafted time by 37-45% (75-86 tok/s against 47.53 measured)",
+   "verdict": "holds",
+   "evidence": "w13 at fill 0 (the arm named): bytes-only 86.3 tok/s against 47.53 measured, time underpredicted by 44.9%. The other undrafted held-out points: final2-adopt-0 47.3%, final2-adopt-28k 44.6%, final2-w13-28k 42.0%, census-d28-f1-mgemmn0 59.6%"
+  },
+  {
+   "claim": "Bytes-only predicts llama.cpp IQ2_S 16-18% slower than IQ2_XXS (measured 7.7%)",
+   "verdict": "partly: outside the registered range",
+   "evidence": "bytes-only 15.5% slower with the recurrent state and cache (16.2% on weights alone); measured 7.7% (llamabench_e1 tg128, depth 0). Bytes-only overstates the gap either way."
+  },
+  {
+   "claim": "Bytes-only predicts +1.9 ms for the KV read at 32K (measured +8.75 ms)",
+   "verdict": "holds",
+   "evidence": "bytes-only +1.908 ms; measured +8.75 ms (IQ2_XXS, llamabench_e1), +11.88 ms (IQ2_S)"
+  },
+  {
+   "claim": "Bytes-only gets the sign wrong for the laptop 8B's KV contrast at 16K (predicts q4_0 1.3-1.45x faster than f16; measured 0.88-0.98x)",
+   "verdict": "holds",
+   "evidence": "bytes-only Q2_K_XL 1.447x, Q4_K_XL 1.313x; measured per step Q2_K_XL 0.976x, Q4_K_XL 0.884x (pooled per token, as P6 reports: Q2_K_XL 0.975x, Q4_K_XL 0.883x); priced graph Q2_K_XL 0.938x, Q4_K_XL 0.943x"
+  },
+  {
+   "claim": "Bytes-only fits the EXL3 28K KV penalty (+1.5-1.9 ms against +1.73)",
+   "verdict": "holds",
+   "evidence": "bytes-only +1.630 ms; measured final2 adopted +1.86 ms, final2 w13 +1.75 ms, w9 censuses +9.78 ms"
+  },
+  {
+   "claim": "A host-RAM edge costs 0.021-0.026 ms per offloaded MiB, 4.5-5.5x a VRAM-resident MiB",
+   "verdict": "refuted",
+   "evidence": "fitted 0.0294 ms per MiB; 6.99x the effective VRAM MiB, 9.44x the bandwidth floor (secondary fit: 0.0298 ms per MiB)"
+  },
+  {
+   "claim": "For capped arms, energy equals cap \u00d7 time within \u00b13%",
+   "verdict": "refuted",
+   "evidence": "19 of 23 capped arms (cap flag in at least 95% of samples) within \u00b13%; ratio of time-weighted watts to the cap 0.960-0.988"
+  }
+ ],
+ "exploratory_fp16_state": {
+  "final2-adopt-0": {
+   "bytes_only_ms_fp16_state": 11.341191905462656,
+   "bytes_err_fp16_state": -0.48456652575606546,
+   "time_underpredicted_fp16_state": 0.4845665257560654
+  },
+  "final2-adopt-28k": {
+   "bytes_only_ms_fp16_state": 12.971372507469345,
+   "bytes_err_fp16_state": -0.4563792155283259,
+   "time_underpredicted_fp16_state": 0.45637921552832583
+  },
+  "final2-w13-0": {
+   "bytes_only_ms_fp16_state": 11.341191905462656,
+   "bytes_err_fp16_state": -0.46093371450468273,
+   "time_underpredicted_fp16_state": 0.4609337145046827
+  },
+  "final2-w13-28k": {
+   "bytes_only_ms_fp16_state": 12.971372507469345,
+   "bytes_err_fp16_state": -0.4308022339432722,
+   "time_underpredicted_fp16_state": 0.4308022339432722
+  },
+  "census-d28-f1-mgemmn0": {
+   "bytes_only_ms_fp16_state": 12.971372507469345,
+   "bytes_err_fp16_state": -0.6039384222627299,
+   "time_underpredicted_fp16_state": 0.60393842226273
+  }
+ },
+ "energy_arms": [
+  {
+   "run": "final1",
+   "arm": "stock-0",
+   "cap_w": 260,
+   "watts": 256.3013131313131,
+   "cap_share": 1.0,
+   "ratio": 0.9857742812742812
+  },
+  {
+   "run": "final1",
+   "arm": "adopt-0",
+   "cap_w": 260,
+   "watts": 253.67843915343914,
+   "cap_share": 1.0,
+   "ratio": 0.9756863044363044
+  },
+  {
+   "run": "final1",
+   "arm": "stock-mtp-0",
+   "cap_w": 260,
+   "watts": 253.06635273368607,
+   "cap_share": 1.0,
+   "ratio": 0.9733321258987926
+  },
+  {
+   "run": "final1",
+   "arm": "adopt-mtp-0",
+   "cap_w": 260,
+   "watts": 253.25719576719578,
+   "cap_share": 1.0,
+   "ratio": 0.9740661375661376
+  },
+  {
+   "run": "final1",
+   "arm": "stock-28k",
+   "cap_w": 260,
+   "watts": 256.2781418396419,
+   "cap_share": 1.0,
+   "ratio": 0.9856851609216996
+  },
+  {
+   "run": "final1",
+   "arm": "adopt-28k",
+   "cap_w": 260,
+   "watts": 253.6056349206349,
+   "cap_share": 1.0,
+   "ratio": 0.9754062881562882
+  },
+  {
+   "run": "final1",
+   "arm": "stock-mtp-28k",
+   "cap_w": 260,
+   "watts": 256.26020202020203,
+   "cap_share": 1.0,
+   "ratio": 0.9856161616161616
+  },
+  {
+   "run": "final1",
+   "arm": "adopt-mtp-28k",
+   "cap_w": 260,
+   "watts": 251.1908492063492,
+   "cap_share": 1.0,
+   "ratio": 0.9661186507936508
+  },
+  {
+   "run": "power1",
+   "arm": "stock-0-p260",
+   "cap_w": 260,
+   "watts": 256.77868686868686,
+   "cap_share": 1.0,
+   "ratio": 0.987610334110334
+  },
+  {
+   "run": "power1",
+   "arm": "stock-0-p320",
+   "cap_w": 320,
+   "watts": 312.3718771043771,
+   "cap_share": 0.7898989898989899,
+   "ratio": 0.9761621159511785
+  },
+  {
+   "run": "power1",
+   "arm": "stock-0-p290",
+   "cap_w": 290,
+   "watts": 285.94431313131315,
+   "cap_share": 1.0,
+   "ratio": 0.9860148728665971
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-0-p320",
+   "cap_w": 320,
+   "watts": 313.15797883597884,
+   "cap_share": 0.753968253968254,
+   "ratio": 0.9786186838624339
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-0-p290",
+   "cap_w": 290,
+   "watts": 284.98304232804236,
+   "cap_share": 1.0,
+   "ratio": 0.9827001459587668
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-0-p260",
+   "cap_w": 260,
+   "watts": 253.11058201058202,
+   "cap_share": 1.0,
+   "ratio": 0.9735022385022385
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-0-p290",
+   "cap_w": 290,
+   "watts": 286.0685833333333,
+   "cap_share": 1.0,
+   "ratio": 0.9864433908045976
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-0-p260",
+   "cap_w": 260,
+   "watts": 254.28414814814815,
+   "cap_share": 1.0,
+   "ratio": 0.9780159544159545
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-0-p320",
+   "cap_w": 320,
+   "watts": 311.58433024691357,
+   "cap_share": 0.9475308641975309,
+   "ratio": 0.9737010320216049
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-0-p260",
+   "cap_w": 260,
+   "watts": 253.76287566137566,
+   "cap_share": 1.0,
+   "ratio": 0.9760110602360602
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-0-p320",
+   "cap_w": 320,
+   "watts": 312.7526746031746,
+   "cap_share": 0.9246031746031746,
+   "ratio": 0.9773521081349207
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-0-p290",
+   "cap_w": 290,
+   "watts": 283.9843452380952,
+   "cap_share": 1.0,
+   "ratio": 0.9792563628899835
+  },
+  {
+   "run": "power1",
+   "arm": "stock-28k-p320",
+   "cap_w": 320,
+   "watts": 287.29414544714547,
+   "cap_share": 0.21291671291671294,
+   "ratio": 0.8977942045223296
+  },
+  {
+   "run": "power1",
+   "arm": "stock-28k-p290",
+   "cap_w": 290,
+   "watts": 284.5875201835202,
+   "cap_share": 0.8269748769748769,
+   "ratio": 0.9813362764948973
+  },
+  {
+   "run": "power1",
+   "arm": "stock-28k-p260",
+   "cap_w": 260,
+   "watts": 256.47839150355816,
+   "cap_share": 1.0,
+   "ratio": 0.9864553519367621
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-28k-p290",
+   "cap_w": 290,
+   "watts": 286.5925833333333,
+   "cap_share": 1.0,
+   "ratio": 0.9882502873563218
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-28k-p260",
+   "cap_w": 260,
+   "watts": 251.59834788359788,
+   "cap_share": 1.0,
+   "ratio": 0.9676859533984534
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-28k-p320",
+   "cap_w": 320,
+   "watts": 299.65916402116403,
+   "cap_share": 0.32142857142857145,
+   "ratio": 0.9364348875661376
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-28k-p260",
+   "cap_w": 260,
+   "watts": 254.69859884559884,
+   "cap_share": 1.0,
+   "ratio": 0.9796099955599955
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-28k-p320",
+   "cap_w": 320,
+   "watts": 290.7858479236813,
+   "cap_share": 0.4225909892576559,
+   "ratio": 0.9087057747615039
+  },
+  {
+   "run": "power1",
+   "arm": "stock-mtp-28k-p290",
+   "cap_w": 290,
+   "watts": 285.0205132275132,
+   "cap_share": 0.9685185185185186,
+   "ratio": 0.9828293559569421
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-28k-p320",
+   "cap_w": 320,
+   "watts": 292.4656243386243,
+   "cap_share": 0.45211640211640214,
+   "ratio": 0.9139550760582009
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-28k-p290",
+   "cap_w": 290,
+   "watts": 278.4512936507937,
+   "cap_share": 1.0,
+   "ratio": 0.9601768746579092
+  },
+  {
+   "run": "power1",
+   "arm": "adopt-mtp-28k-p260",
+   "cap_w": 260,
+   "watts": 251.36804761904762,
+   "cap_share": 1.0,
+   "ratio": 0.9668001831501831
+  }
+ ],
+ "kv_penalty_measured": {
+  "final2 adopted": 1.8578561999213967,
+  "final2 w13": 1.7502824929355967,
+  "w9 censuses": 9.77709635416667
+ },
+ "kv_contrast_measured": {
+  "Q2_K_XL": {
+   "per_step": 0.9759183359304809,
+   "naive": 0.9754440009158534
+  },
+  "Q4_K_XL": {
+   "per_step": 0.8836789063130142,
+   "naive": 0.8829103114315495
+  }
+ },
+ "llamabench": {
+  "IQ2_XXS d0": 38.35382910822438,
+  "IQ2_XXS d8192": 42.419094802816744,
+  "IQ2_XXS d32768": 47.10621348856275,
+  "IQ2_S d0": 41.29866970790071,
+  "IQ2_S d8192": 45.92196636390467,
+  "IQ2_S d32768": 53.17384299965559
+ }
+}

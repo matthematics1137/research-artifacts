@@ -1,0 +1,267 @@
+{
+  "schema": "p8-refresh-v1",
+  "registration": "research/prereg/drafts/2026-11-12-p8-refresh.md",
+  "rounds": 3,
+  "cap_hours": 2.5,
+  "cap_seconds": 9000,
+  "cleanup_reserve_seconds": 120,
+  "tasks": [
+    "code",
+    "math",
+    "prose"
+  ],
+  "max_new": 256,
+  "fill_long": 28000,
+  "sampler": {
+    "temperature": 0.8,
+    "min_p": 0.08,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "port": 18401,
+  "port_range": [
+    18401,
+    18440
+  ],
+  "condition_timeout_s": 600,
+  "engines": {
+    "w13": {
+      "kind": "census",
+      "label": "exllamav3 1.6.5 + w13",
+      "expect": "1.6.5+w13",
+      "overlay": "exl3-w13",
+      "cache": "8,8",
+      "env": {
+        "EXL3_MGEMM_N_THRESHOLD": "0",
+        "EXL3_FD75D_LIVE": "0",
+        "EXL3_INT8_SQ_MAX_M": "1",
+        "EXL3_GEMV_SK": "1"
+      },
+      "env_mtp": {
+        "EXL3_MGEMM_N_THRESHOLD": "0",
+        "EXL3_FD75D_LIVE": "0",
+        "EXL3_INT8_SQ_MAX_M": "2",
+        "EXL3_GEMV_SK": "2"
+      }
+    },
+    "ninferno": {
+      "kind": "server",
+      "api": "chat",
+      "label": "ninferno 65e573fd0c34",
+      "bin": "{L}/src/p8-refresh-ninferno-65e573fd/build-sm75-cu134-refresh/apps/ninferno-serve",
+      "env": {
+        "HF_HOME": "{L}/cache/huggingface",
+        "HF_HUB_OFFLINE": "1",
+        "LD_LIBRARY_PATH": "{L}/deps/ffmpeg-6.1.2/lib"
+      },
+      "common": [
+        "--max-context",
+        "32768",
+        "--max-concurrency",
+        "1",
+        "--host",
+        "localhost",
+        "--port",
+        "{port}"
+      ],
+      "commit": "65e573fd0c34506478d0f01316da683c47648651",
+      "source": "{L}/src/p8-refresh-ninferno-65e573fd"
+    },
+    "llama": {
+      "kind": "server",
+      "api": "completion",
+      "label": "llama dd6b945be218",
+      "bin": "{L}/src/p8-refresh-llama-dd6b945b/build-sm75-cu134-refresh/bin/llama-server",
+      "env": {
+        "LD_LIBRARY_PATH": "/usr/local/cuda-13.4/lib64",
+        "LLAMA_CACHE": "{L}/cache/llama.cpp"
+      },
+      "common": [
+        "-ngl",
+        "99",
+        "-np",
+        "1",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "-fa",
+        "on",
+        "--jinja",
+        "-ctxcp",
+        "4",
+        "-cms",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "256",
+        "--metrics",
+        "-t",
+        "4",
+        "-c",
+        "32768",
+        "--host",
+        "localhost",
+        "--port",
+        "{port}"
+      ],
+      "commit": "dd6b945be2188da875ab05a259ce94c6b2736e64",
+      "source": "{L}/src/p8-refresh-llama-dd6b945b",
+      "tokenizer_bin": "{L}/src/p8-refresh-llama-dd6b945b/build-sm75-cu134-refresh/bin/llama-tokenize"
+    }
+  },
+  "models": {
+    "exl3": "{L}/models/qwen38-exl3-2.0",
+    "iq2xxs": "{L}/models/gguf/Qwen3.8-27B-UD-IQ2_XXS.gguf",
+    "iq2s": "{L}/models/gguf/Qwen3.8-27B-UD-IQ2_S.gguf",
+    "dflash2": "{L}/models/gguf/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+    "mtp_full": "{L}/models/gguf/mtp-Qwen3.8-27B-Q4_0.gguf",
+    "nif_attached": "{L}/models/gguf/ninferno-df2b/Qwen3.8-27B-UD-IQ2_XXS.qwen3_5_bf16.ninferno"
+  },
+  "configs": {
+    "nd": {
+      "drafted": false
+    },
+    "mtp": {
+      "drafted": true
+    },
+    "lcpp-nd": {
+      "drafted": false,
+      "args": [
+        "-m",
+        "{iq2xxs}"
+      ]
+    },
+    "lcpp-df2": {
+      "drafted": true,
+      "args": [
+        "-m",
+        "{iq2xxs}",
+        "-md",
+        "{dflash2}",
+        "--spec-type",
+        "draft-dflash",
+        "--spec-draft-n-max",
+        "7",
+        "-ngld",
+        "99"
+      ]
+    },
+    "lcpp-mtp": {
+      "drafted": true,
+      "args": [
+        "-m",
+        "{iq2s}",
+        "-md",
+        "{mtp_full}",
+        "--spec-type",
+        "draft-mtp",
+        "--spec-draft-n-max",
+        "3",
+        "-ngld",
+        "99",
+        "-ctkd",
+        "q8_0",
+        "-ctvd",
+        "q8_0"
+      ]
+    },
+    "nif-nd": {
+      "drafted": false,
+      "args": [
+        "{nif_attached}",
+        "--spec",
+        "none"
+      ]
+    },
+    "nif-df2": {
+      "drafted": true,
+      "args": [
+        "{nif_attached}",
+        "--spec",
+        "dflash2",
+        "--draft-tokens",
+        "7"
+      ]
+    }
+  },
+  "phase_files": [
+    "r1.json",
+    "r2-nd.json",
+    "r2-fit.json",
+    "r2-drafted.json"
+  ],
+  "comparisons": [
+    {
+      "id": "r1-ninferno-nif-nd-0",
+      "phase": "R1",
+      "anchor": "r1-w13-nd-0",
+      "competitor": "r1-ninferno-nif-nd-0",
+      "full_residency_required": true
+    },
+    {
+      "id": "r1-ninferno-nif-df2-0",
+      "phase": "R1",
+      "anchor": "r1-w13-mtp-0",
+      "competitor": "r1-ninferno-nif-df2-0",
+      "full_residency_required": true
+    },
+    {
+      "id": "r1-ninferno-nif-nd-28k",
+      "phase": "R1",
+      "anchor": "r1-w13-nd-28k",
+      "competitor": "r1-ninferno-nif-nd-28k",
+      "full_residency_required": true
+    },
+    {
+      "id": "r1-ninferno-nif-df2-28k",
+      "phase": "R1",
+      "anchor": "r1-w13-mtp-28k",
+      "competitor": "r1-ninferno-nif-df2-28k",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-0",
+      "phase": "R2-nd",
+      "anchor": "r2nd-w13-nd-0",
+      "competitor": "r2nd-llama-lcpp-nd-0",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-28k",
+      "phase": "R2-nd",
+      "anchor": "r2nd-w13-nd-28k",
+      "competitor": "r2nd-llama-lcpp-nd-28k",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-0",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor": "r2draft-llama-lcpp-df2-0",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-0",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor": "r2draft-llama-lcpp-mtp-0",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-28k",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor": "r2draft-llama-lcpp-df2-28k",
+      "full_residency_required": true
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-28k",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor": "r2draft-llama-lcpp-mtp-28k",
+      "full_residency_required": true
+    }
+  ]
+}

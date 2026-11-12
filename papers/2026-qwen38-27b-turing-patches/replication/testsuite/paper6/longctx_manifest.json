@@ -1,0 +1,1274 @@
+{
+ "what": "Paper 6 primary long-context items (2026-09-19 amendment §6); frozen before measurement",
+ "seed": 20260919,
+ "target_haystack_tokens": 16384,
+ "tolerance": 0.01,
+ "accepted_range": [
+  16221,
+  16547
+ ],
+ "families": [
+  "single",
+  "multikey",
+  "multivalue",
+  "vartrack"
+ ],
+ "counts": {
+  "single": 50,
+  "multikey": 50,
+  "multivalue": 50,
+  "vartrack": 50
+ },
+ "n_items": 200,
+ "generator": {
+  "file": "testsuite/paper6/make_longctx.py",
+  "sha256": "c2d7e451d7cfdee10db114214aa129f9b64ddabcb206b1516f3f9b8571398c4f",
+  "p6common_sha256": "a5564715108b0e4efb19765018a855e43c23205239ad00925f37b94d0fcc15f6"
+ },
+ "inputs": {
+  "longmemeval_s": {
+   "path": "testsuite/paper5_data/longmemeval/longmemeval_s_cleaned.json",
+   "sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442"
+  },
+  "tokenizer_qwen38": {
+   "path": "/opt/p8-user/models/qwen38-exl3-2.0/tokenizer.json",
+   "sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3"
+  }
+ },
+ "templates": {
+  "instruction": "Below is a long text made of chat conversations. A few special facts are hidden in it. Read the text, then answer the question that follows it. Reply with the answer only.",
+  "questions": {
+   "single": "What is the special magic number for {key} mentioned in the provided text?",
+   "multikey": "What is the special magic number for {key} mentioned in the provided text?",
+   "multivalue": "What are all the special magic numbers for {key} mentioned in the provided text?",
+   "vartrack": "Find all variables that are assigned the value {value}, directly or through a chain of other variables, in the provided text."
+  },
+  "needle_niah": "One of the special magic numbers for {key} is: {value}.",
+  "needle_vt_first": "VAR {name} = {value}.",
+  "needle_vt_link": "VAR {name} = VAR {prev}.",
+  "content_layout": "INSTRUCTION + '\\n\\n' + haystack + '\\n\\nQuestion: ' + question"
+ },
+ "pool": {
+  "pool_sessions": 19178,
+  "unique_sessions": 19195,
+  "excluded": {
+   "special_token": 17,
+   "think_tag": 0,
+   "needle_phrase": 0,
+   "var_statement": 0,
+   "empty": 0
+  }
+ },
+ "output": {
+  "path": "testsuite/paper6/work/longctx_200.jsonl",
+  "sha256": "4a801e99693a70d90abe7bbef3335358bbf1a9b2c0b55a78895f71ca7fb66da8",
+  "bytes": 15617761
+ },
+ "haystack_tokens": {
+  "min": 16340,
+  "max": 16384,
+  "mean": 16369.9
+ },
+ "items": [
+  {
+   "id": "single-00",
+   "family": "single",
+   "sha256": "b14c1789e6f7e01e4d2b15dbd36a6dadf5e357d9180f94bbccc761f2ac504779",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "multikey-00",
+   "family": "multikey",
+   "sha256": "ace5ae888d63191fd4101aef7ad512077243ae6b02b2dd48652b3dafb8748ed4",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "multivalue-00",
+   "family": "multivalue",
+   "sha256": "c559ca406de26d2bec0ab884e4fec36b1408048d77c222e9064f5d9318a653a3",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "vartrack-00",
+   "family": "vartrack",
+   "sha256": "587806a570512282d010530e854c2ab0e83a5cd0fbe33f07debd5fb00c5b30fd",
+   "haystack_tokens": 16358
+  },
+  {
+   "id": "single-01",
+   "family": "single",
+   "sha256": "c3217c1f47c1930afae01d38d0d99577ec0c9ffdeaea2ec4fe1796fb652b9a48",
+   "haystack_tokens": 16374
+  },
+  {
+   "id": "multikey-01",
+   "family": "multikey",
+   "sha256": "203b5754fb6594303251d950be7e4bf0698f5aa720874917c4a210084e6a4c84",
+   "haystack_tokens": 16361
+  },
+  {
+   "id": "multivalue-01",
+   "family": "multivalue",
+   "sha256": "8c4dc87f2f03045a0418fb4eb133dc0fb00e9a173319d75ffcdd631ba501a9a7",
+   "haystack_tokens": 16375
+  },
+  {
+   "id": "vartrack-01",
+   "family": "vartrack",
+   "sha256": "88e6d77220c8b7c302a5de41fd211986c422463398c12a79185885ce166eb298",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "single-02",
+   "family": "single",
+   "sha256": "5698adcb3b7fefd65892b77551737cd55d54eaa426a06950780e81cb6e38d3cf",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "multikey-02",
+   "family": "multikey",
+   "sha256": "861a3c49482dd57d1f768d2057ec470223f6ac1bb70971ac8b4a68ab00e4f562",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "multivalue-02",
+   "family": "multivalue",
+   "sha256": "61e9bca135805e269057e4699a243c54e53e873dbdc9977cc7c8cbe1649e7510",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "vartrack-02",
+   "family": "vartrack",
+   "sha256": "3ff3a79848eedb2887e63c88380fb05e932db110a17b86685e1b73f6255d7b8e",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "single-03",
+   "family": "single",
+   "sha256": "0fa274cfc7b17f3099d022b9cab5d909f555dfcf6646754a3e9cd6fe987d3641",
+   "haystack_tokens": 16375
+  },
+  {
+   "id": "multikey-03",
+   "family": "multikey",
+   "sha256": "29664d64c73af11cadf8d505004d1700e7eca893fca91b0e6bd9a3d6ce63aa0c",
+   "haystack_tokens": 16352
+  },
+  {
+   "id": "multivalue-03",
+   "family": "multivalue",
+   "sha256": "8414c04029c21ff0e2c4887a3457f6aa79fca98e44717a74767aabb35cc1e49f",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "vartrack-03",
+   "family": "vartrack",
+   "sha256": "3f4cb75ebbf47fd2db19fa85ceecbff63a9b36f080b51024e649ed33f5f2f329",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "single-04",
+   "family": "single",
+   "sha256": "be228c0abadd49e7170b1bbeea7249f055d9b74e3df56129a2785e4f7faad668",
+   "haystack_tokens": 16350
+  },
+  {
+   "id": "multikey-04",
+   "family": "multikey",
+   "sha256": "cc84a4b363d540a6a675ea4c057dda6f2d89862a274d1f129ac0d12d02e1229e",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multivalue-04",
+   "family": "multivalue",
+   "sha256": "517014416f317607754d8c57e2a686f1e0c73f9f76866d4fd5f05f843829c7de",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "vartrack-04",
+   "family": "vartrack",
+   "sha256": "89c844a730ddfd0ba94dbf4fb9c284d3507709a8693e0fc02855d12c416f59c4",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "single-05",
+   "family": "single",
+   "sha256": "f9bdc4a2f7e076fa61e6664babea3742cbf9c991eb8236ef72d08a7b06aff4f3",
+   "haystack_tokens": 16355
+  },
+  {
+   "id": "multikey-05",
+   "family": "multikey",
+   "sha256": "e3692ce767d9c3928861d00c4e126ca846836f99e0f676c733553a77274e54d2",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multivalue-05",
+   "family": "multivalue",
+   "sha256": "8d58a2d3914c65b56ae98e2854c59da4767f72f7b0f22fee01c3c9e03d143262",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "vartrack-05",
+   "family": "vartrack",
+   "sha256": "94b8c6e5ae8167c01c4a2c1bfe31c97ce6bba7cf7ffd1f7066d7ddc19410a8a6",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "single-06",
+   "family": "single",
+   "sha256": "9df36693496e3de310f32593176fbdeafe48708725605894f84c3796eb05cd62",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "multikey-06",
+   "family": "multikey",
+   "sha256": "b8cf58a6cfc1178c78cb0dc23d7954c2574e58ec0c5e7af4679b2c12ab79e71d",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multivalue-06",
+   "family": "multivalue",
+   "sha256": "7c29de26094c80a491dc6118905ba21b0cea3f6db7f6827ce8dc598a6ebfa71d",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "vartrack-06",
+   "family": "vartrack",
+   "sha256": "c7d51ee73a1f9b7ec74a9bc8bb53c4cb9df20dde96e4fe2682ec905386a0da43",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "single-07",
+   "family": "single",
+   "sha256": "d483e7776c25246db55fd1bedf756891eec97da828eca1add5d852cc2007b9ed",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multikey-07",
+   "family": "multikey",
+   "sha256": "d2693dbe675f724b5d45128960d5494fb7417202a42239c9f3e9636acda6c880",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multivalue-07",
+   "family": "multivalue",
+   "sha256": "146d67df3499252cde205a5389a9051520335ef11565c96b1c814ce7c7912178",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "vartrack-07",
+   "family": "vartrack",
+   "sha256": "050815dc1f1d758fb119764aa5ac8a502b4c705b861ff0f77816f678c8bd3d0c",
+   "haystack_tokens": 16361
+  },
+  {
+   "id": "single-08",
+   "family": "single",
+   "sha256": "ad6b77782aa3da60bbb7eaf53f7c2baf82cbd411678903005d5be541d9aa33ff",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multikey-08",
+   "family": "multikey",
+   "sha256": "74ca4e36171520e1470b9c63b94d7d9a938bf2fb6b264c686fc3464b8f807924",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "multivalue-08",
+   "family": "multivalue",
+   "sha256": "71b3a4c04a46006998fba33421382d99f1ef7dcb87418bb4f515bf674126d0a3",
+   "haystack_tokens": 16359
+  },
+  {
+   "id": "vartrack-08",
+   "family": "vartrack",
+   "sha256": "8947f83c3393e52e772f3513b3fabd95b358d36640f1240806f2dc8da41f76b0",
+   "haystack_tokens": 16346
+  },
+  {
+   "id": "single-09",
+   "family": "single",
+   "sha256": "ef9fe2b9485acedb643ea54e31b0697835fc1732de33b628e24ceaa4fa0e8a48",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "multikey-09",
+   "family": "multikey",
+   "sha256": "b58b34bc2a0c0b047b9e294bfe680e47da0c17adb1f32c4e7f0aecccaedad06a",
+   "haystack_tokens": 16363
+  },
+  {
+   "id": "multivalue-09",
+   "family": "multivalue",
+   "sha256": "4ff400c974a809ad9c1ceaeccce20a5521f15efc2f37f03ac56a910e46fcabd3",
+   "haystack_tokens": 16340
+  },
+  {
+   "id": "vartrack-09",
+   "family": "vartrack",
+   "sha256": "7e1c0dfbcf45804896a93d2ce3b103c50644df45e607dd754c43d85a4532a58d",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "single-10",
+   "family": "single",
+   "sha256": "22e3d1fb9a0337875709eed4783ee4194de109dd954c8fa30a77bff46c2375ab",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "multikey-10",
+   "family": "multikey",
+   "sha256": "26845ea5c70e4f4a8d9450d9fc3fdf2e5d42657802c6223d08a1fded24f0b920",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "multivalue-10",
+   "family": "multivalue",
+   "sha256": "6f5545ad223aecbf58d2f2be0220c3c2ae634da7a99e030ad23c72b62fc0a966",
+   "haystack_tokens": 16347
+  },
+  {
+   "id": "vartrack-10",
+   "family": "vartrack",
+   "sha256": "9b7d44c0ec638e8839e479abf3dc215607a7a8d251b3fd375a3bde3205b3c6e5",
+   "haystack_tokens": 16369
+  },
+  {
+   "id": "single-11",
+   "family": "single",
+   "sha256": "9546e4dd27d19d5df18654e3660bddf475cd93007a50062ddab65f4268948059",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "multikey-11",
+   "family": "multikey",
+   "sha256": "4f5a7016746863ecf1d68c9897e3b939276b025e0139aaf5c8e7760ffe9c9917",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multivalue-11",
+   "family": "multivalue",
+   "sha256": "fbf8dbe8f6f464d04c3b4f9e8d1b4e24393c9af809d6c5a081a7031703ca43c3",
+   "haystack_tokens": 16369
+  },
+  {
+   "id": "vartrack-11",
+   "family": "vartrack",
+   "sha256": "a900746dd8816398a113729f3749b2a0d2303a38c66d03007e3485570b6f4916",
+   "haystack_tokens": 16351
+  },
+  {
+   "id": "single-12",
+   "family": "single",
+   "sha256": "28abec072479e65cea6e1db6b8456331cbdd91505a2c9ca07533df92e869b0a7",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "multikey-12",
+   "family": "multikey",
+   "sha256": "472e85add22dca8b40b0177822d715dcdad075a92ffaa7fecbe3850689c495fd",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "multivalue-12",
+   "family": "multivalue",
+   "sha256": "5025c36fd450c7cf9f7d7fd29c9407ce7155219ed53ecd7de0baac2cc76b89dc",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "vartrack-12",
+   "family": "vartrack",
+   "sha256": "69423f0015a484f7ee1ab36611dcfc550d052a34f6dd16cf1c28683944317389",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "single-13",
+   "family": "single",
+   "sha256": "d7b94234281b899b80bd5031cde6dae57a6c80d25d579471d193eed8dc806d6d",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multikey-13",
+   "family": "multikey",
+   "sha256": "2c8d1d1d11312c3f5e733644f071b295ef6f223931bc5e54ec7e940e74c686c2",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "multivalue-13",
+   "family": "multivalue",
+   "sha256": "347886c8ec30440ebb85d20063c60119f85a92fcd2d3ce9a186e73c1d4f55d30",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "vartrack-13",
+   "family": "vartrack",
+   "sha256": "f6a63384ff0464e92cadc7d6d95290add6a39e56eb868611ec1ae889a0875cc6",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "single-14",
+   "family": "single",
+   "sha256": "c83cdf297c265cb0dd2254d91ddfe27d137e9d7fe2a526d808466c16f019e96a",
+   "haystack_tokens": 16384
+  },
+  {
+   "id": "multikey-14",
+   "family": "multikey",
+   "sha256": "6d55aed9d58b5a7bb393df63ea7e03c27cc5d371c69532f808305f92ae17e75c",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "multivalue-14",
+   "family": "multivalue",
+   "sha256": "a0883be1949af38a9ffe8dde5fd08bd15efaa0611cf4db031fafaf821ef0c80b",
+   "haystack_tokens": 16375
+  },
+  {
+   "id": "vartrack-14",
+   "family": "vartrack",
+   "sha256": "9bc2020da429a91878af9b940287585d8af11598a973df1711041daf3d63a95e",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "single-15",
+   "family": "single",
+   "sha256": "e419f5d4de9766c690c6edb42a48aba0dc319f4f6b1b1a570f85e95a5e8968b7",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multikey-15",
+   "family": "multikey",
+   "sha256": "ac40e3911b76507f029c60f309ae9acf78ed7e0f94a5f41b2b38e1173d1526d8",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "multivalue-15",
+   "family": "multivalue",
+   "sha256": "0c8b3e66681ff4735ad52654a555e630f5f2653e835d75e646a4455efe57f4a9",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "vartrack-15",
+   "family": "vartrack",
+   "sha256": "a60d255b16e1249605f5d6fcaa0ec279648545dab9040fd9860e3bd8e41b053d",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "single-16",
+   "family": "single",
+   "sha256": "85914b84c85c02d7789684ff659eaa17c8f7e138ef7c9e1c55c4a3adfed18059",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "multikey-16",
+   "family": "multikey",
+   "sha256": "557fb5a503215859b6ee0286f85a29f01dc3d7e9aa9462fc9ef17fc393aab80a",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multivalue-16",
+   "family": "multivalue",
+   "sha256": "9531cb85addd19c560f2f34913934024764ffee3052a486704e2d8287e90801e",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "vartrack-16",
+   "family": "vartrack",
+   "sha256": "6af49b352ff60bddfc81712e48da2ecf4ec495441586d2bf61560d86f25ae6f9",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "single-17",
+   "family": "single",
+   "sha256": "87a64aaee3efa483b64584115dd5211e88ea43d03e65fbc56d75861aa5fc525e",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multikey-17",
+   "family": "multikey",
+   "sha256": "651a84ade686ed7ee65e050c3620d1b1a6fe734ab41889e8ac5e2269db70f61a",
+   "haystack_tokens": 16354
+  },
+  {
+   "id": "multivalue-17",
+   "family": "multivalue",
+   "sha256": "f567a5a0d61abdf23c1edf2b71a8af6b3eccdea9de32449d3dc5eca3cefeac54",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "vartrack-17",
+   "family": "vartrack",
+   "sha256": "f78a371f1c6f88be8875c23b22916de04cfcd86902045ad4a707c957e8f0e8a3",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "single-18",
+   "family": "single",
+   "sha256": "0a31aad83f36b1f029c9be5c7718ef0f6d42447ea48c76aad1c593034249513e",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "multikey-18",
+   "family": "multikey",
+   "sha256": "a946878ae588ebbc35d3e628edb5c8689bc8b0583b32c481c8c2c918527a63d6",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "multivalue-18",
+   "family": "multivalue",
+   "sha256": "6eab2eacdfc7b66840530fbdb8ef5f23fd1331ff9dde9a646f297b96cc50fc8a",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "vartrack-18",
+   "family": "vartrack",
+   "sha256": "6e3befacfcb381027e5ccbd2c1e123aea1671cc68807c9845d9ee5806ab5406a",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "single-19",
+   "family": "single",
+   "sha256": "1ace867c2bf63d7a84160c445ddb296abae7437a98107f9b36e9e1708a7929df",
+   "haystack_tokens": 16359
+  },
+  {
+   "id": "multikey-19",
+   "family": "multikey",
+   "sha256": "f7ca066dc99e1bef0d4b4058c527f1cf55e068d9c8de161601f2a02afc17d212",
+   "haystack_tokens": 16374
+  },
+  {
+   "id": "multivalue-19",
+   "family": "multivalue",
+   "sha256": "d16f52f5904ef1092ee4a90cf36ebb25b6308c293fea6cc750a95ce76504bada",
+   "haystack_tokens": 16375
+  },
+  {
+   "id": "vartrack-19",
+   "family": "vartrack",
+   "sha256": "2b33ef459de9a0271d88e289b10204f5abd2a4df2050341feeb0b87693e84673",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "single-20",
+   "family": "single",
+   "sha256": "16e321bdabe3b95b81167f38bbe4c53eed3a71664232057455be38794aed75ce",
+   "haystack_tokens": 16363
+  },
+  {
+   "id": "multikey-20",
+   "family": "multikey",
+   "sha256": "a9b614de1555b5a3fa386550ca957ee1c40525a85458e8610b5736474274aaa2",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "multivalue-20",
+   "family": "multivalue",
+   "sha256": "e2066440ea018cc80ece3bbba0e31aec9a30b46ba1f53a93b2d15e9c07d2407d",
+   "haystack_tokens": 16357
+  },
+  {
+   "id": "vartrack-20",
+   "family": "vartrack",
+   "sha256": "7c87b90538d2d04bd5a901adfb7e61d449729b6e566dd22c32032d1888bac35e",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "single-21",
+   "family": "single",
+   "sha256": "d2d27889867df751ba5cf339da2d448521f2d850cf23f94c23a34fa7533363de",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multikey-21",
+   "family": "multikey",
+   "sha256": "36d53868acd5486fd3df624b7cb028a823b6be29a5bdd91c3517871253900477",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "multivalue-21",
+   "family": "multivalue",
+   "sha256": "451b4fa8af2cbe833085239997a5e1644e561fee84a51988971c0035870cf55c",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "vartrack-21",
+   "family": "vartrack",
+   "sha256": "a4da3e9b0334bd4da691cc3be19d4b87fe0d739d8b841f664a14d28fbeb9e71a",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "single-22",
+   "family": "single",
+   "sha256": "f9cf582375947f098e82ab74a41bff910cb2241f60ea05e7e6b1436ea1a3434b",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "multikey-22",
+   "family": "multikey",
+   "sha256": "c56b7c2dffce29a4c7d2635a0efabfb843b6ab343bd96b0f5b8d526aefcfeab2",
+   "haystack_tokens": 16384
+  },
+  {
+   "id": "multivalue-22",
+   "family": "multivalue",
+   "sha256": "71e75bce50b0791037a905ee54fd68fb93931ec6d1bc0d098a8bd6473164c303",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "vartrack-22",
+   "family": "vartrack",
+   "sha256": "588656a5760363ee24c73595a2b53147e351e152c86c5b5641824f992adbdc33",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "single-23",
+   "family": "single",
+   "sha256": "ebb364564bfd8e6a5347749f413eb8139890207edae4eeda3f481084cbd49016",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "multikey-23",
+   "family": "multikey",
+   "sha256": "1df3150bd037a4fa332b2b1c2be289b301bdada63d908af79877bf0d42bead83",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multivalue-23",
+   "family": "multivalue",
+   "sha256": "6316fb8a073f158a41af09093dcb39534ee689756a96aeb5266280dff26374a5",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "vartrack-23",
+   "family": "vartrack",
+   "sha256": "04f5ff0729f635492b6578055c2e21047a54b435fef0e0498674e2cb66f3946e",
+   "haystack_tokens": 16369
+  },
+  {
+   "id": "single-24",
+   "family": "single",
+   "sha256": "7b30ae879ded78ed0d918ee1c7a5bcac71df15f7d8fa2ad7d44fb5064df277e1",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "multikey-24",
+   "family": "multikey",
+   "sha256": "2a3278afd3e597760ccac180dd2a45d2e3652e68ac445d2de676a6b420fae7d6",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "multivalue-24",
+   "family": "multivalue",
+   "sha256": "16d06ef8971f4084d7b55dbce708de9687cd61f095e545304a3d22667a23f6bc",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "vartrack-24",
+   "family": "vartrack",
+   "sha256": "72a53565bf6314d4f698bf7e3ad21b58764839747d30d64490e8473f3e88611f",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "single-25",
+   "family": "single",
+   "sha256": "bcee7ccd3cac70aa35f235ddac4410b5b2373ba835813de368e6a46535d112d9",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "multikey-25",
+   "family": "multikey",
+   "sha256": "0c545d853aea471d1b9a8d98d023d2e78e4b724549aad1820d9d6ba7fce49bb2",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "multivalue-25",
+   "family": "multivalue",
+   "sha256": "56de49d15e5a1de3b1152ba7a5d20aebbfe05fd305dc5899a1fab2659fbc19c7",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "vartrack-25",
+   "family": "vartrack",
+   "sha256": "d8234a96c34c02e1d3452ed93d966656a4295f8911d7dd3e3422a9e80090b2a3",
+   "haystack_tokens": 16353
+  },
+  {
+   "id": "single-26",
+   "family": "single",
+   "sha256": "1c3ff6527839a615a233d63addefc2965d33f70b640abee561039f64027ade3a",
+   "haystack_tokens": 16369
+  },
+  {
+   "id": "multikey-26",
+   "family": "multikey",
+   "sha256": "04904ad083ba486c253eda1ad8695d8af5db0c933ce8a77744a2b334a3d10ab7",
+   "haystack_tokens": 16361
+  },
+  {
+   "id": "multivalue-26",
+   "family": "multivalue",
+   "sha256": "52e1980972237f3e89d46a2689b1248a56b5d1e3817002ff14eda27cf2f672d0",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "vartrack-26",
+   "family": "vartrack",
+   "sha256": "e007f45d9e2a464da4bcbb4977318cf7156bb798819b9955409e013f4cf6f21d",
+   "haystack_tokens": 16361
+  },
+  {
+   "id": "single-27",
+   "family": "single",
+   "sha256": "238148e7f9bfa2f13aa6aed33236ddc18c500d609db999677771e6e130806ad7",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "multikey-27",
+   "family": "multikey",
+   "sha256": "a4be51523b75f5ecce288ef58c2df0be23d96e131536be75a29846b2d35f5de0",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "multivalue-27",
+   "family": "multivalue",
+   "sha256": "07590d53718b2ad154802c1fc33fe2d5b2fa3cb6d61381170e6829305b747e79",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "vartrack-27",
+   "family": "vartrack",
+   "sha256": "d38def0161dda5246bd2a314df8eec95446b9a0df5625c43dedc14e3b9039600",
+   "haystack_tokens": 16351
+  },
+  {
+   "id": "single-28",
+   "family": "single",
+   "sha256": "befe9b27e04471481e408adb68b9826a634559fd0524686dd23778c565d59a24",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "multikey-28",
+   "family": "multikey",
+   "sha256": "5e76d034eef9932c8fbab2c6ea4dd323740b6183367dda8e794f52ccccbb2570",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multivalue-28",
+   "family": "multivalue",
+   "sha256": "72e30213d4b31ccf6374089ade47f21fadde93dce3c3f5b1fc5796bd19ba6ed5",
+   "haystack_tokens": 16357
+  },
+  {
+   "id": "vartrack-28",
+   "family": "vartrack",
+   "sha256": "9c6c5f17bf40ab03beeae30721cdf39d4d8d8865801e00ad5e4afc303ef5ac17",
+   "haystack_tokens": 16347
+  },
+  {
+   "id": "single-29",
+   "family": "single",
+   "sha256": "e815c666b1150fb7cddffea9f3d29a4b9be5dd25e4b827c7e7a7762a32d6e17d",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "multikey-29",
+   "family": "multikey",
+   "sha256": "fd91fa2d090dc3f073e1bf75c76fe6c2c46182e0cb3e04f254b34e5be0ae294c",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "multivalue-29",
+   "family": "multivalue",
+   "sha256": "81fd2a7da8de399543b864a415e93a3c59fdfa269f6e1b54e5dee9001bc09fac",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "vartrack-29",
+   "family": "vartrack",
+   "sha256": "25bb40036bffa1dff904556c9de903c05dffacaec356c8448bcdd9ac9b5ad46f",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "single-30",
+   "family": "single",
+   "sha256": "89b8a4aa9da2e782a9011ec9c01f5d05beefa57574d21e31bf99de175def2b01",
+   "haystack_tokens": 16355
+  },
+  {
+   "id": "multikey-30",
+   "family": "multikey",
+   "sha256": "92bf692f4336b54c57e82800ab06cd5dc2324dae4e34121be9fc2e9a082506bf",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "multivalue-30",
+   "family": "multivalue",
+   "sha256": "eed06aaf60b39bc3774bc82d9360f2ba506eb499b49c86dec1d2dbf874e98ca4",
+   "haystack_tokens": 16375
+  },
+  {
+   "id": "vartrack-30",
+   "family": "vartrack",
+   "sha256": "a26f6a60a76df40f5f8c7a70a7bd53b845a1c36fd9aeb9426a98f896257cd49e",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "single-31",
+   "family": "single",
+   "sha256": "65c4c76a91b8d8c269f033b10379917c8e2a8a53ea91ff395e539b89140ce6a9",
+   "haystack_tokens": 16353
+  },
+  {
+   "id": "multikey-31",
+   "family": "multikey",
+   "sha256": "3275e6ba79405fc6a3f087723ddf118c24fda35f34256166a3e9a8956ad52de3",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "multivalue-31",
+   "family": "multivalue",
+   "sha256": "d5b70efadf75da26b2da7d1dda9271cbec6c424797e6785eb8ec6db8c23e6e1c",
+   "haystack_tokens": 16350
+  },
+  {
+   "id": "vartrack-31",
+   "family": "vartrack",
+   "sha256": "179d61e6e9702f61cab95be07e54caf9a985ee4621ddb16325d10dbbb656a427",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "single-32",
+   "family": "single",
+   "sha256": "4dc5c0367dbb69b18696e30baec0033ea8e64313dd2c29d5f03f9f633bc29a76",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multikey-32",
+   "family": "multikey",
+   "sha256": "e0d0edbe1f4f98dfbe223775d700b4bd75d23b2ce51e237afbd1d7e978ce8c9c",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "multivalue-32",
+   "family": "multivalue",
+   "sha256": "e5dd60d2fbfe113fee9e56707b7eeedb189ddc5a972330ab3f7f947d32217db9",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "vartrack-32",
+   "family": "vartrack",
+   "sha256": "cc7e0b82450ad08351cae2e1d78a1c611a29bc7e6e410301e0bbd4fc426ace02",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "single-33",
+   "family": "single",
+   "sha256": "7aff53d6bd3f594f7b1ba0f55cc58721204b8b304c2a9b71e19891777a70000e",
+   "haystack_tokens": 16365
+  },
+  {
+   "id": "multikey-33",
+   "family": "multikey",
+   "sha256": "42b5303792b5825a00a9edbcfcc09994baf1b583e25c20ec038b67da0fb60d9f",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "multivalue-33",
+   "family": "multivalue",
+   "sha256": "ccf4070688a33c2d342d0779fe275c2584c0e7f742320008ec238ee16d9ed791",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "vartrack-33",
+   "family": "vartrack",
+   "sha256": "a8674c6601665d404d33397419c1cef0e2a22c0d21fdafa9610e958cae6e50b0",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "single-34",
+   "family": "single",
+   "sha256": "7fe5ae259dc057b6b0eefa698bf2842e3d6ae822ffbddb8da42ed2d4e3a96672",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multikey-34",
+   "family": "multikey",
+   "sha256": "eb979de643191d0254915306ec7d55470b9680ba53d31ad593375f23c82c57ce",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "multivalue-34",
+   "family": "multivalue",
+   "sha256": "d35d14434a443a1217d889630d3df186faba95c4e84d808e1eed93175e120ddd",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "vartrack-34",
+   "family": "vartrack",
+   "sha256": "4e608d40d6452eb06cd2274c0d9d9bf031d6bdbb307f65e4f5e66720abc6fc06",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "single-35",
+   "family": "single",
+   "sha256": "410ea5e56b55e1b1eda76cb00fcb6f55dca012098c8346089e624203a11c1b49",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multikey-35",
+   "family": "multikey",
+   "sha256": "588d1caa222dc223ebf34504bb5a1079f33d72503a08f27e4274227b61da599a",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "multivalue-35",
+   "family": "multivalue",
+   "sha256": "fb98fa69a1994842f237663f07a8dabdb5997fa02d16bfc35abf5cf4944462ff",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "vartrack-35",
+   "family": "vartrack",
+   "sha256": "6ddbea03f7e9d7a6768b57d552f6c22e717567f4df25155808dc3c6f429d6fe6",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "single-36",
+   "family": "single",
+   "sha256": "e1d89a9640ce9c767474e8ed444f38ba02b13d812eb27a7a471c841e10c8a5af",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multikey-36",
+   "family": "multikey",
+   "sha256": "6bab0b602853f71927869206e458203eea54c401758d7cae0806d94d3b8b1149",
+   "haystack_tokens": 16354
+  },
+  {
+   "id": "multivalue-36",
+   "family": "multivalue",
+   "sha256": "8e3b519019ad3a564af1986a991a03dbc92f4fabd99d40f6c27ba5a70b13e225",
+   "haystack_tokens": 16374
+  },
+  {
+   "id": "vartrack-36",
+   "family": "vartrack",
+   "sha256": "49a59cb7815a485e9633fc324fb16a01a013ce60b19e6513797a98c220cb4a08",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "single-37",
+   "family": "single",
+   "sha256": "c6a3b72745d46976eaf83443b53aebf603e985d14da148a508d43efa95403892",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "multikey-37",
+   "family": "multikey",
+   "sha256": "9824ae898788686d7dddaa7e8f0e9904e25fc6ab66d18f53c86a8d59ebbe8741",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multivalue-37",
+   "family": "multivalue",
+   "sha256": "b927e20c19b82cfad232323dcf0090e14480c1da842e17ac97bb789adf6b542a",
+   "haystack_tokens": 16362
+  },
+  {
+   "id": "vartrack-37",
+   "family": "vartrack",
+   "sha256": "426771b0f6104ab16aa7ac955796e14ea597de23ea86c0d7f51a4566f9d749e4",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "single-38",
+   "family": "single",
+   "sha256": "71fdd1368fc91cb27445589bdfecd4b7c086fe68da2dee6c7fe98ad2717c4fa0",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multikey-38",
+   "family": "multikey",
+   "sha256": "9c71e0b91378ee57389199cdeb24476f68d18c75139b11677250894def1a8b6b",
+   "haystack_tokens": 16363
+  },
+  {
+   "id": "multivalue-38",
+   "family": "multivalue",
+   "sha256": "b6e5dd1e87cc1b00ae41dfaf227fddf03d7fc4dc63b335dde8a2183e76919871",
+   "haystack_tokens": 16384
+  },
+  {
+   "id": "vartrack-38",
+   "family": "vartrack",
+   "sha256": "a1c068af0d8810797f74315c95c45d34190251d45c656f27d0d5f4cef06f1bef",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "single-39",
+   "family": "single",
+   "sha256": "834bf9bf4d0519697f2e0840b1cb4aca680bc1a4c35d3b51f2b33eed13416e60",
+   "haystack_tokens": 16362
+  },
+  {
+   "id": "multikey-39",
+   "family": "multikey",
+   "sha256": "19eb0459741de067c01ba5a5183263b6d4d5e4d839afa3152d670d1c25261bf2",
+   "haystack_tokens": 16362
+  },
+  {
+   "id": "multivalue-39",
+   "family": "multivalue",
+   "sha256": "dffc6073fb1cd76da8a2601b71df9a9db8e88447ccac5307c0a8736333f92a43",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "vartrack-39",
+   "family": "vartrack",
+   "sha256": "deb005eb20dfbd80027fed5595d7dfe86d95af4889d6fdff4898a0124d77af2a",
+   "haystack_tokens": 16384
+  },
+  {
+   "id": "single-40",
+   "family": "single",
+   "sha256": "5da7e24729c4a793b9541fcd911540975be15e7c09b7a35fa08ef352b5ad419e",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multikey-40",
+   "family": "multikey",
+   "sha256": "1579d210d2c085991bac93611056bea7b65953ad907ca3a77e11f696b21566ee",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "multivalue-40",
+   "family": "multivalue",
+   "sha256": "0d2752377d8215b8ce1d14a6935e0a8f6ab6d7baeceb726ec522c75dadd70dcc",
+   "haystack_tokens": 16360
+  },
+  {
+   "id": "vartrack-40",
+   "family": "vartrack",
+   "sha256": "35030c028007dc5c64da757930813b7cf61d637582286b9a9599853240072a21",
+   "haystack_tokens": 16369
+  },
+  {
+   "id": "single-41",
+   "family": "single",
+   "sha256": "73fdf0a12dbc8efb4e3cb38a1eff2c6a40894f8cac08610ea8f299a6b04d823d",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "multikey-41",
+   "family": "multikey",
+   "sha256": "2efa0f429a84b38e06893a329666c2921f440b17f8b7a8dd523f2e36c35e3783",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "multivalue-41",
+   "family": "multivalue",
+   "sha256": "9271fb368a3f64974b9898060145f151f7bbba1f0c44d7a7f6b8914fbf7e2eb6",
+   "haystack_tokens": 16376
+  },
+  {
+   "id": "vartrack-41",
+   "family": "vartrack",
+   "sha256": "524ae781f655a92527be24851323b336cc7869c1e5649473cc0e1aff80783594",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "single-42",
+   "family": "single",
+   "sha256": "18a06d5b32c225ba5cda16469d7c02701cf1181569c16e7a12d1d5d3252c6084",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multikey-42",
+   "family": "multikey",
+   "sha256": "652b1e14bb3b590b8cadb2f6cae600211893a11fc40a10c705df6026b2d0ef01",
+   "haystack_tokens": 16345
+  },
+  {
+   "id": "multivalue-42",
+   "family": "multivalue",
+   "sha256": "1cd1178e4bc30ed53f54206affb5e1c84067f1dcbcc6abff8cb47cf6e865057b",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "vartrack-42",
+   "family": "vartrack",
+   "sha256": "f5bc81041cbc045a5769bda05a334b3e3ee4e3317842bbc623c2aaca16445f9c",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "single-43",
+   "family": "single",
+   "sha256": "19e0f073876b89c30a13ccdef791834a37731ec56ceb4b22622dbe70a01f1533",
+   "haystack_tokens": 16361
+  },
+  {
+   "id": "multikey-43",
+   "family": "multikey",
+   "sha256": "e63f78bee2fddfa3630a3c0d9e6e421479f47a1d8dd338f6937caa83277c9acc",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "multivalue-43",
+   "family": "multivalue",
+   "sha256": "177117ff3c392a5f79e916a3a5a59386e3760dc03515d19f53a09e3709cfc6d6",
+   "haystack_tokens": 16356
+  },
+  {
+   "id": "vartrack-43",
+   "family": "vartrack",
+   "sha256": "f65476f34f7cb7f6b13d8202a94d78c67f6ff5bb736ebbf40fe752193155a100",
+   "haystack_tokens": 16362
+  },
+  {
+   "id": "single-44",
+   "family": "single",
+   "sha256": "8795fb16984440ec77d6d394bcb37d8c0607b504fab78e651112a3b57c533539",
+   "haystack_tokens": 16362
+  },
+  {
+   "id": "multikey-44",
+   "family": "multikey",
+   "sha256": "b8655d88cccabbe7616b9f695624459f3bd55c51b19ba4101537fdcaf239f37f",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multivalue-44",
+   "family": "multivalue",
+   "sha256": "4a4f307187d00dff168cde9809688e6755aa79689c7fedc62027b2d4eb5eb7aa",
+   "haystack_tokens": 16380
+  },
+  {
+   "id": "vartrack-44",
+   "family": "vartrack",
+   "sha256": "b30697aae7676139094929b391c1c265355a5880ca300abf42390f1559f00be5",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "single-45",
+   "family": "single",
+   "sha256": "e24b679ecab82fae3ad5694c7eda7b43e42c2713a921bff2e9e84d0e7523f2ff",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "multikey-45",
+   "family": "multikey",
+   "sha256": "f42da04e69bcb2739325bc7f3b07a8a752d8a55f411a787cc260a6b32a9a6dca",
+   "haystack_tokens": 16354
+  },
+  {
+   "id": "multivalue-45",
+   "family": "multivalue",
+   "sha256": "d3f40b30b72522fd26426be00d3cf2d745694188fbd93c39abf800fcaa4abbe2",
+   "haystack_tokens": 16373
+  },
+  {
+   "id": "vartrack-45",
+   "family": "vartrack",
+   "sha256": "833a47a9b0d1b9db154ba1b763b354008202bf2be23d8ea57753b7cb6f112a9d",
+   "haystack_tokens": 16371
+  },
+  {
+   "id": "single-46",
+   "family": "single",
+   "sha256": "5fdee4d028d28130c921b5e1cd443972c1a9baea83d01703e00fc9b8fbfafe55",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "multikey-46",
+   "family": "multikey",
+   "sha256": "df76d539e96a7f7983e2a7faa260f75456b40da26a1e744306913bf666119d70",
+   "haystack_tokens": 16363
+  },
+  {
+   "id": "multivalue-46",
+   "family": "multivalue",
+   "sha256": "329dd25222b0eb91616499b5448ed69be163d96cd793d2a20640d5907ecb8d06",
+   "haystack_tokens": 16381
+  },
+  {
+   "id": "vartrack-46",
+   "family": "vartrack",
+   "sha256": "bd9ff2c044ab2f6f157a98fe255432925b5116716942dfa377b0d4ce90c13e62",
+   "haystack_tokens": 16366
+  },
+  {
+   "id": "single-47",
+   "family": "single",
+   "sha256": "1eca3b1209d0fcc405c80ff71c316b26259a41fe57b873464b878390dd900cc4",
+   "haystack_tokens": 16372
+  },
+  {
+   "id": "multikey-47",
+   "family": "multikey",
+   "sha256": "5df32b324d7dcb505755eb96c9c79eb8208f31a1fd83aece9595d61cd681ac08",
+   "haystack_tokens": 16378
+  },
+  {
+   "id": "multivalue-47",
+   "family": "multivalue",
+   "sha256": "e6e6133bbf0363a8ae0acab46e1d6ba353d8f7ddc3bf5af63b25334a3e6b8205",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "vartrack-47",
+   "family": "vartrack",
+   "sha256": "45718d1fb79c3ebe3703923bd68eae968c83901ac911cd5eb3f2e54afc3805c4",
+   "haystack_tokens": 16377
+  },
+  {
+   "id": "single-48",
+   "family": "single",
+   "sha256": "20b35fab705b26f4626d49ca03afd42f1940bf455d7279dae2ff93955fa8adc9",
+   "haystack_tokens": 16379
+  },
+  {
+   "id": "multikey-48",
+   "family": "multikey",
+   "sha256": "f3405d01bbc349bab5af968fd78f4d8b1ceb13053fbfd8cd9f1681889703ce82",
+   "haystack_tokens": 16367
+  },
+  {
+   "id": "multivalue-48",
+   "family": "multivalue",
+   "sha256": "67c04c5acd65b3c825f5dfa6f79cbbd3eefcbdc8237c045307fcf349a04b33c6",
+   "haystack_tokens": 16368
+  },
+  {
+   "id": "vartrack-48",
+   "family": "vartrack",
+   "sha256": "55bf0848d2e9b13fff645660d1070c5073953ceb9149431c6a57cf09b625954b",
+   "haystack_tokens": 16365
+  },
+  {
+   "id": "single-49",
+   "family": "single",
+   "sha256": "28d7d50500a6595a673933118280719fd6511c2fe0e72c0c3b18bfc30f7bd8be",
+   "haystack_tokens": 16370
+  },
+  {
+   "id": "multikey-49",
+   "family": "multikey",
+   "sha256": "e3a90c553417b6202d3d76b8ad44a3d7ea689460071d10ea263a76d6f080619c",
+   "haystack_tokens": 16383
+  },
+  {
+   "id": "multivalue-49",
+   "family": "multivalue",
+   "sha256": "740c49854a8c011786a708b8f59067c3a280304696419cf9884f02c17ce00fd0",
+   "haystack_tokens": 16382
+  },
+  {
+   "id": "vartrack-49",
+   "family": "vartrack",
+   "sha256": "661ce83ac49755b98d5ff3959e3928e2ae1540a823bebf277bd1a90c1de642f7",
+   "haystack_tokens": 16363
+  }
+ ]
+}

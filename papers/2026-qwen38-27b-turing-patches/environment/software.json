@@ -1,0 +1,37 @@
+{
+  "analysis": {
+    "matplotlib": "3.10.6",
+    "numpy": "2.3.3",
+    "prompt_regeneration_tokenizers": "0.23.1",
+    "python": "3.12.3"
+  },
+  "fleet_replication": {
+    "exllamav3": "1.6.5 plus w13 patch chain; sm_89 runtime",
+    "quality_timing": "Archived per-answer wall time and completion counts; saved correctness is counted, responses are not independently rescored.",
+    "seed_limit": "Harness records nominal seed labels; the pinned TabbyAPI request path does not forward those seeds. Seed labels are not replicated RNG states.",
+    "speed_timing": "Pooled new_tokens / decode_wall_s from 36 completed requests per card; server timing, not whole-campaign throughput.",
+    "tabbyapi": "b1c225394d0fb45e8d26bddec344318dfd85096e",
+    "transport": "Serialized HTTP requests, unlike the primary Turing in-process F2 speed harness."
+  },
+  "license_inventory_current_pins": {
+    "buun": "1e50db7be8e87d80d660f6ea18e01f2a599ffcba; MIT; related work only",
+    "ninfer": "40d913db2e87e2211fce4089c0c7920480a5e7a0; Apache-2.0; current license read, distinct from measured f4ab369a",
+    "rafatxf": "15654d3c6fda2714bd91a3a39c0a0903dcf37d26; MIT; unchanged W13 split-K port"
+  },
+  "measured": {
+    "compiler_refresh": "CUDA 13.4.92; g++13.4; cmake4.4.4; arch75",
+    "cuda_runtime": "12.8",
+    "exllamav3": "1.6.5; eight-patch chain through W13; comparison 1.6.6",
+    "exllamav3_commit": "cdc785db89e263e65e5849cb53e1ada156411414",
+    "ik_llamacpp": "009dce19afdd3f1e4b5039bcd8853256726c322b",
+    "llamacpp_quality_drafted": "5266f24da75dc449bd56cbed7addb9c8e4a6a73e + shipped shared-embedding patch",
+    "llamacpp_quality_undrafted": "d63fbfe794b62990086043fa9e05fd6e8367b4d6",
+    "llamacpp_refresh": "dd6b945be2188da875ab05a259ce94c6b2736e64",
+    "ninfer_bonsai": "f4ab369a06c728325b706c989d71be7dc0c05a1b",
+    "ninferno_refresh": "65e573fd0c34506478d0f01316da683c47648651",
+    "rafatxf": "15654d3c6fda2714bd91a3a39c0a0903dcf37d26",
+    "tabbyapi": "b1c225394d0fb45e8d26bddec344318dfd85096e",
+    "torch": "2.10.0+cu128"
+  },
+  "record_limit": "Full commits above resolved read-only from existing full-history mirrors; original short pins are retained in the raw run records."
+}

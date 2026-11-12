@@ -1,0 +1,49 @@
+{
+  "p8_slice_complete": true,
+  "predictions": [
+    {
+      "id": "A1-card-4070-0",
+      "status": "held"
+    },
+    {
+      "id": "A1-card-4070-28000",
+      "status": "held"
+    },
+    {
+      "id": "A1-card-4080-super-0",
+      "status": "held"
+    },
+    {
+      "id": "A1-card-4080-super-28000",
+      "status": "held"
+    },
+    {
+      "id": "A1-cross-card",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4070-gsm-replication",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4070-gsm8k_500-nd-mtp",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4070-mmlu_500-nd-mtp",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4080-super-gsm-replication",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4080-super-gsm8k_500-nd-mtp",
+      "status": "held"
+    },
+    {
+      "id": "A2-card-4080-super-mmlu_500-nd-mtp",
+      "status": "held"
+    }
+  ]
+}

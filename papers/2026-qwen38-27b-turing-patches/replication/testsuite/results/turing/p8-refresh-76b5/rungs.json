@@ -1,0 +1,76 @@
+{
+  "lcpp-nd": {
+    "full_offload": false
+  },
+  "lcpp-df2": {
+    "rung": null,
+    "status": "failed-all-attempted-rungs",
+    "attempts": [
+      {
+        "rung": "R0",
+        "ok": false,
+        "why": "RuntimeError: server exited 1",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R1",
+        "ok": false,
+        "why": "RuntimeError: no tokens streamed ({})",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R2",
+        "ok": false,
+        "why": "RuntimeError: no tokens streamed ({})",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R3",
+        "ok": false,
+        "why": "RuntimeError: no tokens streamed ({})",
+        "layers": [],
+        "verified_full": false
+      }
+    ]
+  },
+  "lcpp-mtp": {
+    "rung": "R3",
+    "status": "measured-fit",
+    "attempts": [
+      {
+        "rung": "R0",
+        "ok": false,
+        "why": "RuntimeError: server exited 1",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R1",
+        "ok": false,
+        "why": "RuntimeError: server exited 1",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R2",
+        "ok": false,
+        "why": "RuntimeError: server exited 1",
+        "layers": [],
+        "verified_full": false
+      },
+      {
+        "rung": "R3",
+        "ok": true,
+        "why": "loaded and both warm-ups completed",
+        "layers": [],
+        "verified_full": false
+      }
+    ],
+    "full_offload": false,
+    "partial_or_unknown": true,
+    "context": 29696
+  }
+}

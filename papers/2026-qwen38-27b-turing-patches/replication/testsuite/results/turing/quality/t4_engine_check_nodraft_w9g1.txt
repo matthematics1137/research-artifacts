@@ -1,0 +1,7 @@
+# T4 engine check, 2026-10-30 17:24 EDT: the TabbyAPI server of x-q-exl3-nodraft-w9g1-gsm8k_500
+# Tabby's own log prints 'exllamav3 version: 1.6.5' from package metadata; the process environment and its mapped extension show the overlay:
+pid 1569185
+PYTHONPATH=/opt/p8/overlay/exl3-w9
+EXL3_MGEMM_N_THRESHOLD=0
+/opt/p8/overlay/exl3-w9/exllamav3_ext.cpython-312-x86_64-linux-gnu.so
+74a1541b6ad574389b2dce72046e329a656abb0d7f81520ab8a70f1e2613003c  /opt/p8/overlay/exl3-w9/exllamav3_ext.cpython-312-x86_64-linux-gnu.so

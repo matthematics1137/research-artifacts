@@ -1,0 +1,31 @@
+# Turing lab serving lane exl3-nodraft (started by tools/lanes.sh): exl3-mtp.yml with drafting disabled and every
+# other setting identical, as the laptop's testsuite/results/efficiency/tools/tabby_h38_nodraft.yml is
+# serving/tabby-daily.yml without its draft_model block (Paper 7 E47 control, label EFF-h38a_nodraft).
+# Upstream TabbyAPI accepts draft_mode: disabled, which says the same thing explicitly.
+# See exl3-mtp.yml for the deliberate differences from the laptop (16K context, 4 GB host stash, fp16 GDN state).
+# Lane exl3-nodraft-fp32 is this file plus recurrent_state_fp32: true (written by lanes.sh; keep the key out of here).
+network:
+  host: localhost
+  port: 8090
+  disable_auth: true
+  allowed_origins: []
+  web_ui: false
+logging:
+  log_prompt: false
+  log_generation_params: false
+  log_requests: false
+model:
+  model_dir: /opt/p8/models
+  model_name: qwen38-exl3-2.0
+  backend: exllamav3
+  max_seq_len: 16384
+  cache_size: 16384
+  cache_mode: Q8
+  chunk_size: 1024
+  max_batch_size: 1
+  recurrent_checkpoint_interval_pp: 1024
+  vision: false
+draft_model:
+  draft_mode: disabled
+memory:
+  sysmem_recurrent_cache: 4096
