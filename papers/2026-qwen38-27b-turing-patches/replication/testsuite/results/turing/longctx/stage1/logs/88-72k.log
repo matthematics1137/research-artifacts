@@ -1,0 +1,58 @@
+== 2026-11-01T22:08:15-0500 stage1_run.py 88-72k config /opt/p8/runs/longctx/stage1/configs/88-72k-20261101T220815.yml
+22:08:15.835 INFO:     Using config file
+                       /opt/p8/runs/longctx/stage1/confi
+                       gs/88-72k-20261101T220815.yml
+22:08:15.842 INFO:     The 'config.yml' file cannot be found
+22:08:17.847 WARNING:  No sampler overrides are configured
+                       (sampling.override_preset or inline overrides in the
+                       sampling section), so sampling parameters have no
+                       fallback values. Requests that omit them run untruncated:
+                       temperature 1.0, top_k 0, top_p 1.0, min_p 0. Set
+                       override_preset to safe_defaults unless this is
+                       intentional.
+22:08:17.851 INFO:     exllamav3 version: 1.6.5
+22:08:19.037 INFO:     The provided model has vision capabilities, vision is
+                       disabled in config.
+22:08:19.037 INFO:     Using main model MTP component for drafting
+22:08:19.038 INFO:     Disabling GPU split because one GPU is in use.
+22:08:19.038 INFO:     Context: max_seq_len 73,728 tokens (configured),
+                       cache_size 73,728 tokens
+22:08:19.039 INFO:     Recurrent state storage: fp16
+22:08:19.301 INFO:     Using template "chat_template" for chat completions.
+22:08:19.302 INFO:     Response parsing: tool format qwen3_coder (template,
+                       tokenizer, architecture), reasoning tags <think> </think>
+                       (template)
+22:08:19.823 INFO:     Loading model
+                       /opt/p8/models/qwen38-exl3-2.0
+                       (single GPU)
+Loading draft modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 3/3   0:00:00
+Loading model modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 67/67 0:00:00
+22:08:25.015 INFO:     Using recurrent checkpoint intervals: 2048 tokens
+                       (generation), 1024 tokens (prompt ingestion).
+22:08:25.179 INFO:     Model loaded in 5.9 s
+
+22:08:25.180 WARNING:  Disabling authentication makes your instance vulnerable.
+                       Set the `disable_auth` flag to False in config.yml if you
+                       want to share this instance with others.
+22:08:25.181 INFO:     Serving OAI API on http://localhost:8097 (docs at
+                       http://localhost:8097/redoc)
+22:08:25.539 INFO:     #3 chat/completions: 73,179 prompt tokens · temperature:
+                       0, greedy (req), max_tokens: 64 (req)
+In file included from /opt/p8/python/cpython-3.12.16-linux-x86_64-gnu/include/python3.12/Python.h:12,
+                 from /opt/p8/tmp/tmpf186jhan/__triton_launcher.c:7:
+/opt/p8/python/cpython-3.12.16-linux-x86_64-gnu/include/python3.12/pyconfig.h:1877:9: warning: ‘_POSIX_C_SOURCE’ redefined
+ 1877 | #define _POSIX_C_SOURCE 200809L
+      |         ^~~~~~~~~~~~~~~
+In file included from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/stdlib.h:26,
+                 from /opt/p8/venv/lib/python3.12/site-packages/triton/backends/nvidia/include/cuda.h:56,
+                 from /opt/p8/tmp/tmpf186jhan/__triton_launcher.c:2:
+/usr/include/features.h:319:10: note: this is the location of the previous definition
+  319 | # define _POSIX_C_SOURCE        202405L
+      |          ^~~~~~~~~~~~~~~
+22:10:37.070 INFO:     #3 chat/completions: 8 tokens generated at 25.8 T/s ·
+                       prompt 73,179 tokens, none cached, 73,179 new in 131.2 s
+                       (558 T/s) · first token 131.2 s, total 131.5 s · draft
+                       4/24 accepted (17%)
+22:10:37.271 WARNING:  Shutdown signal called. Exiting gracefully.
+22:10:38.061 INFO:     Model unloaded.

@@ -1,0 +1,53 @@
+# Turing lab serving lane exl3-mtp (started by tools/lanes.sh, never by hand): upstream TabbyAPI (b1c2253) with the
+# upstream exllamav3 1.6.5 wheel on p8-host's RTX 2080 Ti. Upstream config schema (config_sample.yml there).
+#
+# Mirrors the laptop's serving/tabby-daily.yml, which is the Paper 7 E47 drafted config (label EFF-h38a_mtp):
+#   same model (turboderp SC 2.00 bpw EXL3 with its own 2-bit MTP layer), Q8 cache, chunk 1024, max_batch_size 1,
+#   MTP drafting at 6 tokens with dynamic draft length, Q8 draft cache, recurrent-state checkpoints every 1,024 tokens
+#   of prompt ingestion (the laptop got that from the lab patch's EXL3_CKPT_PP=1024; upstream has it as
+#   recurrent_checkpoint_interval_pp), auth off, prompt and parameter logging off, no sampler override preset.
+#
+# Deliberate differences from the laptop (also in tools/turing/lanes_README.md):
+#   - 16,384-token context and cache (laptop 32,768): every lane in the comparison runs at 16K.
+#   - sysmem_recurrent_cache 4,096 MB (laptop 16,384): the lab's units are capped at 20 GiB of RAM, and a stream of
+#     distinct eval prompts would fill a 16 GB host stash. It only changes prefix-reuse cost, not speed or outputs
+#     of single requests.
+#   - GDN recurrent state fp16 (upstream default, for speed numbers; the laptop's 1.4.7 kept fp32). For comparisons
+#     with E47 (plan 6.2 item 6), use lane exl3-mtp-fp32: lanes.sh writes this file plus recurrent_state_fp32: true.
+#     Keep the key out of this file. lanes.sh refuses it here, and TabbyAPI's --config file overrides the
+#     TABBY_MODEL_RECURRENT_STATE_FP32 environment variable. lanes.jsonl records the precision TabbyAPI logs at load.
+#   - No min_p fallback (no override preset): requests without min_p run at 0. The llama.cpp lanes pass --min-p 0
+#     so both engines share that default (llama-server's own is 0.05).
+#   - Dynamic drafting uses upstream's confidence rule (draft_confidence default 0.4), not 1.4.7's.
+#   - Browser UI and cross-origin callers off (upstream-only features; the server binds localhost with auth off).
+#
+# lanes.sh writes a per-start copy to $L/logs/lanes/ with the port, model_dir and context it actually used.
+network:
+  host: localhost
+  port: 8090
+  disable_auth: true
+  allowed_origins: []
+  web_ui: false
+logging:
+  log_prompt: false
+  log_generation_params: false
+  log_requests: false
+model:
+  model_dir: /opt/p8/models
+  model_name: qwen38-exl3-2.0
+  backend: exllamav3
+  max_seq_len: 16384
+  cache_size: 16384
+  cache_mode: Q8
+  chunk_size: 1024
+  max_batch_size: 1                          # plan 5.3: TabbyAPI defaults recurrent models to 4 slots; 1 user here
+  recurrent_checkpoint_interval_pp: 1024     # laptop: EXL3_CKPT_PP=1024
+  vision: false
+draft_model:
+  draft_mode: mtp
+  draft_cache_mode: Q8
+  dynamic_draft: true
+  draft_num_tokens: 6                        # laptop E44: 6 beats 4 by 1-4% on prose, math and code
+  sparse_draft_head: 0                       # full head, as on the laptop (upstream default)
+memory:
+  sysmem_recurrent_cache: 4096

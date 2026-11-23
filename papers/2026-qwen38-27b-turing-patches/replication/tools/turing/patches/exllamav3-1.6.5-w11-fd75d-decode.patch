@@ -1,0 +1,624 @@
+--- a/exllamav3/exllamav3_ext/libtorch/attention.h
++++ b/exllamav3/exllamav3_ext/libtorch/attention.h
+@@ -52,6 +52,12 @@
+     // (compiled with HAS_SINKS) as a static pointer
+     c10::optional<at::Tensor> sinks;
+ 
++    // Turing port (local_llms Paper 8, W11): run the decode split phase with the fd75d HMMA kernel instead of the
++    // Triton split kernel (8-bit K/V cache, head_dim 256, no window / softcap / sinks; set by bc_attn.py)
++    bool fd75d = false;
++    float fd75d_scale = 0.0f;
++    bool fd75d_causal = true;
++
+     // Projections. K/V run as one fused mgemm when the pointer tables are given (and
+     // bsz * q_len is small enough), otherwise as separate GEMMs
+     std::shared_ptr<BC_LinearEXL3> q_proj;
+@@ -268,6 +274,8 @@
+         at::Tensor pool_plane
+     );
+ 
++    void set_fd75d(bool on, float scale, bool causal);
++
+     bool needs_configure(int bsz, int q_len, int regime);
+ 
+     void configure_slot
+--- a/exllamav3/exllamav3_ext/libtorch/attention.cpp
++++ b/exllamav3/exllamav3_ext/libtorch/attention.cpp
+@@ -8,6 +8,7 @@
+ #include "../quant/exl3_gemm.cuh"
+ #include "../hgemm.cuh"
+ #include "../rope.cuh"
++#include "../turing/fd75d.cuh"
+ #include "../cache/q_cache.cuh"
+ #include "../add.cuh"
+ #include "../activation.cuh"
+@@ -390,6 +391,13 @@
+     }
+ }
+ 
++void BC_Attention::set_fd75d(bool on, float scale, bool causal)
++{
++    fd75d = on;
++    fd75d_scale = scale;
++    fd75d_causal = causal;
++}
++
+ // Live split configuration from the current block-table bound (same formula as the python
+ // dispatch path, so the two produce identical numerics)
+ #define SPLIT_MIN_BLOCKS 1   // key blocks per split (was 4): short contexts get more CTAs
+@@ -794,6 +802,30 @@
+         };
+         // Launched at the split cap so the captured grid never changes; splits at or above the
+         // live count exit without storing
++        if (fd75d && quant_cache)
++        {
++            // W11: same grid, row packing and partial layout as the Triton split kernel, so the combine below
++            // is unchanged; its own parameter indices for the graph sites
++            cuda_check(fd75d_split_launch(
++                (const half*) s.q.data_ptr(), (const uint32_t*) cache_k.data_ptr(), (const uint32_t*) cache_v.data_ptr(),
++                (const int*) block_table.data_ptr(), (const int*) cache_seqlens.data_ptr(),
++                (float*) s.partial_o.data_ptr(), (float*) s.partial_ml.data_ptr(),
++                (const half*) scales_k, (const half*) scales_v,
++                split_len, (int) block_table.size(1), num_splits,
++                bsz, q_len, num_q_heads, num_kv_heads, page_size, fd75d_scale, fd75d_causal,
++                q_len, s.splits_cap, stream));
++            if (graph)
++            {
++                graph->record_param(fd75d_split_fn(), GP_attn_block_table, FD75D_P_BLOCK_TABLE);
++                graph->record_param(fd75d_split_fn(), GP_attn_seqlens, FD75D_P_SEQLENS);
++                graph->record_param(fd75d_split_fn(), GP_attn_split_len, FD75D_P_SPLIT_LEN, 4);
++                graph->record_param(fd75d_split_fn(), GP_attn_num_pages, FD75D_P_NUM_PAGES, 4);
++                graph->record_param(fd75d_split_fn(), GP_attn_num_splits, FD75D_P_NUM_SPLITS, 4);
++                graph->record_param(fd75d_split_fn(), GP_end, 0);
++            }
++        }
++        else
++        {
+         s.k_split->launch(s.programs, s.splits_cap, 1, args, stream);
+         if (graph)
+         {
+@@ -804,6 +836,7 @@
+             graph->record_param(s.k_split->handle(), GP_attn_num_splits, 13, 4);
+             graph->record_param(s.k_split->handle(), GP_end, 0);
+         }
++        }
+     }
+     {
+         std::vector<void*> args =
+--- a/exllamav3/exllamav3_ext/libtorch/attention_bc.h
++++ b/exllamav3/exllamav3_ext/libtorch/attention_bc.h
+@@ -129,6 +129,7 @@
+     py::arg("sinks")
+ )
+ .def("needs_configure", &BC_Attention::needs_configure)
++.def("set_fd75d", &BC_Attention::set_fd75d, py::arg("on"), py::arg("scale"), py::arg("causal"))
+ .def("set_qsa", &BC_Attention::set_qsa,
+     py::arg("qk_proj"),
+     py::arg("q_norm_w"),
+--- a/exllamav3/modules/attention_fn/bc_attn.py
++++ b/exllamav3/modules/attention_fn/bc_attn.py
+@@ -302,6 +302,17 @@
+         caches = (self.cache_k, self.cache_v, self.k_scales, self.v_scales)
+         return all(t.untyped_storage().nbytes() < 2 ** 31 for t in caches if isinstance(t, torch.Tensor))
+ 
++    def _fd75d_ok(self, window_left: int, window_right: int) -> bool:
++        """fd75d (exllamav3_ext/turing/fd75d.cu) covers the dense split phase for an 8-bit K/V cache at head_dim 256
++        without window, softcap or sinks, on sm_75, where Triton's tl.dot runs on FMA units. EXL3_FD75D=0 keeps the
++        Triton split kernel"""
++        if os.environ.get("EXL3_FD75D", "1") == "0" or ROCM or not self.quant:
++            return False
++        from ...util.backend import compute_capability
++        return (compute_capability(self.device) == (7, 5) and self.k_bits == 8 and self.v_bits == 8
++                and self.head_dim == 256 and self.v_head_dim == 256 and window_left < 0 and window_right < 0
++                and not self.softcap and self.sinks is None and not getattr(self, "qsa", False))
++
+     def _configure(self, bsz: int, q_len: int, causal: bool, regime: int):
+         import triton
+         from .triton_paged import (
+@@ -328,6 +339,8 @@
+         target = 2 * _get_sm_count(dev)
+         splits_cap = max(1, min(target // programs, 128))
+         window_left, window_right = _normalize_window(self.window_size)
++        # Turing port (local_llms Paper 8, W11): the split phase on the fd75d HMMA kernel where it applies
++        self.bc.set_fd75d(self._fd75d_ok(window_left, window_right), float(self.sm_scale), bool(causal))
+ 
+         cache_t = "*i32" if self.quant else "*fp16"
+         # These pointers are whole allocations (cache tensors, graph statics, bucketed partials, the
+--- /dev/null
++++ b/exllamav3/exllamav3_ext/turing/fd75d.cuh
+@@ -0,0 +1,35 @@
++#pragma once
++
++// fd75d: flash-decoding split kernel for Turing (sm_75) over the 8-bit quantized paged cache, on HMMA tensor
++// cores. Drop-in for phase 1 of triton_paged._paged_attn_decode_split_kernel (QCK = QCV = 8, head_dim 256,
++// no window / softcap / sinks): same grid (programs, splits_cap), same dense (query, head) row packing, same
++// partial_o / partial_ml layout, so the Triton combine kernel finishes the reduction unchanged.
++// Local_llms Paper 8, W11.
++
++#include <cuda_runtime.h>
++#include <cuda_fp16.h>
++#include <cstdint>
++
++// Kernel parameter indices that change between graph replays (Graph::record_param)
++#define FD75D_P_BLOCK_TABLE 3
++#define FD75D_P_SEQLENS 4
++#define FD75D_P_SPLIT_LEN 9
++#define FD75D_P_NUM_PAGES 10
++#define FD75D_P_NUM_SPLITS 11
++
++// The kernel's handle, for Graph::record_param
++void* fd75d_split_fn();
++
++// Launch phase 1. q (bsz, q_len, n_q_heads, 256) fp16; qk / qv packed 8-bit cache words (pages, page_size,
++// n_kv_heads * 64); sk / sv fp16 scales (pages, page_size, n_kv_heads * 8). Returns the launch status.
++cudaError_t fd75d_split_launch
++(
++    const half* q, const uint32_t* qk, const uint32_t* qv, const int* block_table, const int* cache_seqlens,
++    float* partial_o, float* partial_ml, const half* sk, const half* sv,
++    int split_len, int num_pages_per_seq, int num_splits,
++    int bsz, int q_len, int n_q_heads, int n_kv_heads, int page_size, float scale, bool causal,
++    int kv_append_len, int splits_cap, cudaStream_t stream
++);
++
++// The Triton decode row layout (decode_row_layout): rows per program and row blocks per kv head
++void fd75d_row_layout(int q_len, int group_size, int* block_rows, int* h_blocks);
+--- /dev/null
++++ b/exllamav3/exllamav3_ext/turing/fd75d.cu
+@@ -0,0 +1,457 @@
++// fd75d: flash-decoding phase 1 for Turing (sm_75), 8-bit quantized paged cache, head_dim 256, on HMMA tensor cores.
++// Local_llms Paper 8, W11. See fd75d.cuh for the contract.
++//
++// Why: Triton lowers tl.dot to scalar FMA on sm_75, and the split kernel pads a kv head's 6 sibling q heads to a
++// 16-row dot. At 28K context decode attention then costs several times its cache read. Here each warp computes,
++// per 16-key tile, S^T = K Q^T (m16 = keys, n8 = query rows, k = head dims) and O^T += V^T P^T (m16 = head dims,
++// n8 = query rows, k = keys) with mma.m16n8k8, so a 6-head group wastes 2 of 8 columns instead of 10 of 16 rows.
++//
++// No shared memory in the main loop: every fragment is built in registers straight from the packed cache. The dot
++// products are invariant under a consistent permutation of the head dims, so each thread owns the dims it loads:
++// - S^T: A = K tile, thread (g, c) = (lane / 4, lane % 4) holds keys g and g + 8 at dims 64c + 2kk + {0, 1} for
++//   k-step kk (it loads bytes 64c..64c+63 of both keys); B = Q^T, the same dims of query row g.
++// - O^T: A = V^T, m-tile mt row g is dim 32g + 2mt and row g + 8 is dim 32g + 2mt + 1, so thread (g, c) loads bytes
++//   32g..32g+31 of keys 2c and 2c + 1 of each 8-key step; B = P^T, the S^T accumulator transposed in-warp
++//   (movmatrix). The accumulator then holds, for query rows 2c and 2c + 1, dims 32g..32g+31 in that order.
++// Cache values: code c (8 bits) at dim d of a 32-value group with fp16 scale s is (c - 127.5) * s / 128, in the
++// cache's Hadamard-rotated domain; q is rotated here (fast Walsh-Hadamard, the Triton h32 entry 1/sqrt(32) in fp16)
++// and the combine kernel rotates the output back. The dequantized value is formed as
++// fma(c - 128, s / 128, s / 256) in fp16: one rounding of the exact value, as the Triton loaders' fp32 product
++// rounded to fp16 (identical whenever s / 256 is a normal fp16, s >= 2^-6).
++//
++// Block = 4 warps on one (batch, kv head, row block) and one split, the Triton grid. A program's rows are cut into
++// 8-row tiles (n_rt = 1..4); warps take (row tile, key stream) pairs, streams = 4 / n_rt, and stream s takes the
++// split's 16-key tiles s, s + streams, ... The streams of a row tile merge through shared memory at the end and
++// the stream-0 warp writes the unnormalized partial (natural-log m, row total l) in the Triton layout.
++
++#include "fd75d.cuh"
++
++#if !defined(USE_ROCM)
++
++#define FD_HD 256
++#define FD_WARPS 4
++#define FD_THREADS (FD_WARPS * 32)
++#define FD_KT 16                              // keys per tile: the m16 of S^T
++#define FD_ROW_STRIDE (FD_HD + 8)             // shared O rows, padded (index = dim + dim / 32 within a row)
++#define FD_SLOT_STRIDE (8 * FD_ROW_STRIDE)    // one warp's 8 rows
++
++static __device__ __forceinline__ void mma1688(float* c, uint32_t a0, uint32_t a1, uint32_t b)
++{
++    asm volatile(
++        "mma.sync.aligned.m16n8k8.row.col.f32.f16.f16.f32 {%0,%1,%2,%3}, {%4,%5}, {%6}, {%0,%1,%2,%3};\n"
++        : "+f"(c[0]), "+f"(c[1]), "+f"(c[2]), "+f"(c[3])
++        : "r"(a0), "r"(a1), "r"(b));
++}
++
++// 8x8 fp16 fragment transpose across the warp (thread lane holds row lane / 4, columns 2 (lane % 4) + {0, 1})
++static __device__ __forceinline__ uint32_t movtrans(uint32_t a)
++{
++    uint32_t d;
++    asm volatile("movmatrix.sync.aligned.m8n8.trans.b16 %0, %1;\n" : "=r"(d) : "r"(a));
++    return d;
++}
++
++static __device__ __forceinline__ uint32_t h2u(half2 h) { return *reinterpret_cast<uint32_t*>(&h); }
++static __device__ __forceinline__ half2 u2h(uint32_t u) { return *reinterpret_cast<half2*>(&u); }
++
++// raw: two codes as bytes 0 and 2 with 0x64 above each, i.e. the fp16 pair (1024 + c0, 1024 + c1)
++static __device__ __forceinline__ uint32_t deq2(uint32_t raw, half2 s128, half2 s256)
++{
++    return h2u(__hfma2(__hsub2(u2h(raw), __float2half2_rn(1152.0f)), s128, s256));
++}
++
++static __device__ __forceinline__ void fwht32(float* x)
++{
++    #pragma unroll
++    for (int h = 1; h < 32; h <<= 1)
++        #pragma unroll
++        for (int i = 0; i < 32; i += 2 * h)
++            #pragma unroll
++            for (int j = i; j < i + h; ++j)
++            {
++                float a = x[j], b = x[j + h];
++                x[j] = a + b;
++                x[j + h] = a - b;
++            }
++}
++
++__global__ void __launch_bounds__(FD_THREADS, 2)
++fd75d_split_kernel
++(
++    const half* __restrict__ q,                 // 0
++    const uint32_t* __restrict__ qk,            // 1
++    const uint32_t* __restrict__ qv,            // 2
++    const int* __restrict__ block_table,        // 3  (graph-patched)
++    const int* __restrict__ cache_seqlens,      // 4  (graph-patched)
++    float* __restrict__ partial_o,              // 5
++    float* __restrict__ partial_ml,             // 6
++    const half* __restrict__ sk,                // 7
++    const half* __restrict__ sv,                // 8
++    int split_len,                              // 9  (graph-patched)
++    int num_pages_per_seq,                      // 10 (graph-patched)
++    int num_splits,                             // 11 (graph-patched)
++    int q_len, int n_q_heads, int n_kv_heads, int page_size,
++    float scale_log2, int causal, int block_rows, int h_blocks, int kv_append_len
++)
++{
++#if defined(__CUDA_ARCH__) && (__CUDA_ARCH__ < 750)
++    __trap();
++#else
++    __shared__ float sm_o[3 * FD_SLOT_STRIDE];
++    __shared__ float sm_m[FD_WARPS][8];
++    __shared__ float sm_l[FD_WARPS][8];
++
++    const int split = blockIdx.y;
++    if (split >= num_splits) return;            // launched at the split cap; extra splits store nothing
++    const int pid = blockIdx.x;
++    const int warp = threadIdx.x >> 5, lane = threadIdx.x & 31;
++    const int g = lane >> 2, c = lane & 3;
++
++    const int group = n_q_heads / n_kv_heads;
++    const int h_block = pid % h_blocks;
++    const int bh = pid / h_blocks;
++    const int b = bh / n_kv_heads;
++    const int kvh = bh - b * n_kv_heads;
++    const int rows_here = min(block_rows, q_len * group - h_block * block_rows);
++    const int n_rt = (rows_here + 7) >> 3;
++    const int streams = FD_WARPS / n_rt;
++    const int rt = warp % n_rt;
++    const int stream = warp / n_rt;
++    const bool active = stream < streams;
++
++    const int total_k = cache_seqlens[b] + kv_append_len;
++    const int n_start = split * split_len;
++    const int n_end = min(n_start + split_len, total_k);
++
++    // Q^T B fragments: query row g of this row tile, rotated dims 64c..64c+63, two dims per k-step
++    uint32_t qf[32];
++    {
++        const int r_blk = rt * 8 + g;
++        const int row_idx = h_block * block_rows + r_blk;
++        float x[64];
++        if (active && r_blk < rows_here)
++        {
++            const int row_q = row_idx % q_len, hl = row_idx / q_len;
++            const uint4* qp = reinterpret_cast<const uint4*>(
++                q + ((int64_t) (b * q_len + row_q) * n_q_heads + kvh * group + hl) * FD_HD + 64 * c);
++            #pragma unroll
++            for (int i = 0; i < 8; ++i)
++            {
++                uint4 v = qp[i];
++                const half2* h = reinterpret_cast<const half2*>(&v);
++                #pragma unroll
++                for (int k = 0; k < 4; ++k)
++                {
++                    float2 f = __half22float2(h[k]);
++                    x[8 * i + 2 * k] = f.x;
++                    x[8 * i + 2 * k + 1] = f.y;
++                }
++            }
++        }
++        else
++        {
++            #pragma unroll
++            for (int i = 0; i < 64; ++i) x[i] = 0.0f;
++        }
++        fwht32(x);
++        fwht32(x + 32);
++        const float hs = 0.1767578125f;     // fp16(1 / sqrt(32)), the entry of the Triton h32 matrix
++        #pragma unroll
++        for (int kk = 0; kk < 32; ++kk) qf[kk] = h2u(__floats2half2_rn(x[2 * kk] * hs, x[2 * kk + 1] * hs));
++    }
++
++    // This thread's S^T columns: query rows 2c and 2c + 1 of the row tile
++    int qabs[2];
++    bool rvalid[2];
++    #pragma unroll
++    for (int e = 0; e < 2; ++e)
++    {
++        const int r_blk = rt * 8 + 2 * c + e;
++        const int row_idx = h_block * block_rows + r_blk;
++        rvalid[e] = active && r_blk < rows_here;
++        qabs[e] = total_k - q_len + row_idx % q_len;
++    }
++
++    float o[16][4];
++    #pragma unroll
++    for (int mt = 0; mt < 16; ++mt)
++        #pragma unroll
++        for (int i = 0; i < 4; ++i) o[mt][i] = 0.0f;
++    float m2[2] = { -INFINITY, -INFINITY };
++    float l[2] = { 0.0f, 0.0f };
++
++    const int words_tok = n_kv_heads * 64;      // packed 8-bit words per token, all kv heads
++    const int sc_tok = n_kv_heads * 8;          // scale groups per token
++    const int tile_lo = n_start / FD_KT;        // split_len is a multiple of the Triton kv tile (>= 16); keys below
++                                                // n_start are masked anyway
++    const int tile_hi = (n_end + FD_KT - 1) / FD_KT;
++    const half2 h0 = __float2half2_rn(0.0f);
++
++    if (active)
++    for (int tile = tile_lo + stream; tile < tile_hi; tile += streams)
++    {
++        const int n0 = tile * FD_KT;
++        const int page = n0 / page_size;
++        const int phys = block_table[b * num_pages_per_seq + page];
++        const int64_t tok0 = (int64_t) phys * page_size + (n0 - page * page_size);
++
++        // K: keys g and g + 8, bytes 64c..64c+63 of this head; scales of groups 2c and 2c + 1
++        uint4 kw[2][4];
++        half2 ks[2];
++        #pragma unroll
++        for (int h = 0; h < 2; ++h)
++        {
++            const int64_t tok = tok0 + g + 8 * h;
++            const uint4* p = reinterpret_cast<const uint4*>(qk + tok * words_tok + kvh * 64 + 16 * c);
++            #pragma unroll
++            for (int i = 0; i < 4; ++i) kw[h][i] = p[i];
++            const int key = n0 + g + 8 * h;
++            ks[h] = key >= n_start && key < n_end ? *reinterpret_cast<const half2*>(sk + tok * sc_tok + kvh * 8 + 2 * c) : h0;
++        }
++        // V: keys 2c, 2c + 1, 8 + 2c, 9 + 2c, bytes 32g..32g+31; scales of group g
++        uint4 vw[4][2];
++        half vs[4];
++        #pragma unroll
++        for (int kv = 0; kv < 4; ++kv)
++        {
++            const int ko = (kv >> 1) * 8 + 2 * c + (kv & 1);
++            const int64_t tok = tok0 + ko;
++            const uint4* p = reinterpret_cast<const uint4*>(qv + tok * words_tok + kvh * 64 + 8 * g);
++            vw[kv][0] = p[0];
++            vw[kv][1] = p[1];
++            vs[kv] = n0 + ko >= n_start && n0 + ko < n_end ? sv[tok * sc_tok + kvh * 8 + g] : __float2half(0.0f);
++        }
++
++        // S^T = K Q^T over 32 k-steps of 8 dims
++        float s[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
++        {
++            const half2 i128 = __float2half2_rn(1.0f / 128.0f), i256 = __float2half2_rn(1.0f / 256.0f);
++            half2 k128[2][2], k256[2][2];
++            #pragma unroll
++            for (int h = 0; h < 2; ++h)
++            {
++                k128[h][0] = __hmul2(__low2half2(ks[h]), i128);
++                k128[h][1] = __hmul2(__high2half2(ks[h]), i128);
++                k256[h][0] = __hmul2(__low2half2(ks[h]), i256);
++                k256[h][1] = __hmul2(__high2half2(ks[h]), i256);
++            }
++            const uint32_t* w0 = reinterpret_cast<const uint32_t*>(kw[0]);
++            const uint32_t* w1 = reinterpret_cast<const uint32_t*>(kw[1]);
++            #pragma unroll
++            for (int kk = 0; kk < 32; ++kk)
++            {
++                const int j = kk >> 4;
++                const uint32_t sel = (kk & 1) ? 0x4342 : 0x4140;
++                const uint32_t a0 = deq2(__byte_perm(w0[kk >> 1], 0x64646464, sel), k128[0][j], k256[0][j]);
++                const uint32_t a1 = deq2(__byte_perm(w1[kk >> 1], 0x64646464, sel), k128[1][j], k256[1][j]);
++                mma1688(s, a0, a1, qf[kk]);
++            }
++        }
++
++        // Online softmax (log2 domain). s: (key g, row 2c), (key g, row 2c+1), (key g+8, row 2c), (key g+8, row 2c+1)
++        float p[4];
++        #pragma unroll
++        for (int e = 0; e < 2; ++e)
++        {
++            const int k0 = n0 + g, k1 = n0 + g + 8;
++            const bool v0 = rvalid[e] && k0 >= n_start && k0 < n_end && (!causal || k0 <= qabs[e]);
++            const bool v1 = rvalid[e] && k1 >= n_start && k1 < n_end && (!causal || k1 <= qabs[e]);
++            const float x0 = v0 ? s[e] * scale_log2 : -INFINITY;
++            const float x1 = v1 ? s[2 + e] * scale_log2 : -INFINITY;
++            float mx = fmaxf(x0, x1);
++            mx = fmaxf(mx, __shfl_xor_sync(0xffffffff, mx, 4));
++            mx = fmaxf(mx, __shfl_xor_sync(0xffffffff, mx, 8));
++            mx = fmaxf(mx, __shfl_xor_sync(0xffffffff, mx, 16));
++            const float mn = fmaxf(m2[e], mx);
++            const float mu = mn == -INFINITY ? 0.0f : mn;
++            const float alpha = m2[e] == -INFINITY ? 0.0f : exp2f(m2[e] - mu);
++            p[e] = exp2f(x0 - mu);
++            p[2 + e] = exp2f(x1 - mu);
++            l[e] = l[e] * alpha + p[e] + p[2 + e];
++            m2[e] = mn;
++            #pragma unroll
++            for (int mt = 0; mt < 16; ++mt)
++            {
++                o[mt][e] *= alpha;
++                o[mt][2 + e] *= alpha;
++            }
++        }
++
++        // P^T B fragments (k = key, n = query row), one per 8-key step
++        const uint32_t bp0 = movtrans(h2u(__floats2half2_rn(p[0], p[1])));
++        const uint32_t bp1 = movtrans(h2u(__floats2half2_rn(p[2], p[3])));
++
++        // O^T += V^T P^T: 16 m-tiles of 16 dims x 2 k-steps of 8 keys
++        #pragma unroll
++        for (int j = 0; j < 2; ++j)
++        {
++            const uint32_t* va = reinterpret_cast<const uint32_t*>(vw[2 * j]);
++            const uint32_t* vb = reinterpret_cast<const uint32_t*>(vw[2 * j + 1]);
++            const half2 v128 = __halves2half2(__hmul(vs[2 * j], __float2half(1.0f / 128.0f)),
++                                              __hmul(vs[2 * j + 1], __float2half(1.0f / 128.0f)));
++            const half2 v256 = __halves2half2(__hmul(vs[2 * j], __float2half(1.0f / 256.0f)),
++                                              __hmul(vs[2 * j + 1], __float2half(1.0f / 256.0f)));
++            const uint32_t bp = j ? bp1 : bp0;
++            #pragma unroll
++            for (int mt = 0; mt < 16; ++mt)
++            {
++                const uint32_t tt = __byte_perm(va[mt >> 1], vb[mt >> 1], (mt & 1) ? 0x7362 : 0x5140);
++                const uint32_t a0 = deq2(__byte_perm(tt, 0x64646464, 0x4140), v128, v256);
++                const uint32_t a1 = deq2(__byte_perm(tt, 0x64646464, 0x4342), v128, v256);
++                mma1688(o[mt], a0, a1, bp);
++            }
++        }
++    }
++
++    // Row totals: each lane summed its own keys
++    #pragma unroll
++    for (int e = 0; e < 2; ++e)
++    {
++        l[e] += __shfl_xor_sync(0xffffffff, l[e], 4);
++        l[e] += __shfl_xor_sync(0xffffffff, l[e], 8);
++        l[e] += __shfl_xor_sync(0xffffffff, l[e], 16);
++    }
++
++    // Streams 1.. hand (m, l, O) to the row tile's stream-0 warp
++    if (active)
++    {
++        if (g == 0)
++        {
++            sm_m[warp][2 * c] = m2[0]; sm_m[warp][2 * c + 1] = m2[1];
++            sm_l[warp][2 * c] = l[0]; sm_l[warp][2 * c + 1] = l[1];
++        }
++        if (stream > 0)
++        {
++            float* slot = sm_o + (warp - n_rt) * FD_SLOT_STRIDE;
++            #pragma unroll
++            for (int e = 0; e < 2; ++e)
++            {
++                float* sr = slot + (2 * c + e) * FD_ROW_STRIDE + g;    // + dim / 32 padding (= g)
++                #pragma unroll
++                for (int mt = 0; mt < 16; ++mt)
++                {
++                    sr[32 * g + 2 * mt] = o[mt][e];
++                    sr[32 * g + 2 * mt + 1] = o[mt][2 + e];
++                }
++            }
++        }
++    }
++    __syncthreads();
++
++    if (active && stream == 0)
++    {
++        const int64_t slot_base = (int64_t) (pid * num_splits + split) * block_rows;
++        #pragma unroll
++        for (int e = 0; e < 2; ++e)
++        {
++            const int row = 2 * c + e;
++            float mmax = m2[e];
++            for (int st = 1; st < streams; ++st) mmax = fmaxf(mmax, sm_m[rt + st * n_rt][row]);
++            const float mu = mmax == -INFINITY ? 0.0f : mmax;
++            const float w0 = m2[e] == -INFINITY ? 0.0f : exp2f(m2[e] - mu);
++            float lt = l[e] * w0;
++            #pragma unroll
++            for (int mt = 0; mt < 16; ++mt)
++            {
++                o[mt][e] *= w0;
++                o[mt][2 + e] *= w0;
++            }
++            for (int st = 1; st < streams; ++st)
++            {
++                const int ws = rt + st * n_rt;
++                const float ms = sm_m[ws][row];
++                const float wsc = ms == -INFINITY ? 0.0f : exp2f(ms - mu);
++                lt += sm_l[ws][row] * wsc;
++                const float* sr = sm_o + (ws - n_rt) * FD_SLOT_STRIDE + row * FD_ROW_STRIDE + g;
++                #pragma unroll
++                for (int mt = 0; mt < 16; ++mt)
++                {
++                    o[mt][e] += wsc * sr[32 * g + 2 * mt];
++                    o[mt][2 + e] += wsc * sr[32 * g + 2 * mt + 1];
++                }
++            }
++            const int r_blk = rt * 8 + row;
++            float* po = partial_o + (slot_base + r_blk) * FD_HD + 32 * g;
++            #pragma unroll
++            for (int mt = 0; mt < 16; ++mt)
++                *reinterpret_cast<float2*>(po + 2 * mt) = make_float2(o[mt][e], o[mt][2 + e]);
++            if (g == 0)
++            {
++                float* pm = partial_ml + (slot_base + r_blk) * 2;
++                pm[0] = mmax == -INFINITY ? -INFINITY : mmax * 0.6931471805599453f;   // natural-log max
++                pm[1] = lt;
++            }
++        }
++    }
++#endif
++}
++
++void* fd75d_split_fn() { return (void*) fd75d_split_kernel; }
++
++void fd75d_row_layout(int q_len, int group_size, int* block_rows, int* h_blocks)
++{
++    int rows = q_len * group_size;
++    int p2 = 1;
++    while (p2 < rows) p2 <<= 1;
++    *block_rows = p2 < 16 ? 16 : (p2 > 32 ? 32 : p2);
++    *h_blocks = (rows + *block_rows - 1) / *block_rows;
++}
++
++cudaError_t fd75d_split_launch
++(
++    const half* q, const uint32_t* qk, const uint32_t* qv, const int* block_table, const int* cache_seqlens,
++    float* partial_o, float* partial_ml, const half* sk, const half* sv,
++    int split_len, int num_pages_per_seq, int num_splits,
++    int bsz, int q_len, int n_q_heads, int n_kv_heads, int page_size, float scale, bool causal,
++    int kv_append_len, int splits_cap, cudaStream_t stream
++)
++{
++    int block_rows, h_blocks;
++    fd75d_row_layout(q_len, n_q_heads / n_kv_heads, &block_rows, &h_blocks);
++    int programs = bsz * n_kv_heads * h_blocks;
++    float scale_log2 = scale * 1.4426950408889634f;
++    int causal_i = causal ? 1 : 0;
++    void* args[] =
++    {
++        (void*) &q, (void*) &qk, (void*) &qv, (void*) &block_table, (void*) &cache_seqlens,
++        (void*) &partial_o, (void*) &partial_ml, (void*) &sk, (void*) &sv,
++        (void*) &split_len, (void*) &num_pages_per_seq, (void*) &num_splits,
++        (void*) &q_len, (void*) &n_q_heads, (void*) &n_kv_heads, (void*) &page_size,
++        (void*) &scale_log2, (void*) &causal_i, (void*) &block_rows, (void*) &h_blocks, (void*) &kv_append_len
++    };
++    return cudaLaunchKernel((void*) fd75d_split_kernel, dim3(programs, splits_cap), dim3(FD_THREADS), args, 0, stream);
++}
++
++#ifdef FD75D_STANDALONE
++// Test entry (tools/turing/fd75d_test.py builds this file alone as a torch extension)
++#include <torch/extension.h>
++#include <ATen/cuda/CUDAContext.h>
++
++void fd75d_split_py(at::Tensor q, at::Tensor qk, at::Tensor qv, at::Tensor sk, at::Tensor sv, at::Tensor block_table,
++                    at::Tensor cache_seqlens, at::Tensor partial_o, at::Tensor partial_ml, int64_t split_len,
++                    int64_t num_splits, int64_t splits_cap, int64_t kv_append_len, double scale, bool causal,
++                    int64_t n_kv_heads)
++{
++    TORCH_CHECK(q.dtype() == at::kHalf && q.is_contiguous() && q.dim() == 4 && q.size(3) == FD_HD, "q (bsz, q_len, hq, 256) fp16");
++    TORCH_CHECK(qk.dtype() == at::kInt && qv.dtype() == at::kInt && qk.is_contiguous() && qv.is_contiguous(), "packed caches");
++    TORCH_CHECK(qk.size(2) == n_kv_heads * 64, "8-bit packed cache: n_kv_heads * 64 words per token");
++    TORCH_CHECK(sk.dtype() == at::kHalf && sv.dtype() == at::kHalf && sk.size(2) == n_kv_heads * 8, "scales");
++    TORCH_CHECK(qk.size(1) % FD_KT == 0, "page size a multiple of 16");
++    cudaError_t err = fd75d_split_launch(
++        (const half*) q.data_ptr(), (const uint32_t*) qk.data_ptr(), (const uint32_t*) qv.data_ptr(),
++        block_table.data_ptr<int>(), cache_seqlens.data_ptr<int>(),
++        partial_o.data_ptr<float>(), partial_ml.data_ptr<float>(),
++        (const half*) sk.data_ptr(), (const half*) sv.data_ptr(),
++        (int) split_len, (int) block_table.size(1), (int) num_splits,
++        (int) q.size(0), (int) q.size(1), (int) q.size(2), (int) n_kv_heads, (int) qk.size(1), (float) scale, causal,
++        (int) kv_append_len, (int) splits_cap, at::cuda::getCurrentCUDAStream());
++    TORCH_CHECK(err == cudaSuccess, "fd75d launch: ", cudaGetErrorString(err));
++}
++
++PYBIND11_MODULE(TORCH_EXTENSION_NAME, m)
++{
++    m.def("split", &fd75d_split_py, "fd75d phase 1 (test entry)");
++}
++#endif
++
++#endif   // !USE_ROCM

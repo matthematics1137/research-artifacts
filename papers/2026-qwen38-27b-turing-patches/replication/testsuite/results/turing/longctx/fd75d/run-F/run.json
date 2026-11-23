@@ -1,0 +1,109 @@
+{
+ "host": "p8-host",
+ "time": "2026-11-03T22:16:02-0500",
+ "load_s": 20.886494636535645,
+ "device": {
+  "name": "NVIDIA GeForce RTX 2080 Ti",
+  "cc": [
+   7,
+   5
+  ],
+  "start": {
+   "name": "NVIDIA GeForce RTX 2080 Ti",
+   "driver": "580.178.04",
+   "mem_used_mib": "9825",
+   "mem_total_mib": "11264",
+   "temp_c": "36",
+   "power_w": "92.17",
+   "sm_mhz": "1995",
+   "mem_mhz": "6800",
+   "throttle": "0x0000000000000000"
+  }
+ },
+ "versions": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "exllamav3": "1.6.5+w13",
+  "exllamav3_ext": "/opt/p8/overlay/exl3-w13/exllamav3_ext.cpython-312-x86_64-linux-gnu.so",
+  "numpy": "2.5.4",
+  "triton": "3.6.0"
+ },
+ "dispatch_info": {
+  "int8_gemv_mode": 2,
+  "qkv_slice": true,
+  "int8_gemv_max_k": 5,
+  "hgemm_f16acc_status": 0,
+  "auto_reconstruct_threshold": 144,
+  "exl3_linears": 401,
+  "exl3_linears_off_text_path": 0,
+  "toggles": 112,
+  "toggle_kinds": [
+   "GatedDeltaNet.bc_split",
+   "GatedMLP.bc"
+  ],
+  "attn_flags": [
+   "exllamav3.modules.attn._bc_attn_enable=True",
+   "exllamav3.modules.sliding_attn._bc_attn_enable=True",
+   "exllamav3.modules.mla_attn._bc_mla_enable=True"
+  ],
+  "gdn_proj_dtype": {
+   "upstream": [
+    "torch.float16"
+   ],
+   "unfused_ref": "torch.float32"
+  },
+  "prefill_mode": "default"
+ },
+ "env": {
+  "CUDA_CACHE_PATH": "/opt/p8/cache/nv",
+  "TRITON_CACHE_DIR": "/opt/p8/cache/triton/cache",
+  "CUDA_VISIBLE_DEVICES": "0",
+  "TRITON_HOME": "/opt/p8/cache/triton",
+  "EXL3_MGEMM_N_THRESHOLD": "0",
+  "EXL3_FD75D_LIVE": "0",
+  "EXL3_INT8_SQ_MAX_M": "2",
+  "EXL3_GEMV_SK": "2",
+  "EXL3_FD75D": "1",
+  "TRITON_F32_DEFAULT": "ieee"
+ },
+ "config": {
+  "model_dir": "/opt/p8/models/qwen38-exl3-2.0",
+  "cache_size": 65536,
+  "cache_quant": "8,8",
+  "recurrent_state_fp32": false,
+  "chunk_size": 1024,
+  "no_warmup": false,
+  "max_response_tokens": 128,
+  "gen_max_tokens": 128,
+  "step": 1,
+  "modes": [
+   "default"
+  ],
+  "repeat_default": false,
+  "prefill_mode": "default",
+  "gdn_proj": "fp32",
+  "reasoning_effort": "medium",
+  "prompt_render": "streams-file",
+  "ref_epilogue": "fp32",
+  "topk": 20,
+  "full_logits_stride": 1,
+  "vocab_scored": 248077,
+  "rows": [],
+  "streams": "/opt/p8/runs/longctx/fd75d/streams.jsonl",
+  "xref": null,
+  "xref_labels": [],
+  "xref_run": null,
+  "item_ids": [
+   "28k-multivalue-k12-00",
+   "28k-multivalue-k12-01",
+   "28k-multivalue-k12-02",
+   "48k-multivalue-k12-00",
+   "48k-multivalue-k12-01",
+   "48k-multivalue-k12-02",
+   "64k-multivalue-k12-00",
+   "64k-multivalue-k12-01",
+   "64k-multivalue-k12-02"
+  ]
+ }
+}

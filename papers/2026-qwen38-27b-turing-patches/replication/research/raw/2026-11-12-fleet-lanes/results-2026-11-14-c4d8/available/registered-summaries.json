@@ -1,0 +1,490 @@
+{
+  "card-4080-super/p8-gsm-mtp": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "gsm8k_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.976,
+        "seconds_mean": 2.53232,
+        "tokens_mean": 326.974,
+        "truncated": 0,
+        "unfinished": null,
+        "wilson95": [
+          0.9585229425360993,
+          0.986218685344503
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-gsm-mtp",
+    "last_status": "done",
+    "machine": "card-4080-super",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4080-super/p8-gsm-nd": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "gsm8k_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.972,
+        "seconds_mean": 5.21494,
+        "tokens_mean": 326.896,
+        "truncated": 0,
+        "unfinished": null,
+        "wilson95": [
+          0.9535535973250511,
+          0.9832490252792436
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-gsm-nd",
+    "last_status": "done",
+    "machine": "card-4080-super",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4080-super/p8-mmlu-mtp": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "mmlu_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.868,
+        "seconds_mean": 6.56242,
+        "tokens_mean": 712.654,
+        "truncated": 3,
+        "unfinished": null,
+        "wilson95": [
+          0.8355052092686175,
+          0.8948832761516801
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-mmlu-mtp",
+    "last_status": "done",
+    "machine": "card-4080-super",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4080-super/p8-mmlu-nd": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "mmlu_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.862,
+        "seconds_mean": 11.32676,
+        "tokens_mean": 713.784,
+        "truncated": 2,
+        "unfinished": null,
+        "wilson95": [
+          0.8289979864047199,
+          0.8894819911011163
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-mmlu-nd",
+    "last_status": "done",
+    "machine": "card-4080-super",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4080-super/p8-speed": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          false,
+          0
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 64.19340314043824,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 64.26544806853285
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 64.15841970102286
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 64.15628066844167
+          }
+        ],
+        "seconds_mean": 3.9810251996839523,
+        "tokens_mean": 255.55555555555554
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          false,
+          28000
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 58.7138430227593,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 58.743233177297824
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 58.69804236582813
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 58.69894841643026
+          }
+        ],
+        "seconds_mean": 4.106546236764795,
+        "tokens_mean": 241.11111111111111
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          true,
+          0
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 109.16583699693308,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 108.19626538604116
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 109.88166411484164
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 109.43780011134557
+          }
+        ],
+        "seconds_mean": 2.3379312543483035,
+        "tokens_mean": 255.22222222222223
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          true,
+          28000
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 98.39136259702727,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 97.21670946008038
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 100.4224144293941
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 97.52173479544551
+          }
+        ],
+        "seconds_mean": 2.4256871778893077,
+        "tokens_mean": 238.66666666666666
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-speed",
+    "last_status": "done",
+    "machine": "card-4080-super",
+    "n": 36,
+    "planned": 36,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4070/p8-gsm-mtp": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "gsm8k_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.976,
+        "seconds_mean": 4.01756,
+        "tokens_mean": 324.146,
+        "truncated": 0,
+        "unfinished": null,
+        "wilson95": [
+          0.9585229425360993,
+          0.986218685344503
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-gsm-mtp",
+    "last_status": "done",
+    "machine": "card-4070",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4070/p8-gsm-nd": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "gsm8k_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.97,
+        "seconds_mean": 7.42578,
+        "tokens_mean": 330.23,
+        "truncated": 0,
+        "unfinished": null,
+        "wilson95": [
+          0.9510963331640543,
+          0.9817367868020865
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-gsm-nd",
+    "last_status": "done",
+    "machine": "card-4070",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4070/p8-mmlu-mtp": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "mmlu_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.862,
+        "seconds_mean": 10.40114,
+        "tokens_mean": 706.178,
+        "truncated": 3,
+        "unfinished": null,
+        "wilson95": [
+          0.8289979864047199,
+          0.8894819911011163
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-mmlu-mtp",
+    "last_status": "done",
+    "machine": "card-4070",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4070/p8-mmlu-nd": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          "mmlu_500",
+          null
+        ],
+        "finished_wrong": null,
+        "n": 500,
+        "pass1": 0.872,
+        "seconds_mean": 15.82312,
+        "tokens_mean": 711.564,
+        "truncated": 3,
+        "unfinished": null,
+        "wilson95": [
+          0.8398543146918417,
+          0.8984731760047634
+        ]
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-mmlu-nd",
+    "last_status": "done",
+    "machine": "card-4070",
+    "n": 500,
+    "planned": 500,
+    "schema": "northstar-fleet-summary-v1"
+  },
+  "card-4070/p8-speed": {
+    "cells": [
+      {
+        "complete_run": true,
+        "coordinate": [
+          false,
+          0
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 45.77417000363899,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 46.13866976689511
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 45.32019321607829
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 45.87805758437477
+          }
+        ],
+        "seconds_mean": 5.47130498323693,
+        "tokens_mean": 250.44444444444446
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          false,
+          28000
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 40.95142341330074,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 41.12174023423702
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 40.90894825648483
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 40.81742576022877
+          }
+        ],
+        "seconds_mean": 5.6625355008679135,
+        "tokens_mean": 231.88888888888889
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          true,
+          0
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 69.17372341366011,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 69.35544235783938
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 68.64561059097066
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 69.5297069801026
+          }
+        ],
+        "seconds_mean": 3.6895834086592205,
+        "tokens_mean": 255.22222222222223
+      },
+      {
+        "complete_run": true,
+        "coordinate": [
+          true,
+          28000
+        ],
+        "n": 9,
+        "pooled_tokens_per_s": 60.54818134587651,
+        "rounds": [
+          {
+            "n": 3,
+            "round": 0,
+            "tokens_per_s": 62.6889671975742
+          },
+          {
+            "n": 3,
+            "round": 1,
+            "tokens_per_s": 59.07320090359779
+          },
+          {
+            "n": 3,
+            "round": 2,
+            "tokens_per_s": 59.97755951032701
+          }
+        ],
+        "seconds_mean": 3.9399293298807203,
+        "tokens_mean": 238.55555555555554
+      }
+    ],
+    "complete": true,
+    "joules": null,
+    "lane": "p8-speed",
+    "last_status": "done",
+    "machine": "card-4070",
+    "n": 36,
+    "planned": 36,
+    "schema": "northstar-fleet-summary-v1"
+  }
+}

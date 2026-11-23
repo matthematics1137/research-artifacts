@@ -1,0 +1,235 @@
+{
+ "schema": "p8-longctx-stage1-prompts-v1",
+ "registration": "research/prereg/2026-11-01-p8-longctx-stage1.md (Amendment 1, item 4)",
+ "generator": {
+  "make_longctx.py": "c2d7e451d7cfdee10db114214aa129f9b64ddabcb206b1516f3f9b8571398c4f",
+  "p6common.py": "a5564715108b0e4efb19765018a855e43c23205239ad00925f37b94d0fcc15f6",
+  "p5common.py": "e1d62130e90704541f90729999a46c9f0758682ee2e143ba773786cdec88ed7e"
+ },
+ "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+ "family": "single",
+ "index": 0,
+ "seed": "p8-longctx-stage1",
+ "prompts": [
+  {
+   "length": 16384,
+   "role": "check",
+   "want_prompt_tokens": 1024,
+   "target_tokens": 944,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 999,
+   "haystack_tokens": 928,
+   "content_tokens": 987,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.03125
+   ],
+   "n_sessions": 2,
+   "sha256": "618bc006c21224a6adb14f8af065f94a5b7b7091aa29f9ba0653dd53f78aacf3",
+   "file": "check-16384.json"
+  },
+  {
+   "length": 32768,
+   "role": "ladder",
+   "want_prompt_tokens": 32256,
+   "target_tokens": 32176,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 32215,
+   "haystack_tokens": 32144,
+   "content_tokens": 32203,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.01036
+   ],
+   "n_sessions": 16,
+   "sha256": "b3809413eeadfb72fa6ac492e8cc0877e6cb6155c929a5581125efcc0d0f86c9",
+   "file": "ladder-32768.json"
+  },
+  {
+   "length": 36864,
+   "role": "ladder",
+   "want_prompt_tokens": 36352,
+   "target_tokens": 36272,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 36337,
+   "haystack_tokens": 36266,
+   "content_tokens": 36325,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.010175
+   ],
+   "n_sessions": 18,
+   "sha256": "e9568955ec54728739bd3a9e02440580375ca23e7e9dd804d7baf198d19a3724",
+   "file": "ladder-36864.json"
+  },
+  {
+   "length": 40960,
+   "role": "ladder",
+   "want_prompt_tokens": 40448,
+   "target_tokens": 40368,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 40432,
+   "haystack_tokens": 40361,
+   "content_tokens": 40420,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.009811
+   ],
+   "n_sessions": 19,
+   "sha256": "37c900eb2a226470f4e7ca3e9459f0f84260a37480480e779104a1de6860418a",
+   "file": "ladder-40960.json"
+  },
+  {
+   "length": 65536,
+   "role": "ladder",
+   "want_prompt_tokens": 65024,
+   "target_tokens": 64944,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 64980,
+   "haystack_tokens": 64909,
+   "content_tokens": 64968,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.009999
+   ],
+   "n_sessions": 29,
+   "sha256": "243e01f79b8d7261611c486e61ab8f3e974ea6af3a4bee860a54b7c546530b9b",
+   "file": "ladder-65536.json"
+  },
+  {
+   "length": 73728,
+   "role": "ladder",
+   "want_prompt_tokens": 73216,
+   "target_tokens": 73136,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 73179,
+   "haystack_tokens": 73108,
+   "content_tokens": 73167,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.010163
+   ],
+   "n_sessions": 32,
+   "sha256": "02c6e42dfa5354c2d176b6f7d64b2dbdecc37c44d186bdfbf8dfcff3e5718d36",
+   "file": "ladder-73728.json"
+  },
+  {
+   "length": 81920,
+   "role": "ladder",
+   "want_prompt_tokens": 81408,
+   "target_tokens": 81328,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 81395,
+   "haystack_tokens": 81324,
+   "content_tokens": 81383,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.010009
+   ],
+   "n_sessions": 36,
+   "sha256": "da64b6cb522d0378e60b8d8ed8ac141cb32ebaf71aa8d12f04a4f5ffcf06a049",
+   "file": "ladder-81920.json"
+  },
+  {
+   "length": 90112,
+   "role": "ladder",
+   "want_prompt_tokens": 89600,
+   "target_tokens": 89520,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 89588,
+   "haystack_tokens": 89517,
+   "content_tokens": 89576,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.00992
+   ],
+   "n_sessions": 40,
+   "sha256": "b8ac146dbb9e9ef4600a0c7e8b1d0e066525090eba1a377ebe0c86870bc500e5",
+   "file": "ladder-90112.json"
+  },
+  {
+   "length": 98304,
+   "role": "ladder",
+   "want_prompt_tokens": 97792,
+   "target_tokens": 97712,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 97774,
+   "haystack_tokens": 97703,
+   "content_tokens": 97762,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.009938
+   ],
+   "n_sessions": 45,
+   "sha256": "ff0afa2ed6d002297b24127aed121bfc03cc7ac35129e28429fbe58596ff21bb",
+   "file": "ladder-98304.json"
+  },
+  {
+   "length": 131072,
+   "role": "ladder",
+   "want_prompt_tokens": 130560,
+   "target_tokens": 130480,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 130546,
+   "haystack_tokens": 130475,
+   "content_tokens": 130534,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.009925
+   ],
+   "n_sessions": 59,
+   "sha256": "d80365cd82f2b9d71ce6c34ed55551bdb731d053a54b61d4426333209251d372",
+   "file": "ladder-131072.json"
+  },
+  {
+   "length": 139264,
+   "role": "ladder",
+   "want_prompt_tokens": 138752,
+   "target_tokens": 138672,
+   "seed": "p8-longctx-stage1",
+   "item": "single-00",
+   "prompt_tokens_qwen38_nothink": 138702,
+   "haystack_tokens": 138631,
+   "content_tokens": 138690,
+   "answers": [
+    "9894757"
+   ],
+   "depths": [
+    0.01007
+   ],
+   "n_sessions": 64,
+   "sha256": "dce619c8a380e9bbc38b06d5048214355e2324e1ed97fab3c2aa86c5a48ab7a4",
+   "file": "ladder-139264.json"
+  }
+ ]
+}

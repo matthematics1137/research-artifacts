@@ -1,0 +1,789 @@
+{
+ "schema": "p8-longctx-items-v1",
+ "registration": "research/prereg/2026-11-01-p8-longctx-stages2-3.md (Amendment 1)",
+ "set": "cliff-64k",
+ "kind": "cliff",
+ "length": 65536,
+ "prompt_limit": 65024,
+ "seed_text": "p8-longctx-cliff-2026-11",
+ "seed_sha256": "90544bdc880b400c4972395a0a2e9855eb1482601c43f909e4893ed4551e3ce3",
+ "levels": {
+  "p6": {
+   "single": 1,
+   "multikey": 4,
+   "multivalue": 4,
+   "vartrack": 5
+  },
+  "calibrated": {
+   "multikey": 128,
+   "vartrack": 4
+  }
+ },
+ "n_items": 48,
+ "file": {
+  "name": "cliff-64k.jsonl",
+  "sha256": "7edb7c3c99e02dda254fa5acaf5570bf5f4b85377c60745482f4c3e55242a669",
+  "bytes": 14523785
+ },
+ "code": {
+  "make_longctx.py": "c2d7e451d7cfdee10db114214aa129f9b64ddabcb206b1516f3f9b8571398c4f",
+  "p6common.py": "a5564715108b0e4efb19765018a855e43c23205239ad00925f37b94d0fcc15f6",
+  "items.py": "d88f518bf5108c6e720bddc8805b2974786d4ce8f6bec35b2a3c4194dafad4d5",
+  "build_stage2_items.py": "a546c84ecbb53ec9c4af634ea1e9283eb1227bf8e9cc7fb9a53a6043e5570d02"
+ },
+ "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+ "items": [
+  {
+   "uid": "single-n1-00",
+   "family": "single",
+   "level": 1,
+   "index": 0,
+   "prompt_tokens": 64958,
+   "haystack_tokens": 64887,
+   "target_tokens": 64894,
+   "answers": [
+    "9570119"
+   ],
+   "asked_depth": 0.009817,
+   "sha256": "c1c0d6e50516a3c78e596ff12026bf39b55f1407d74c5ced8fdb423c0222382a"
+  },
+  {
+   "uid": "multikey-n4-00",
+   "family": "multikey",
+   "level": 4,
+   "index": 0,
+   "prompt_tokens": 64947,
+   "haystack_tokens": 64878,
+   "target_tokens": 64888,
+   "answers": [
+    "2622578"
+   ],
+   "asked_depth": 0.002343,
+   "sha256": "2daf5aa449c0f235d8c71366631e509466a2093fbd26387d672a120e6bcd96f0"
+  },
+  {
+   "uid": "multivalue-n4-00",
+   "family": "multivalue",
+   "level": 4,
+   "index": 0,
+   "prompt_tokens": 64956,
+   "haystack_tokens": 64886,
+   "target_tokens": 64888,
+   "answers": [
+    "5476586",
+    "7817193",
+    "4729962",
+    "9680397"
+   ],
+   "asked_depth": null,
+   "sha256": "294e0fa3b6fbeee38224d002ef5bac05d1c14c24674d641c3e0f21edf62a587f"
+  },
+  {
+   "uid": "vartrack-n5-00",
+   "family": "vartrack",
+   "level": 5,
+   "index": 0,
+   "prompt_tokens": 64960,
+   "haystack_tokens": 64878,
+   "target_tokens": 64886,
+   "answers": [
+    "HXMLT",
+    "IDOVW",
+    "QAKTJ",
+    "PDFZZ",
+    "GBIHG"
+   ],
+   "asked_depth": null,
+   "sha256": "8ad33dda4a6ef171c1e1eed4169f79188849506d09e4b5d9eb4d35c8d6210438"
+  },
+  {
+   "uid": "single-n1-01",
+   "family": "single",
+   "level": 1,
+   "index": 1,
+   "prompt_tokens": 64962,
+   "haystack_tokens": 64892,
+   "target_tokens": 64894,
+   "answers": [
+    "9949774"
+   ],
+   "asked_depth": 0.029896,
+   "sha256": "b16915a66ace90bd46086f2a8e5ca8058c9e054c15351f013a184b9e56684b29"
+  },
+  {
+   "uid": "multikey-n4-01",
+   "family": "multikey",
+   "level": 4,
+   "index": 1,
+   "prompt_tokens": 64950,
+   "haystack_tokens": 64880,
+   "target_tokens": 64888,
+   "answers": [
+    "2870779"
+   ],
+   "asked_depth": 0.264612,
+   "sha256": "fc04951c2215ab3cdab9fa4274e48f59177f7d671edf5dc26ec8cbb8af94db95"
+  },
+  {
+   "uid": "multivalue-n4-01",
+   "family": "multivalue",
+   "level": 4,
+   "index": 1,
+   "prompt_tokens": 64945,
+   "haystack_tokens": 64875,
+   "target_tokens": 64888,
+   "answers": [
+    "1236602",
+    "9547519",
+    "6960581",
+    "5749032"
+   ],
+   "asked_depth": null,
+   "sha256": "f869d8848b4787258521f6259f02ebba862bb8733926f914801ea13b536c3783"
+  },
+  {
+   "uid": "vartrack-n5-01",
+   "family": "vartrack",
+   "level": 5,
+   "index": 1,
+   "prompt_tokens": 64964,
+   "haystack_tokens": 64882,
+   "target_tokens": 64886,
+   "answers": [
+    "CWJLK",
+    "UNJQZ",
+    "JBRZI",
+    "HQOHX",
+    "KASJD"
+   ],
+   "asked_depth": null,
+   "sha256": "016c86e1d103240ea60587b26c5adf39d99f578989c67ce83b6e10933d8a6000"
+  },
+  {
+   "uid": "single-n1-02",
+   "family": "single",
+   "level": 1,
+   "index": 2,
+   "prompt_tokens": 64961,
+   "haystack_tokens": 64891,
+   "target_tokens": 64894,
+   "answers": [
+    "6199221"
+   ],
+   "asked_depth": 0.05013,
+   "sha256": "75f081963b0cb7cf5c761e7ded72afde9926c2533d3bbd23112f7adac62d5772"
+  },
+  {
+   "uid": "multikey-n4-02",
+   "family": "multikey",
+   "level": 4,
+   "index": 2,
+   "prompt_tokens": 64944,
+   "haystack_tokens": 64875,
+   "target_tokens": 64888,
+   "answers": [
+    "3736073"
+   ],
+   "asked_depth": 0.512493,
+   "sha256": "c215442e58443d6a9998d94fe300b47f3f6a2dab4fd82e066a6d90be87b3eb3f"
+  },
+  {
+   "uid": "multivalue-n4-02",
+   "family": "multivalue",
+   "level": 4,
+   "index": 2,
+   "prompt_tokens": 64953,
+   "haystack_tokens": 64881,
+   "target_tokens": 64888,
+   "answers": [
+    "1747071",
+    "4866663",
+    "7618771",
+    "5152076"
+   ],
+   "asked_depth": null,
+   "sha256": "2578b069dc93bd9feeb64da3f3b0a35978de7997338db61d4c03695787909521"
+  },
+  {
+   "uid": "vartrack-n5-02",
+   "family": "vartrack",
+   "level": 5,
+   "index": 2,
+   "prompt_tokens": 64968,
+   "haystack_tokens": 64886,
+   "target_tokens": 64886,
+   "answers": [
+    "PZIYP",
+    "AGUNT",
+    "CGISK",
+    "FWGSW",
+    "LQXJP"
+   ],
+   "asked_depth": null,
+   "sha256": "fee381f9e3e670833bd1c7cff7000c28f73de7c80df4451c17d7cfa10978ae79"
+  },
+  {
+   "uid": "single-n1-03",
+   "family": "single",
+   "level": 1,
+   "index": 3,
+   "prompt_tokens": 64939,
+   "haystack_tokens": 64869,
+   "target_tokens": 64894,
+   "answers": [
+    "2808712"
+   ],
+   "asked_depth": 0.070172,
+   "sha256": "11f23bb61764850a0c28c5cbd5fd97e4e589fa1436db0b273e6e57e349dd8694"
+  },
+  {
+   "uid": "multikey-n4-03",
+   "family": "multikey",
+   "level": 4,
+   "index": 3,
+   "prompt_tokens": 64958,
+   "haystack_tokens": 64888,
+   "target_tokens": 64888,
+   "answers": [
+    "3084745"
+   ],
+   "asked_depth": 0.767415,
+   "sha256": "f8c2a64944b70168e543d7d0d5ae83bb9b92628a5ec2841cc4c45e8e416b2abf"
+  },
+  {
+   "uid": "multivalue-n4-03",
+   "family": "multivalue",
+   "level": 4,
+   "index": 3,
+   "prompt_tokens": 64936,
+   "haystack_tokens": 64864,
+   "target_tokens": 64888,
+   "answers": [
+    "8678430",
+    "7247815",
+    "4763810",
+    "2115816"
+   ],
+   "asked_depth": null,
+   "sha256": "4d187480737d1a42cf371f88273d2262a3513f1b82d48aa25d78df6a28dee47e"
+  },
+  {
+   "uid": "vartrack-n5-03",
+   "family": "vartrack",
+   "level": 5,
+   "index": 3,
+   "prompt_tokens": 64963,
+   "haystack_tokens": 64881,
+   "target_tokens": 64886,
+   "answers": [
+    "AODGV",
+    "VYERO",
+    "XKIMW",
+    "HGAJD",
+    "HYHPF"
+   ],
+   "asked_depth": null,
+   "sha256": "ab95fbf00a337113dd9a9e164cec84bb6fd3c4b41e272e633992b6f48c8b82c2"
+  },
+  {
+   "uid": "single-n1-04",
+   "family": "single",
+   "level": 1,
+   "index": 4,
+   "prompt_tokens": 64957,
+   "haystack_tokens": 64887,
+   "target_tokens": 64894,
+   "answers": [
+    "5620167"
+   ],
+   "asked_depth": 0.089987,
+   "sha256": "7f40af6e0647d880905d023bbec97e61250f592fed26026b1fff6a3b806feef5"
+  },
+  {
+   "uid": "multikey-n4-04",
+   "family": "multikey",
+   "level": 4,
+   "index": 4,
+   "prompt_tokens": 64934,
+   "haystack_tokens": 64864,
+   "target_tokens": 64888,
+   "answers": [
+    "8241663"
+   ],
+   "asked_depth": 0.022694,
+   "sha256": "03c799fb1ad92fb84887aa4f723c4a1c494774ccc539c968628bb07180e3c5af"
+  },
+  {
+   "uid": "multivalue-n4-04",
+   "family": "multivalue",
+   "level": 4,
+   "index": 4,
+   "prompt_tokens": 64925,
+   "haystack_tokens": 64854,
+   "target_tokens": 64888,
+   "answers": [
+    "9286131",
+    "7698798",
+    "1145776",
+    "1698148"
+   ],
+   "asked_depth": null,
+   "sha256": "584450c97e63907ca0889a17f23d3c6d3564d885bdbf44acccfd63403c31b409"
+  },
+  {
+   "uid": "vartrack-n5-04",
+   "family": "vartrack",
+   "level": 5,
+   "index": 4,
+   "prompt_tokens": 64956,
+   "haystack_tokens": 64874,
+   "target_tokens": 64886,
+   "answers": [
+    "NQMVK",
+    "RYDZA",
+    "YUIHY",
+    "CFNLC",
+    "GBVZM"
+   ],
+   "asked_depth": null,
+   "sha256": "17d46fb9514934b5ab9c7d59cc5d22ee6aba264545bf3169c5e160db62fc2abe"
+  },
+  {
+   "uid": "single-n1-05",
+   "family": "single",
+   "level": 1,
+   "index": 5,
+   "prompt_tokens": 64919,
+   "haystack_tokens": 64848,
+   "target_tokens": 64894,
+   "answers": [
+    "4047094"
+   ],
+   "asked_depth": 0.110027,
+   "sha256": "9a2f0e1a2a58fc19cae28843d173a074025d767e74e15432c07346e1043e8c26"
+  },
+  {
+   "uid": "multikey-n4-05",
+   "family": "multikey",
+   "level": 4,
+   "index": 5,
+   "prompt_tokens": 64951,
+   "haystack_tokens": 64881,
+   "target_tokens": 64888,
+   "answers": [
+    "9850820"
+   ],
+   "asked_depth": 0.277662,
+   "sha256": "0f8ae0db2a0c763683fd99bc8a487c6dafac48cd6bcb7654c42406520b6a2ed7"
+  },
+  {
+   "uid": "multivalue-n4-05",
+   "family": "multivalue",
+   "level": 4,
+   "index": 5,
+   "prompt_tokens": 64955,
+   "haystack_tokens": 64883,
+   "target_tokens": 64888,
+   "answers": [
+    "2637612",
+    "9547946",
+    "1970702",
+    "5143564"
+   ],
+   "asked_depth": null,
+   "sha256": "cdc4362801fcb04dca1ade5eb1918d827f75cf9510ba8aa03c32b7d546f6f6af"
+  },
+  {
+   "uid": "vartrack-n5-05",
+   "family": "vartrack",
+   "level": 5,
+   "index": 5,
+   "prompt_tokens": 64954,
+   "haystack_tokens": 64872,
+   "target_tokens": 64886,
+   "answers": [
+    "AXRCV",
+    "KAYNK",
+    "LAGVJ",
+    "SSFVA",
+    "AYRVL"
+   ],
+   "asked_depth": null,
+   "sha256": "906b60e3c27b3099c642ec957000bf5b8807944107db3d3beb6653fc63c69117"
+  },
+  {
+   "uid": "single-n1-06",
+   "family": "single",
+   "level": 1,
+   "index": 6,
+   "prompt_tokens": 64955,
+   "haystack_tokens": 64885,
+   "target_tokens": 64894,
+   "answers": [
+    "5985341"
+   ],
+   "asked_depth": 0.129768,
+   "sha256": "ea2d8b26761c6ed63c6a72c7b10dbd32313e745437b8eb647140022d1f4663bf"
+  },
+  {
+   "uid": "multikey-n4-06",
+   "family": "multikey",
+   "level": 4,
+   "index": 6,
+   "prompt_tokens": 64953,
+   "haystack_tokens": 64882,
+   "target_tokens": 64888,
+   "answers": [
+    "6240732"
+   ],
+   "asked_depth": 0.532305,
+   "sha256": "2bf617fe24af5060f25a0fb095edbee73d422e919c8d363f142e2fb4e9ec0b65"
+  },
+  {
+   "uid": "multivalue-n4-06",
+   "family": "multivalue",
+   "level": 4,
+   "index": 6,
+   "prompt_tokens": 64951,
+   "haystack_tokens": 64880,
+   "target_tokens": 64888,
+   "answers": [
+    "4675731",
+    "1411132",
+    "4614856",
+    "1684476"
+   ],
+   "asked_depth": null,
+   "sha256": "2938a0cf4a344b7583742ccd33af87427a372e37febb91762240cec79c93a983"
+  },
+  {
+   "uid": "vartrack-n5-06",
+   "family": "vartrack",
+   "level": 5,
+   "index": 6,
+   "prompt_tokens": 64952,
+   "haystack_tokens": 64870,
+   "target_tokens": 64886,
+   "answers": [
+    "CGRBT",
+    "VEBWE",
+    "OUGGQ",
+    "IXXDH",
+    "ZGBFW"
+   ],
+   "asked_depth": null,
+   "sha256": "cd1984607e502958935882ebed316c79d715431fa340c918c4d13c727b5b2957"
+  },
+  {
+   "uid": "single-n1-07",
+   "family": "single",
+   "level": 1,
+   "index": 7,
+   "prompt_tokens": 64936,
+   "haystack_tokens": 64867,
+   "target_tokens": 64894,
+   "answers": [
+    "3858159"
+   ],
+   "asked_depth": 0.149938,
+   "sha256": "d234362110eb944144b283fd647254356382b6a4519f02e5f3bd7b14d1ab8419"
+  },
+  {
+   "uid": "multikey-n4-07",
+   "family": "multikey",
+   "level": 4,
+   "index": 7,
+   "prompt_tokens": 64957,
+   "haystack_tokens": 64887,
+   "target_tokens": 64888,
+   "answers": [
+    "2181405"
+   ],
+   "asked_depth": 0.788586,
+   "sha256": "17ca58b223de891c943762ab6114d665610c87e9fc21b9f0cb851343075f27ee"
+  },
+  {
+   "uid": "multivalue-n4-07",
+   "family": "multivalue",
+   "level": 4,
+   "index": 7,
+   "prompt_tokens": 64947,
+   "haystack_tokens": 64876,
+   "target_tokens": 64888,
+   "answers": [
+    "6095739",
+    "4229530",
+    "9602362",
+    "9329438"
+   ],
+   "asked_depth": null,
+   "sha256": "d39214c3c765c8bc9770f43e4db9b910c53b17407dac20f7b20f15f87474b642"
+  },
+  {
+   "uid": "vartrack-n5-07",
+   "family": "vartrack",
+   "level": 5,
+   "index": 7,
+   "prompt_tokens": 64964,
+   "haystack_tokens": 64882,
+   "target_tokens": 64886,
+   "answers": [
+    "GHBXD",
+    "VMBET",
+    "LQXGG",
+    "UWHFM",
+    "TYJOH"
+   ],
+   "asked_depth": null,
+   "sha256": "bc98caebecd986744185f7ed26056e6d534d9f6e45159a3c96fce48193c51e02"
+  },
+  {
+   "uid": "multikey-k128-08",
+   "family": "multikey",
+   "level": 128,
+   "index": 8,
+   "prompt_tokens": 64697,
+   "haystack_tokens": 64627,
+   "target_tokens": 64640,
+   "answers": [
+    "6594537"
+   ],
+   "asked_depth": 0.063812,
+   "sha256": "b7bd40d9a14a91bc2df51b23291890ce9e6366ef12aeabfdfda4d5263c391aa7"
+  },
+  {
+   "uid": "vartrack-c4-08",
+   "family": "vartrack",
+   "level": 4,
+   "index": 8,
+   "prompt_tokens": 64961,
+   "haystack_tokens": 64879,
+   "target_tokens": 64888,
+   "answers": [
+    "CUQCK",
+    "SYHKW",
+    "YMXYU",
+    "GKMJM"
+   ],
+   "asked_depth": null,
+   "sha256": "303f5922d48963e0f1379e64763ad24285ed1d80d475cc4e10be85cac50d62c2"
+  },
+  {
+   "uid": "multikey-k128-09",
+   "family": "multikey",
+   "level": 128,
+   "index": 9,
+   "prompt_tokens": 64693,
+   "haystack_tokens": 64623,
+   "target_tokens": 64640,
+   "answers": [
+    "4844629"
+   ],
+   "asked_depth": 0.072946,
+   "sha256": "d07359914667fd3fbb66b8176c6a9e7cd779486d8a5bc6184994d5374c2b499d"
+  },
+  {
+   "uid": "vartrack-c4-09",
+   "family": "vartrack",
+   "level": 4,
+   "index": 9,
+   "prompt_tokens": 64945,
+   "haystack_tokens": 64863,
+   "target_tokens": 64888,
+   "answers": [
+    "TDUTI",
+    "FZPHZ",
+    "KLIYW",
+    "ZULSA"
+   ],
+   "asked_depth": null,
+   "sha256": "7e1007f4416b91bd6cea734288a0eeced235f907d2b327221bc709b8c66410d0"
+  },
+  {
+   "uid": "multikey-k128-10",
+   "family": "multikey",
+   "level": 128,
+   "index": 10,
+   "prompt_tokens": 64692,
+   "haystack_tokens": 64622,
+   "target_tokens": 64640,
+   "answers": [
+    "8633366"
+   ],
+   "asked_depth": 0.079509,
+   "sha256": "dfcd384b01a1dd8309fff362832a766d4490818d3a35b55cf68b94721f73f45f"
+  },
+  {
+   "uid": "vartrack-c4-10",
+   "family": "vartrack",
+   "level": 4,
+   "index": 10,
+   "prompt_tokens": 64969,
+   "haystack_tokens": 64887,
+   "target_tokens": 64888,
+   "answers": [
+    "QGISL",
+    "QAHXN",
+    "SXRVF",
+    "MUWNB"
+   ],
+   "asked_depth": null,
+   "sha256": "7af06fd3f19f858fcf4153e08115607745b893944e1228428c7c21f28f9044b8"
+  },
+  {
+   "uid": "multikey-k128-11",
+   "family": "multikey",
+   "level": 128,
+   "index": 11,
+   "prompt_tokens": 64680,
+   "haystack_tokens": 64610,
+   "target_tokens": 64640,
+   "answers": [
+    "5658363"
+   ],
+   "asked_depth": 0.087448,
+   "sha256": "be5559aa0ae6814a9c01ca7a56c24e06b3c63c2e806797b76739bd01712e4e35"
+  },
+  {
+   "uid": "vartrack-c4-11",
+   "family": "vartrack",
+   "level": 4,
+   "index": 11,
+   "prompt_tokens": 64949,
+   "haystack_tokens": 64867,
+   "target_tokens": 64888,
+   "answers": [
+    "URBXE",
+    "JKMTL",
+    "JZQOI",
+    "GMRXE"
+   ],
+   "asked_depth": null,
+   "sha256": "ca8fb4fb0c2cc0d6858ff0a0e432c852adae079a0c3c4cd7f339a1258fbf8eb2"
+  },
+  {
+   "uid": "multikey-k128-12",
+   "family": "multikey",
+   "level": 128,
+   "index": 12,
+   "prompt_tokens": 64701,
+   "haystack_tokens": 64630,
+   "target_tokens": 64640,
+   "answers": [
+    "1413257"
+   ],
+   "asked_depth": 0.095606,
+   "sha256": "f6b0d94f1ea93ad1d7e4b89f77269d9ec7e1b9e3e0f36f05a3534f9d90d8ce28"
+  },
+  {
+   "uid": "vartrack-c4-12",
+   "family": "vartrack",
+   "level": 4,
+   "index": 12,
+   "prompt_tokens": 64968,
+   "haystack_tokens": 64886,
+   "target_tokens": 64888,
+   "answers": [
+    "MHPIG",
+    "CCABW",
+    "ATDGT",
+    "SXPES"
+   ],
+   "asked_depth": null,
+   "sha256": "0af7eaac0f27f25528b9b5e2f459cec667665320b4bf7b40c97116fb7cb25f85"
+  },
+  {
+   "uid": "multikey-k128-13",
+   "family": "multikey",
+   "level": 128,
+   "index": 13,
+   "prompt_tokens": 64695,
+   "haystack_tokens": 64624,
+   "target_tokens": 64640,
+   "answers": [
+    "7131211"
+   ],
+   "asked_depth": 0.103506,
+   "sha256": "84ce2f03f61dd5b81a847e2d81899f5769837e482b03b6706015eb7c4d831dfe"
+  },
+  {
+   "uid": "vartrack-c4-13",
+   "family": "vartrack",
+   "level": 4,
+   "index": 13,
+   "prompt_tokens": 64947,
+   "haystack_tokens": 64865,
+   "target_tokens": 64888,
+   "answers": [
+    "CYOOX",
+    "MNRNJ",
+    "VCKBC",
+    "JWSAC"
+   ],
+   "asked_depth": null,
+   "sha256": "a27dba32632586d57dc4e706af9106a51097b3d67d6da82cb7dc5582e965a01e"
+  },
+  {
+   "uid": "multikey-k128-14",
+   "family": "multikey",
+   "level": 128,
+   "index": 14,
+   "prompt_tokens": 64684,
+   "haystack_tokens": 64613,
+   "target_tokens": 64640,
+   "answers": [
+    "9922781"
+   ],
+   "asked_depth": 0.111618,
+   "sha256": "42e37b18384958665dad7d9e3017f7fd25c1741a7dd8b148b007575e599e7a9b"
+  },
+  {
+   "uid": "vartrack-c4-14",
+   "family": "vartrack",
+   "level": 4,
+   "index": 14,
+   "prompt_tokens": 64958,
+   "haystack_tokens": 64876,
+   "target_tokens": 64888,
+   "answers": [
+    "BOGXV",
+    "NBHUP",
+    "OJJKO",
+    "ZGEMU"
+   ],
+   "asked_depth": null,
+   "sha256": "118a6d8641599a951bfd3055506c532dec14c045188c59184fe6ea9721c6d050"
+  },
+  {
+   "uid": "multikey-k128-15",
+   "family": "multikey",
+   "level": 128,
+   "index": 15,
+   "prompt_tokens": 64695,
+   "haystack_tokens": 64625,
+   "target_tokens": 64640,
+   "answers": [
+    "1673005"
+   ],
+   "asked_depth": 0.119458,
+   "sha256": "d397b54875cd9e8ad3ecd70c5ed238d6e3657623a4653ceb1fd145c5d1c33d6b"
+  },
+  {
+   "uid": "vartrack-c4-15",
+   "family": "vartrack",
+   "level": 4,
+   "index": 15,
+   "prompt_tokens": 64950,
+   "haystack_tokens": 64868,
+   "target_tokens": 64888,
+   "answers": [
+    "SHJLG",
+    "PKVST",
+    "AQMXC",
+    "HZSVV"
+   ],
+   "asked_depth": null,
+   "sha256": "357e11c6a184d4efba91aac1acb55017c4c441f3e2c33d43f85e59ca0a45accb"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+# P8 long context stage 1, step 84-96k (research/prereg/2026-11-01-p8-longctx-stage1.md, Amendment 1, item 3).
+# Lane exl3-mtp's config (tools/turing/tabby/exl3-mtp.yml) with this step's context, cache format and recurrent
+# cache. Written by testsuite/p8_longctx/stage1_config.py for this one server start.
+network:
+  host: localhost
+  port: 8098
+  disable_auth: true
+  allowed_origins: []
+  web_ui: false
+logging:
+  log_prompt: false
+  log_generation_params: false
+  log_requests: false
+model:
+  model_dir: /opt/p8/models
+  model_name: qwen38-exl3-2.0
+  backend: exllamav3
+  max_seq_len: 98304
+  cache_size: 98304
+  cache_mode: "8,4"
+  chunk_size: 1024
+  max_batch_size: 1
+  recurrent_checkpoint_interval_pp: 1024
+  vision: false
+draft_model:
+  draft_mode: mtp
+  draft_cache_mode: "8,4"
+  dynamic_draft: true
+  draft_num_tokens: 6
+  sparse_draft_head: 0
+memory:
+  sysmem_recurrent_cache: 2048

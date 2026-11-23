@@ -1,0 +1,522 @@
+{
+  "can_keep_all_tested_leads": false,
+  "comparisons": [
+    {
+      "anchor": "r1-w13-nd-0",
+      "competitor": 47.23179454169374,
+      "competitor_arm": "r1-ninferno-nif-nd-0",
+      "complete": true,
+      "eligible": true,
+      "id": "r1-ninferno-nif-nd-0",
+      "keep": true,
+      "ratio": 1.0109384695973982,
+      "rounds": [
+        {
+          "competitor": 47.25921185418564,
+          "ratio": 1.010981358016522,
+          "round": 1,
+          "w13": 47.7781821791351
+        },
+        {
+          "competitor": 47.14346222077627,
+          "ratio": 1.0123792064133237,
+          "round": 2,
+          "w13": 47.72706087064599
+        },
+        {
+          "competitor": 47.292970097049114,
+          "ratio": 1.0094882227562363,
+          "round": 3,
+          "w13": 47.741696332133934
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 47.32386034531629,
+          "ratio": 1.0108382488001002,
+          "task": "code",
+          "w13": 47.83676811792002
+        },
+        {
+          "competitor": 47.31394775751602,
+          "ratio": 1.0090573966667287,
+          "task": "math",
+          "w13": 47.74248895022472
+        },
+        {
+          "competitor": 47.05853518054424,
+          "ratio": 1.0130793201484845,
+          "task": "prose",
+          "w13": 47.6740288278893
+        }
+      ],
+      "w13": 47.748438090318615
+    },
+    {
+      "anchor": "r1-w13-mtp-0",
+      "competitor": 54.369628521400955,
+      "competitor_arm": "r1-ninferno-nif-df2-0",
+      "complete": true,
+      "eligible": true,
+      "id": "r1-ninferno-nif-df2-0",
+      "keep": true,
+      "ratio": 1.3372273184831762,
+      "rounds": [
+        {
+          "competitor": 55.010780107299674,
+          "ratio": 1.3085971917589936,
+          "round": 1,
+          "w13": 71.98695236488386
+        },
+        {
+          "competitor": 50.25487334855812,
+          "ratio": 1.4555351309134894,
+          "round": 2,
+          "w13": 73.14773365843438
+        },
+        {
+          "competitor": 58.47597003106536,
+          "ratio": 1.2482037635430527,
+          "round": 3,
+          "w13": 72.98992586960654
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 60.336564901088884,
+          "ratio": 1.4673921815016773,
+          "task": "code",
+          "w13": 88.53740359452635
+        },
+        {
+          "competitor": 94.85463033866067,
+          "ratio": 0.9711180943699477,
+          "task": "math",
+          "w13": 92.11504785664597
+        },
+        {
+          "competitor": 35.63573596146886,
+          "ratio": 1.4682590508372961,
+          "task": "prose",
+          "w13": 52.322491858674766
+        }
+      ],
+      "w13": 72.70455255459942
+    },
+    {
+      "anchor": "r1-w13-nd-28k",
+      "competitor": 41.38109401267296,
+      "competitor_arm": "r1-ninferno-nif-nd-28k",
+      "complete": true,
+      "eligible": true,
+      "id": "r1-ninferno-nif-nd-28k",
+      "keep": true,
+      "ratio": 1.0679954883589928,
+      "rounds": [
+        {
+          "competitor": 41.39313779387511,
+          "ratio": 1.0677963322489243,
+          "round": 1,
+          "w13": 44.19944071657417
+        },
+        {
+          "competitor": 41.433110882126044,
+          "ratio": 1.0645885895937044,
+          "round": 2,
+          "w13": 44.10921707648213
+        },
+        {
+          "competitor": 41.317200974827706,
+          "ratio": 1.071743504220273,
+          "round": 3,
+          "w13": 44.281441757335124
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 41.485706877552346,
+          "ratio": 1.066792217715973,
+          "task": "code",
+          "w13": 44.256629243418864
+        },
+        {
+          "competitor": 41.41523627715853,
+          "ratio": 1.0663971522717994,
+          "task": "math",
+          "w13": 44.16509002662557
+        },
+        {
+          "competitor": 41.24309258752074,
+          "ratio": 1.0711253508812297,
+          "task": "prose",
+          "w13": 44.1765220192352
+        }
+      ],
+      "w13": 44.194821708894054
+    },
+    {
+      "anchor": "r1-w13-mtp-28k",
+      "competitor": 51.62030398623458,
+      "competitor_arm": "r1-ninferno-nif-df2-28k",
+      "complete": true,
+      "eligible": true,
+      "id": "r1-ninferno-nif-df2-28k",
+      "keep": true,
+      "ratio": 1.283606975095276,
+      "rounds": [
+        {
+          "competitor": 48.164360881508145,
+          "ratio": 1.3769134513666854,
+          "round": 1,
+          "w13": 66.31815637422795
+        },
+        {
+          "competitor": 52.59805633744941,
+          "ratio": 1.25828595212072,
+          "round": 2,
+          "w13": 66.1833953982668
+        },
+        {
+          "competitor": 54.518737266538416,
+          "ratio": 1.215829050120795,
+          "round": 3,
+          "w13": 66.28546454456058
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 64.50908418939464,
+          "ratio": 1.2807585968304518,
+          "task": "code",
+          "w13": 82.62056414922657
+        },
+        {
+          "competitor": 87.83567409305091,
+          "ratio": 0.9816612776116634,
+          "task": "math",
+          "w13": 86.22488005006605
+        },
+        {
+          "competitor": 32.02041301329598,
+          "ratio": 1.4781920040429686,
+          "task": "prose",
+          "w13": 47.33231848240754
+        }
+      ],
+      "w13": 66.26018225326919
+    },
+    {
+      "anchor": "r2nd-w13-nd-0",
+      "competitor": 24.956293990342434,
+      "competitor_arm": "r2nd-llama-lcpp-nd-0",
+      "complete": true,
+      "eligible": false,
+      "id": "r2nd-llama-lcpp-nd-0",
+      "keep": false,
+      "ratio": 1.912485240196383,
+      "rounds": [
+        {
+          "competitor": 25.210332297127398,
+          "ratio": 1.9050528422237512,
+          "round": 1,
+          "w13": 48.02701519604778
+        },
+        {
+          "competitor": 24.827372177826053,
+          "ratio": 1.9210791072027424,
+          "round": 2,
+          "w13": 47.69534597756828
+        },
+        {
+          "competitor": 24.834999240074893,
+          "ratio": 1.911278260547102,
+          "round": 3,
+          "w13": 47.46659414825894
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 25.0078963735294,
+          "ratio": 1.915562624750499,
+          "task": "code",
+          "w13": 47.90419161676647
+        },
+        {
+          "competitor": 24.950375392692266,
+          "ratio": 1.9101610981482404,
+          "task": "math",
+          "w13": 47.65923645931589
+        },
+        {
+          "competitor": 24.910801167693805,
+          "ratio": 1.9117482916423798,
+          "task": "prose",
+          "w13": 47.62318157578163
+        }
+      ],
+      "w13": 47.7285439065316
+    },
+    {
+      "anchor": "r2nd-w13-nd-28k",
+      "competitor": 21.106226428403264,
+      "competitor_arm": "r2nd-llama-lcpp-nd-28k",
+      "complete": true,
+      "eligible": false,
+      "id": "r2nd-llama-lcpp-nd-28k",
+      "keep": false,
+      "ratio": 2.090648547484661,
+      "rounds": [
+        {
+          "competitor": 21.109803964685057,
+          "ratio": 2.093007855868716,
+          "round": 1,
+          "w13": 44.182985533934385
+        },
+        {
+          "competitor": 21.115375732714536,
+          "ratio": 2.0863673561906455,
+          "round": 2,
+          "w13": 44.05443064243574
+        },
+        {
+          "competitor": 21.093511822528857,
+          "ratio": 2.092748927360438,
+          "round": 3,
+          "w13": 44.14342424086198
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 21.110674359601646,
+          "ratio": 2.0898599222334115,
+          "task": "code",
+          "w13": 44.11835227545197
+        },
+        {
+          "competitor": 21.10452510696532,
+          "ratio": 2.093791174964471,
+          "task": "math",
+          "w13": 44.18846842078009
+        },
+        {
+          "competitor": 21.103481250051523,
+          "ratio": 2.0881107969102275,
+          "task": "prose",
+          "w13": 44.06640705062513
+        }
+      ],
+      "w13": 44.12570162542365
+    },
+    {
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor_arm": "r2draft-llama-lcpp-df2-0",
+      "complete": false,
+      "eligible": false,
+      "id": "r2draft-llama-lcpp-df2-0",
+      "keep": false
+    },
+    {
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor": 6.306114221136047,
+      "competitor_arm": "r2draft-llama-lcpp-mtp-0",
+      "complete": true,
+      "eligible": false,
+      "id": "r2draft-llama-lcpp-mtp-0",
+      "keep": false,
+      "ratio": 11.911372540852836,
+      "rounds": [
+        {
+          "competitor": 6.281032019359973,
+          "ratio": 11.85676606060606,
+          "round": 1,
+          "w13": 74.47272727272727
+        },
+        {
+          "competitor": 6.257108498913153,
+          "ratio": 12.213218818201474,
+          "round": 2,
+          "w13": 76.4194352664545
+        },
+        {
+          "competitor": 6.381578510034367,
+          "ratio": 11.67538830194903,
+          "round": 3,
+          "w13": 74.50740708402456
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 7.845220340368153,
+          "ratio": 11.557592741240466,
+          "task": "code",
+          "w13": 90.67186165927102
+        },
+        {
+          "competitor": 7.846743295019157,
+          "ratio": 12.067094896990469,
+          "task": "math",
+          "w13": 94.68739597331984
+        },
+        {
+          "competitor": 4.528550209415965,
+          "ratio": 12.061755878294761,
+          "task": "prose",
+          "w13": 54.62226710857598
+        }
+      ],
+      "w13": 75.11447577312148
+    },
+    {
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor_arm": "r2draft-llama-lcpp-df2-28k",
+      "complete": false,
+      "eligible": false,
+      "id": "r2draft-llama-lcpp-df2-28k",
+      "keep": false
+    },
+    {
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor": 5.802725467618072,
+      "competitor_arm": "r2draft-llama-lcpp-mtp-28k",
+      "complete": true,
+      "eligible": false,
+      "id": "r2draft-llama-lcpp-mtp-28k",
+      "keep": false,
+      "ratio": 11.499902883988012,
+      "rounds": [
+        {
+          "competitor": 5.5887183569750185,
+          "ratio": 11.819740212280522,
+          "round": 1,
+          "w13": 66.05719909904795
+        },
+        {
+          "competitor": 6.088502085787629,
+          "ratio": 11.10972176367326,
+          "round": 2,
+          "w13": 67.64156413064485
+        },
+        {
+          "competitor": 5.7529942912018885,
+          "ratio": 11.555017456144975,
+          "round": 3,
+          "w13": 66.47594945994021
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 6.88273803922623,
+          "ratio": 12.049950227175753,
+          "task": "code",
+          "w13": 82.93665079936531
+        },
+        {
+          "competitor": 7.367910065447763,
+          "ratio": 11.907627631744292,
+          "task": "math",
+          "w13": 87.73432948353268
+        },
+        {
+          "competitor": 4.237580385741204,
+          "ratio": 11.267010661776135,
+          "task": "prose",
+          "w13": 47.74486338627957
+        }
+      ],
+      "w13": 66.73077934005175
+    },
+    {
+      "anchor": "r0-w13-nd-0",
+      "competitor_arm": "r0-stock-nd-0",
+      "complete": false,
+      "eligible": false,
+      "id": "r0-stock-nd-0",
+      "keep": false
+    },
+    {
+      "anchor": "r0-w13-mtp-0",
+      "competitor": 48.519674252226196,
+      "competitor_arm": "r0-stock-mtp-0",
+      "complete": true,
+      "eligible": false,
+      "id": "r0-stock-mtp-0",
+      "keep": false,
+      "ratio": 1.488665281996404,
+      "rounds": [
+        {
+          "competitor": 48.959845186260274,
+          "ratio": 1.5040774086863746,
+          "round": 1,
+          "w13": 73.63939707743643
+        },
+        {
+          "competitor": 48.10824354798296,
+          "ratio": 1.4769583761229381,
+          "round": 2,
+          "w13": 71.05387326875572
+        },
+        {
+          "competitor": 48.50352724218291,
+          "ratio": 1.485300739184271,
+          "round": 3,
+          "w13": 72.0423248658587
+        }
+      ],
+      "tasks": [
+        {
+          "competitor": 58.89793352836645,
+          "ratio": 1.439270924233161,
+          "task": "code",
+          "w13": 84.77008322479526
+        },
+        {
+          "competitor": 61.36194760264943,
+          "ratio": 1.4792634353319387,
+          "task": "math",
+          "w13": 90.77048540935361
+        },
+        {
+          "competitor": 35.07201636694097,
+          "ratio": 1.5230497440462942,
+          "task": "prose",
+          "w13": 53.416425550856886
+        }
+      ],
+      "w13": 72.22955455306396
+    },
+    {
+      "anchor": "r0-w13-nd-28k",
+      "competitor_arm": "r0-stock-nd-28k",
+      "complete": false,
+      "eligible": false,
+      "id": "r0-stock-nd-28000",
+      "keep": false
+    },
+    {
+      "anchor": "r0-w13-mtp-28k",
+      "competitor_arm": "r0-stock-mtp-28k",
+      "complete": false,
+      "eligible": false,
+      "id": "r0-stock-mtp-28000",
+      "keep": false
+    }
+  ],
+  "complete": false,
+  "freeze_sha256": "6b2853cb07b030dc5229d1b1a219db2086d2f30fac774d15778ee147a0b9fe4c",
+  "measured_rows": 201,
+  "resolved_penalties": {
+    "frequency": 0.0,
+    "presence": 0.0,
+    "repetition": 1.0,
+    "requests": 49
+  },
+  "sampling_equivalence": false,
+  "schema": "p8-refresh14-reviewed-numeric-v1",
+  "session_valid": true,
+  "source_commit": "928488471cbcb6a14e50b4032c76de69d87e7677",
+  "source_tables": {
+    "analysis-02/comparisons.tsv": "807ed622e5e92992d0f6837c90690c39dd99df7d3af872bbb7d45eed85ea4b92",
+    "analysis-02/prompts.tsv": "ef50252af630b30ae9709824551246007fcde3d0534b25aa92fe7aa4bdb98ee1",
+    "analysis-02/rounds.tsv": "51fa4d4a7f5c6680110509f530bfc39eea3cd352825d3866628ae4f063f0a151"
+  }
+}

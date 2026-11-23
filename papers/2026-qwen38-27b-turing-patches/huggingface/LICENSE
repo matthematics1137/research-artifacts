@@ -1,0 +1,18 @@
+# License map
+
+Copyright (c) 2026 Matthew Schwartz.
+
+This candidate proposes the same allocation used for the author's earlier releases;
+final human rights clearance remains pending in the release manifest.
+
+- Original Python/shell code and the lab's patch hunks: MIT, in `LICENSES/MIT.txt`.
+- Paper, original documentation and measurement records: CC BY 4.0, to the extent
+  the author holds the relevant rights:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+- Third-party code and borrowed wording keep their upstream terms and notices;
+  see `THIRD_PARTY_NOTICES.md`. Nothing here relicenses upstream material.
+- Weights, engine source trees, benchmark questions/answers and the LongMemEval
+  chat haystacks are obtained separately and are not redistributed.
+
+Nothing grants rights the author does not hold. Local staging is not permission
+to publish or an assertion of completed rights review.

@@ -1,0 +1,46 @@
+== 2026-11-01T22:06:13-0500 stage1_run.py 88-64k config /opt/p8/runs/longctx/stage1/configs/88-64k-20261101T220613.yml
+22:06:14.170 INFO:     Using config file
+                       /opt/p8/runs/longctx/stage1/confi
+                       gs/88-64k-20261101T220613.yml
+22:06:14.176 INFO:     The 'config.yml' file cannot be found
+22:06:16.505 WARNING:  No sampler overrides are configured
+                       (sampling.override_preset or inline overrides in the
+                       sampling section), so sampling parameters have no
+                       fallback values. Requests that omit them run untruncated:
+                       temperature 1.0, top_k 0, top_p 1.0, min_p 0. Set
+                       override_preset to safe_defaults unless this is
+                       intentional.
+22:06:16.509 INFO:     exllamav3 version: 1.6.5
+22:06:17.738 INFO:     The provided model has vision capabilities, vision is
+                       disabled in config.
+22:06:17.739 INFO:     Using main model MTP component for drafting
+22:06:17.739 INFO:     Disabling GPU split because one GPU is in use.
+22:06:17.739 INFO:     Context: max_seq_len 65,536 tokens (configured),
+                       cache_size 65,536 tokens
+22:06:17.740 INFO:     Recurrent state storage: fp16
+22:06:18.099 INFO:     Using template "chat_template" for chat completions.
+22:06:18.099 INFO:     Response parsing: tool format qwen3_coder (template,
+                       tokenizer, architecture), reasoning tags <think> </think>
+                       (template)
+22:06:18.792 INFO:     Loading model
+                       /opt/p8/models/qwen38-exl3-2.0
+                       (single GPU)
+Loading draft modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 3/3   0:00:00
+Loading model modules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 67/67 0:00:00
+22:06:23.294 INFO:     Using recurrent checkpoint intervals: 2048 tokens
+                       (generation), 1024 tokens (prompt ingestion).
+22:06:23.445 INFO:     Model loaded in 5.3 s
+
+22:06:23.446 WARNING:  Disabling authentication makes your instance vulnerable.
+                       Set the `disable_auth` flag to False in config.yml if you
+                       want to share this instance with others.
+22:06:23.447 INFO:     Serving OAI API on http://localhost:8097 (docs at
+                       http://localhost:8097/redoc)
+22:06:23.824 INFO:     #3 chat/completions: 64,980 prompt tokens · temperature:
+                       0, greedy (req), max_tokens: 64 (req)
+22:08:12.570 INFO:     #3 chat/completions: 8 tokens generated at 23.9 T/s ·
+                       prompt 64,980 tokens, none cached, 64,980 new in 108.4 s
+                       (599 T/s) · first token 108.4 s, total 108.7 s · draft
+                       4/24 accepted (17%)
+22:08:12.771 WARNING:  Shutdown signal called. Exiting gracefully.
+22:08:13.552 INFO:     Model unloaded.

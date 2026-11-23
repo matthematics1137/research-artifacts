@@ -1,0 +1,172 @@
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
+@@ -14,6 +14,9 @@
+ #include <cstdlib>
+ #include <set>
+ #include <map>
++#include <tuple>
++#include <cstdint>
++#include <cstdio>
+ 
+ 
+ // Mode 0: disabled; 1: int8 + error-feedback residual pass (~15-16 bit effective activation
+@@ -154,6 +157,37 @@
+     return ws.ws;
+ }
+ 
++// Turing port (local_llms Paper 8, W9): host-chosen slice height for the m <= 2 kernel. The kernel's own rule
++// (take the smallest slice height whose units fit one wave of the grid) sizes the grid from the occupancy of a
++// guessed slice height, then rounds rows_per and ksplit up separately. On a 64 KB part that leaves two cases:
++//  - a wide output (the 248K-column head) gets a single slice of all rows: about 37 KB of shared memory per block
++//    at K = 3, so one block per SM (8 warps) streams the whole matrix;
++//  - some shapes (17408 x 5120, 5120 x 10240 at 272 blocks) end up with ksplit x columns a few units over the grid,
++//    so a second, nearly empty wave follows the first.
++// The host instead scores each ksplit (with the smallest 8-row multiple that gives it) by the per-block critical
++// path at the grid its shared memory allows: waves x slice weight bytes, plus the epilogue's reads of the ksplit
++// partials, times max(blocks per SM, SQ_FIT_SAT), so that fewer than SQ_FIT_SAT resident blocks count as
++// latency-bound. The lowest score wins (ties: fewer slices), and the kernel receives that rows_per, so host and
++// kernel cannot disagree on the decomposition. EXL3_INT8_SQ_FIT=0 keeps the kernel's own rule, 1 forces the
++// host's; the default is on where the opt-in shared memory is under 80 KB. EXL3_INT8_SQ_FIT_LOG=1 prints each
++// shape's choice once. Only the decomposition changes: per-slice activation scales follow the slice height, so
++// numerics change with it and are measured.
++#define SQ_FIT_SAT 4
++static std::map<std::tuple<void*, int, int>, std::pair<int, int>> gemv_sq_fit_cache[MAX_DEVICES];
++
++static int gemv_int8_sq_fit_mode(int device)
++{
++    static const int env = [] { const char* e = getenv("EXL3_INT8_SQ_FIT"); return e ? atoi(e) : -1; }();
++    if (env >= 0) return env;
++    return DevCtx::instance().get_smem_max(device) < 80 * 1024 ? 1 : 0;
++}
++
++static bool gemv_int8_sq_fit_log()
++{
++    static const bool on = [] { const char* e = getenv("EXL3_INT8_SQ_FIT_LOG"); return e && atoi(e) != 0; }();
++    return on;
++}
++
+ // m == 1 fast path: per-slice-scale kernel, regular launch. Returns false to fall through to the
+ // cooperative kernel (and from there to the regular fp16 kernel).
+ static bool exl3_gemv_int8_sq
+@@ -205,21 +239,67 @@
+         cuda_check(cudaPeekAtLastError());
+     }
+ 
++    auto occupancy = [&] (size_t smem_) -> int
++    {
++        int maxb_;
++        auto occ_key = std::make_pair(fn, smem_);
++        auto occ_it = gemv_occ_cache[device].find(occ_key);
++        if (occ_it != gemv_occ_cache[device].end()) return occ_it->second;
++        maxb_ = 1;
++        cudaOccupancyMaxActiveBlocksPerMultiprocessor(&maxb_, fn, NUM_THREADS, smem_);
++        gemv_occ_cache[device][occ_key] = maxb_;
++        return maxb_;
++    };
++
+     int ksplit, rows_per;
+     decomp(6 * num_sms, ksplit, rows_per);
+-    size_t smem_guess = smem_for(rows_per);
+-    int maxb;
+-    auto occ_key = std::make_pair(fn, smem_guess);
+-    auto occ_it = gemv_occ_cache[device].find(occ_key);
+-    if (occ_it != gemv_occ_cache[device].end()) maxb = occ_it->second;
+-    else
+-    {
+-        maxb = 1;
+-        cudaOccupancyMaxActiveBlocksPerMultiprocessor(&maxb, fn, NUM_THREADS, smem_guess);
+-        gemv_occ_cache[device][occ_key] = maxb;
+-    }
++    int maxb = occupancy(smem_for(rows_per));
+     int grid = MIN(MAX(maxb, 1) * num_sms, 1024);
+     decomp(grid, ksplit, rows_per);
++
++    // W9: the host's choice of slice height (see gemv_int8_sq_fit_mode)
++    int rows_per_host = 0;
++    if (gemv_int8_sq_fit_mode(device))
++    {
++        auto fit_key = std::make_tuple(fn, size_k, size_n);
++        auto fit_it = gemv_sq_fit_cache[device].find(fit_key);
++        if (fit_it != gemv_sq_fit_cache[device].end())
++        {
++            rows_per_host = fit_it->second.first;
++            if (rows_per_host) grid = fit_it->second.second;
++        }
++        else
++        {
++            int rows_total = size_k / 16;
++            int nb256 = size_n / 256;
++            int hi = MIN(rows_max, (rows_total + 7) & ~7);
++            int64_t row_cost = 4 * (2 * K + (half_k ? 1 : 0));             // one slice row of a 256-column unit, in 64 B
++            int64_t part_cost = 16 * M * (residual ? 2 : 1);                 // one slice's partials for a 256-column group
++            int64_t best = INT64_MAX;
++            int best_rows = 0, best_grid = 0;
++            for (int ks = CEIL_DIVIDE(rows_total, hi); ks <= MIN(rows_total, SQ_KSPLIT_CAP); ++ks)
++            {
++                int rp = MAX((CEIL_DIVIDE(rows_total, ks) + 7) & ~7, SQ_MINROWS);
++                if (rp > hi || CEIL_DIVIDE(rows_total, rp) != ks) continue;
++                int g = MIN(MAX(occupancy(smem_for(rp)), 1) * num_sms, 1024);
++                int64_t waves = CEIL_DIVIDE((int64_t) ks * nb256, (int64_t) g);
++                int64_t cost = (waves * rp * row_cost + ks * part_cost) * MAX(CEIL_DIVIDE(g, num_sms), SQ_FIT_SAT);
++                if (cost < best) { best = cost; best_rows = rp; best_grid = g; }
++            }
++            gemv_sq_fit_cache[device][fit_key] = std::make_pair(best_rows, best_grid);
++            if (gemv_int8_sq_fit_log())
++                fprintf(stderr, "EXL3_INT8_SQ_FIT k=%d n=%d K=%d%s M=%d residual=%d: kernel rule rows_per=%d ksplit=%d grid=%d -> host rows_per=%d ksplit=%d grid=%d\n",
++                        size_k, size_n, K, half_k ? ".5" : "", M, (int) residual, rows_per, ksplit, grid,
++                        best_rows, best_rows ? CEIL_DIVIDE(rows_total, best_rows) : 0, best_grid);
++            rows_per_host = best_rows;
++            if (rows_per_host) grid = best_grid;
++        }
++        if (rows_per_host)
++        {
++            rows_per = rows_per_host;
++            ksplit = CEIL_DIVIDE(size_k / 16, rows_per);
++        }
++    }
+     size_t smem = smem_for(rows_per);
+     if (ksplit > SQ_KSPLIT_CAP) return false;
+     if (size_n / 256 > SQ_COUNTERS_CAP) return false;
+@@ -239,7 +319,8 @@
+         (void*) &ws_ptr,
+         (void*) &suh_ptr,
+         (void*) &A_had_ptr,
+-        (void*) &svh_ptr
++        (void*) &svh_ptr,
++        (void*) &rows_per_host
+     };
+ 
+     cudaError_t err = cudaLaunchKernel(fn, dim3(grid), dim3(NUM_THREADS), kernelArgs, smem, stream);
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8_kernel.cuh
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8_kernel.cuh
+@@ -1015,7 +1015,8 @@
+     int* __restrict__ locks,
+     const half* __restrict__ suh,
+     half* __restrict__ A_had,
+-    const half* __restrict__ svh
++    const half* __restrict__ svh,
++    const int rows_per_host     // Turing port (local_llms Paper 8, W9): slice height chosen by the host, 0 = rule below
+ )
+ {
+     extern __shared__ uint32_t shmem[];
+@@ -1027,11 +1028,15 @@
+     // to 32 rows, since very short slices inflate ksplit and the epilogue's serial per-slice combine
+     int rows_total = size_k >> 4;
+     int nb256_total = size_n / 256;
+-    int r = CEIL_DIVIDE(rows_total * nb256_total, (int) gridDim.x);
+-    int rows_per = (MAX(r, MIN(2 * r, 32)) + 7) & ~7;
+-    rows_per = MAX(rows_per, SQ_MINROWS);
+-    rows_per = MIN(rows_per, gemv_int8_sq_rows_max(M, residual));
+-    rows_per = MIN(rows_per, (rows_total + 7) & ~7);
++    int rows_per = rows_per_host;
++    if (rows_per <= 0)
++    {
++        int r = CEIL_DIVIDE(rows_total * nb256_total, (int) gridDim.x);
++        rows_per = (MAX(r, MIN(2 * r, 32)) + 7) & ~7;
++        rows_per = MAX(rows_per, SQ_MINROWS);
++        rows_per = MIN(rows_per, gemv_int8_sq_rows_max(M, residual));
++        rows_per = MIN(rows_per, (rows_total + 7) & ~7);
++    }
+     int ksplit = CEIL_DIVIDE(rows_total, rows_per);
+     int units = nb256_total * ksplit;
+     int slice_stride = rows_per * 16;

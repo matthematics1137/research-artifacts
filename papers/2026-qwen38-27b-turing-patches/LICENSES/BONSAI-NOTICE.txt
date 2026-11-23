@@ -1,0 +1,29 @@
+Ternary Bonsai 2 27B, NInfer v3 artifact
+
+This repository re-encodes the weights listed below into NInfer's container format. Each source is
+available under the Apache License 2.0; their attribution notices follow unchanged.
+
+Modifications: the ternary text projections, output head and token-embedding table are copied
+without rounding from the PQ2_0 GGUF; norms, GDN value-head order and A_log are converted back from
+llama.cpp's exporter conventions; the MTP head is re-encoded as Q8; the DFlash2 adapter as Q8 with
+Q4 gate/up projections; the Vision tower as groupwise Q4/Q5/Q6/Q8.
+
+--- Ternary Bonsai 2 27B (prism-ml/Ternary-Bonsai-2-27B-gguf), NOTICE.txt ---
+This software is copyright 2026-present Prism ML, Inc. It is available under the Apache 2.0 license.
+If you publicly deploy or redistribute this software, we would appreciate attribution such as: "Created using Bonsai by Prism ML."
+
+This software is built from Qwen3.8-27B, Copyright 2026 Alibaba Cloud, which is available under the Apache 2.0 License: https://huggingface.co/Qwen/Qwen3.8-27B/blob/main/LICENSE
+
+--- Ternary Bonsai 2 27B MTP head (ProCreations/Ternary-Bonsai-2-27B-MTP), NOTICE ---
+This software is copyright 2026-present Prism ML, Inc. It is available under the Apache 2.0 license.
+If you publicly deploy or redistribute this software, we would appreciate attribution such as: "Created using Bonsai by Prism ML."
+
+This software is built from Qwen3.8-27B, Copyright 2026 Alibaba Cloud, which is available under the Apache 2.0 License: https://huggingface.co/Qwen/Qwen3.8-27B/blob/main/LICENSE
+
+Adapted MTP head and integration by ProCreations, 2026. Modifications: fine-tuned the Qwen3.8-27B MTP head against frozen Bonsai features; added runtime inverse-rotation handling for the MTP embedding lookup. Main Bonsai tensor payloads are unchanged.
+
+--- Ternary Bonsai 2 27B DFlash2 adapter (ProCreations/Ternary-Bonsai-2-27B-DFlash2), NOTICE ---
+Independent Bonsai DFlash2 adaptation by ProCreations, September 2026. Derived model weights: z-lab Qwen3.8-27B-DFlash2 and frozen Prism Ternary-Bonsai-2-27B target; Apache-2.0. Runtime: Prism/llama.cpp with upstream DFlash2 contribution (PR27342), plus Bonsai rotation integration. Training: vendored SpecForge with noncausal block-mask correction. See included upstream model cards, licenses, exact source archives and manifest for provenance.
+
+--- Qwen3.8-27B (Qwen/Qwen3.8-27B): Vision tower, tokenizer and frontend resources ---
+Copyright 2026 Alibaba Cloud. Apache License 2.0: https://huggingface.co/Qwen/Qwen3.8-27B/blob/main/LICENSE

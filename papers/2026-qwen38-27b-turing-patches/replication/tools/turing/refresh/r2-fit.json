@@ -1,0 +1,16 @@
+{
+  "name": "R2-fit",
+  "kind": "fit",
+  "max_seconds": 1500,
+  "configs": [
+    "lcpp-df2",
+    "lcpp-mtp"
+  ],
+  "rungs": [
+    "R0",
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "rung_timeout_seconds": 210
+}

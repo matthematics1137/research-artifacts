@@ -1,0 +1,43 @@
+{
+  "repo": "WaveCut/Ternary-Bonsai-2-27B-NInfer-v3",
+  "revision": "841f7812793972b5de6dc48910bdd1e2722ae48b",
+  "license": "Apache-2.0 (card + NOTICE sources; retain notices)",
+  "files": [
+    {
+      "file": ".gitattributes",
+      "bytes": 1593,
+      "sha256": "86e8fab334d1498f53e642db348d96edc4d40aa479932b52493a66a9ab30eb33",
+      "sha256_source": "downloaded metadata text"
+    },
+    {
+      "file": "NOTICE",
+      "bytes": 2567,
+      "sha256": "470c41b4d483ad10d39a7a29b822d62928cccc09bed4987ee3b4dd52e6baecb6",
+      "sha256_source": "downloaded metadata text"
+    },
+    {
+      "file": "README.md",
+      "bytes": 14009,
+      "sha256": "4f2dcd7c1c0f4f35dbbddaea7c5635a92e3b85058177dc0d64dfbe8a2751c705",
+      "sha256_source": "downloaded metadata text"
+    },
+    {
+      "file": "SHA256SUMS",
+      "bytes": 104,
+      "sha256": "7bc6c518e8db255f9aaf867bf87085126bb60b60c0d98fbca00cabb900aa1d3c",
+      "sha256_source": "downloaded metadata text"
+    },
+    {
+      "file": "Ternary-Bonsai-2-27B-ninfer-v3.ninfer",
+      "bytes": 9520051456,
+      "sha256": "cdc4810b0ff17c40d0f62cf214b6e0bcd08346e9eb05ca53371507037793c14a",
+      "sha256_source": "HF LFS metadata; weights not downloaded"
+    },
+    {
+      "file": "Ternary-Bonsai-2-27B-ninfer-v3.ninfer.conversion.json",
+      "bytes": 477278,
+      "sha256": "a1c05595366ab30a8ce1cd29404289f61478ae53c65d178f816b3aea297d2ae5",
+      "sha256_source": "downloaded metadata text"
+    }
+  ]
+}

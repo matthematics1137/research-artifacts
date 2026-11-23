@@ -1,0 +1,33 @@
+{
+  "auxiliary": {
+    "gpu": "RTX 4080 Laptop GPU",
+    "power_limits_w": [
+      80,
+      175
+    ]
+  },
+  "fleet_record_limit": "Registered configured limits; no per-run device/driver/actual-power-limit snapshot was retained in the pulled fleet evidence. Do not treat the two cards as a controlled hardware comparison.",
+  "fleet_replication": [
+    {
+      "compute_capability": "sm_89",
+      "coordinate": "card-4070",
+      "gpu": "NVIDIA GeForce RTX 4070",
+      "registered_configured_power_limit_w": 200
+    },
+    {
+      "compute_capability": "sm_89",
+      "coordinate": "card-4080-super",
+      "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+      "registered_configured_power_limit_w": 320
+    }
+  ],
+  "primary": {
+    "compute_capability": "sm_75",
+    "driver": "580.178.04",
+    "firmware": "unmodified; stock memory and power limit",
+    "gpu": "NVIDIA RTX 2080 Ti",
+    "memory_mib": 11264,
+    "power_limit_w": 260
+  },
+  "scope": "Primary Turing study plus two separately registered fleet deployment slices, one request at a time; same 2-bit EXL3 weights and w13 target, separate sessions and HTTP paths."
+}

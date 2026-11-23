@@ -1,0 +1,640 @@
+{
+  "schema": "p8-refresh-analysis-v1",
+  "comparisons": [
+    {
+      "id": "r1-ninferno-nif-nd-0",
+      "phase": "R1",
+      "anchor": "r1-w13-nd-0",
+      "competitor": 46.993363003332774,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": null,
+      "w13": 48.24635796536062,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 49.50303592837529,
+          "competitor": 46.895894777336096,
+          "ratio": 1.0555942298023744
+        },
+        {
+          "round": 2,
+          "w13": 47.577158008202105,
+          "competitor": 47.005826763942615,
+          "ratio": 1.0121544770849078
+        },
+        {
+          "round": 3,
+          "w13": 47.70630804112184,
+          "competitor": 47.07872813873513,
+          "ratio": 1.013330434512532
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 48.32802647973117,
+          "competitor": 47.066321840489294
+        },
+        "math": {
+          "w13": 48.235146338399694,
+          "competitor": 47.00956718144591
+        },
+        "prose": {
+          "w13": 48.17614402659724,
+          "competitor": 46.90448707378296
+        }
+      },
+      "eligible_full_residency_comparison": true,
+      "can_keep_current_pooled_lead": true
+    },
+    {
+      "id": "r1-ninferno-nif-df2-0",
+      "phase": "R1",
+      "anchor": "r1-w13-mtp-0",
+      "competitor": 56.660010427015806,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": null,
+      "w13": 73.5820099626725,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 73.72634852979293,
+          "competitor": 59.6820068074789,
+          "ratio": 1.235319528842554
+        },
+        {
+          "round": 2,
+          "w13": 74.36816113101578,
+          "competitor": 56.69528498977566,
+          "ratio": 1.3117168587198604
+        },
+        {
+          "round": 3,
+          "w13": 72.6208432808239,
+          "competitor": 53.89738443291951,
+          "ratio": 1.3473908621893804
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 89.3285003379001,
+          "competitor": 86.35908738235261
+        },
+        "math": {
+          "w13": 92.42767053386606,
+          "competitor": 98.60818653381953
+        },
+        "prose": {
+          "w13": 53.67964157655989,
+          "competitor": 32.02388448050838
+        }
+      },
+      "eligible_full_residency_comparison": true,
+      "can_keep_current_pooled_lead": true
+    },
+    {
+      "id": "r1-ninferno-nif-nd-28k",
+      "phase": "R1",
+      "anchor": "r1-w13-nd-28k",
+      "competitor": 41.226783094155955,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": null,
+      "w13": 44.12459624051076,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 44.08428275425318,
+          "competitor": 41.1679254689016,
+          "ratio": 1.0708405209185148
+        },
+        {
+          "round": 2,
+          "w13": 44.18147995039272,
+          "competitor": 41.2320213891111,
+          "ratio": 1.0715332031249998
+        },
+        {
+          "round": 3,
+          "w13": 44.1114689819353,
+          "competitor": 41.280557287523386,
+          "ratio": 1.0685773613639544
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 44.15902726905513,
+          "competitor": 41.33877340108299
+        },
+        "math": {
+          "w13": 44.02471064403891,
+          "competitor": 41.21697409448777
+        },
+        "prose": {
+          "w13": 44.19279105095981,
+          "competitor": 41.125158637086535
+        }
+      },
+      "eligible_full_residency_comparison": true,
+      "can_keep_current_pooled_lead": true
+    },
+    {
+      "id": "r1-ninferno-nif-df2-28k",
+      "phase": "R1",
+      "anchor": "r1-w13-mtp-28k",
+      "competitor": 46.90009506225865,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": null,
+      "w13": 65.95359955867481,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 66.36698628286999,
+          "competitor": 46.48010070688487,
+          "ratio": 1.4278580569649966
+        },
+        {
+          "round": 2,
+          "w13": 64.56993731335253,
+          "competitor": 45.38872964746904,
+          "ratio": 1.4225984691544031
+        },
+        {
+          "round": 3,
+          "w13": 66.95645130808067,
+          "competitor": 48.973345236576975,
+          "ratio": 1.367201913298595
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 82.2046504345103,
+          "competitor": 57.309156033131856
+        },
+        "math": {
+          "w13": 85.92396754489926,
+          "competitor": 92.25336040072554
+        },
+        "prose": {
+          "w13": 47.43668931439161,
+          "competitor": 28.02940167446478
+        }
+      },
+      "eligible_full_residency_comparison": true,
+      "can_keep_current_pooled_lead": true
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-0",
+      "phase": "R2-nd",
+      "anchor": "r2nd-w13-nd-0",
+      "competitor": 24.982732204411665,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": {
+        "full_offload": false
+      },
+      "w13": 47.80792215347189,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 48.06579005013111,
+          "competitor": 25.241071956774665,
+          "ratio": 1.9042689681501554
+        },
+        {
+          "round": 2,
+          "w13": 47.69302569413811,
+          "competitor": 24.83042244049428,
+          "ratio": 1.9207496694199906
+        },
+        {
+          "round": 3,
+          "w13": 47.65950922205115,
+          "competitor": 24.88069899213731,
+          "ratio": 1.915521313814869
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 47.84214734588419,
+          "competitor": 25.055379566163495
+        },
+        "math": {
+          "w13": 47.68379682232197,
+          "competitor": 24.97211772012369
+        },
+        "prose": {
+          "w13": 47.900307485046746,
+          "competitor": 24.921067062980857
+        }
+      },
+      "eligible_full_residency_comparison": false,
+      "can_keep_current_pooled_lead": false
+    },
+    {
+      "id": "r2nd-llama-lcpp-nd-28k",
+      "phase": "R2-nd",
+      "anchor": "r2nd-w13-nd-28k",
+      "competitor": 21.091561544517475,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": {
+        "full_offload": false
+      },
+      "w13": 44.16883130216943,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 44.18119457165557,
+          "competitor": 21.12182175712655,
+          "ratio": 2.0917321943003677
+        },
+        {
+          "round": 2,
+          "w13": 44.16698786197659,
+          "competitor": 21.080195321184775,
+          "ratio": 2.095188739432148
+        },
+        {
+          "round": 3,
+          "w13": 44.15950320558893,
+          "competitor": 21.072733857956603,
+          "ratio": 2.095575424776471
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 44.172683890535225,
+          "competitor": 21.109513848995515
+        },
+        "math": {
+          "w13": 44.18662350397561,
+          "competitor": 21.08841482669332
+        },
+        "prose": {
+          "w13": 44.14833380279261,
+          "competitor": 21.07678205838927
+        }
+      },
+      "eligible_full_residency_comparison": false,
+      "can_keep_current_pooled_lead": false
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-0",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor": "r2draft-llama-lcpp-df2-0",
+      "full_residency_required": true,
+      "complete": false,
+      "missing_anchor": [],
+      "missing_competitor": [
+        [
+          1,
+          "code"
+        ],
+        [
+          1,
+          "math"
+        ],
+        [
+          1,
+          "prose"
+        ],
+        [
+          2,
+          "code"
+        ],
+        [
+          2,
+          "math"
+        ],
+        [
+          2,
+          "prose"
+        ],
+        [
+          3,
+          "code"
+        ],
+        [
+          3,
+          "math"
+        ],
+        [
+          3,
+          "prose"
+        ]
+      ],
+      "fit": {
+        "rung": null,
+        "status": "failed-all-attempted-rungs",
+        "attempts": [
+          {
+            "rung": "R0",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R1",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R2",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R3",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          }
+        ]
+      },
+      "can_keep_current_pooled_lead": false
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-0",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-0",
+      "competitor": 6.308930586976987,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": {
+        "rung": "R3",
+        "status": "measured-fit",
+        "attempts": [
+          {
+            "rung": "R0",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R1",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R2",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R3",
+            "ok": true,
+            "why": "loaded and both warm-ups completed",
+            "layers": [],
+            "verified_full": false
+          }
+        ],
+        "full_offload": false,
+        "partial_or_unknown": true,
+        "context": 29696
+      },
+      "w13": 72.82162613233717,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 71.79583060671217,
+          "competitor": 6.1628929646725,
+          "ratio": 11.649696176498084
+        },
+        {
+          "round": 2,
+          "w13": 72.89770936486474,
+          "competitor": 6.517245241901813,
+          "ratio": 11.185356183342316
+        },
+        {
+          "round": 3,
+          "w13": 73.82947264662396,
+          "competitor": 6.25720026136847,
+          "ratio": 11.799122540865778
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 87.14868964828388,
+          "competitor": 7.530364134287572
+        },
+        "math": {
+          "w13": 94.04964547692232,
+          "competitor": 8.014133257922566
+        },
+        "prose": {
+          "w13": 52.956386829856925,
+          "competitor": 4.588394707095522
+        }
+      },
+      "eligible_full_residency_comparison": false,
+      "can_keep_current_pooled_lead": false
+    },
+    {
+      "id": "r2draft-llama-lcpp-df2-28k",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor": "r2draft-llama-lcpp-df2-28k",
+      "full_residency_required": true,
+      "complete": false,
+      "missing_anchor": [],
+      "missing_competitor": [
+        [
+          1,
+          "code"
+        ],
+        [
+          1,
+          "math"
+        ],
+        [
+          1,
+          "prose"
+        ],
+        [
+          2,
+          "code"
+        ],
+        [
+          2,
+          "math"
+        ],
+        [
+          2,
+          "prose"
+        ],
+        [
+          3,
+          "code"
+        ],
+        [
+          3,
+          "math"
+        ],
+        [
+          3,
+          "prose"
+        ]
+      ],
+      "fit": {
+        "rung": null,
+        "status": "failed-all-attempted-rungs",
+        "attempts": [
+          {
+            "rung": "R0",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R1",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R2",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R3",
+            "ok": false,
+            "why": "RuntimeError: no tokens streamed ({})",
+            "layers": [],
+            "verified_full": false
+          }
+        ]
+      },
+      "can_keep_current_pooled_lead": false
+    },
+    {
+      "id": "r2draft-llama-lcpp-mtp-28k",
+      "phase": "R2-drafted",
+      "anchor": "r2draft-w13-mtp-28k",
+      "competitor": 5.901847964912694,
+      "full_residency_required": true,
+      "complete": true,
+      "missing_anchor": [],
+      "missing_competitor": [],
+      "fit": {
+        "rung": "R3",
+        "status": "measured-fit",
+        "attempts": [
+          {
+            "rung": "R0",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R1",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R2",
+            "ok": false,
+            "why": "RuntimeError: server exited 1",
+            "layers": [],
+            "verified_full": false
+          },
+          {
+            "rung": "R3",
+            "ok": true,
+            "why": "loaded and both warm-ups completed",
+            "layers": [],
+            "verified_full": false
+          }
+        ],
+        "full_offload": false,
+        "partial_or_unknown": true,
+        "context": 29696
+      },
+      "w13": 67.32995831802864,
+      "rounds": [
+        {
+          "round": 1,
+          "w13": 68.25554576309325,
+          "competitor": 5.970005386997048,
+          "ratio": 11.433079425984612
+        },
+        {
+          "round": 2,
+          "w13": 65.92056013854491,
+          "competitor": 5.961899734509153,
+          "ratio": 11.056972286363383
+        },
+        {
+          "round": 3,
+          "w13": 67.86165109820753,
+          "competitor": 5.777689841873356,
+          "ratio": 11.745464529159303
+        }
+      ],
+      "w13_wins_every_round": true,
+      "per_prompt": {
+        "code": {
+          "w13": 85.46190450144944,
+          "competitor": 7.298631886658329
+        },
+        "math": {
+          "w13": 84.9319950109877,
+          "competitor": 7.090136125074432
+        },
+        "prose": {
+          "w13": 49.30409326690976,
+          "competitor": 4.342872006853595
+        }
+      },
+      "eligible_full_residency_comparison": false,
+      "can_keep_current_pooled_lead": false
+    }
+  ],
+  "complete": false,
+  "can_keep_all_tested_leads": false,
+  "scope": "old pinned artifacts; sampled three-prompt mixture; no UD3.1 or accuracy claim"
+}

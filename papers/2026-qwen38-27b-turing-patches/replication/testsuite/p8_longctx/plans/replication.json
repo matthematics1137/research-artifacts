@@ -1,0 +1,24 @@
+{
+ "name": "replication",
+ "group": "replication",
+ "registration": "research/prereg/2026-11-04-p8-value-bits-replication.md",
+ "cut_from_end": true,
+ "arms": [
+  {"arm": "rep-64k-88-triton", "format": "8,8", "length": 65536, "items": "rep-64k.jsonl", "max_tokens": 768,
+   "env": {"EXL3_FD75D": "0"}, "if_budget": {"per_item_s": 117}},
+  {"arm": "rep-64k-84", "format": "8,4", "length": 65536, "items": "rep-64k.jsonl", "max_tokens": 768,
+   "if_budget": {"per_item_s": 117}},
+  {"arm": "noise-64k-88-triton-qcs128", "format": "8,8", "length": 65536, "items": "graded-64k.jsonl",
+   "max_tokens": 768, "env": {"EXL3_FD75D": "0", "EXL3_QC_STAGING_PAGES": "128"}, "if_budget": {"per_item_s": 117}},
+  {"arm": "rep-32k-84", "format": "8,4", "length": 32768, "items": "graded-32k.jsonl", "max_tokens": 768,
+   "if_budget": {"per_item_s": 55}},
+  {"arm": "rep-32k-fp16-check", "format": "fp16", "length": 32768, "items": "graded-32k.jsonl", "max_tokens": 768,
+   "select": {"first_per_family": 16}, "if_budget": {"per_item_s": 62}},
+  {"arm": "rep-32k-fp16", "format": "fp16", "length": 32768, "items": "graded-32k.jsonl", "max_tokens": 768,
+   "skip_if_reproduced": {"check_arm": "rep-32k-fp16-check", "reference_journal": "../stage2/journal.jsonl",
+                          "reference_arm": "s2-32k-fp16", "n": 16},
+   "if_budget": {"per_item_s": 62}},
+  {"arm": "rep-64k-86", "format": "8,6", "length": 65536, "items": "graded-64k.jsonl", "max_tokens": 768,
+   "if_budget": {"per_item_s": 117}}
+ ]
+}

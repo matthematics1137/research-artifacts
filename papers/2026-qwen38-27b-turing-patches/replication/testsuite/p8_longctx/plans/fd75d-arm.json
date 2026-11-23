@@ -1,0 +1,16 @@
+{
+ "name": "fd75d-arm",
+ "group": "fd75d-arm",
+ "arms": [
+  {
+   "arm": "s2-64k-88-triton",
+   "format": "8,8",
+   "length": 65536,
+   "items": "graded-64k.jsonl",
+   "max_tokens": 768,
+   "env": {
+    "EXL3_FD75D": "0"
+   }
+  }
+ ]
+}

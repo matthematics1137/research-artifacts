@@ -1,0 +1,77 @@
+{
+ "arm": "calib2-64k-88",
+ "families": {
+  "multivalue": {
+   "by_level": {
+    "12": {
+     "k": 5,
+     "n": 8,
+     "acc": 0.625,
+     "wilson95": [
+      0.30574239460262737,
+      0.8631557141764026
+     ]
+    },
+    "24": {
+     "k": 1,
+     "n": 8,
+     "acc": 0.125,
+     "wilson95": [
+      0.02241749145005667,
+      0.4708881822128535
+     ]
+    },
+    "48": {
+     "k": 0,
+     "n": 8,
+     "acc": 0.0,
+     "wilson95": [
+      0.0,
+      0.32440756488388023
+     ]
+    }
+   },
+   "chosen": 12,
+   "chosen_acc": 0.625,
+   "outside_30_90": false
+  }
+ },
+ "excluded": [],
+ "secondary": {
+  "items_ok": 24,
+  "excluded": [],
+  "accuracy": {
+   "k": 6,
+   "n": 24,
+   "acc": 0.25,
+   "wilson95": [
+    0.11999366228595004,
+    0.44899444005154004
+   ]
+  },
+  "by_family": {
+   "multivalue": {
+    "k": 6,
+    "n": 24,
+    "acc": 0.25,
+    "wilson95": [
+     0.11999366228595004,
+     0.44899444005154004
+    ]
+   }
+  },
+  "prefill_tok_s_pooled": 574.1293257250704,
+  "decode_tok_s_pooled": 61.90648785791954,
+  "answer_tokens": {
+   "mean": 213.5,
+   "median": 183.5,
+   "max": 404
+  },
+  "finish_length": 0,
+  "prompt_token_mismatches": [],
+  "peak_mib": 10199,
+  "gpu_s": 2819.6,
+  "sessions": 1,
+  "mean_item_s": 116.55916666666667
+ }
+}

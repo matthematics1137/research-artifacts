@@ -1,0 +1,92 @@
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
+@@ -198,6 +198,28 @@
+     return v;
+ }
+ 
++// Turing port (local_llms Paper 8, W10b): the tallest slice (multiple of 8 rows) whose shared layout fits the
++// device's opt-in limit next to the instance's static shared memory. gemv_int8_sq_rows_max() sizes slices for an
++// 80 KB budget, so at m >= 2 every instance asks for 80 KB or more, and on a 64 KB part W7's fit check declined
++// them all: no multi-row launch ever took this path on Turing, upstream's m == 2 included. The kernel lays out
++// its shared memory from the rows_per it is given, so when the host chooses the slice height (W9) a lower cap
++// keeps host and kernel in step. fixed_bytes is the layout's height-independent part, per_row its per-row part.
++static std::map<void*, int> gemv_sq_rows_cap_cache[MAX_DEVICES];
++
++static int gemv_int8_sq_rows_cap(void* fn, int rows_max, size_t fixed_bytes, int per_row, int device)
++{
++    auto it = gemv_sq_rows_cap_cache[device].find(fn);
++    if (it != gemv_sq_rows_cap_cache[device].end()) return it->second;
++    cudaFuncAttributes attr;
++    int64_t room = -1;
++    if (cudaFuncGetAttributes(&attr, fn) == cudaSuccess)
++        room = (int64_t) DevCtx::instance().get_smem_max(device) - (int64_t) attr.sharedSizeBytes - (int64_t) fixed_bytes;
++    cudaGetLastError();
++    int cap = room > 0 ? MIN(rows_max, (int) (room / per_row) & ~7) : 0;
++    gemv_sq_rows_cap_cache[device][fn] = cap;
++    return cap;
++}
++
+ // m == 1 fast path: per-slice-scale kernel, regular launch. Returns false to fall through to the
+ // cooperative kernel (and from there to the regular fp16 kernel).
+ static bool exl3_gemv_int8_sq
+@@ -214,8 +236,10 @@
+     if (!fn) return false;
+ 
+     int rows_max = gemv_int8_sq_rows_max(M, residual);
++    int rows_cap = rows_max;    // W10b: lowered below when the host chooses the slice height
+ 
+-    // Mirror of the kernel's work decomposition (single-wave rule with a half-wave floor)
++    // Mirror of the kernel's work decomposition (single-wave rule with a half-wave floor). Under a W10b cap
++    // below rows_max it only seeds the grid: such launches always carry the host's slice height
+     auto decomp = [&] (int grid_, int& ksplit, int& rows_per)
+     {
+         int rows_total = size_k / 16;
+@@ -223,7 +247,7 @@
+         int r = CEIL_DIVIDE(rows_total * nb256, grid_);
+         rows_per = (MAX(r, MIN(2 * r, 32)) + 7) & ~7;
+         rows_per = MAX(rows_per, SQ_MINROWS);
+-        rows_per = MIN(rows_per, rows_max);
++        rows_per = MIN(rows_per, rows_cap);
+         rows_per = MIN(rows_per, (rows_total + 7) & ~7);
+         ksplit = CEIL_DIVIDE(rows_total, rows_per);
+     };
+@@ -234,12 +258,18 @@
+                + stage + (size_t) 2 * M * 128 * 4;
+     };
+ 
+-    // rows_per never exceeds rows_max, so smem_for(rows_max) bounds every launch of this instance
+-    if (!gemv_int8_smem_fits(fn, smem_for(rows_max), device)) return false;
++    // W10b: with the host's choice on, slices are also capped at what the device holds (rows_cap); otherwise
++    // rows_cap is rows_max. rows_per never exceeds rows_cap, so smem_for(rows_cap) bounds every launch
++    if (gemv_int8_sq_fit_mode(device))
++    {
++        rows_cap = gemv_int8_sq_rows_cap(fn, rows_max, smem_for(0), 32 + 64 * M * (residual ? 2 : 1), device);
++        if (rows_cap < SQ_MINROWS) return false;
++    }
++    if (!gemv_int8_smem_fits(fn, smem_for(rows_cap), device)) return false;
+ 
+     if (gemv_attr_set[device].find(fn) == gemv_attr_set[device].end())
+     {
+-        cudaFuncSetAttribute(fn, cudaFuncAttributeMaxDynamicSharedMemorySize, (int) smem_for(rows_max));
++        cudaFuncSetAttribute(fn, cudaFuncAttributeMaxDynamicSharedMemorySize, (int) smem_for(rows_cap));
+         // Match the tensor-core kernels' shared-memory carveout: these kernels interleave with
+         // them (hundreds of launches per decoded token), and a smaller carveout would make the GPU
+         // drain and reconfigure the SMs on every transition - measured at ~4 us per launch in
+@@ -282,7 +312,7 @@
+         {
+             int rows_total = size_k / 16;
+             int nb256 = size_n / 256;
+-            int hi = MIN(rows_max, (rows_total + 7) & ~7);
++            int hi = MIN(rows_cap, (rows_total + 7) & ~7);
+             int64_t row_cost = 4 * (2 * K + (half_k ? 1 : 0));             // one slice row of a 256-column unit, in 64 B
+             int64_t part_cost = 16 * M * (residual ? 2 : 1);                 // one slice's partials for a 256-column group
+             int64_t best = INT64_MAX;
+@@ -312,6 +342,8 @@
+             ksplit = CEIL_DIVIDE(size_k / 16, rows_per);
+         }
+     }
++    // W10b: without a host choice the kernel applies its own rule, which assumes the 80 KB budget
++    if (!rows_per_host && rows_cap < rows_max) return false;
+     size_t smem = smem_for(rows_per);
+     if (ksplit > SQ_KSPLIT_CAP) return false;
+     if (size_n / 256 > SQ_COUNTERS_CAP) return false;

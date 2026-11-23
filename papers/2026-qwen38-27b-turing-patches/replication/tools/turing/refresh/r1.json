@@ -1,0 +1,63 @@
+{
+  "name": "R1",
+  "kind": "speed",
+  "max_seconds": 4200,
+  "conditions": [
+    {
+      "id": "r1-w13-nd-0",
+      "engine": "w13",
+      "config": "nd",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r1-ninferno-nif-nd-0",
+      "engine": "ninferno",
+      "config": "nif-nd",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r1-w13-mtp-0",
+      "engine": "w13",
+      "config": "mtp",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r1-ninferno-nif-df2-0",
+      "engine": "ninferno",
+      "config": "nif-df2",
+      "fill": 0,
+      "priority": 1
+    },
+    {
+      "id": "r1-w13-nd-28k",
+      "engine": "w13",
+      "config": "nd",
+      "fill": 28000,
+      "priority": 1
+    },
+    {
+      "id": "r1-ninferno-nif-nd-28k",
+      "engine": "ninferno",
+      "config": "nif-nd",
+      "fill": 28000,
+      "priority": 1
+    },
+    {
+      "id": "r1-w13-mtp-28k",
+      "engine": "w13",
+      "config": "mtp",
+      "fill": 28000,
+      "priority": 1
+    },
+    {
+      "id": "r1-ninferno-nif-df2-28k",
+      "engine": "ninferno",
+      "config": "nif-df2",
+      "fill": 28000,
+      "priority": 1
+    }
+  ]
+}

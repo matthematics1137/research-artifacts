@@ -1,0 +1,72 @@
+{
+ "memory_clock_mhz_during_decode": 9001.0,
+ "rated_gbs_at_clock": 432.0,
+ "max_temperature_c": 76.0,
+ "one_bit_over_two_bit": {
+  "attn_q": 0.7888888888888889,
+  "gdn_qkv": 0.8087855297157622,
+  "mlp_down": 0.7875399361022364,
+  "mlp_gate_up": 0.7317073170731708
+ },
+ "primary": {
+  "rate_gbs": 385.7142857142857,
+  "calls": 401.0,
+  "matrix_ms": 19.5927,
+  "floor_ms": 17.00198888888889,
+  "gap_ms": 2.564177777777779,
+  "fixed_ms": 2.2132,
+  "per_weight_ms": 0.18905889777777835,
+  "residual_ms": 0.1619188800000002,
+  "fixed_share": 0.8631226817346689,
+  "fits": {
+   "1": {
+    "fixed_us": 5.7,
+    "us_per_mweights": 0.481,
+    "per_weight_over_read": 1.4842285714285715
+   },
+   "2": {
+    "fixed_us": 5.5,
+    "us_per_mweights": 0.65,
+    "per_weight_over_read": 1.002857142857143
+   },
+   "3": {
+    "fixed_us": 7.8,
+    "us_per_mweights": 0.939,
+    "per_weight_over_read": 0.9658285714285714
+   }
+  }
+ },
+ "rated": {
+  "rate_gbs": 432.0,
+  "calls": 401.0,
+  "matrix_ms": 19.5927,
+  "floor_ms": 15.180347222222224,
+  "gap_ms": 4.243194444444446,
+  "fixed_ms": 2.2132,
+  "per_weight_ms": 1.8680755644444447,
+  "residual_ms": 0.1619188800000004,
+  "fixed_share": 0.5215881640535498,
+  "fits": {
+   "1": {
+    "fixed_us": 5.7,
+    "us_per_mweights": 0.481,
+    "per_weight_over_read": 1.6623359999999998
+   },
+   "2": {
+    "fixed_us": 5.5,
+    "us_per_mweights": 0.65,
+    "per_weight_over_read": 1.1232
+   },
+   "3": {
+    "fixed_us": 7.8,
+    "us_per_mweights": 0.939,
+    "per_weight_over_read": 1.0817279999999998
+   }
+  }
+ },
+ "verdict": {
+  "P1": false,
+  "P2": true,
+  "P3": true
+ }
+}

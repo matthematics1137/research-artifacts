@@ -1,0 +1,176 @@
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h1.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h1.cu
+@@ -13,6 +13,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<1, 3, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<1, 3, false, false, true>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<1, 4, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<1, 4, false, false, true>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h2.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h2.cu
+@@ -13,6 +13,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<2, 3, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<2, 3, false, false, true>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<2, 4, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<2, 4, false, false, true>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h3.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_h3.cu
+@@ -13,6 +13,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<3, 3, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<3, 3, false, false, true>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<3, 4, true, false, true>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<3, 4, false, false, true>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k1.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k1.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<1, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<1, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<1, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<1, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k2.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k2.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<2, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<2, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<2, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<2, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k3.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k3.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<3, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<3, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<3, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<3, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k4.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k4.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<4, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<4, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<4, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<4, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k5.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k5.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<5, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<5, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<5, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<5, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k6.cu
++++ b/exllamav3/exllamav3_ext/quant/comp_units/exl3_gemv_int8_inst_sq_k6.cu
+@@ -12,6 +12,11 @@
+     {
+         case 1: { SELM_(1) }
+         case 2: { SELM_(2) }
++        // Turing port (local_llms Paper 8, W10): plain int8 at m = 3, 4 (MTP verify rows), EXL3_INT8_SQ_MAX_M
++        case 3: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<6, 3, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<6, 3, false, false>;
++        case 4: if (residual) return nullptr; return c_fp32 ? (void*) exl3_gemv_int8_sq_kernel<6, 4, true, false>
++                                                            : (void*) exl3_gemv_int8_sq_kernel<6, 4, false, false>;
+     }
+     #undef SELM_
+     return nullptr;
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu
+@@ -188,6 +188,16 @@
+     return on;
+ }
+ 
++// Turing port (local_llms Paper 8, W10): the largest m the plain int8 kernel takes. Upstream stops at 2 (3090: larger m
++// loses to the fp16 tensor-core kernel); MTP verification runs 2-7 rows, and on Turing those go to the fp16 GEMV.
++// Instances exist for m <= 4, the kernel's own limits: the sq epilogue runs a warp pair per row on 8 warps, and
++// the per-slice scale region holds ksplit x m <= 4 x SQ_KSPLIT_CAP. EXL3_INT8_SQ_MAX_M (1-4, default 2) sets it.
++static int gemv_int8_sq_max_m()
++{
++    static const int v = [] { const char* e = getenv("EXL3_INT8_SQ_MAX_M"); int m = e ? atoi(e) : 2; return MAX(1, MIN(m, 4)); }();
++    return v;
++}
++
+ // m == 1 fast path: per-slice-scale kernel, regular launch. Returns false to fall through to the
+ // cooperative kernel (and from there to the regular fp16 kernel).
+ static bool exl3_gemv_int8_sq
+@@ -198,7 +208,7 @@
+     int device, int num_sms, cudaStream_t stream, Graph* graph
+ )
+ {
+-    if (size_m > 2) return false;
++    if (size_m > gemv_int8_sq_max_m()) return false;
+     int M = size_m;
+     void* fn = select_gemv_int8_sq_kernel(K, half_k, M, c_fp32, residual);
+     if (!fn) return false;
+@@ -277,10 +287,12 @@
+             int64_t part_cost = 16 * M * (residual ? 2 : 1);                 // one slice's partials for a 256-column group
+             int64_t best = INT64_MAX;
+             int best_rows = 0, best_grid = 0;
++            size_t pstride_ = (size_t) size_n * (residual ? 2 : 1);
+             for (int ks = CEIL_DIVIDE(rows_total, hi); ks <= MIN(rows_total, SQ_KSPLIT_CAP); ++ks)
+             {
+                 int rp = MAX((CEIL_DIVIDE(rows_total, ks) + 7) & ~7, SQ_MINROWS);
+                 if (rp > hi || CEIL_DIVIDE(rows_total, rp) != ks) continue;
++                if (SQ_WS_RESERVED + (size_t) ks * M * pstride_ > GEMV_INT8_WS_INTS) continue;   // W10: partials must fit the workspace
+                 int g = MIN(MAX(occupancy(smem_for(rp)), 1) * num_sms, 1024);
+                 int64_t waves = CEIL_DIVIDE((int64_t) ks * nb256, (int64_t) g);
+                 int64_t cost = (waves * rp * row_cost + ks * part_cost) * MAX(CEIL_DIVIDE(g, num_sms), SQ_FIT_SAT);
+@@ -392,7 +404,7 @@
+     // weights and the B stream; measured on 3090, larger m and batched residual lose to the fp16
+     // tensor-core kernel). Falls through to the cooperative kernel on a constraint miss at m == 1;
+     // batched rows beyond the gate go straight to the regular kernel.
+-    if (size_m <= (residual ? 1 : 2) && exl3_gemv_int8_sq(
++    if (size_m <= (residual ? 1 : gemv_int8_sq_max_m()) && exl3_gemv_int8_sq(
+         (const half*) A.data_ptr(), (const uint16_t*) B.data_ptr(), C.data_ptr(),
+         size_m, size_k, size_n, K, half_k, c_fp32, residual,
+         (const half*) suh->data_ptr(), (half*) A_had->data_ptr(), (const half*) svh->data_ptr(),

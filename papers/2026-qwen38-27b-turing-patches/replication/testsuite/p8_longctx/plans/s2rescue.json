@@ -1,0 +1,13 @@
+{
+ "name": "s2rescue",
+ "group": "stage2",
+ "arms": [
+  {
+   "arm": "s2-64k-84",
+   "format": "8,4",
+   "length": 65536,
+   "items": "graded-64k.jsonl",
+   "max_tokens": 768
+  }
+ ]
+}

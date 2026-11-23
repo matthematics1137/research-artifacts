@@ -1,0 +1,19 @@
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8_kernel.cuh	2026-10-31 11:12:04.085383387 -0400
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8_kernel.cuh	2026-10-31 11:12:04.112965224 -0400
+@@ -673,12 +673,15 @@
+     int ia0[M] = {}, ia1[M] = {}, ib0[M] = {}, ib1[M] = {};
+     int ja0[M] = {}, ja1[M] = {}, jb0[M] = {}, jb1[M] = {};
+ 
++    // W12b-ptr (Paper 8): step the row pointer instead of recomputing bp + kb * row_stride every row; the words,
++    // and so the partials, are unchanged (bit-identical in the sqmb microbenchmark, V16), 5-8% faster per launch on sm_75
++    const uint32_t* blockA = bp;
+     for (int kb = 0; kb < nrows; ++kb)
+     {
+-        const uint32_t* blockA = bp + (size_t) kb * row_stride;
+         gemv_int8_pair_row<bits, M, residual, HALF>(blockA, blockA + TWORDS,
+             sh_as + (kb << 4), slice_stride, c2, lane << 3,
+             ia0, ia1, ib0, ib1, ja0, ja1, jb0, jb1);
++        blockA += row_stride;
+     }
+     gemv_int8_pair_tail<M, residual, atomic>(accs, acc_stride, nbp, lane, size_n, ia0, ia1, ib0, ib1, ja0, ja1, jb0, jb1);
+ }

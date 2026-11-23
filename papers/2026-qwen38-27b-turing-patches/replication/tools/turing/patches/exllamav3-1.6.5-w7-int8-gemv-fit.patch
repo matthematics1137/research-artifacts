@@ -1,0 +1,76 @@
+--- a/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu	2026-10-30 09:55:53.921422948 -0700
++++ b/exllamav3/exllamav3_ext/quant/exl3_gemv_int8.cu	2026-10-30 09:57:17.473444174 -0700
+@@ -67,6 +67,26 @@
+ static std::set<void*> gemv_attr_set[MAX_DEVICES];
+ static std::map<std::pair<void*, size_t>, int> gemv_occ_cache[MAX_DEVICES];
+ 
++// Turing port (local_llms Paper 8, W7): whether a kernel's largest dynamic shared memory request plus its static
++// shared memory fits the device's opt-in limit. The row caps behind that request assume an 80 KB budget, but the
++// request depends on the instance (K, M, residual): plain int8 at m == 1 and low K asks for about 49 KB, which a
++// 64 KB part holds. Checked once per kernel and device, before cudaFuncSetAttribute, so a request that does not
++// fit is declined (fall through to the next path) rather than failing the attribute call. The kernels' own
++// constants, and so their work decomposition, are unchanged.
++static std::map<void*, bool> gemv_fit_cache[MAX_DEVICES];
++
++static bool gemv_int8_smem_fits(void* fn, size_t dyn_request, int device)
++{
++    auto it = gemv_fit_cache[device].find(fn);
++    if (it != gemv_fit_cache[device].end()) return it->second;
++    cudaFuncAttributes attr;
++    bool fits = cudaFuncGetAttributes(&attr, fn) == cudaSuccess &&
++                dyn_request + attr.sharedSizeBytes <= (size_t) DevCtx::instance().get_smem_max(device);
++    cudaGetLastError();
++    gemv_fit_cache[device][fn] = fits;
++    return fits;
++}
++
+ typedef void (*gemv_int8_coop_fn)
+     (const half*, const uint16_t*, void*, int, int, int, int*, const half*, half*, const half*);
+ 
+@@ -170,6 +190,9 @@
+                + stage + (size_t) 2 * M * 128 * 4;
+     };
+ 
++    // rows_per never exceeds rows_max, so smem_for(rows_max) bounds every launch of this instance
++    if (!gemv_int8_smem_fits(fn, smem_for(rows_max), device)) return false;
++
+     if (gemv_attr_set[device].find(fn) == gemv_attr_set[device].end())
+     {
+         cudaFuncSetAttribute(fn, cudaFuncAttributeMaxDynamicSharedMemorySize, (int) smem_for(rows_max));
+@@ -272,11 +295,13 @@
+     // Both int8 kernels below size their shared memory against a fixed ~80 KB budget baked into
+     // gemv_int8_sq_rows_max() and the coop path's 768-row bound, and - critically - the kernels
+     // recompute rows_per from those same constants on the device, so the host cannot simply ask
+-    // for less without desyncing the two. On Turing (64 KB) the cudaFuncSetAttribute would fail
+-    // and the following cuda_check would abort the process. This path is a decode-time
+-    // optimization over the regular fp16 tensor-core kernel, which handles the same work, so
+-    // declining is a performance loss and nothing more.
+-    if (DevCtx::instance().get_smem_max(device) < 80 * 1024) return false;
++    // for less without desyncing the two. Upstream therefore declined every launch on parts under
++    // 80 KB (Turing, 64 KB). Turing port (W7): each path now checks its own instance's request
++    // against the device limit (gemv_int8_smem_fits) and declines only the instances that do not
++    // fit, falling through to the regular fp16 tensor-core kernel as before. EXL3_INT8_GEMV_FIT=0
++    // restores the upstream decline, so one build serves both arms of the A/B.
++    static const bool fit_gate = [] { const char* e = getenv("EXL3_INT8_GEMV_FIT"); return !e || atoi(e) != 0; }();
++    if (!fit_gate && DevCtx::instance().get_smem_max(device) < 80 * 1024) return false;
+ 
+     int num_sms = DevCtx::instance().get_num_sms(device);
+     bool c_fp32 = C.dtype() == at::kFloat;
+@@ -312,10 +337,15 @@
+         return MAX((size_t) rows_per * 16 * 4 * (residual ? 2 : 1) + stage, (size_t) 8 * 128 * 4);
+     };
+ 
++    // Upper bound over all shapes of this instance: smem_rows_max * 64 B (768 plain, 384 x 2 residual) plus its own
++    // stage bytes. Upstream requested GEMV_STAGE_MAX_BYTES (the K = 8 stage) for every instance, which equals the
++    // 64 KB limit before static shared memory and so could never be granted on Turing.
++    const size_t coop_request = (size_t) 768 * 16 * 4 + (size_t) gemv_int8_stage_bytes(K, half_k);
++    if (!gemv_int8_smem_fits(fn, coop_request, device)) return false;
++
+     if (gemv_attr_set[device].find(fn) == gemv_attr_set[device].end())
+     {
+-        // Upper bound over all shapes: smem_rows_max * 64 B
+-        cudaFuncSetAttribute(fn, cudaFuncAttributeMaxDynamicSharedMemorySize, 768 * 16 * 4 + GEMV_STAGE_MAX_BYTES);
++        cudaFuncSetAttribute(fn, cudaFuncAttributeMaxDynamicSharedMemorySize, (int) coop_request);
+         // Match the tensor-core kernels' shared-memory carveout: these kernels interleave with
+         // them (hundreds of launches per decoded token), and a smaller carveout would make the GPU
+         // drain and reconfigure the SMs on every transition - measured at ~4 us per launch in

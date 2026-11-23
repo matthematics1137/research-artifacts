@@ -1,0 +1,366 @@
+{
+  "contract": {
+    "legacy_harness_sha256": "f32b0b77c7d545f489cd858bb79780f21cf4fe878553c0ee4353b2f88429cec8",
+    "datasets": {
+      "gsm8k_500": {
+        "file": "gsm8k_500.jsonl",
+        "sha256": "7179bc41ad3e06c9f4b62ff1811fd272fa5ae82ddbee91dbf74d8278878ba344",
+        "n": 500,
+        "ids_sha256": "f7bc4bd7aa375f2b146f0bbf705859cccfe2b57223c7215d8b2e3085c243bd52"
+      },
+      "mmlu_500": {
+        "file": "mmlu_500.jsonl",
+        "sha256": "0a7e6b09f8d3ec6a13b00d02d8549a8e48d255a959be6034b932372f3cdea8da",
+        "n": 500,
+        "ids_sha256": "65511a99fffba8a972b1c00f891bbda961058929513c0b90102a4ceed0883df3"
+      }
+    },
+    "runtime_required": {
+      "ninfer_commit": "f4ab369a06c728325b706c989d71be7dc0c05a1b",
+      "artifact_revision": "841f7812793972b5de6dc48910bdd1e2722ae48b",
+      "artifact_sha256": "cdc4810b0ff17c40d0f62cf214b6e0bcd08346e9eb05ca53371507037793c14a",
+      "gpu_name": "NVIDIA GeForce RTX 2080 Ti",
+      "power_limit_w": 260,
+      "concurrency": 1,
+      "max_context": 16384,
+      "kv_dtype": "int8",
+      "gdn_state": "fp16",
+      "template_medium_checked": true,
+      "response_normalization_checked": true,
+      "registered_before_generation": true
+    }
+  },
+  "summaries": {
+    "gsm8k_500:TURING-exl3-nodraft": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 488,
+      "accuracy": 0.976,
+      "accuracy_wilson95": [
+        0.9585225403081018,
+        0.9862188228504781
+      ],
+      "total_wall_s": 7112.03,
+      "mean_wall_s": 14.22406,
+      "correct_per_minute": 4.116968010539888,
+      "mean_completion_tokens": 325.796,
+      "tokens_present": 500,
+      "truncated": 0,
+      "finished_correct": 488,
+      "finished_wrong": 12,
+      "unfinished_including_missing": 0,
+      "legacy_correct_truncated": 0
+    },
+    "gsm8k_500:TURING-bonsai-ninfer-none": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 480,
+      "accuracy": 0.96,
+      "accuracy_wilson95": [
+        0.9390259449029252,
+        0.9739594060486436
+      ],
+      "total_wall_s": 3011.83,
+      "mean_wall_s": 6.02366,
+      "correct_per_minute": 9.562292692482643,
+      "mean_completion_tokens": 324.724,
+      "tokens_present": 500,
+      "truncated": 0,
+      "finished_correct": 480,
+      "finished_wrong": 20,
+      "unfinished_including_missing": 0,
+      "legacy_correct_truncated": 0
+    },
+    "mmlu_500:TURING-exl3-nodraft": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 433,
+      "accuracy": 0.866,
+      "accuracy_wilson95": [
+        0.8333333333333333,
+        0.8930854459020454
+      ],
+      "total_wall_s": 15822.77,
+      "mean_wall_s": 31.64554,
+      "correct_per_minute": 1.6419375368535345,
+      "mean_completion_tokens": 703.468,
+      "tokens_present": 500,
+      "truncated": 1,
+      "finished_correct": 433,
+      "finished_wrong": 66,
+      "unfinished_including_missing": 1,
+      "legacy_correct_truncated": 0
+    },
+    "mmlu_500:TURING-bonsai-ninfer-none": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 442,
+      "accuracy": 0.884,
+      "accuracy_wilson95": [
+        0.8529575380244137,
+        0.9091867549438526
+      ],
+      "total_wall_s": 6299.5,
+      "mean_wall_s": 12.599,
+      "correct_per_minute": 4.2098579252321615,
+      "mean_completion_tokens": 679.294,
+      "tokens_present": 500,
+      "truncated": 4,
+      "finished_correct": 442,
+      "finished_wrong": 54,
+      "unfinished_including_missing": 4,
+      "legacy_correct_truncated": 0
+    },
+    "gsm8k_500:TURING-exl3-mtp": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 488,
+      "accuracy": 0.976,
+      "accuracy_wilson95": [
+        0.9585225403081018,
+        0.9862188228504781
+      ],
+      "total_wall_s": 3223.58,
+      "mean_wall_s": 6.44716,
+      "correct_per_minute": 9.083069134316505,
+      "mean_completion_tokens": 327.236,
+      "tokens_present": 500,
+      "truncated": 0,
+      "finished_correct": 488,
+      "finished_wrong": 12,
+      "unfinished_including_missing": 0,
+      "legacy_correct_truncated": 0
+    },
+    "gsm8k_500:TURING-bonsai-ninfer-mtp3": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 481,
+      "accuracy": 0.962,
+      "accuracy_wilson95": [
+        0.9414147746007343,
+        0.9755400778767108
+      ],
+      "total_wall_s": 1263.53,
+      "mean_wall_s": 2.52706,
+      "correct_per_minute": 22.840771489398747,
+      "mean_completion_tokens": 319.482,
+      "tokens_present": 500,
+      "truncated": 0,
+      "finished_correct": 481,
+      "finished_wrong": 19,
+      "unfinished_including_missing": 0,
+      "legacy_correct_truncated": 0
+    },
+    "mmlu_500:TURING-exl3-mtp": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 434,
+      "accuracy": 0.868,
+      "accuracy_wilson95": [
+        0.8355045607103054,
+        0.8948837200509497
+      ],
+      "total_wall_s": 8318.53,
+      "mean_wall_s": 16.63706,
+      "correct_per_minute": 3.1303607728769385,
+      "mean_completion_tokens": 709.61,
+      "tokens_present": 500,
+      "truncated": 3,
+      "finished_correct": 433,
+      "finished_wrong": 64,
+      "unfinished_including_missing": 3,
+      "legacy_correct_truncated": 1
+    },
+    "mmlu_500:TURING-bonsai-ninfer-mtp3": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 439,
+      "accuracy": 0.878,
+      "accuracy_wilson95": [
+        0.8463946427702861,
+        0.9038411456203509
+      ],
+      "total_wall_s": 3107.2400000000002,
+      "mean_wall_s": 6.214480000000001,
+      "correct_per_minute": 8.476976352003707,
+      "mean_completion_tokens": 684.65,
+      "tokens_present": 500,
+      "truncated": 3,
+      "finished_correct": 438,
+      "finished_wrong": 59,
+      "unfinished_including_missing": 3,
+      "legacy_correct_truncated": 1
+    },
+    "gsm8k_500:TURING-exl3-mtp-w13": {
+      "n": 500,
+      "expected": 500,
+      "errors": 0,
+      "missing": 0,
+      "complete": true,
+      "correct": 486,
+      "accuracy": 0.972,
+      "accuracy_wilson95": [
+        0.9535531794154484,
+        0.9832491806913788
+      ],
+      "total_wall_s": 2237.44,
+      "mean_wall_s": 4.47488,
+      "correct_per_minute": 13.03275171624714,
+      "mean_completion_tokens": 330.544,
+      "tokens_present": 500,
+      "truncated": 0,
+      "finished_correct": 486,
+      "finished_wrong": 14,
+      "unfinished_including_missing": 0,
+      "legacy_correct_truncated": 0
+    }
+  },
+  "comparisons": [
+    {
+      "suite": "gsm8k_500",
+      "a": "TURING-exl3-nodraft",
+      "b": "TURING-bonsai-ninfer-none",
+      "status": "complete",
+      "n": 500,
+      "a_only": 10,
+      "b_only": 2,
+      "delta_accuracy_pp": -1.6,
+      "p": 0.03857421875,
+      "delta_accuracy_pp_bootstrap95": [
+        -3.0,
+        -0.2
+      ],
+      "delta_correct_per_minute_bootstrap95": [
+        4.908055667186005,
+        6.008893317831518
+      ],
+      "interval_note": "unadjusted descriptive paired percentile bootstrap; fixed seed 20261112; 5000 replicates",
+      "p_holm_family5": 0.19287109375
+    },
+    {
+      "suite": "mmlu_500",
+      "a": "TURING-exl3-nodraft",
+      "b": "TURING-bonsai-ninfer-none",
+      "status": "complete",
+      "n": 500,
+      "a_only": 22,
+      "b_only": 31,
+      "delta_accuracy_pp": 1.8,
+      "p": 0.27167916606550335,
+      "delta_accuracy_pp_bootstrap95": [
+        -1.0,
+        4.6
+      ],
+      "delta_correct_per_minute_bootstrap95": [
+        2.2891018313084404,
+        2.864630266714289
+      ],
+      "interval_note": "unadjusted descriptive paired percentile bootstrap; fixed seed 20261112; 5000 replicates",
+      "p_holm_family5": 0.6796875
+    },
+    {
+      "suite": "gsm8k_500",
+      "a": "TURING-exl3-mtp",
+      "b": "TURING-bonsai-ninfer-mtp3",
+      "status": "complete",
+      "n": 500,
+      "a_only": 9,
+      "b_only": 2,
+      "delta_accuracy_pp": -1.4,
+      "p": 0.0654296875,
+      "delta_accuracy_pp_bootstrap95": [
+        -2.8,
+        -0.2
+      ],
+      "delta_correct_per_minute_bootstrap95": [
+        12.58418241205121,
+        14.98030934462258
+      ],
+      "interval_note": "unadjusted descriptive paired percentile bootstrap; fixed seed 20261112; 5000 replicates",
+      "p_holm_family5": 0.26171875
+    },
+    {
+      "suite": "mmlu_500",
+      "a": "TURING-exl3-mtp",
+      "b": "TURING-bonsai-ninfer-mtp3",
+      "status": "complete",
+      "n": 500,
+      "a_only": 23,
+      "b_only": 28,
+      "delta_accuracy_pp": 1.0,
+      "p": 0.5758493477318467,
+      "delta_accuracy_pp_bootstrap95": [
+        -1.8,
+        3.8
+      ],
+      "delta_correct_per_minute_bootstrap95": [
+        4.806640813719779,
+        5.9240696547675595
+      ],
+      "interval_note": "unadjusted descriptive paired percentile bootstrap; fixed seed 20261112; 5000 replicates",
+      "p_holm_family5": 0.6796875
+    },
+    {
+      "suite": "gsm8k_500",
+      "a": "TURING-exl3-mtp-w13",
+      "b": "TURING-bonsai-ninfer-mtp3",
+      "status": "complete",
+      "n": 500,
+      "a_only": 8,
+      "b_only": 3,
+      "delta_accuracy_pp": -1.0,
+      "p": 0.2265625,
+      "delta_accuracy_pp_bootstrap95": [
+        -2.2,
+        0.2
+      ],
+      "delta_correct_per_minute_bootstrap95": [
+        8.819437245352098,
+        10.820453305493425
+      ],
+      "interval_note": "unadjusted descriptive paired percentile bootstrap; fixed seed 20261112; 5000 replicates",
+      "p_holm_family5": 0.6796875
+    }
+  ],
+  "within_bonsai": [
+    {
+      "suite": "gsm8k_500",
+      "status": "complete",
+      "delta_accuracy_pp": 0.20000000000000018,
+      "delta_correct_per_minute": 13.278478796916104,
+      "note": "descriptive within-Bonsai MTP-minus-none; no additional significance test"
+    },
+    {
+      "suite": "mmlu_500",
+      "status": "complete",
+      "delta_accuracy_pp": -0.6000000000000005,
+      "delta_correct_per_minute": 4.267118426771545,
+      "note": "descriptive within-Bonsai MTP-minus-none; no additional significance test"
+    }
+  ],
+  "interpretation": "descriptive model+engine comparison; no equivalence or isolated quantization claim; no two-suite w13 result"
+}

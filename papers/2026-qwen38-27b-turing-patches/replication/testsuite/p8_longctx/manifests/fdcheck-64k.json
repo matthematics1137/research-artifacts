@@ -1,0 +1,103 @@
+{
+ "schema": "p8-longctx-items-v1",
+ "registration": "research/prereg/2026-11-01-p8-longctx-stages2-3.md (Amendment 1)",
+ "set": "fdcheck-64k",
+ "kind": "fdcheck",
+ "length": 65536,
+ "prompt_limit": 65024,
+ "seed_text": "p8-longctx-2026-11",
+ "seed_sha256": "65289f6e64fec8f741d940b643f5ad968f7927923f538de1f8a58fd55cb3733a",
+ "levels": {
+  "multivalue": 12
+ },
+ "n_items": 3,
+ "file": {
+  "name": "fdcheck-64k.jsonl",
+  "sha256": "3e9573e365af9f21add7ed3ba04c872d127bee8ccb6bceedf1bd74ced7c7b180",
+  "bytes": 929241
+ },
+ "code": {
+  "make_longctx.py": "c2d7e451d7cfdee10db114214aa129f9b64ddabcb206b1516f3f9b8571398c4f",
+  "p6common.py": "a5564715108b0e4efb19765018a855e43c23205239ad00925f37b94d0fcc15f6",
+  "items.py": "d88f518bf5108c6e720bddc8805b2974786d4ce8f6bec35b2a3c4194dafad4d5",
+  "build_stage2_items.py": "8ea40fc2b9c8b0554b596d0c1bbace4206c4df434170895ca550d07a2a04fd78"
+ },
+ "tokenizer_sha256": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+ "items": [
+  {
+   "uid": "multivalue-k12-00",
+   "family": "multivalue",
+   "level": 12,
+   "index": 0,
+   "prompt_tokens": 64934,
+   "haystack_tokens": 64862,
+   "target_tokens": 64872,
+   "answers": [
+    "5872761",
+    "5724405",
+    "5164832",
+    "3198506",
+    "6530753",
+    "6914618",
+    "7753682",
+    "2851395",
+    "2260168",
+    "6177135",
+    "2490498",
+    "2650336"
+   ],
+   "asked_depth": null,
+   "sha256": "184709d2b9babf7e617bf788de1b47abb62250918f045960267f2e99f9e05d1f"
+  },
+  {
+   "uid": "multivalue-k12-01",
+   "family": "multivalue",
+   "level": 12,
+   "index": 1,
+   "prompt_tokens": 64927,
+   "haystack_tokens": 64856,
+   "target_tokens": 64872,
+   "answers": [
+    "5331203",
+    "2524900",
+    "2516372",
+    "7146596",
+    "4310924",
+    "5070695",
+    "6593712",
+    "9862478",
+    "5717962",
+    "5376589",
+    "2946621",
+    "8566352"
+   ],
+   "asked_depth": null,
+   "sha256": "d4b7f00efd67ed7bfb4179fe8a3344026138cf93cc28a3d1d59667336d3bda75"
+  },
+  {
+   "uid": "multivalue-k12-02",
+   "family": "multivalue",
+   "level": 12,
+   "index": 2,
+   "prompt_tokens": 64917,
+   "haystack_tokens": 64846,
+   "target_tokens": 64872,
+   "answers": [
+    "9481811",
+    "7907217",
+    "5106152",
+    "6664379",
+    "3728476",
+    "1226857",
+    "5875157",
+    "8094886",
+    "7036531",
+    "4560724",
+    "3090549",
+    "4827927"
+   ],
+   "asked_depth": null,
+   "sha256": "d8244b48d7735fe1755b1fb6cc6bd97bf4b7f49e54b0e353f875f1376e0db44d"
+  }
+ ]
+}

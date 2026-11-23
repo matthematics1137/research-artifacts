@@ -1,0 +1,31 @@
+{
+  "legacy_harness_sha256": "f32b0b77c7d545f489cd858bb79780f21cf4fe878553c0ee4353b2f88429cec8",
+  "datasets": {
+    "gsm8k_500": {
+      "file": "gsm8k_500.jsonl",
+      "sha256": "7179bc41ad3e06c9f4b62ff1811fd272fa5ae82ddbee91dbf74d8278878ba344",
+      "n": 500,
+      "ids_sha256": "f7bc4bd7aa375f2b146f0bbf705859cccfe2b57223c7215d8b2e3085c243bd52"
+    },
+    "mmlu_500": {
+      "file": "mmlu_500.jsonl",
+      "sha256": "0a7e6b09f8d3ec6a13b00d02d8549a8e48d255a959be6034b932372f3cdea8da",
+      "n": 500,
+      "ids_sha256": "65511a99fffba8a972b1c00f891bbda961058929513c0b90102a4ceed0883df3"
+    }
+  },
+  "runtime_required": {
+    "ninfer_commit": "f4ab369a06c728325b706c989d71be7dc0c05a1b",
+    "artifact_revision": "841f7812793972b5de6dc48910bdd1e2722ae48b",
+    "artifact_sha256": "cdc4810b0ff17c40d0f62cf214b6e0bcd08346e9eb05ca53371507037793c14a",
+    "gpu_name": "NVIDIA GeForce RTX 2080 Ti",
+    "power_limit_w": 260,
+    "concurrency": 1,
+    "max_context": 16384,
+    "kv_dtype": "int8",
+    "gdn_state": "fp16",
+    "template_medium_checked": true,
+    "response_normalization_checked": true,
+    "registered_before_generation": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "amendment": "research/prereg/2026-11-04-p8-confirmation-speed.md, Amendment 1 (follow-up step x-p8-confirm-fit)",
+  "registered_plan": "plan.json",
+  "frozen_sha256": {
+    "plan.json": "f670ed92af01d5e93b5aee44ffd6d294802c33bacfbdf0d5d45664dd53673934",
+    "run_confirm.py": "9088eadffce1830af72795c93bf12b7bea187df69aa5189a63aad4fc017187a0",
+    "analyze_confirm.py": "d713742661b4b82eb5332135ff6f7c2c82fe7886a09057b44abb0f0919ac4221"
+  },
+  "rounds": 3,
+  "cap_hours": 1.0,
+  "port_range": [18321, 18340],
+  "port_wait_s": 120,
+  "conditions": [
+    {"id": "w13-165-nd-0", "priority": 1, "why": "same-session anchor"},
+    {"id": "w13-165-mtp-0", "priority": 1, "why": "same-session anchor"},
+    {"id": "w13-165-nd-28k", "priority": 1, "why": "same-session anchor"},
+    {"id": "w13-165-mtp-28k", "priority": 1, "why": "same-session anchor"},
+    {"id": "lcpp9-xxs-df-0", "priority": 1, "why": "dropped in session 1: out of memory at load"},
+    {"id": "lcpp9-xxs-df-28k", "priority": 1, "why": "dropped in session 1: out of memory at load"},
+    {"id": "lcpp9-s-mtp-0", "priority": 1, "why": "dropped in session 1: out of memory at load"},
+    {"id": "lcpp9-s-mtp-28k", "priority": 1, "why": "dropped in session 1: out of memory at load"},
+    {"id": "ik-s-mtp-0", "priority": 3, "why": "dropped in session 1: out of memory on the first request"},
+    {"id": "buun-nd-0", "priority": 4, "why": "dropped in session 1: the harness's port reuse"},
+    {"id": "buun-mtp-0", "priority": 4, "why": "dropped in session 1: the harness's port reuse"}
+  ],
+  "ladder": {
+    "order": ["R0", "R1", "R2", "R3"],
+    "cumulative": true,
+    "R0": "as registered",
+    "R1": {"set": {"-ub": "128"}, "note": "the prefill micro-batch only; decode is untouched"},
+    "R2": {"context": "the smallest multiple of 1024 that holds the longest filled 28K prompt plus 256 new tokens plus 1024",
+           "count_with": "llama-tokenize (llama.cpp v0.9.0, vocabulary only) on the UD-IQ2_XXS GGUF, special tokens parsed"},
+    "R3": {"drop": ["-ngl"], "engines_with_auto_fit": ["lcpp9", "buun"],
+           "note": "the engine's own fit to free memory; reported as fitted with partial offload, never as full offload"},
+    "pass": "the server loads and completes the registered 32-token warm-up; for a configuration with a 28K condition, also the same request after the 28K filler"
+  },
+  "quality_check": "the registered buun GSM8K check, at buun's rung, if the registered session's journal has no completed quality event",
+  "registered_runs": "{L}/runs/confirm"
+}
