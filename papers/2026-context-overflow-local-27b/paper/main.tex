@@ -1,0 +1,1043 @@
+% Paper 5 manuscript source. Every result number is a macro from derived/claims.tex, which
+% scripts/build_claims.py generates from derived/claims.json (testsuite/paper5/analyze.py).
+% Pre-registration: research/design-overflow-policies.md (frozen 2026-09-01; amendment and
+% clarifications 2026-09-19). The system-envelope values (appendix table) come from the frozen
+% harness configuration and the primary execution records; scripts/test_envelope_records.py
+% checks the typed ones against those records.
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[font=small,labelfont=bf,skip=5pt]{caption}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\Urlmuskip=0mu plus 1mu\relax
+\emergencystretch=1.3em
+\renewcommand{\bibfont}{\scriptsize}
+\setlength{\bibsep}{1pt}
+\usepackage[compact]{titlesec}
+\setlength{\textfloatsep}{9pt plus 2pt minus 3pt}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newif\ifdarkmode
+\ifdefined\DARKMODE \darkmodetrue \else \darkmodefalse \fi
+\ifdarkmode
+  \input{darkstyle}
+\fi
+
+\newcommand{\singleauthorinfo}[1]{\\[0.25em]{\small #1}}
+\newcommand{\q}[1]{\texttt{#1}}
+\input{derived/claims}
+\InputIfFileExists{build_notice.tex}{}{}
+
+% Descriptive answer-count ratio derived from the frozen claim-builder counts.
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\PfiveRetrievalRatio}{}{\fp_eval:n{round(\PfCorrectMFour / \PfCorrectTFour,1)}}
+\ExplSyntaxOff
+\title{\textbf{Retrieval Yields \PfiveRetrievalRatio{} Times as Many Correct Answers as Recency Truncation When a Local 27B Model\textquotesingle{}s Chat History Overflows}}
+
+\hypersetup{
+  pdftitle={Retrieval Yields 6.2 Times as Many Correct Answers as Recency Truncation When a Local 27B Model's Chat History Overflows},
+  pdfauthor={Matthew Schwartz},
+  pdfsubject={A pre-registered, budget-matched comparison of recency truncation, session summaries, LLMLingua-2 compression and retrieval from conversation history on LongMemEval-S with a locally served Qwen3.8-27B}
+}
+
+\author{Matthew Schwartz\singleauthorinfo{Independent researcher \enspace
+\href{https://orcid.org/0009-0009-4171-7247}{ORCID 0009-0009-4171-7247}
+\enspace \texttt{matthew.schwartz.research@gmail.com}}}
+\date{November 2026}
+
+% Editorial presentation constants from the frozen baseline configuration.
+\newcommand{\PfiveLargeBudget}{4,096}
+\newcommand{\PfiveSmallBudget}{1,024}
+\newcommand{\PfiveHistoryTokens}{100,000}
+\newcommand{\PfiveGpuMemory}{12}
+\newcommand{\PfiveBits}{2}
+\newcommand{\PfiveContext}{32,768}
+\newcommand{\PfiveTemperature}{0.2}
+\newcommand{\PfiveTopP}{0.95}
+\newcommand{\PfiveTimeout}{900}
+\newcommand{\PfiveEmbeddingTokens}{256}
+\newcommand{\PfiveConfidence}{95}
+\newcommand{\PfiveAlpha}{0.05}
+
+% Mechanically projected frozen blocks; see focus review PROJECTION.json.
+\newcommand{\PfiveArchivePrimary}{\label{sec:primary}
+The confirmatory comparison pairs each alternative with truncation on the same 500 questions at 4,096 tokens. Table~\ref{tab:p5-grid} lists every cell, Table~\ref{tab:p5-primary} gives the three pre-registered contrasts, and Figure~\ref{fig:p5-arms} shows both budgets. Retrieval was judged correct on 71.0\% of the questions, summaries on 37.4\%, compression on 25.2\% and truncation on 11.4\%; truncation was 2.8 points above the no-history control (8.6\%). All three paired intervals lie above zero, and all three contrasts remained significant after Holm correction (Table~\ref{tab:p5-primary}). Of the 316 questions on which retrieval and truncation disagreed, retrieval was right on 307. Retrieval yielded the most judged-correct answers. Only its lead over truncation was tested; its leads over summaries (33.6 points) and compression (45.8 points) are descriptive, with non-overlapping Wilson intervals (Table~\ref{tab:p5-grid}). No generation or judge verdict failed in any cell.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}\toprule
+Arm & Budget & $n$ & Correct & \% & 95\% interval & Gen fail & Judge fail\\ \midrule
+T & 1,024 & 500 & 50 & 10.0 & [7.7, 12.9] & 0 & 0\\
+T & 4,096 & 500 & 57 & 11.4 & [8.9, 14.5] & 0 & 0\\
+S & 1,024 & 500 & 75 & 15.0 & [12.1, 18.4] & 0 & 0\\
+S & 4,096 & 500 & 187 & 37.4 & [33.3, 41.7] & 0 & 0\\
+C & 1,024 & 500 & 62 & 12.4 & [9.8, 15.6] & 0 & 0\\
+C & 4,096 & 500 & 126 & 25.2 & [21.6, 29.2] & 0 & 0\\
+M & 1,024 & 500 & 195 & 39.0 & [34.8, 43.3] & 0 & 0\\
+M & 4,096 & 500 & 355 & 71.0 & [66.9, 74.8] & 0 & 0\\
+Cw & 1,024 & 500 & 53 & 10.6 & [8.2, 13.6] & 0 & 0\\
+Cw & 4,096 & 500 & 100 & 20.0 & [16.7, 23.7] & 0 & 0\\
+Mbm25 & 4,096 & 500 & 366 & 73.2 & [69.2, 76.9] & 0 & 0\\
+O & 4,096 & 157 & 153 & 97.5 & [93.6, 99.0] & 0 & 0\\
+E & -- & 500 & 43 & 8.6 & [6.4, 11.4] & 0 & 0\\
+\bottomrule\end{tabular}
+\caption{Primary-judge accuracy with pointwise Wilson intervals. T truncation, S summaries, C compression, M retrieval (MiniLM), Cw recent-window compression, Mbm25 retrieval with BM25, O oracle evidence sessions (fitting subset only), E no history. Failures are retained as incorrect under the protocol.}\label{tab:p5-grid}
+\end{table}
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}\toprule
+Contrast & Points & 95\% interval & Discordant & Holm $p$ & Decision\\ \midrule
+S vs T & +26.0 & [+21.8, +30.2] & 139 / 9 & \ensuremath{8.77\times10^{-31}} & reject\\
+C vs T & +13.8 & [+9.8, +17.8] & 91 / 22 & \ensuremath{3.70\times10^{-11}} & reject\\
+M vs T & +59.6 & [+54.7, +63.9] & 307 / 9 & \ensuremath{3.57\times10^{-78}} & reject\\
+\bottomrule\end{tabular}
+\caption{The three pre-registered paired comparisons at 4,096 tokens, 500 items each. Discordant pairs count questions judged correct for the alternative only and for truncation only. Newcombe intervals are pointwise; the Holm-adjusted exact McNemar family determines the decisions.}\label{tab:p5-primary}
+\end{table}
+\begin{figure}[htbp]\centering
+\ifdarkmode\includegraphics[width=\linewidth]{figures/dark/fig_arms.pdf}\else\includegraphics[width=\linewidth]{figures/fig_arms.pdf}\fi
+\caption{Judged accuracy by policy at each budget, with Wilson 95\% intervals (500 questions per bar). The dotted line is the no-history control; the dashed oracle line covers only the fitting subset.}\label{fig:p5-arms}\end{figure}
+}
+
+\newcommand{\PfiveArchiveBudget}{\label{sec:budget}
+At 1,024 tokens the four policies scored 39.0\% (retrieval), 15.0\% (summaries), 12.4\% (compression) and 10.0\% (truncation), the same order of point estimates as at 4,096 tokens, at lower levels. Against truncation at that budget, retrieval differed by +29.0 points [+24.7, +33.3], summaries by +5.0 [+2.4, +7.7] and compression by +2.4 [$-$0.4, +5.3] (Table~\ref{tab:p5-secondary}); compression (+2.4 points [$-$0.4, +5.3]) was not separated from truncation at that budget, and the alternatives were not tested against each other. At 4,096 tokens, BM25 ranking of past exchanges was not separated from MiniLM ranking (+2.2 points [$-$1.7, +6.1]), and compressing only the recent window instead of the whole history changed compression accuracy by $-$5.2 points [$-$9.7, $-$0.7]. Equal budgets did not give equal prompt lengths: at 1,024 tokens retrieval delivered 756 prompt tokens on average and compression 1,022, because retrieval stops at the first ranked round that does not fit (Figure~\ref{fig:p5-cost}). These comparisons are descriptive, and a contrast that is significant at one budget but not at the other does not by itself establish an interaction between policy and budget.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}\toprule
+Comparison & Points & 95\% interval & Raw $p$\\ \midrule
+S vs T, B=1024 & +5.0 & [+2.4, +7.7] & \ensuremath{2.47\times10^{-04}}\\
+C vs T, B=1024 & +2.4 & [$-$0.4, +5.3] & 0.126347\\
+M vs T, B=1024 & +29.0 & [+24.7, +33.3] & \ensuremath{6.77\times10^{-36}}\\
+Cw vs T, B=1024 & +0.6 & [$-$1.3, +2.5] & 0.663624\\
+Cw vs T, B=4096 & +8.6 & [+5.6, +11.7] & \ensuremath{3.38\times10^{-08}}\\
+Mbm25 vs T, B=4096 & +61.8 & [+56.8, +66.2] & \ensuremath{2.53\times10^{-78}}\\
+Cw vs C, B=4096 & $-$5.2 & [$-$9.7, $-$0.7] & 0.030415\\
+Mbm25 vs M, B=4096 & +2.2 & [$-$1.7, +6.1] & 0.31488\\
+\bottomrule\end{tabular}
+\caption{Secondary paired contrasts, 500 items each, with pointwise Newcombe intervals and unadjusted McNemar p-values; descriptive, outside the three-test confirmatory family.}\label{tab:p5-secondary}
+\end{table}
+}
+
+\newcommand{\PfiveArchiveSelection}{\label{sec:selection}
+Each policy has a diagnostic of how much annotated evidence its prompts kept, with its own denominator (Section~\ref{sec:statistics}); Figure~\ref{fig:p5-evidence} plots accuracy against it. At 4,096 tokens, the mean per-question fraction of annotated evidence turns retained was 3.8\% for truncation and 74.8\% for retrieval, using the same 479 questions with defined fractions (BM25 ranking: 79.0\%); summaries covered 44.0\% of the evidence sessions, and compression kept 26.3\% of the evidence words.
+\begin{figure}[htbp]\centering
+\ifdarkmode\includegraphics[width=\linewidth]{figures/dark/fig_evidence.pdf}\else\includegraphics[width=\linewidth]{figures/fig_evidence.pdf}\fi
+\caption{Accuracy against each policy's evidence diagnostic at both budgets (circles 1,024 tokens, squares 4,096). Retained evidence turns, summarized evidence sessions and evidence-word recall have different denominators and are plotted on separate axes (Section~\ref{sec:statistics}). The horizontal values are means of defined per-question fractions, rather than pooled recall. The turn-retention means for truncation and retrieval each use the same 479 questions.}\label{fig:p5-evidence}\end{figure}
+
+The oracle arm replaces selection with the annotated evidence: on the 157 questions whose evidence sessions fit 4,096 tokens, the generator was judged correct on 97.5\% when shown only those sessions (Table~\ref{tab:p5-oracle}). On the same questions retrieval trailed the oracle by 10.8 points, summaries by 51.0, compression by 69.4 and truncation by 84.1. On this selected subset, the model answered nearly every question correctly according to the local judge when shown only the evidence sessions. This contrast combines evidence selection with distractor removal and does not distinguish their effects.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrr}\toprule
+Same-subset comparison & Points & 95\% interval\\ \midrule
+O minus T & +84.1 & [+77.0, +88.7]\\
+O minus S & +51.0 & [+42.2, +58.8]\\
+O minus C & +69.4 & [+61.4, +75.9]\\
+O minus M & +10.8 & [+5.9, +16.8]\\
+\bottomrule\end{tabular}
+\caption{Paired gaps between the oracle and each policy on the same 157 fitting items, the only items the oracle covers.}\label{tab:p5-oracle}
+\end{table}
+}
+
+\newcommand{\PfiveArchiveTypes}{\label{sec:types}
+Table~\ref{tab:p5-subgroups} splits accuracy by LongMemEval's declared question types. At 4,096 tokens the highest point estimate went to retrieval in all six types, with leads over truncation from 39.1 points (multi-session) to 87.5 points (single-session assistant). The 30 abstention questions, whose answer is absent from the history, overlap the types and put truncation first: truncation was credited on 30 of them, summaries on 24, compression on 25 and retrieval on 24. These groups are small, and the breakdown is descriptive; it does not test policy-by-type interactions.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}\toprule
+Budget & Question group & $n$ & T \% & S \% & C \% & M \%\\ \midrule
+1,024 & Knowledge update & 78 & 11.5 & 23.1 & 17.9 & 47.4\\
+1,024 & Multi-session & 133 & 9.8 & 10.5 & 6.8 & 18.0\\
+1,024 & Single-session assistant & 56 & 12.5 & 19.6 & 10.7 & 87.5\\
+1,024 & Single-session preference & 30 & 6.7 & 13.3 & 20.0 & 26.7\\
+1,024 & Single-session user & 70 & 11.4 & 17.1 & 10.0 & 67.1\\
+1,024 & Temporal reasoning & 133 & 8.3 & 12.0 & 15.0 & 22.6\\
+1,024 & Abstention (overlaps types) & 30 & 100.0 & 93.3 & 73.3 & 86.7\\
+4,096 & Knowledge update & 78 & 15.4 & 57.7 & 28.2 & 84.6\\
+4,096 & Multi-session & 133 & 9.8 & 18.0 & 15.0 & 48.9\\
+4,096 & Single-session assistant & 56 & 12.5 & 44.6 & 25.0 & 100.0\\
+4,096 & Single-session preference & 30 & 6.7 & 40.0 & 26.7 & 63.3\\
+4,096 & Single-session user & 70 & 17.1 & 44.3 & 31.4 & 90.0\\
+4,096 & Temporal reasoning & 133 & 8.3 & 37.6 & 30.1 & 64.7\\
+4,096 & Abstention (overlaps types) & 30 & 100.0 & 80.0 & 83.3 & 80.0\\
+\bottomrule\end{tabular}
+\caption{Primary-judge accuracy within each declared question group. Abstention overlaps the type rows; it is not an additional sample.}\label{tab:p5-subgroups}
+\end{table}
+}
+
+\newcommand{\PfiveArchiveTransfer}{\label{sec:transfer}
+Two descriptive checks repeat the comparison outside the primary setting, each at 4,096 tokens. The first gives the same 500 questions and session summaries to Qwen3-8B, a smaller attention-only model from the same developer, served by llama.cpp with its own tokenizer and chat template (Table~\ref{tab:p5-crossmodel}). Retrieval again had the highest point estimate (64.2\%), and the four point estimates kept the order of the primary 27B run (M, S, C, T). This check changes the model and the serving stack together, so it isolates neither.
+
+The second check uses 200 LoCoMo questions. A pre-specified rule chose M from S, M and C as the alternative with the most correct answers on the primary LongMemEval results; ties use that order, and selection does not require beating T. Because the rule selected retrieval, this check does not repeat the truncation-versus-summarization comparison that Kyrkewood ran on LoCoMo \citep{kyrkewood2026sleeping}. Retrieval was judged correct on 68.0\% of the questions against 17.0\% for truncation, a difference of +51.0 points (pointwise Newcombe interval [+42.3, +58.4], unadjusted McNemar $p=\ensuremath{1.71\times10^{-23}}$); these question-level calculations ignore that questions share conversation histories. Token F1 compares the whole visible answer with a short gold string, so every extra word lowers it and its level is low for both arms; it changed by +4.5 points, with a conversation-resampled 95\% interval of [+3.5, +5.7] over only 10 conversations (Table~\ref{tab:p5-locomo}). Neither result establishes general superiority across datasets.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}\toprule
+Arm & Accuracy \% & 95\% interval & $\Delta$ vs T & 95\% interval & Raw $p$\\ \midrule
+T & 10.8 & [8.4, 13.8] & -- & -- & --\\
+S & 35.0 & [30.9, 39.3] & +24.2 & [+20.0, +28.4] & \ensuremath{1.69\times10^{-27}}\\
+C & 17.8 & [14.7, 21.4] & +7.0 & [+3.5, +10.6] & \ensuremath{1.55\times10^{-04}}\\
+M & 64.2 & [59.9, 68.3] & +53.4 & [+48.5, +57.9] & \ensuremath{7.44\times10^{-69}}\\
+\bottomrule\end{tabular}
+\caption{Qwen3-8B, 500 items per arm. Wilson accuracy and paired Newcombe difference intervals are pointwise; McNemar p-values are unadjusted and outside the primary Holm family.}\label{tab:p5-crossmodel}
+\end{table}
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}\toprule
+Arm & $n$ & Judged \% & Token-F1 \% & Cluster 95\% interval\\ \midrule
+T & 200 & 17.0 & 3.9 & [3.3, 4.5]\\
+M & 200 & 68.0 & 8.4 & [7.6, 9.5]\\
+\bottomrule\end{tabular}
+\caption{LoCoMo aggregates only. F1 percentile intervals resample whole conversations, with 10,000 draws and seed 20260920; the item-weighted mean is recomputed in every resample.}\label{tab:p5-locomo}
+\end{table}
+}
+
+\newcommand{\PfiveArchiveScorers}{\label{sec:scorers}
+Scorer agreement is not validation against human correctness, and identical failure labels can inflate it, so the agreement rates below use only successful generations with a nonempty verdict from each compared scorer. No generation or verdict failed in any 4,096-token cell of the three runs, so the rule that scores failures as incorrect changed no accuracy. In the 27B run the local judge agreed with the generator acting as a second judge on 96.6--98.2\% of verdicts per policy ($\kappa$ 0.90--0.95), and with lexical containment of the gold answer on 78.0--91.4\% of short-answer items (Table~\ref{tab:p5-scorers}). In the 8B run the second judge, Qwen3-8B judging its own answers, agreed with the local judge on 69.4--87.2\% of verdicts ($\kappa$ 0.28--0.70); it enters no reported accuracy. In the 27B run the two judges' largest disagreement, 3.4\% of one policy's verdicts, is less than half the smallest gap between adjacent policies at 4,096 tokens (12.2 points), so scoring with the second judge could not have changed the order of the four policies; scored by lexical containment on the 440 short-answer items, the order was also unchanged (retrieval 55.7\%, summaries 34.5\%, compression 22.0\% and truncation 10.2\%). No agreement rate shows which scorer is correct. Every nonempty verdict in the displayed cells was a bare yes or no (allowing a final period), and no empty visible answer was credited; the upstream rule that credits any reply containing ``yes'' was kept unchanged.
+
+\begin{table}[htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrrr}\toprule
+Run & Arm & Local--self \% & $\kappa$ & Local--lexical \% & $\kappa$ & Self--lexical \% & $\kappa$\\ \midrule
+27B & T & 98.2 & 0.90 & 91.4 & 0.41 & 92.3 & 0.45\\
+27B & S & 96.6 & 0.93 & 81.6 & 0.59 & 82.0 & 0.60\\
+27B & C & 98.0 & 0.95 & 86.8 & 0.61 & 87.0 & 0.61\\
+27B & M & 97.6 & 0.94 & 78.0 & 0.54 & 77.5 & 0.53\\
+8B & T & 69.4 & 0.28 & 91.4 & 0.38 & 68.9 & 0.20\\
+8B & S & 75.4 & 0.53 & 85.0 & 0.66 & 66.6 & 0.36\\
+8B & C & 70.0 & 0.38 & 87.7 & 0.53 & 66.1 & 0.27\\
+8B & M & 87.2 & 0.70 & 80.7 & 0.61 & 73.4 & 0.45\\
+\bottomrule\end{tabular}
+\caption{Scorer agreement on valid verdicts for the two LongMemEval deployments: the local judge (gpt-oss-20b), the generator as second judge (self) and lexical containment of the gold answer. Every scorer pair has its own denominator; these rates exclude failed verdicts and therefore differ from failure-coded agreement. Lexical comparisons exclude preference and abstention questions. Pair denominators per policy: local--self 500, local--lexical 440 and self--lexical 440.}\label{tab:p5-scorers}
+\end{table}
+}
+
+\newcommand{\PfiveArchiveCost}{\label{sec:cost}
+Figure~\ref{fig:p5-cost} shows the prompt tokens each policy delivered and the seconds recorded per question. At 4,096 tokens the four policies delivered 3,559--3,993 prompt tokens on average. Mean generation time per answer was 15.0\,s for truncation, 17.8\,s for retrieval, 19.2\,s for summaries and 24.9\,s for compression. Recorded selection added 0.19\,s for truncation, 0.42\,s for compression and 4.37\,s for retrieval, whose timer includes computing embeddings not already cached; summaries had no per-question selection timer. These timings follow policy-specific accounting boundaries and exclude summary generation, classifier preprocessing and the pause between requests (Section~\ref{sec:statistics}), so they do not rank the policies by end-to-end cost.
+\begin{figure}[htbp]\centering
+\ifdarkmode\includegraphics[width=\linewidth]{figures/dark/fig_cost.pdf}\else\includegraphics[width=\linewidth]{figures/fig_cost.pdf}\fi
+\caption{Delivered prompt tokens (left) and recorded seconds per question at 4,096 tokens (right): generation plus the policy's recorded selection time, with accounting boundaries that differ by policy. Summary generation, classifier preprocessing and the pause between requests are excluded; retrieval's selection time includes embedding cache misses.}\label{fig:p5-cost}\end{figure}
+}
+
+\newcommand{\PfiveArchiveMechanisms}{\paragraph{Possible mechanisms.} The design does not isolate why each policy lost evidence; the following explanations are consistent with the diagnostics but untested. LongMemEval-S spreads answer-bearing sessions throughout each history, so a recency window seldom reaches them: at 4,096 tokens truncation kept 17.7 of 493.5 messages on average. Session summaries reach further back (17.1 of 47.7 sessions) but were written before the question was known and are short, so a covered session can still lose the needed fact; their coverage of evidence sessions (44.0\%) bounds what they can supply from above. Whole-history compression runs far outside the range in which LLMLingua-2 was validated (Section~\ref{sec:policies}) and kept 26.3\% of the evidence words. Compressing only the recent window, inside that range, changed accuracy by $-$5.2 points [$-$9.7, $-$0.7] even though it kept more of the evidence words (37.3\%); word recall counts lexical overlap anywhere in the window, which may still omit the answer-bearing sessions. On abstention questions, more history may give the model material to answer from when it should decline, which would explain why truncation was credited on 30 of 30 and the other policies on 24--25.
+
+}
+
+\newcommand{\PfiveArchiveEnvelope}{\begin{table}[tbp]
+\centering\scriptsize
+\begin{tabular}{@{}L{0.125\linewidth}L{0.85\linewidth}@{}}
+\toprule
+Item & Measured system\\
+\midrule
+Artifacts and versions &
+Qwen3.8-27B, EXL3 2.00 bits per weight with its MTP head
+(\q{turboderp/Qwen3.8-27B-exl3} \q{d7e02d6}; shards \q{cf8966eb},
+\q{2a72afda}; tokenizer \q{0997f410}); TabbyAPI \q{4a4f9f4}; exllamav3 1.4.7
+wheel (extension \q{90bc134f}) with local patches: a recurrent-state checkpoint
+interval, a conversion-only fallback, and opt-in speculative-decoding switches
+(an acceptance probe and standard speculative sampling, both
+distribution-preserving by the frozen code) whose runtime state was not
+recorded. Judge gpt-oss-20b MXFP4 (\q{27cd6c43}) and Qwen3-8B UD-Q4\_K\_XL
+(\q{34a514d0}) on llama.cpp \q{035e227}. LLMLingua-2
+\q{xlm-roberta-large-meetingbank} \q{ebaba9b} (llmlingua 0.2.2); MiniLM-L6-v2
+\q{c9745ed}. Data: cleaned LongMemEval-S \q{d6f21ea9}, oracle file
+\q{821a2034}, LoCoMo \q{79fa87e9}. A stage is one harness session of
+generation or of one judge; each stage required all 809 files of the frozen
+environment snapshot to match, apart from the dated library amendments of
+Appendix~\ref{app:execution}.\\
+\addlinespace[3pt]
+Processes and state &
+One harness process per stage owns the append-only journals (one row per
+request attempt) and never re-sends a finished request; prompts were frozen and
+hash-listed before generation. Each server is a child process group of the
+harness on 127.0.0.1, and its caches end with it. TabbyAPI holds a Q8 KV cache
+of 32,768 tokens, a Q8 draft cache and a 4,096\,MB host-memory stash of
+recurrent states with checkpoints every 1,024 prompt tokens. Its log gives a
+cached-token count per request, nonzero for 200 of the 6,134 main-grid
+generation requests; on 111 of these the count also covers tokens re-processed
+within the same request, so it does not isolate reuse between requests.
+llama.cpp holds the judge's KV and prompt caches. Summaries and LLMLingua-2
+probabilities were precomputed files; MiniLM embeddings were cached in memory
+only.\\
+\addlinespace[3pt]
+Placement and memory &
+One RTX 4080 Laptop GPU (12,282\,MiB, driver 580.167.08), Core i9-14900HX,
+62.4\,GiB host memory. Generator fully on the GPU (9,042--9,074\,MiB at server
+start). After the 24-request smoke test, each stage needed at least 10,200\,MiB
+free, and the server had to be the GPU's only compute process before and after
+every request. Judge: 25 of 25
+layers on the GPU, with the experts of 6 mixture-of-experts layers on the CPU (GPU:
+8,522.5\,MiB of weights and 402\,MiB of KV cache; host: 3,177.4\,MiB of
+weights). Qwen3-8B: placement fitted by llama.cpp; split not recorded.
+LLMLingua-2 ran on the GPU and MiniLM on the CPU, before generation.\\
+\addlinespace[3pt]
+Tokenizer, template, decoding, context &
+Served tokenizer, template tokens included; server and harness counts matched
+on every generation request. LongMemEval reader template, one user message, no
+system prompt; Qwen3.8 chat template with \q{medium} reasoning effort; raw
+completion without BOS. Each request set only temperature 0.2, top-p 0.95, at
+most \PfiveCap{} completion tokens and stops at \q{<|im\_end|>},
+\q{<|endoftext|>} or \q{<|im\_start|>}; other samplers kept the defaults of
+TabbyAPI \q{4a4f9f4} (top-k off; the startup logs show no sampler preset), not
+the model's suggested top-k of 20; with the parameter log off, the applied
+values were not read back. MTP drafting is confirmed by the startup log; dynamic
+drafts of up to 6 tokens follow the frozen configuration. Seed recorded but not
+applied. Qwen3-8B: the same requested settings with the seed applied, other
+samplers at llama.cpp's defaults, 16,384-token context. Context: 32,768 tokens
+for the generator, 16,384 for the judge. Judges: gpt-oss-20b at temperature 0
+and low reasoning effort, at most 2,048 tokens, one 8,192-token retry after an
+empty reply; self-judge greedy, thinking off, at most 16 tokens.\\
+\addlinespace[3pt]
+Queueing and cancellation &
+One request at a time: one client per stage, one server slot, stages in
+sequence. Generation paused 10\,s after each request, outside the timers;
+judges ran unpaced under a load guard that paused between requests. Timeouts:
+900\,s for generation and 600\,s for judging; none was reached. A pause file or
+a GPU at 87\,$^\circ$C stopped the server between requests until it cooled below
+75\,$^\circ$C. No in-flight request was cancelled; servers were stopped by
+SIGINT, SIGTERM, then SIGKILL to their own process group.\\
+\addlinespace[3pt]
+Tool permissions and side effects &
+Not applicable to the models: text prompts only, no tools or function calls;
+outputs were stored and scored, never executed. The harness appended only to its
+own journals, hash records and logs; servers listened only on 127.0.0.1, without
+authentication.\\
+\addlinespace[3pt]
+Telemetry, failures and recovery &
+Each attempt is journaled (timestamps, duration, idle wait, prompt hash, finish
+reason, server process ID, harness hashes); hashed session, server and
+completion records bind the journals to the environment snapshot, rechecked
+before and after each stage. Transport errors and timeouts allow two retries on
+a restarted server; three failed attempts or a failed verdict are scored
+incorrect. No transport or judge retry was needed, and no request failed under
+this definition; separately, one answer whose post-request environment check
+failed was excluded and requested again (Appendix~\ref{app:execution}).
+\PfiveFailureNote\\
+\addlinespace[3pt]
+Evaluation claims and evidence &
+Confirmatory: S, C and M each against T at 4,096 tokens, exact two-sided
+McNemar tests on the 500 paired questions, Holm correction at a family-wise
+0.05 (Section~\ref{sec:results}). Accepted only with the complete
+pre-registered grid, token parity on every request, both judge passes and claims
+rebuilt from the journals by the hash-pinned analysis (\q{analyze.py}
+\q{d1298191}; claims \q{838ec81d}). Every other comparison is descriptive.\\
+\bottomrule
+\end{tabular}
+\caption{System envelope of the measured deployment, from the frozen configuration
+files and the run's own records. Hashes are eight-character SHA-256 prefixes or
+seven-character commit prefixes; items the records do not contain are marked as
+not recorded.}
+\label{tab:p5-envelope}
+\end{table}}
+
+\newcommand{\PfiveArchiveData}{
+The primary corpus is the cleaned LongMemEval-S release
+\citep{wu2025longmemeval}: 500 questions, 30 of them abstention items whose
+answer is absent from the history. The benchmark's author deprecated the
+original files in favor of the cleaned ones. Each item has 38--62 sessions of
+user--assistant chat, roughly 100,000 tokens in all by a characters/4 estimate,
+and a question dated after them; LongMemEval marks the turns that contain the answer, here called
+evidence turns. This history-length estimate is not a served-tokenizer minimum.
+The benchmark's evidence-only oracle file supplies the
+perfect-retrieval control (arm O, Section~\ref{sec:policies}). Its question
+dates differ from those of the cleaned file, so before prompts were frozen or
+any primary answer generated, the date line of the oracle prompts was aligned to
+the cleaned file's question date. Evidence, question and gold answer are
+unchanged, as is the set of items whose oracle prompt fits, and the original
+prompts and the date-only correction are preserved for audit. LoCoMo
+\citep{maharana-etal-2024-evaluating} supplies the second benchmark: 200
+questions from its categories 1 (multi-hop), 2 (temporal) and 4 (single-hop),
+chosen within each category by the lowest SHA-256 of the question ID before any
+measurement; they come from \PfiveLocomoConversations{} conversations. Twenty
+LoCoMo category-3 questions, a category excluded from every analysis, served as
+the pilot.
+
+}
+
+\newcommand{\PfiveArchiveServing}{
+\label{sec:serving}
+The generator is Qwen3.8-27B \citep{qwen2026qwen38card}, a hybrid model whose
+64 layers are 48 Gated DeltaNet layers, which carry a recurrent state, and 16
+attention layers. It is quantized to 2.00 bits per weight in the EXL3 trellis
+format \citep{turboderp2026qwen38exl3}, with its own multi-token-prediction
+(MTP) draft head, and runs on one RTX 4080 Laptop GPU (12\,GB), served by
+TabbyAPI \citep{theroyallab2025tabbyapi} on exllamav3 1.4.7
+\citep{turboderp2025exllamav3}. This is the configuration the author uses for
+interactive work on this card: fully resident on the GPU, with a 32,768-token
+context and speculative decoding from the MTP head. The engine is the official
+wheel with the author's recorded source patches. One sets how often the
+recurrent state is checkpointed during prefill, which the launcher set to every
+1,024 tokens. Another adds opt-in switches for a draft-acceptance probe and for
+standard speculative sampling; the launcher did not set them, although the
+server's runtime environment was not recorded. By the frozen code, neither
+switch changes the sampled distribution, and the default MTP path samples the
+target model and accepts only draft tokens that match.
+
+Thinking is on: the model reasons in its own thinking block, at the template's
+\q{medium} reasoning effort, chosen because the template's default effort
+(\q{xhigh}) injects a system message. Requests specified temperature 0.2 and
+top-p 0.95, as stored with every request; other samplers kept TabbyAPI's
+defaults, and with the server's parameter log off, the applied values were not
+read back (Table~\ref{tab:p5-envelope}). The completion cap was \PfiveCap{}
+tokens, fixed by the pre-registered pilot rule (16,384 tokens if any pilot
+completion reached 6,144, otherwise 8,192), with a 900-second timeout. TabbyAPI
+accepts no per-request seed, so sampled requests are not byte-reproducible
+(Section~\ref{sec:limitations}).
+
+}
+
+\newcommand{\PfiveArchivePrompts}{
+Every arm uses the LongMemEval reader template, the prompt the benchmark gives
+its answering model (the upstream code's ``history chats'' prompt without
+chain-of-thought instructions), with session blocks carrying their dates, one
+user message and no system prompt. The harness renders the prompt with the
+model's chat template and sends it as a raw completion. The budget $B$ counts
+every token of that string with the served tokenizer, and before each request
+the server's own token count had to equal the harness count; it did for every
+request. Every arm fills toward $B$ from its own material, and the delivered
+tokens are reported per arm. Both budgets lie far below the served
+32,768-token context: the study measures short prompts by design, and the
+larger budget equals Ollama's default context on GPUs with less than 24\,GiB of
+memory \citep{ollama_chatprompt}.
+
+}
+
+\newcommand{\PfiveArchivePolicies}{
+\label{sec:policies}
+\begin{description}\setlength{\itemsep}{1pt}
+\item[T, recency truncation.] The oldest whole messages are dropped until the
+  prompt fits, keeping each surviving message's session header. This is the
+  prompt-side behavior of Ollama's message truncation \citep{ollama_chatprompt}.
+\item[S, session summaries.] The generator summarizes each session that S
+  needs to fill $B = 4{,}096$, once and newest first, with thinking off, greedy
+  decoding, at most 200 tokens and a prompt that keeps user facts,
+  assistant-provided specifics and every date expression. Of the 8,350
+  summaries, 5,819 stopped at the 200-token cap. Summaries are cached and
+  question-agnostic. S fills $B$ with whole summaries, newest first, shown in
+  chronological order.
+\item[C, LLMLingua-2 over the whole history.] Keep-probabilities come from the
+  library's own chunking and classifier \citep{pan2024llmlingua2}; the
+  library's per-chunk keep rule is applied at the largest attainable keep rate
+  that fits, and a self-test confirmed byte identity with the library's
+  \q{compress\_prompt}. When even the finest rate overflows, which happens at
+  1,024 tokens in the prepared prompts, the oldest compressed chunks are
+  dropped. The required compression is about 30-fold at 4,096 tokens and about
+  120-fold at 1,024, far beyond the 2--5-fold range in which LLMLingua-2 was
+  validated.
+\item[M, retrieval from history.] A user turn and its immediately following
+  assistant turn form a round; other turns form single-turn rounds. All
+  rounds in the history are candidates, including recent ones. MiniLM-L6
+  embeddings \citep{wang2020minilm,reimers2019sbert} of the question text and of
+  each round, truncated at 256 word pieces, rank the rounds by cosine
+  similarity, breaking ties toward recency. The largest fitting prefix of that
+  ranking is shown chronologically under its session headers. No separate
+  recent-message buffer is reserved, and a round that does not fit is not
+  skipped to try smaller, lower-ranked rounds. The letter M is the
+  pre-registration's label for this memory arm.
+\item[Controls and variants.] O shows the oracle evidence sessions in full,
+  only for the \PfiveOFitN{} items whose prompt fits 4,096 tokens (the fitting
+  items). E shows no history. Cw compresses only a recent window of about four
+  times $B$ (\PfDiagWindowTokensCwOne{} and \PfDiagWindowTokensCwFour{} tokens on
+  average at the two budgets), which keeps the compression inside the validated
+  range, and Mbm25 replaces the embedder with BM25 \citep{robertson2009bm25}.
+\end{description}
+
+
+
+}
+
+\newcommand{\PfiveArchiveScoring}{
+The primary score follows LongMemEval's judge protocol
+\citep{wu2025longmemeval}: the upstream per-type judge prompts, verbatim, and
+the upstream rule that counts an answer as correct when the judge's reply
+contains ``yes''. The official judge is a hosted GPT-4o snapshot, and no hosted
+credential was available; the judge here is gpt-oss-20b
+\citep{openai2025gptoss}, a local model from a different developer than the
+generator, served by llama.cpp \citep{gerganov2023llamacpp} at temperature 0
+with low reasoning effort. The judge sees only the generator's visible answer,
+its reply with the thinking block removed; an answer whose thinking block never
+closed has an empty visible answer, which the judge scores like any other. Two
+secondary scorers provide agreement checks, reported as raw agreement and
+Cohen's $\kappa$ \citep{cohen1960kappa}: the generator judging with the same
+prompts, and normalized containment of the gold answer on the short-answer
+items (all but the preference and abstention questions).
+
+}
+
+\newcommand{\PfiveArchiveStatistics}{
+\label{sec:statistics}
+The confirmatory family is the three paired comparisons of S, C and M against
+T at 4,096 tokens, each an exact two-sided McNemar test \citep{mcnemar1947} on
+the 500 items, with Holm correction \citep{holm1979} at a family-wise 0.05. An
+explicitly failed generation counts as incorrect, and the analysis does not run
+while any request is missing. Differences carry Newcombe method-10 intervals
+\citep{newcombe1998paired} and accuracies Wilson intervals \citep{wilson1927}.
+Everything else is descriptive with pointwise intervals: the 1,024-token
+contrasts, the variants, the ranking across budgets, the oracle gap, question
+types, evidence retention, cost, and the LoCoMo and cross-model checks.
+
+The cross-model check rebuilds T, S, C and M at 4,096 tokens with Qwen3-8B's
+own tokenizer and chat template. It uses the primary generator's session
+summaries, including the few older sessions that only the 8B tokenizer's budget
+reaches (Appendix~\ref{app:execution}). Its llama.cpp requests apply the
+recorded seed; the primary TabbyAPI requests cannot. For LoCoMo, the alternative
+to T is the highest-scoring S, M or C arm on the completed primary judge labels,
+with ties broken S, M, C. Token-F1 intervals resample whole conversations 10,000
+times (seed 20260920), recomputing the item-weighted mean in each sample.
+Question-level accuracy intervals and tests remain descriptive; shared
+conversations limit their interpretation.
+
+Evidence diagnostics use different denominators: truncation and retrieval
+report the share of evidence turns retained, summarization reports the share of
+evidence-bearing sessions summarized, and compression reports evidence-word
+recall, the share of distinct words of four or more characters in the evidence
+turns that appear anywhere in the compressed history. These are plotted
+separately. Summarizing an evidence-bearing session does not establish that its
+relevant facts survive the summary, and word overlap does not establish that an
+answer can be recovered.
+
+Each evidence diagnostic is averaged across questions with a defined
+denominator; questions with an undefined fraction are omitted, not scored zero.
+The turn-retention means for truncation and retrieval each use 479 questions.
+
+Timing coverage differs by policy. T records selection and token counting;
+C records selection over previously computed classifier scores, excluding
+that classifier preprocessing. S has no per-question selection timer, and
+summary generation is separate. M's timer includes ranking, token counting
+and embeddings not already in its in-process cache; the ranking time is
+recorded once and attached to both primary-budget records. Generation seconds
+include prefill, which the server shortens when it reuses cached prompt pages
+(Table~\ref{tab:p5-envelope}). The displayed costs are therefore neither an
+end-to-end comparison nor a clean warm-cache latency comparison. Missing timing
+is not treated as zero.
+
+}
+
+\newcommand{\PfiveArchiveRegistration}{
+\label{sec:execution}
+The design was pre-registered on 1 September 2026. Dated amendments on 1 and
+19 September 2026, each recorded before the measurements it affects, set the
+cleaned data, the generator, the arm definitions, the judge-based scoring and
+the decoding limits used here; the pre-registration and its amendments will be
+released with the data. The run then departed from one uninterrupted execution
+in recorded ways, none of which changed a prompt, a model, a decoding setting, a
+judge prompt or the analysis; Appendix~\ref{app:execution} lists them.
+
+}
+
+\newcommand{\PfiveArchiveLimitations}{
+
+
+\paragraph{Scoring.} The primary judge is a local model, gpt-oss-20b, not the
+hosted GPT-4o judge of the official protocol, and no answer was checked by a
+human. Agreement with a second local judge or with a lexical rule shows
+consistency, not correctness, and the upstream rule that credits any reply
+containing ``yes'' was kept.
+
+\paragraph{Implementations and budgets.} Each policy is one implementation with
+fixed choices: question-agnostic summaries capped at 200 tokens, LLMLingua-2
+run far outside its originally studied compression range, and retrieval that
+does not skip a round that fails to fit. Other summary prompts, compressors,
+rankers or budgets could rank differently. Equal budgets do not equalize
+delivered length or evidence. Summaries can omit or distort facts, and neither
+a covered source session nor retained evidence words show that the needed fact
+survived.
+
+\paragraph{Generality.} The confirmatory evidence comes from one 27B generator
+quantized to 2.00 bits per weight, on one GPU, with sampled answers. The
+questions ask about facts that LongMemEval-S places throughout long histories;
+continuity within the current session, which recency serves directly, was not
+tested. The Qwen3-8B check changes the model and the serving setup together; it
+does not isolate architecture or establish cross-family generality. The LoCoMo
+questions come from only a few conversations, so its question-level tests ignore
+shared histories and its resampled interval rests on few clusters. Only the
+three contrasts with truncation at 4,096 tokens are confirmatory; every other
+comparison, including the order among the alternatives, is descriptive. The
+oracle arm covers a selected subset of \PfiveOFitN{} questions and is not a
+full-context upper bound over all 500.
+
+\paragraph{Reproducibility and environment.} TabbyAPI accepts no per-request
+seed, so the recorded seed was never applied: exact analysis reproduction relies
+on the saved responses, and a rerun cannot be expected to reproduce sampled
+answers byte for byte. Grading ran a month after generation, in the updated
+environment described in Appendix~\ref{app:execution}. The judges read saved
+answers, so the answers themselves could not change, but both judges' verdicts
+were produced in that later environment.
+
+\paragraph{Cost.} Recorded timings omit offline preparation (session summaries,
+classifier passes, embeddings) and its reuse across questions, follow
+policy-specific accounting boundaries, and exclude request pacing, which affects
+total elapsed cost and possibly thermal conditions. These measurements cannot
+identify a universally best memory system or rank the policies by end-to-end
+cost.
+
+}
+
+\newcommand{\PfiveArchiveRelated}{The Sleeping Agent \citep{kyrkewood2026sleeping} compared truncation and
+rolling summarization at about 4K tokens on LoCoMo with hosted models and found
+truncation behind summarization in judged accuracy (0.171 against 0.238), with
+date loss in the summaries as the main failure. Our LoCoMo check compares
+truncation with the policy selected on LongMemEval-S, so it repeats that
+summarization contrast only if summaries are selected. Retain or Consolidate
+\citep{kang2026retain} matched budgets of 16--256 tokens with gold evidence
+supplied and found that consolidation wins when the evidence does not fit and
+verbatim retention wins when it does. Hayashi and Shin
+\citep{hayashi2026personalized} studied PersonaMem-v2 with hosted judges.
+Sentence-level retrieval at a fixed budget matched full-history accuracy with
+about 5\% of the text, and an LLM summary of the same length did about as well
+as retrieval; that study has no truncation or learned-compression arm and uses
+no local answering model. Here summaries trailed retrieval widely; S
+concatenates question-agnostic summaries of single sessions, a different design
+from their same-length summary, and whether that difference explains the
+contrast was not tested. Bei et al.\ \citep{bei2026compression} compared a
+readable symbolic re-expression with truncation, deletion, sub-sampling and a
+coherent summary at matched token budgets on question answering rather than
+conversation memory.
+
+\paragraph{Learned compression.}
+LLMLingua-2 \citep{pan2024llmlingua2} classifies each token as keep or drop
+and was validated at 2--5$\times$ compression; Recall Is Not Enough
+\citep{bala2026recall} found it destroying answer spans in budgeted document
+retrieval. Fitting a LongMemEval-S history into 4,096 tokens needs about
+30$\times$, and into 1,024 tokens about 120$\times$, so arm C runs far outside
+the validated range by construction; the declared variant Cw compresses only
+the most recent window, inside it.
+
+}
+
+\newcommand{\PfiveArchiveExecution}{
+\label{app:execution}
+The execution departed from one uninterrupted run in the following ways. None
+changed a prompt, a model, a decoding setting, a judge prompt or the analysis.
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item \textbf{Smoke prefix.} The first 24 generation outcomes are the four-arm
+  smoke test of 21 September 2026. They were kept, not rerun. They predate the
+  per-request execution records and carry the original request and server
+  records instead.
+\item \textbf{Pacing.} Generation waited ten seconds between requests to lower
+  the average GPU load. The wait falls outside the per-request timers. Both
+  judges ran without the wait, under a load guard: when memory ran short on the
+  shared machine or another program used the GPU, it paused the run at a
+  request boundary. It paused self-grading three times because it took the
+  study's own generator server for another program. No request was affected.
+\item \textbf{Machine and library changes.}
+  \begin{itemize}\setlength{\itemsep}{0pt}
+  \item \emph{Kernel.} The smoke test ran on Ubuntu kernel 7.0.0-29, the other
+    6,133 generation outcomes on 7.0.0-31, and all grading on 7.0.0-38.
+  \item \emph{Hardware.} The GPU, driver, CPU and installed memory were
+    unchanged. The kernel-reported memory total fell by 24\,KiB.
+  \item \emph{Libraries.} Unattended security updates changed five system
+    libraries: Expat twice during generation, and OpenSSL (libssl and
+    libcrypto), liblzma and zlib between generation and grading. None is a
+    GPU, CUDA, PyTorch or model file. Each change is recorded with its
+    package versions and hashes.
+  \item \emph{Checks.} Before and after each stage, the launcher checked that
+    all 809 files of the environment snapshot, apart from these amended
+    libraries, were unchanged.
+  \end{itemize}
+\item \textbf{One excluded answer.} An Expat update replaced that library on
+  disk ten seconds before one request (\q{19b5f2b3\_abs|C|4096}) returned. An
+  answer whose post-request environment check fails is never reused, so this
+  one was excluded and kept as evidence. The item was requested again under a
+  fresh, verified server. No other row was excluded.
+\item \textbf{Compiled-kernel cache.} Between generation and grading, an
+  unrelated disk incident on 25 October 2026 deleted the Triton just-in-time
+  cache that the generator server compiles at run time. Before self-grading, two
+  warm-up passes of the pinned server regenerated it. They used synthetic
+  prompts, outside the measurements. All 12 kernel launchers came back
+  byte-identical. Triton's driver helper was rebuilt with different bytes, and
+  this is recorded.
+\item \textbf{Judge logging.} The gpt-oss judge server's log level was raised
+  so that its GPU placement could be recorded. Its command line and settings
+  were unchanged.
+\item \textbf{Cross-model summaries.} The cross-model check counts the budget
+  with Qwen3-8B's tokenizer, which fits more history than the 27B tokenizer for
+  47 of the 500 items. For those items S reaches older sessions that the primary
+  run never summarized. The primary generator, sent the primary's own summary
+  request, produced the 47 missing summaries on 30 October 2026. Every other
+  summary is the primary's. After this change, the follow-up prompts were
+  rebuilt. They match the earlier preparation in every field except a
+  wall-clock timing diagnostic.
+\end{itemize}
+
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+When chat history overflows a local model's prompt, keeping recent messages can
+discard answers that retrieval preserves. We studied a \PfiveBits{}-bit
+Qwen3.8-27B on a \PfiveGpuMemory{}\,GB laptop GPU using \PfNMFour{}
+LongMemEval-S questions with histories of roughly \PfiveHistoryTokens{} tokens.
+Four policies shared an enforced \PfiveLargeBudget{}-token prompt limit; a local
+judge scored the answers, with pre-registered paired tests and Holm correction
+against recency truncation. Retrieval was judged correct on \PfCorrectMFour{}
+questions (\PfAccMFour\%) against \PfCorrectTFour{} (\PfAccTFour\%) for
+truncation: \PfiveRetrievalRatio{} times as many answers, a paired difference of
+\PfDiffMvT{} points (\PfiveConfidence\% interval
+[\PfDiffLoMvT, \PfDiffHiMvT]). Given only the evidence sessions, the model
+was judged correct on \PfCorrectOFour{} of the \PfNOFour{} fitting questions
+(\PfAccOFour\%). The descriptive comparison did not resolve
+an accuracy difference between BM25 and embedding retrieval. These
+results favor retrieving across the history when a local assistant must answer
+questions about earlier sessions. They cover the tested implementations,
+primary model, benchmark and local judge; the selected oracle subset also
+removes distractors, and the study does not rank policies by end-to-end cost.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Retrieval yielded \PfiveRetrievalRatio{} times as many judged-correct answers
+as recency truncation when a local Qwen3.8-27B answered LongMemEval-S questions
+within a \PfiveLargeBudget{}-token prompt (Figure~\ref{fig:p5-gap}). The
+comparison holds the answering model and prompt limit fixed: the main change
+is which past exchanges reach the model. For an operator choosing how to fill
+a short prompt, that choice produced a large difference in judged answer accuracy.
+
+A conversation can span many sessions while the prompt carries only a small
+part of it. Keeping recent messages preserves continuity, but a question about
+an earlier session may need an older exchange. Summaries and learned
+compression fit more source material by transforming it; retrieval instead
+selects exchanges using the question. We compare these standard choices on
+full histories, under the same limit counted by the answering model's
+tokenizer, including instructions and template tokens.
+
+CoRA-Bench already compares truncation, retrieval and learned compression on
+full LongMemEval histories with a hosted reader and larger selected-context
+budgets \citep{pardawala2026cora}. LiveCtx uses a hosted reader and a character
+budget \citep{liu2026livectx}. The question here is narrower: how much answer
+accuracy these implementations preserve for a quantized local reader within a
+short total prompt. This is a measurement of existing policies, with a
+session-summary comparison, rather than a new memory method.
+
+The retrieval gap leads Section~\ref{sec:results}. Two supporting comparisons
+help interpret it: the model answered nearly every fitting oracle question
+when shown only its evidence, and keyword retrieval was not separated from
+embedding retrieval. Section~\ref{sec:setup} defines the comparison and
+Section~\ref{sec:discussion} gives its practical implication. Appendix~\ref{app:nulls}
+keeps the complete policy grid, smaller-budget and transfer checks, scorer
+details and limitations.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\begin{minipage}[c][1.25in][c]{0.31\linewidth}\centering
+Recency truncation\\[6pt]
+{\Large\bfseries \PfCorrectTFour{} / \PfNTFour}\\[4pt]
+\PfAccTFour\% judged correct\\
+{\small [\PfAccLoTFour, \PfAccHiTFour]\%}
+\end{minipage}}
+\hfill
+\begin{minipage}[c]{0.20\linewidth}\centering
+{\Large $\longrightarrow$}\\[5pt]
+\textbf{\PfiveRetrievalRatio{} times}\\
+as many judged-correct answers
+\end{minipage}
+\hfill
+\fbox{\begin{minipage}[c][1.25in][c]{0.31\linewidth}\centering
+Retrieval\\[6pt]
+{\Large\bfseries \PfCorrectMFour{} / \PfNMFour}\\[4pt]
+\PfAccMFour\% judged correct\\
+{\small [\PfAccLoMFour, \PfAccHiMFour]\%}
+\end{minipage}}
+\caption{Retrieval yielded \PfiveRetrievalRatio{} times as many judged-correct
+answers at the same \PfiveLargeBudget{}-token prompt limit. The same local
+Qwen3.8-27B answered the same LongMemEval-S questions in both conditions.
+Brackets give pointwise Wilson \PfiveConfidence\% intervals; the ratio is
+descriptive. The paired difference and corrected test are reported in
+Section~\ref{sec:gap}.}
+\label{fig:p5-gap}
+\end{figure}
+
+\section{Experimental setup}
+\label{sec:setup}
+
+\subsection{Data and answering model}
+The primary corpus is cleaned LongMemEval-S \citep{wu2025longmemeval}:
+\PfNMFour{} questions about user--assistant histories of roughly
+\PfiveHistoryTokens{} tokens, with annotated evidence turns and questions dated
+after the history. The history scale uses a characters/4 estimate, rather than
+a served-tokenizer minimum. The same questions, evidence, dates and gold answers are
+used across policies. The oracle uses the benchmark's evidence-only sessions,
+with its question date aligned to the cleaned corpus before primary generation;
+only the \PfiveOFitN{} complete oracle prompts that fit are evaluated.
+
+The reader is Qwen3.8-27B \citep{qwen2026qwen38card}, quantized to
+\PfiveBits{} bits per weight in EXL3 format \citep{turboderp2026qwen38exl3}.
+It runs fully on an RTX 4080 Laptop GPU with \PfiveGpuMemory{}\,GB memory,
+using TabbyAPI on exllamav3 \citep{theroyallab2025tabbyapi,turboderp2025exllamav3},
+with its multi-token-prediction draft head. The served context is
+\PfiveContext{} tokens; the short prompt limits are experimental constraints.
+Table~\ref{tab:p5-envelope} records the hardware, exact revisions, cache state,
+requested settings and gaps in the runtime records.
+
+\subsection{Prompts and history selection}
+Each policy uses the LongMemEval reader template: dated session blocks, one
+user message and no system prompt. The harness renders the model's chat
+template, counts the entire prompt with the served tokenizer, and requires the
+server's count to agree before sending it. Instructions, question, dates and
+template tokens all consume the limit. Equal limits do not require identical
+delivered lengths: indivisible messages or rounds can leave unused space.
+
+Recency truncation removes the oldest whole messages until the prompt fits,
+keeping the surviving session headers, as in Ollama's prompt-side truncation
+\citep{ollama_chatprompt}. Retrieval considers rounds from the whole history:
+a user turn and its immediately following assistant turn form a round, with
+other turns treated singly. MiniLM-L6 embeddings
+\citep{wang2020minilm,reimers2019sbert} rank rounds by cosine similarity to the
+question, breaking ties toward recency. Each embedding input is truncated to
+\PfiveEmbeddingTokens{} word pieces. The largest fitting prefix of the ranking
+is rendered chronologically; there is no reserved recent-message buffer, and
+the selector stops at the first round that does not fit.
+
+BM25 \citep{robertson2009bm25} replaces only the ranker. The oracle instead
+shows the full annotated evidence sessions, and a no-history control removes
+the conversation. The other primary policies concatenate question-agnostic
+session summaries or apply LLMLingua-2 to the full history
+\citep{pan2024llmlingua2}. Their detailed construction, compression variant,
+and the \PfiveSmallBudget{}-token comparison are retained in
+Appendix~\ref{app:policy-details}.
+
+\subsection{Generation and scoring}
+Requests set temperature \PfiveTemperature{}, top-p \PfiveTopP{} and a fixed
+\PfiveCap{}-token completion cap, with medium reasoning effort and a
+\PfiveTimeout{}-second timeout. Other samplers retain the server defaults.
+TabbyAPI accepts no per-request seed, so a rerun need not reproduce sampled
+answers byte for byte. Requests run serially with a pause between them.
+Prompts are frozen and hash-listed before generation; completed requests are
+not resubmitted. Failed generation or judging is scored incorrect, while a
+missing request prevents analysis. The one excluded response and the dated
+environment changes are recorded in Appendix~\ref{app:execution}.
+
+The primary judge is local gpt-oss-20b \citep{openai2025gptoss}, served by
+llama.cpp \citep{gerganov2023llamacpp}, using LongMemEval's per-type judge
+prompts and its rule that a reply containing ``yes'' counts as correct. It
+sees only the visible answer after removal of the thinking block. An
+unterminated block therefore leaves an empty answer. The benchmark's official
+hosted judge is replaced by this local judge; no answer received human
+correctness review. Appendix~\ref{sec:scorers} reports the secondary judge and
+lexical agreement checks.
+
+\subsection{Paired analysis}
+The pre-registered confirmatory family compares summaries, compression and
+retrieval separately with truncation at \PfiveLargeBudget{} tokens, on the
+same \PfNMFour{} items. Each contrast uses an exact two-sided McNemar test
+\citep{mcnemar1947}, with Holm correction \citep{holm1979} at family-wise
+\PfiveAlpha{}. Accuracy intervals use Wilson's method \citep{wilson1927};
+paired difference intervals use Newcombe method 10 \citep{newcombe1998paired}.
+Intervals are pointwise \PfiveConfidence\% intervals. BM25, oracle, the smaller
+budget, subgroups, transfer checks and comparisons among alternatives are
+descriptive and lie outside that confirmatory family. All result values below
+come from the frozen analysis.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{The retrieval gap}
+\label{sec:gap}
+At the same prompt limit, retrieval yielded \PfCorrectMFour{} judged-correct
+answers and truncation \PfCorrectTFour{} (Figure~\ref{fig:p5-gap}). The
+paired difference was \PfDiffMvT{} percentage points, with a Newcombe interval
+of [\PfDiffLoMvT, \PfDiffHiMvT]. Of the discordant pairs, retrieval alone was
+correct on \PfArmOnlyMvT{} questions and truncation alone on
+\PfRefOnlyMvT{}. The lead survived Holm correction across the full
+pre-registered family (adjusted $p=\PfHolmMvT$).
+
+Across the 479 questions with annotated evidence turns, the mean per-question
+fraction retained was \PfDiagEvidenceTurnsKeptMFour\% for retrieval and
+\PfDiagEvidenceTurnsKeptTFour\% for truncation. Both means use the same eligible
+questions. The much larger retained share is consistent with the accuracy
+gap: questions about earlier sessions often require text outside the recent
+window. The complete policy scores, failures, uncertainty and all three
+confirmatory contrasts remain in Table~\ref{tab:p5-grid} and
+Table~\ref{tab:p5-primary}.
+
+\subsection{Evidence-only answers}
+\label{sec:oracle-main}
+Shown only the evidence sessions, the same model was judged correct on
+\PfCorrectOFour{} of \PfNOFour{} fitting questions: \PfAccOFour\%, with a
+Wilson interval of [\PfAccLoOFour, \PfAccHiOFour]\%. On those same questions,
+the oracle led retrieval by \PfOracleGapM{} points and truncation by
+\PfOracleGapT{} (Table~\ref{tab:p5-oracle}). This shows that the local model
+could read the supplied evidence for nearly every question in this selected
+subset. It supports a role for history selection in the lost answers. The
+oracle also removes the other history, so it does not isolate omitted evidence
+from distraction or provide a ceiling for the full benchmark.
+
+Retrieval's advantage also occurred with BM25; the descriptive comparison did
+not resolve a difference between BM25 and MiniLM (Appendix~\ref{sec:budget}).
+
+\section{Discussion}
+\label{sec:discussion}
+The main result changes a concrete starting point for a local assistant:
+when the task is answering questions about earlier sessions, retrieve across
+the history before treating a recent-message window as the default. The model
+and token limit stayed fixed while the selected history changed. On this
+workload, a recency baseline supplied little annotated evidence, whereas
+retrieval supplied much more and yielded far more judged-correct answers.
+
+The BM25 comparison narrows a second engineering decision: these measurements
+do not resolve an accuracy benefit from replacing lexical ranking with MiniLM.
+The evidence-only comparison identifies a useful follow-up question: how much
+of the remaining loss comes from omitted evidence and how much from distracting
+text? Separately varying those inputs would distinguish the two explanations.
+
+For memory evaluations on histories with evidence spread across sessions,
+retrieval is a more informative comparator than recency truncation alone.
+Beating a recent window leaves open whether a new method improves on selecting
+relevant exchanges. The complete secondary comparisons, implementation limits
+and incomplete cost accounting are kept in Appendix~\ref{app:nulls}, so they
+remain available without extending the main result beyond its evidence.
+
+\section{Related work}
+\label{sec:related}
+CoRA-Bench \citep{pardawala2026cora} is the closest comparison. It evaluates
+truncation, lexical and dense retrieval, reranking and learned compression on
+full LongMemEval-S histories. Its reader is hosted Gemini 2.5 Flash-Lite, its
+budgets count selected context rather than the entire served prompt, and it has
+no session-summary arm. LiveCtx \citep{liu2026livectx} compares recent context,
+retrieval and compression with hosted qwen3-max under a character-count budget.
+Both make evidence selection a focus of evaluation; the
+contribution here is the measured size of the difference for a quantized local
+reader under a short total prompt-token limit.
+
+BudgetBench \citep{rao2026budgetbench} studies fixed per-call budgets, but its
+LongMemEval comparison uses evidence-only histories and a hosted reader.
+WhenLoss \citep{yu2026whenloss} compares memory systems with a larger
+truncation budget. These differences matter because budget matching must state
+both what is counted and what history is available. RENDER
+\citep{si2026render} shows that evidence format alone can change answers;
+all policies here share one rendering template.
+
+CarryOn \citep{li2026carryon} includes Qwen3.8-27B among active agents using
+context-management methods, on AppWorld, OfficeBench and Tau2 Telecom. Those
+agent tasks differ from the static conversational questions studied here.
+LLMLingua-2 \citep{pan2024llmlingua2} supplies the learned compression baseline;
+its tested compression regime and the summary comparisons in other work are
+discussed with the corresponding limits in Appendix~\ref{app:additional-related}.
+
+\section{Artifact availability and reproducibility}
+\label{sec:artifacts}
+The release is being prepared and has no published artifact identifier.
+The analysis-only component contains sanitized scored records, aggregate
+results and pinned code to regenerate the primary and cross-model statistics,
+tables and figures. It replays archived scores; it does not rescore answer
+correctness or prove original execution. Conversation, question, answer and
+judge text are not redistributed. LoCoMo is aggregate-only, so its token-F1
+conversation bootstrap cannot be regenerated publicly. A full rerun requires
+the pinned upstream data, models and serving configuration in
+Table~\ref{tab:p5-envelope} and generates new sampled answers. LongMemEval is
+MIT-licensed and LoCoMo is CC BY-NC 4.0. Appendix~\ref{app:execution} preserves
+the execution record.
+
+\section{Conclusion}
+\label{sec:conclusion}
+With this local Qwen3.8-27B and a \PfiveLargeBudget{}-token prompt limit, retrieval
+produced more judged-correct LongMemEval-S answers than recency truncation. Successful evidence-only answers on the fitting subset support
+better history selection as a practical route to improvement, and the
+descriptive ranker comparison leaves BM25 as a credible starting baseline.
+The usable lesson is to retrieve earlier exchanges when the question requires
+them; Appendix~\ref{app:nulls} gives the complete results and limits.
+
+\section*{AI assistance}
+Claude Code (Anthropic) assisted with amendment drafts, the harness,
+orchestration, analysis and manuscript preparation. Codex (OpenAI) assisted with
+execution code, evidence checks, scorer diagnostics, figures and editorial
+revision. Matthew Schwartz is responsible for the methods, claims, citations,
+rights and released files. His result-specific review and final approval are
+required before release.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\clearpage
+\appendix
+\section{Complete results, null comparisons and limits}
+\label{app:nulls}
+This appendix retains the complete frozen result tables, descriptive checks,
+policy details and limitations. The descriptive comparisons do not extend the
+pre-registered confirmatory family. Policy labels used in the tables are
+defined below.
+
+\subsection{Policy details}
+\label{app:policy-details}
+\PfiveArchivePolicies
+
+\subsection{Complete policy scores and confirmatory tests}
+\PfiveArchivePrimary
+
+\subsection{Smaller budgets and policy variants}
+\PfiveArchiveBudget
+
+\paragraph{Keyword and embedding retrieval.}
+Replacing MiniLM with BM25 gave \PfAccMbFour\% judged accuracy, against
+\PfAccMFour\% with embeddings. The paired difference was
+\PfSecMbvMAtFour{} points, with interval
+[\PfSecLoMbvMAtFour, \PfSecHiMbvMAtFour] and unadjusted
+$p=\PfSecPMbvMAtFour$ (Table~\ref{tab:p5-secondary}). The comparison does not
+resolve a difference between these rankers; it does not establish equivalence.
+The large retrieval result therefore occurred with a lexical ranker as well
+as an embedding ranker, without requiring an embedding model for the former.
+
+\subsection{Evidence diagnostics and oracle comparisons}
+\PfiveArchiveSelection
+
+\subsection{Question types and abstention}
+\PfiveArchiveTypes
+
+\subsection{Model and benchmark transfer}
+\PfiveArchiveTransfer
+
+\subsection{Scorer agreement}
+\PfiveArchiveScorers
+
+\subsection{Recorded time and delivered length}
+\PfiveArchiveCost
+
+\subsection{Mechanism hypotheses}
+\PfiveArchiveMechanisms
+
+\subsection{Limitations and threats to validity}
+\label{sec:limitations}
+\PfiveArchiveLimitations
+
+\subsection{Additional comparisons with prior work}
+\label{app:additional-related}
+\PfiveArchiveRelated
+
+\clearpage
+\section{System and execution details}
+\label{app:system}
+
+\subsection{Corpus construction}
+\PfiveArchiveData
+
+\subsection{Generator and serving}
+\PfiveArchiveServing
+
+\subsection{Prompt construction}
+\PfiveArchivePrompts
+
+\subsection{Scoring protocol}
+\PfiveArchiveScoring
+
+\subsection{Statistical procedures and diagnostics}
+\PfiveArchiveStatistics
+
+\subsection{System envelope}
+Table~\ref{tab:p5-envelope} summarizes the measured deployment, its state and
+resource placement, and the limits of the runtime records.
+\PfiveArchiveEnvelope
+
+\subsection{Registration and execution}
+\PfiveArchiveRegistration
+
+\subsection{Execution record}
+\PfiveArchiveExecution
+
+\end{document}

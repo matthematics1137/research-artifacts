@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Retrieval Yields 6.2 Times as Many Correct Answers as Recency Truncation When a Local 27B Model's Chat History Overflows: Reproducibility Artifact"
+message: "Private candidate; cite the approved paper and versioned artifact after release."
+type: dataset
+version: 0.1.0
+authors:
+  - given-names: "Matthew"
+    family-names: "Schwartz"
+    orcid: https://orcid.org/0009-0009-4171-7247
+preferred-citation:
+  type: article
+  title: "Retrieval Yields 6.2 Times as Many Correct Answers as Recency Truncation When a Local 27B Model's Chat History Overflows"
+  authors:
+    - given-names: "Matthew"
+      family-names: "Schwartz"
+      orcid: https://orcid.org/0009-0009-4171-7247
+  year: 2026

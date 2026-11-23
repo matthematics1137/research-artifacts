@@ -1,0 +1,3 @@
+{
+  "scope": "This preparation uses CPU only. Original measured hardware and serving settings are recorded in replication/experiment/ENVIRONMENT.json; no fresh GPU verification is claimed."
+}

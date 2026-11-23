@@ -1,0 +1,128 @@
+{
+  "author_approval": false,
+  "checked_at": "2026-09-21T06:37:48.621973+00:00",
+  "current_small_file_bytes": 484151,
+  "large_live_native_files_rehashed": false,
+  "members_missing_from_earlier_snapshot_checked_now": [
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 1065,
+      "path": "exllamav3-1.4.7+cu128.torch2.10.0.dist-info/LICENSE",
+      "sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 24,
+      "path": "exllamav3-1.4.7+cu128.torch2.10.0.dist-info/top_level.txt",
+      "sha256": "24116d908f37761d2baf88b9be06c3c3ae26f6da864b39bc94c1ced3d760c256"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 1,
+      "path": "exllamav3/util/hadamard_data/hadamard_1.txt",
+      "sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 10099,
+      "path": "exllamav3/util/hadamard_data/hadamard_100.txt",
+      "sha256": "aa79b6a21a72d040e907f69de670ea9b35c0b3637bfd94f545a2712fb7b26212"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 13571,
+      "path": "exllamav3/util/hadamard_data/hadamard_116.txt",
+      "sha256": "962af3135c8ba434f444b805358b0fe21b8306f7752a72f4eaf83b5958c8f954"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 24491,
+      "path": "exllamav3/util/hadamard_data/hadamard_156.txt",
+      "sha256": "d8a01bc66af9184ddaf028c8a22946c701fd0207a10a2c4e0fb1f85d46b43abd"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 29755,
+      "path": "exllamav3/util/hadamard_data/hadamard_172.txt",
+      "sha256": "690f0f133fd9b3a0c65769f1b28ef28644fc40498189be933df039532aceebd4"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 35531,
+      "path": "exllamav3/util/hadamard_data/hadamard_188.txt",
+      "sha256": "a364e8b80b359aee0614547f106ea5df531cae20f346a5c308741312cfe687d3"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 55931,
+      "path": "exllamav3/util/hadamard_data/hadamard_236.txt",
+      "sha256": "cf062c3d1cebdd720f6153027c2d39fc6f469df6f0cb61bb57840ed11cd3076d"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 59779,
+      "path": "exllamav3/util/hadamard_data/hadamard_244.txt",
+      "sha256": "f61ee67a8d5060ae80917daee8b2f98228f613fdeb4d21c030c324b697a54873"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 183612,
+      "path": "exllamav3/util/hadamard_data/hadamard_428.txt",
+      "sha256": "406ca58755b4030d44d127beb774997cb5737c7d97622c2a024cb9d9e38b3c41"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 2755,
+      "path": "exllamav3/util/hadamard_data/hadamard_52.txt",
+      "sha256": "d29c4ee2fe7d69eda4a1b478847d6e81b4870875256dfcbaa1c864a2632ba192"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 8555,
+      "path": "exllamav3/util/hadamard_data/hadamard_92.txt",
+      "sha256": "ad08f64b1be8447351a0f22463aa286172218494abb322a80571fb1198f5cc10"
+    },
+    {
+      "basis": "current-small-file-readback-not-earlier-snapshot",
+      "bytes": 58982,
+      "path": "exllamav3/util/hadamard_data/primes.txt",
+      "sha256": "de1b90e91ee8193f153cd9d6f79887a1ba05e2365a8ee230c6c6eb23c1ab5fe4"
+    }
+  ],
+  "modified_sources": [
+    {
+      "path": "exllamav3/architecture/qwen3_5_mtp.py",
+      "snapshot_and_reconstruction_sha256": "8f619e54c0423c9174ed5c75869db49d2334c181e2e0362a789f64b4fa6000a2",
+      "upstream_sha256": "91a71f29dd7c80336527a7cac6aa566e7b7b97ce9e38f0afe3469eeeff51d829"
+    },
+    {
+      "path": "exllamav3/generator/generator.py",
+      "snapshot_and_reconstruction_sha256": "f0d7bee9e713b5b755e199babdc8fe8fa4e6c0ad116d072cef679ef8c353148e",
+      "upstream_sha256": "d9679f40791c091382e00e5278d815a19fa7856b9788c376b2ae7093d1cf8231"
+    },
+    {
+      "path": "exllamav3/modules/quant/exl3_lib/quantize.py",
+      "snapshot_and_reconstruction_sha256": "791787889f755b1d7108b133d35c0accf3bf8eca0792f245296a9998014403c4",
+      "upstream_sha256": "b79f0e5ffae1e9d2316c440aa58666fbc7a359bd5ec7afe2b79945c3a7bcd2c4"
+    }
+  ],
+  "not_established": [
+    "Earlier identity of the fourteen files absent from the snapshot",
+    "Continuous runtime identity, dependency closure, actual imports or conversion history",
+    "Any new inference optimization or completed experimental responses"
+  ],
+  "overlay_reconstruction_receipt_sha256": "393ebc5b3c36523743d874f45a09cebb057bbea7cdeb9cfea182293e72b2fb1d",
+  "receipt_sha256": "7f1149a418ad532afb6f6df0f0b04e6f07bb8edbf4726dd47b48c58b4ccc87c0",
+  "reconstructed_members_matching_snapshot": 453,
+  "runtime_loaded": false,
+  "schema": "paper5-overlay-observation-comparison-v1",
+  "snapshot": {
+    "finished_at": "2026-09-21T01:31:22.872509+00:00",
+    "sha256": "dfd03f0f627ebda68a3af239e4d243241bb1605bc7815a7865604ca04fc35ab1",
+    "started_at": "2026-09-21T01:30:58.335710+00:00"
+  },
+  "status": "byte-comparison-not-runtime-execution",
+  "unchanged_upstream_members_matching_snapshot": 450,
+  "wheel_members": 467,
+  "wheel_verification_receipt_sha256": "6c94e5256d880ab2ae3e52b00d08613b4f780d83aab5938eb64470c0650cb59d"
+}

@@ -1,0 +1,3210 @@
+{
+  "cross-model": {
+    "analysis": {
+      "budget": 4096,
+      "cells": {
+        "C": {
+          "accuracy": 0.178,
+          "correct": 89,
+          "failed_generations": 0,
+          "judge_agreement": {
+            "n": 500,
+            "raw": 0.7
+          },
+          "judge_failures": 0,
+          "n": 500,
+          "secondary_judge": {
+            "accuracy": 0.474,
+            "correct": 237,
+            "n": 500,
+            "wilson95": [
+              0.43059811407349635,
+              0.5177983516305045
+            ]
+          },
+          "unterminated_thinking": 68,
+          "wilson95": [
+            0.14696488670733526,
+            0.21394518854990435
+          ]
+        },
+        "M": {
+          "accuracy": 0.642,
+          "correct": 321,
+          "failed_generations": 0,
+          "judge_agreement": {
+            "n": 500,
+            "raw": 0.872
+          },
+          "judge_failures": 0,
+          "n": 500,
+          "secondary_judge": {
+            "accuracy": 0.754,
+            "correct": 377,
+            "n": 500,
+            "wilson95": [
+              0.7144078267312022,
+              0.7897190083143293
+            ]
+          },
+          "unterminated_thinking": 5,
+          "wilson95": [
+            0.5990422907102082,
+            0.682792396598711
+          ]
+        },
+        "S": {
+          "accuracy": 0.35,
+          "correct": 175,
+          "failed_generations": 0,
+          "judge_agreement": {
+            "n": 500,
+            "raw": 0.754
+          },
+          "judge_failures": 0,
+          "n": 500,
+          "secondary_judge": {
+            "accuracy": 0.588,
+            "correct": 294,
+            "n": 500,
+            "wilson95": [
+              0.5443465920099858,
+              0.630311524068781
+            ]
+          },
+          "unterminated_thinking": 7,
+          "wilson95": [
+            0.3094801731446609,
+            0.39280712899380477
+          ]
+        },
+        "T": {
+          "accuracy": 0.108,
+          "correct": 54,
+          "failed_generations": 0,
+          "judge_agreement": {
+            "n": 500,
+            "raw": 0.694
+          },
+          "judge_failures": 0,
+          "n": 500,
+          "secondary_judge": {
+            "accuracy": 0.406,
+            "correct": 203,
+            "n": 500,
+            "wilson95": [
+              0.3638304421340635,
+              0.4496029338727085
+            ]
+          },
+          "unterminated_thinking": 1,
+          "wilson95": [
+            0.08372280963705038,
+            0.13825467328480662
+          ]
+        }
+      },
+      "confirmatory": false,
+      "contrasts_vs_T": {
+        "C": {
+          "arm_only": 59,
+          "both": 30,
+          "difference": 0.06999999999999999,
+          "interpretation": "descriptive, pointwise; outside the primary Holm family",
+          "mcnemar_p_unadjusted": 0.00015455941078329165,
+          "n": 500,
+          "neither": 387,
+          "newcombe95": [
+            0.034878034099724016,
+            0.10580524112441694
+          ],
+          "reference_only": 24
+        },
+        "M": {
+          "arm_only": 277,
+          "both": 44,
+          "difference": 0.534,
+          "interpretation": "descriptive, pointwise; outside the primary Holm family",
+          "mcnemar_p_unadjusted": 7.438173902879245e-69,
+          "n": 500,
+          "neither": 169,
+          "newcombe95": [
+            0.48465757928278297,
+            0.5787768772352269
+          ],
+          "reference_only": 10
+        },
+        "S": {
+          "arm_only": 132,
+          "both": 43,
+          "difference": 0.242,
+          "interpretation": "descriptive, pointwise; outside the primary Holm family",
+          "mcnemar_p_unadjusted": 1.6871505409728513e-27,
+          "n": 500,
+          "neither": 314,
+          "newcombe95": [
+            0.20006043092587797,
+            0.2837745867154894
+          ],
+          "reference_only": 11
+        }
+      },
+      "leg": "cross-model",
+      "model": "qwen3-8b",
+      "publication": "curated-item-level",
+      "schema": "paper5-followup-analysis-v1"
+    },
+    "diagnostics": {
+      "agreement_denominator": "successful generation and nonempty successful verdict from each compared judge; containment is LongMemEval-only and excludes preference/abstention items",
+      "cells": {
+        "C@4096": {
+          "abstention": {
+            "accuracy": 0.7,
+            "correct": 21,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.21794871794871795,
+              "correct": 17,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.09022556390977443,
+              "correct": 12,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.21428571428571427,
+              "correct": 12,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.2,
+              "correct": 6,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.2571428571428571,
+              "correct": 18,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.18045112781954886,
+              "correct": 24,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 68,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 68,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.5310279488394127,
+              "n": 440,
+              "raw": 0.8772727272727273
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.3792110185905606,
+              "n": 500,
+              "raw": 0.7
+            },
+            "self_vs_containment": {
+              "kappa": 0.26748603351955297,
+              "n": 440,
+              "raw": 0.6613636363636364
+            }
+          }
+        },
+        "M@4096": {
+          "abstention": {
+            "accuracy": 0.7666666666666667,
+            "correct": 23,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.7692307692307693,
+              "correct": 60,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.45112781954887216,
+              "correct": 60,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.9285714285714286,
+              "correct": 52,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.36666666666666664,
+              "correct": 11,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.8857142857142857,
+              "correct": 62,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.5714285714285714,
+              "correct": 76,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 5,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 5,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.6071098411631228,
+              "n": 440,
+              "raw": 0.8068181818181818
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.7008395190995269,
+              "n": 500,
+              "raw": 0.872
+            },
+            "self_vs_containment": {
+              "kappa": 0.45368876814670184,
+              "n": 440,
+              "raw": 0.7340909090909091
+            }
+          }
+        },
+        "S@4096": {
+          "abstention": {
+            "accuracy": 0.8,
+            "correct": 24,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.5384615384615384,
+              "correct": 42,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.15789473684210525,
+              "correct": 21,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.48214285714285715,
+              "correct": 27,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.3333333333333333,
+              "correct": 10,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.42857142857142855,
+              "correct": 30,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.3383458646616541,
+              "correct": 45,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 7,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 7,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.6555895538319219,
+              "n": 440,
+              "raw": 0.85
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.5326747720364742,
+              "n": 500,
+              "raw": 0.754
+            },
+            "self_vs_containment": {
+              "kappa": 0.3649858623939679,
+              "n": 440,
+              "raw": 0.6659090909090909
+            }
+          }
+        },
+        "T@4096": {
+          "abstention": {
+            "accuracy": 0.9333333333333333,
+            "correct": 28,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.1282051282051282,
+              "correct": 10,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.14285714285714285,
+              "correct": 8,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.13333333333333333,
+              "correct": 4,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.14285714285714285,
+              "correct": 10,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 1,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 1,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.3831168831168836,
+              "n": 440,
+              "raw": 0.9136363636363637
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.2822023720162137,
+              "n": 500,
+              "raw": 0.694
+            },
+            "self_vs_containment": {
+              "kappa": 0.19976635514018673,
+              "n": 440,
+              "raw": 0.6886363636363636
+            }
+          }
+        }
+      },
+      "interpretation": "agreement is not correctness validation; accuracy still counts explicit failures as incorrect",
+      "schema": "p5-valid-verdict-diagnostics-v1"
+    }
+  },
+  "locomo": {
+    "analysis": {
+      "accuracy_interval_caution": "Wilson/Newcombe/McNemar treat questions as independent; shared-conversation dependence limits that reading. F1 intervals resample conversations.",
+      "budget": 4096,
+      "cells": {
+        "M": {
+          "accuracy": 0.68,
+          "correct": 136,
+          "failed_generations": 0,
+          "judge_failures": 0,
+          "n": 200,
+          "unterminated_thinking": 1,
+          "wilson95": [
+            0.6124810156588646,
+            0.7407346668453195
+          ]
+        },
+        "T": {
+          "accuracy": 0.17,
+          "correct": 34,
+          "failed_generations": 0,
+          "judge_failures": 0,
+          "n": 200,
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.12427907912586972,
+            0.22815883628312622
+          ]
+        }
+      },
+      "confirmatory": false,
+      "contrasts_vs_T": {
+        "M": {
+          "arm_only": 111,
+          "both": 25,
+          "difference": 0.51,
+          "interpretation": "descriptive, pointwise; outside the primary Holm family",
+          "mcnemar_p_unadjusted": 1.7092920119428793e-23,
+          "n": 200,
+          "neither": 55,
+          "newcombe95": [
+            0.4232823611501413,
+            0.5840349295693769
+          ],
+          "reference_only": 9
+        }
+      },
+      "leg": "locomo",
+      "model": "qwen38-exl3",
+      "publication": "aggregates-only",
+      "schema": "paper5-followup-analysis-v1",
+      "token_f1": {
+        "M": {
+          "conversations": 10,
+          "draws": 10000,
+          "estimand": "item-weighted mean; ratio recomputed in each conversation resample",
+          "interpretation": "descriptive, pointwise percentile interval",
+          "mean": 0.08436702475625293,
+          "n": 200,
+          "percentile95": [
+            0.07640817495848796,
+            0.0952168183556368
+          ],
+          "resampling_unit": "conversation",
+          "seed": 20260920
+        },
+        "T": {
+          "conversations": 10,
+          "draws": 10000,
+          "estimand": "item-weighted mean; ratio recomputed in each conversation resample",
+          "interpretation": "descriptive, pointwise percentile interval",
+          "mean": 0.03912677620148354,
+          "n": 200,
+          "percentile95": [
+            0.03295030677616473,
+            0.04468631325278171
+          ],
+          "resampling_unit": "conversation",
+          "seed": 20260920
+        }
+      },
+      "token_f1_differences_vs_T": {
+        "M": {
+          "conversations": 10,
+          "draws": 10000,
+          "estimand": "item-weighted mean; ratio recomputed in each conversation resample",
+          "interpretation": "descriptive, pointwise percentile interval",
+          "mean": 0.0452402485547694,
+          "n": 200,
+          "percentile95": [
+            0.03503610358123242,
+            0.05704187358434986
+          ],
+          "resampling_unit": "conversation",
+          "seed": 20260920
+        }
+      }
+    },
+    "diagnostics": {
+      "agreement_denominator": "successful generation and nonempty successful verdict from each compared judge; containment is LongMemEval-only and excludes preference/abstention items",
+      "cells": {
+        "M@4096": {
+          "abstention": {
+            "accuracy": null,
+            "correct": 0,
+            "n": 0
+          },
+          "by_type": {
+            "locomo-cat1": {
+              "accuracy": 0.5142857142857142,
+              "correct": 36,
+              "n": 70
+            },
+            "locomo-cat2": {
+              "accuracy": 0.7285714285714285,
+              "correct": 51,
+              "n": 70
+            },
+            "locomo-cat4": {
+              "accuracy": 0.8166666666666667,
+              "correct": 49,
+              "n": 60
+            }
+          },
+          "empty_visible_answers": 1,
+          "empty_visible_answers_credited": 0,
+          "generated": 200,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0
+          },
+          "n": 200,
+          "noncanonical_verdicts": {
+            "gptoss": 0
+          },
+          "unterminated_thinking": 1,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": null,
+              "n": 0,
+              "raw": null
+            }
+          }
+        },
+        "T@4096": {
+          "abstention": {
+            "accuracy": null,
+            "correct": 0,
+            "n": 0
+          },
+          "by_type": {
+            "locomo-cat1": {
+              "accuracy": 0.2,
+              "correct": 14,
+              "n": 70
+            },
+            "locomo-cat2": {
+              "accuracy": 0.15714285714285714,
+              "correct": 11,
+              "n": 70
+            },
+            "locomo-cat4": {
+              "accuracy": 0.15,
+              "correct": 9,
+              "n": 60
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 200,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0
+          },
+          "n": 200,
+          "noncanonical_verdicts": {
+            "gptoss": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": null,
+              "n": 0,
+              "raw": null
+            }
+          }
+        }
+      },
+      "interpretation": "agreement is not correctness validation; accuracy still counts explicit failures as incorrect",
+      "schema": "p5-valid-verdict-diagnostics-v1"
+    }
+  },
+  "primary": {
+    "analysis": {
+      "cells": {
+        "C@1024": {
+          "abstention": {
+            "accuracy": 0.7333333333333333,
+            "correct": 22,
+            "n": 30,
+            "wilson95": [
+              0.555520383048111,
+              0.8581733668040368
+            ]
+          },
+          "accuracy": 0.124,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.1794871794871795,
+              "correct": 14,
+              "n": 78,
+              "wilson95": [
+                0.11003915918925877,
+                0.2790235393441991
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.06766917293233082,
+              "correct": 9,
+              "n": 133,
+              "wilson95": [
+                0.036006387177108246,
+                0.12360502744039731
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.10714285714285714,
+              "correct": 6,
+              "n": 56,
+              "wilson95": [
+                0.05003935571117073,
+                0.21468445171071476
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.2,
+              "correct": 6,
+              "n": 30,
+              "wilson95": [
+                0.09505107177289876,
+                0.3730569641314826
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.1,
+              "correct": 7,
+              "n": 70,
+              "wilson95": [
+                0.049289301442539526,
+                0.192329148485674
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133,
+              "wilson95": [
+                0.09950350985423634,
+                0.2208778950103551
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.9045454545454545,
+            "containment_accuracy": 0.12272727272727273,
+            "kappa": 0.47272312257475435,
+            "n": 440
+          },
+          "correct": 62,
+          "delivered_prompt_tokens_mean": 1021.634,
+          "delivered_prompt_tokens_median": 1022.0,
+          "diag_counts": {
+            "fallback": 500
+          },
+          "diag_means": {
+            "chunks": 245.824,
+            "evidence_word_recall": 0.04786841646193041,
+            "fallback_chunks_dropped": 56.366,
+            "history_chars_kept": 3877.766,
+            "percentile": 99.0,
+            "selection_seconds": 0.0397192
+          },
+          "generation_seconds_mean": 17.420982,
+          "judge_agreement": {
+            "kappa": 0.9116399622997171,
+            "raw": 0.982
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.106,
+            "correct": 53,
+            "n": 500,
+            "wilson95": [
+              0.08195705027297036,
+              0.13605093001073285
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.09794609113930346,
+            0.15578741288778383
+          ]
+        },
+        "C@4096": {
+          "abstention": {
+            "accuracy": 0.8333333333333334,
+            "correct": 25,
+            "n": 30,
+            "wilson95": [
+              0.6643564949358398,
+              0.9266345762815145
+            ]
+          },
+          "accuracy": 0.252,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.28205128205128205,
+              "correct": 22,
+              "n": 78,
+              "wilson95": [
+                0.19425334729674018,
+                0.39030928770601114
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133,
+              "wilson95": [
+                0.09950350985423634,
+                0.2208778950103551
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.25,
+              "correct": 14,
+              "n": 56,
+              "wilson95": [
+                0.15517054688270682,
+                0.3769264214766749
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.26666666666666666,
+              "correct": 8,
+              "n": 30,
+              "wilson95": [
+                0.14182663319596325,
+                0.44447961695188887
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.3142857142857143,
+              "correct": 22,
+              "n": 70,
+              "wilson95": [
+                0.21762290046582755,
+                0.4302713798579858
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.3007518796992481,
+              "correct": 40,
+              "n": 133,
+              "wilson95": [
+                0.22930692219329124,
+                0.38338355584781986
+              ]
+            }
+          },
+          "cap_hits": 1,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.8681818181818182,
+            "containment_accuracy": 0.22045454545454546,
+            "kappa": 0.6107263796943164,
+            "n": 440
+          },
+          "correct": 126,
+          "delivered_prompt_tokens_mean": 3559.096,
+          "delivered_prompt_tokens_median": 3555.0,
+          "diag_counts": {
+            "fallback": 0
+          },
+          "diag_means": {
+            "chunks": 245.824,
+            "evidence_word_recall": 0.263345734773884,
+            "fallback_chunks_dropped": 0.0,
+            "history_chars_kept": 16714.326,
+            "percentile": 97.0,
+            "selection_seconds": 0.42489920000000003
+          },
+          "generation_seconds_mean": 24.877655999999998,
+          "judge_agreement": {
+            "kappa": 0.9455147763926423,
+            "raw": 0.98
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.232,
+            "correct": 116,
+            "n": 500,
+            "wilson95": [
+              0.19712923845271468,
+              0.2709574080346774
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.2159338483813719,
+            0.2918478244875581
+          ]
+        },
+        "Cw@1024": {
+          "abstention": {
+            "accuracy": 0.9666666666666667,
+            "correct": 29,
+            "n": 30,
+            "wilson95": [
+              0.8332960900859084,
+              0.9940914096183876
+            ]
+          },
+          "accuracy": 0.106,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.11538461538461539,
+              "correct": 9,
+              "n": 78,
+              "wilson95": [
+                0.06190510625533323,
+                0.20497013198481623
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133,
+              "wilson95": [
+                0.04680842545348757,
+                0.14203389648166995
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.19642857142857142,
+              "correct": 11,
+              "n": 56,
+              "wilson95": [
+                0.11338595674323661,
+                0.31844607626458404
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.03333333333333333,
+              "correct": 1,
+              "n": 30,
+              "wilson95": [
+                0.005908590381612455,
+                0.1667039099140917
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.14285714285714285,
+              "correct": 10,
+              "n": 70,
+              "wilson95": [
+                0.079489417170666,
+                0.2433841988366675
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133,
+              "wilson95": [
+                0.04680842545348757,
+                0.14203389648166995
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.9022727272727272,
+            "containment_accuracy": 0.10909090909090909,
+            "kappa": 0.3483053182694958,
+            "n": 440
+          },
+          "correct": 53,
+          "delivered_prompt_tokens_mean": 1004.806,
+          "delivered_prompt_tokens_median": 1005.0,
+          "diag_counts": {
+            "fallback": 0
+          },
+          "diag_means": {
+            "chunks": 10.434,
+            "evidence_word_recall": 0.12272705497066162,
+            "fallback_chunks_dropped": 0.0,
+            "history_chars_kept": 5441.97,
+            "percentile": 77.768,
+            "selection_seconds": 0.0209766,
+            "window_tokens": 4316.988
+          },
+          "generation_seconds_mean": 10.1416,
+          "judge_agreement": {
+            "kappa": 0.8973446482343278,
+            "raw": 0.982
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.088,
+            "correct": 44,
+            "n": 500,
+            "wilson95": [
+              0.06620598447492893,
+              0.11607647206539012
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.08195705027297036,
+            0.13605093001073285
+          ]
+        },
+        "Cw@4096": {
+          "abstention": {
+            "accuracy": 0.9,
+            "correct": 27,
+            "n": 30,
+            "wilson95": [
+              0.7437891742081593,
+              0.9654001112526658
+            ]
+          },
+          "accuracy": 0.2,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.34615384615384615,
+              "correct": 27,
+              "n": 78,
+              "wilson95": [
+                0.2500520390631077,
+                0.456698056232952
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.12030075187969924,
+              "correct": 16,
+              "n": 133,
+              "wilson95": [
+                0.07542181331198797,
+                0.1864977769172995
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.30357142857142855,
+              "correct": 17,
+              "n": 56,
+              "wilson95": [
+                0.19900325085369444,
+                0.4333586528572483
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.13333333333333333,
+              "correct": 4,
+              "n": 30,
+              "wilson95": [
+                0.053096554840547455,
+                0.2968132668203629
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.22857142857142856,
+              "correct": 16,
+              "n": 70,
+              "wilson95": [
+                0.14588063222572437,
+                0.33950331593984906
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133,
+              "wilson95": [
+                0.09950350985423634,
+                0.2208778950103551
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.8590909090909091,
+            "containment_accuracy": 0.18409090909090908,
+            "kappa": 0.502389551639853,
+            "n": 440
+          },
+          "correct": 100,
+          "delivered_prompt_tokens_mean": 4017.152,
+          "delivered_prompt_tokens_median": 4016.0,
+          "diag_counts": {
+            "fallback": 0
+          },
+          "diag_means": {
+            "chunks": 38.738,
+            "evidence_word_recall": 0.37311822604522954,
+            "fallback_chunks_dropped": 0.0,
+            "history_chars_kept": 23116.292,
+            "percentile": 75.258,
+            "selection_seconds": 0.0868394,
+            "window_tokens": 16596.392
+          },
+          "generation_seconds_mean": 18.02213,
+          "judge_agreement": {
+            "kappa": 0.8812664907651714,
+            "raw": 0.964
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.172,
+            "correct": 86,
+            "n": 500,
+            "wilson95": [
+              0.1414541198436514,
+              0.20754744749912687
+            ]
+          },
+          "unterminated_thinking": 1,
+          "wilson95": [
+            0.16728549897175743,
+            0.23728910530517394
+          ]
+        },
+        "E@None": {
+          "abstention": {
+            "accuracy": 0.9333333333333333,
+            "correct": 28,
+            "n": 30,
+            "wilson95": [
+              0.7867654163738309,
+              0.9815229762087296
+            ]
+          },
+          "accuracy": 0.086,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.07692307692307693,
+              "correct": 6,
+              "n": 78,
+              "wilson95": [
+                0.035730464002355806,
+                0.1578322980618086
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133,
+              "wilson95": [
+                0.04680842545348757,
+                0.14203389648166995
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.17857142857142858,
+              "correct": 10,
+              "n": 56,
+              "wilson95": [
+                0.09999856752412306,
+                0.2984118203665106
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30,
+              "wilson95": [
+                0.01847702379127039,
+                0.21323458362616918
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.1,
+              "correct": 7,
+              "n": 70,
+              "wilson95": [
+                0.049289301442539526,
+                0.192329148485674
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.05263157894736842,
+              "correct": 7,
+              "n": 133,
+              "wilson95": [
+                0.025725728312537686,
+                0.10465477898731587
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.9295454545454546,
+            "containment_accuracy": 0.07727272727272727,
+            "kappa": 0.31097191351788184,
+            "n": 440
+          },
+          "correct": 43,
+          "delivered_prompt_tokens_mean": 57.026,
+          "delivered_prompt_tokens_median": 54.0,
+          "diag_counts": {},
+          "diag_means": {},
+          "generation_seconds_mean": 6.67861,
+          "judge_agreement": {
+            "kappa": 0.9605885444035732,
+            "raw": 0.994
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.08,
+            "correct": 40,
+            "n": 500,
+            "wilson95": [
+              0.0592981294098526,
+              0.1071063165778513
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.06447314240360773,
+            0.11383981149855753
+          ]
+        },
+        "M@1024": {
+          "abstention": {
+            "accuracy": 0.8666666666666667,
+            "correct": 26,
+            "n": 30,
+            "wilson95": [
+              0.7031867331796372,
+              0.9469034451594526
+            ]
+          },
+          "accuracy": 0.39,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.47435897435897434,
+              "correct": 37,
+              "n": 78,
+              "wilson95": [
+                0.3673726697600783,
+                0.5837523461225983
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.18045112781954886,
+              "correct": 24,
+              "n": 133,
+              "wilson95": [
+                0.12436743936627853,
+                0.2544757801336169
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.875,
+              "correct": 49,
+              "n": 56,
+              "wilson95": [
+                0.7637452344180986,
+                0.9381093130428289
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.26666666666666666,
+              "correct": 8,
+              "n": 30,
+              "wilson95": [
+                0.14182663319596325,
+                0.44447961695188887
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.6714285714285714,
+              "correct": 47,
+              "n": 70,
+              "wilson95": [
+                0.5550093573883407,
+                0.770011306928139
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.22556390977443608,
+              "correct": 30,
+              "n": 133,
+              "wilson95": [
+                0.16281825028236413,
+                0.3037176911704872
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.8181818181818182,
+            "containment_accuracy": 0.3477272727272727,
+            "kappa": 0.6040227686908004,
+            "n": 440
+          },
+          "correct": 195,
+          "delivered_prompt_tokens_mean": 756.256,
+          "delivered_prompt_tokens_median": 763.0,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_turns_kept": 0.35567153792623524,
+            "policy_seconds": 4.3573152,
+            "rounds_kept": 1.586,
+            "rounds_total": 248.732
+          },
+          "generation_seconds_mean": 9.744748,
+          "judge_agreement": {
+            "kappa": 0.9319901385700926,
+            "raw": 0.968
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.366,
+            "correct": 183,
+            "n": 500,
+            "wilson95": [
+              0.3249476048822135,
+              0.4090957183614825
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.3482413304011046,
+            0.43343602450043706
+          ]
+        },
+        "M@4096": {
+          "abstention": {
+            "accuracy": 0.8,
+            "correct": 24,
+            "n": 30,
+            "wilson95": [
+              0.6269430358685175,
+              0.9049489282271013
+            ]
+          },
+          "accuracy": 0.71,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.8461538461538461,
+              "correct": 66,
+              "n": 78,
+              "wilson95": [
+                0.7500673346677367,
+                0.9097449509161288
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.48872180451127817,
+              "correct": 65,
+              "n": 133,
+              "wilson95": [
+                0.4052851266855587,
+                0.5727916928262021
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56,
+              "wilson95": [
+                0.9358060632812366,
+                1.0
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.6333333333333333,
+              "correct": 19,
+              "n": 30,
+              "wilson95": [
+                0.45513563654794875,
+                0.7812607919389928
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.9,
+              "correct": 63,
+              "n": 70,
+              "wilson95": [
+                0.807670851514326,
+                0.9507106985574605
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.6466165413533834,
+              "correct": 86,
+              "n": 133,
+              "wilson95": [
+                0.5623036100371858,
+                0.7226977363099208
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.7795454545454545,
+            "containment_accuracy": 0.5568181818181818,
+            "kappa": 0.5370932754880695,
+            "n": 440
+          },
+          "correct": 355,
+          "delivered_prompt_tokens_mean": 3814.02,
+          "delivered_prompt_tokens_median": 3854.0,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_turns_kept": 0.7484690327070285,
+            "policy_seconds": 4.3660198,
+            "rounds_kept": 8.028,
+            "rounds_total": 248.732
+          },
+          "generation_seconds_mean": 17.799974,
+          "judge_agreement": {
+            "kappa": 0.9428843407900999,
+            "raw": 0.976
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.69,
+            "correct": 345,
+            "n": 500,
+            "wilson95": [
+              0.6481416618981787,
+              0.7289610887264314
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.6687451968835136,
+            0.7480525801226343
+          ]
+        },
+        "Mbm25@4096": {
+          "abstention": {
+            "accuracy": 0.6666666666666666,
+            "correct": 20,
+            "n": 30,
+            "wilson95": [
+              0.4878005164454384,
+              0.8076950191632386
+            ]
+          },
+          "accuracy": 0.732,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.9102564102564102,
+              "correct": 71,
+              "n": 78,
+              "wilson95": [
+                0.8261527543939476,
+                0.9558469914832263
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.43609022556390975,
+              "correct": 58,
+              "n": 133,
+              "wilson95": [
+                0.3547781163543211,
+                0.5209905275456578
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56,
+              "wilson95": [
+                0.9358060632812366,
+                1.0
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.5666666666666667,
+              "correct": 17,
+              "n": 30,
+              "wilson95": [
+                0.3919730700081361,
+                0.7262251442353347
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.9571428571428572,
+              "correct": 67,
+              "n": 70,
+              "wilson95": [
+                0.8814033125147246,
+                0.9853184589958887
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.7293233082706767,
+              "correct": 97,
+              "n": 133,
+              "wilson95": [
+                0.6481646857403182,
+                0.7976066508538745
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.7704545454545455,
+            "containment_accuracy": 0.5818181818181818,
+            "kappa": 0.5004047126540159,
+            "n": 440
+          },
+          "correct": 366,
+          "delivered_prompt_tokens_mean": 3777.186,
+          "delivered_prompt_tokens_median": 3834.5,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_turns_kept": 0.7902574808629089,
+            "policy_seconds": 0.256169,
+            "rounds_kept": 7.45,
+            "rounds_total": 248.732
+          },
+          "generation_seconds_mean": 16.6282,
+          "judge_agreement": {
+            "kappa": 0.882656653367754,
+            "raw": 0.952
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.696,
+            "correct": 348,
+            "n": 500,
+            "wilson95": [
+              0.6543133215963362,
+              0.7346979369427353
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.6915162794621877,
+            0.768946026563652
+          ]
+        },
+        "O@4096": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 5,
+            "n": 5,
+            "wilson95": [
+              0.5655175352168254,
+              1.0
+            ]
+          },
+          "accuracy": 0.9745222929936306,
+          "by_type": {
+            "multi-session": {
+              "accuracy": 1.0,
+              "correct": 4,
+              "n": 4,
+              "wilson95": [
+                0.5101091635454027,
+                1.0
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56,
+              "wilson95": [
+                0.9358060632812366,
+                1.0
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.7333333333333333,
+              "correct": 11,
+              "n": 15,
+              "wilson95": [
+                0.48049565944019434,
+                0.8910254667430761
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 1.0,
+              "correct": 64,
+              "n": 64,
+              "wilson95": [
+                0.9433759402071946,
+                1.0
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 1.0,
+              "correct": 18,
+              "n": 18,
+              "wilson95": [
+                0.8241207763533425,
+                1.0
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.7372262773722628,
+            "containment_accuracy": 0.7372262773722628,
+            "kappa": 0.0,
+            "n": 137
+          },
+          "correct": 153,
+          "delivered_prompt_tokens_mean": 2582.044585987261,
+          "delivered_prompt_tokens_median": 2944,
+          "diag_counts": {},
+          "diag_means": {
+            "sessions": 1.0254777070063694
+          },
+          "generation_seconds_mean": 11.395388535031847,
+          "judge_agreement": {
+            "kappa": 0.6549450549450547,
+            "raw": 0.9745222929936306
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 157,
+          "self_judge": {
+            "accuracy": 0.9490445859872612,
+            "correct": 149,
+            "n": 157,
+            "wilson95": [
+              0.9026827331534396,
+              0.9739569158140983
+            ]
+          },
+          "unterminated_thinking": 1,
+          "wilson95": [
+            0.9363294598093348,
+            0.9900486089577798
+          ]
+        },
+        "S@1024": {
+          "abstention": {
+            "accuracy": 0.9333333333333333,
+            "correct": 28,
+            "n": 30,
+            "wilson95": [
+              0.7867654163738309,
+              0.9815229762087296
+            ]
+          },
+          "accuracy": 0.15,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.23076923076923078,
+              "correct": 18,
+              "n": 78,
+              "wilson95": [
+                0.15125508850526878,
+                0.33555757826283583
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.10526315789473684,
+              "correct": 14,
+              "n": 133,
+              "wilson95": [
+                0.06374468227971236,
+                0.1689440006319231
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.19642857142857142,
+              "correct": 11,
+              "n": 56,
+              "wilson95": [
+                0.11338595674323661,
+                0.31844607626458404
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.13333333333333333,
+              "correct": 4,
+              "n": 30,
+              "wilson95": [
+                0.053096554840547455,
+                0.2968132668203629
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.17142857142857143,
+              "correct": 12,
+              "n": 70,
+              "wilson95": [
+                0.1008772464052925,
+                0.2761664803214543
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.12030075187969924,
+              "correct": 16,
+              "n": 133,
+              "wilson95": [
+                0.07542181331198797,
+                0.1864977769172995
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.8977272727272727,
+            "containment_accuracy": 0.14545454545454545,
+            "kappa": 0.523763709832596,
+            "n": 440
+          },
+          "correct": 75,
+          "delivered_prompt_tokens_mean": 909.654,
+          "delivered_prompt_tokens_median": 946.0,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_sessions_summarized": 0.0891,
+            "sessions_kept": 3.624,
+            "sessions_total": 47.734
+          },
+          "generation_seconds_mean": 9.604822,
+          "judge_agreement": {
+            "kappa": 0.9081803005008346,
+            "raw": 0.978
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.128,
+            "correct": 64,
+            "n": 500,
+            "wilson95": [
+              0.10152682399523653,
+              0.16014568530815834
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.1213759576913882,
+            0.18396108063169836
+          ]
+        },
+        "S@4096": {
+          "abstention": {
+            "accuracy": 0.8,
+            "correct": 24,
+            "n": 30,
+            "wilson95": [
+              0.6269430358685175,
+              0.9049489282271013
+            ]
+          },
+          "accuracy": 0.374,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.5769230769230769,
+              "correct": 45,
+              "n": 78,
+              "wilson95": [
+                0.4662155558337249,
+                0.6804093965182451
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.18045112781954886,
+              "correct": 24,
+              "n": 133,
+              "wilson95": [
+                0.12436743936627853,
+                0.2544757801336169
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.44642857142857145,
+              "correct": 25,
+              "n": 56,
+              "wilson95": [
+                0.3238672125478336,
+                0.5758678521006053
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.4,
+              "correct": 12,
+              "n": 30,
+              "wilson95": [
+                0.24590628116801863,
+                0.5767963974667752
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.44285714285714284,
+              "correct": 31,
+              "n": 70,
+              "wilson95": [
+                0.33249528909305326,
+                0.5591644894681199
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.37593984962406013,
+              "correct": 50,
+              "n": 133,
+              "wilson95": [
+                0.29819349285678953,
+                0.4606515217725815
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.8159090909090909,
+            "containment_accuracy": 0.34545454545454546,
+            "kappa": 0.592294316829871,
+            "n": 440
+          },
+          "correct": 187,
+          "delivered_prompt_tokens_mean": 3993.44,
+          "delivered_prompt_tokens_median": 4000.5,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_sessions_summarized": 0.4395333333333334,
+            "sessions_kept": 17.11,
+            "sessions_total": 47.734
+          },
+          "generation_seconds_mean": 19.152598,
+          "judge_agreement": {
+            "kappa": 0.9261973396311602,
+            "raw": 0.966
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.344,
+            "correct": 172,
+            "n": 500,
+            "wilson95": [
+              0.3036929655617379,
+              0.38668582866226636
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.33269999999487937,
+            0.41722133380143184
+          ]
+        },
+        "T@1024": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 30,
+            "n": 30,
+            "wilson95": [
+              0.8864866068260314,
+              1.0
+            ]
+          },
+          "accuracy": 0.1,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.11538461538461539,
+              "correct": 9,
+              "n": 78,
+              "wilson95": [
+                0.06190510625533323,
+                0.20497013198481623
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.09774436090225563,
+              "correct": 13,
+              "n": 133,
+              "wilson95": [
+                0.05801480382428815,
+                0.16005842542852136
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.125,
+              "correct": 7,
+              "n": 56,
+              "wilson95": [
+                0.061890686957171204,
+                0.23625476558190134
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30,
+              "wilson95": [
+                0.01847702379127039,
+                0.21323458362616918
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.11428571428571428,
+              "correct": 8,
+              "n": 70,
+              "wilson95": [
+                0.05906128946637644,
+                0.2096422158215437
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133,
+              "wilson95": [
+                0.04680842545348757,
+                0.14203389648166995
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.9022727272727272,
+            "containment_accuracy": 0.09318181818181819,
+            "kappa": 0.2272504492729941,
+            "n": 440
+          },
+          "correct": 50,
+          "delivered_prompt_tokens_mean": 828.464,
+          "delivered_prompt_tokens_median": 863.0,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_turns_kept": 0.0020876826722338203,
+            "messages_kept": 4.482,
+            "messages_total": 493.5,
+            "policy_seconds": 0.2688294
+          },
+          "generation_seconds_mean": 8.105252,
+          "judge_agreement": {
+            "kappa": 0.9043062200956937,
+            "raw": 0.984
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.084,
+            "correct": 42,
+            "n": 500,
+            "wilson95": [
+              0.06274413680383038,
+              0.1115993144601811
+            ]
+          },
+          "unterminated_thinking": 0,
+          "wilson95": [
+            0.07667756273730172,
+            0.1294219096319401
+          ]
+        },
+        "T@4096": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 30,
+            "n": 30,
+            "wilson95": [
+              0.8864866068260314,
+              1.0
+            ]
+          },
+          "accuracy": 0.114,
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.15384615384615385,
+              "correct": 12,
+              "n": 78,
+              "wilson95": [
+                0.09025504908387115,
+                0.24993266533226333
+              ]
+            },
+            "multi-session": {
+              "accuracy": 0.09774436090225563,
+              "correct": 13,
+              "n": 133,
+              "wilson95": [
+                0.05801480382428815,
+                0.16005842542852136
+              ]
+            },
+            "single-session-assistant": {
+              "accuracy": 0.125,
+              "correct": 7,
+              "n": 56,
+              "wilson95": [
+                0.061890686957171204,
+                0.23625476558190134
+              ]
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30,
+              "wilson95": [
+                0.01847702379127039,
+                0.21323458362616918
+              ]
+            },
+            "single-session-user": {
+              "accuracy": 0.17142857142857143,
+              "correct": 12,
+              "n": 70,
+              "wilson95": [
+                0.1008772464052925,
+                0.2761664803214543
+              ]
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133,
+              "wilson95": [
+                0.04680842545348757,
+                0.14203389648166995
+              ]
+            }
+          },
+          "cap_hits": 0,
+          "completion_tokens_mean": null,
+          "containment_vs_judge": {
+            "agreement": 0.9136363636363637,
+            "containment_accuracy": 0.10227272727272728,
+            "kappa": 0.41436077057793397,
+            "n": 440
+          },
+          "correct": 57,
+          "delivered_prompt_tokens_mean": 3844.414,
+          "delivered_prompt_tokens_median": 3909.5,
+          "diag_counts": {},
+          "diag_means": {
+            "evidence_turns_kept": 0.038065414057063325,
+            "messages_kept": 17.692,
+            "messages_total": 493.5,
+            "policy_seconds": 0.1929006
+          },
+          "generation_seconds_mean": 14.9724,
+          "judge_agreement": {
+            "kappa": 0.904312324572595,
+            "raw": 0.982
+          },
+          "judge_failures": 0,
+          "missing_or_failed_generations": 0,
+          "n": 500,
+          "self_judge": {
+            "accuracy": 0.096,
+            "correct": 48,
+            "n": 500,
+            "wilson95": [
+              0.07317350466541905,
+              0.1249869624275152
+            ]
+          },
+          "unterminated_thinking": 2,
+          "wilson95": [
+            0.08903690099400287,
+            0.1448490898423155
+          ]
+        }
+      },
+      "gen_journal": "grid.jsonl",
+      "primary": {
+        "alpha": 0.05,
+        "contrasts_vs_T_at_4096": {
+          "C": {
+            "arm_only": 91,
+            "both": 35,
+            "difference": 0.138,
+            "holm_p": 3.69703787625371e-11,
+            "mcnemar_p": 3.69703787625371e-11,
+            "n": 500,
+            "neither": 352,
+            "newcombe95": [
+              0.09816480411620884,
+              0.17819869569926705
+            ],
+            "phi": 0.29911291063940504,
+            "reference_only": 22,
+            "rejected_at_0.05": true
+          },
+          "M": {
+            "arm_only": 307,
+            "both": 48,
+            "difference": 0.596,
+            "holm_p": 3.5727455073084795e-78,
+            "mcnemar_p": 1.1909151691028265e-78,
+            "n": 500,
+            "neither": 136,
+            "newcombe95": [
+              0.5471347439633806,
+              0.6392753495070226
+            ],
+            "phi": 0.10443053717226235,
+            "reference_only": 9,
+            "rejected_at_0.05": true
+          },
+          "S": {
+            "arm_only": 139,
+            "both": 48,
+            "difference": 0.26,
+            "holm_p": 8.772267796488916e-31,
+            "mcnemar_p": 4.386133898244458e-31,
+            "n": 500,
+            "neither": 304,
+            "newcombe95": [
+              0.21789181422694603,
+              0.3017421943640788
+            ],
+            "phi": 0.3470212910383296,
+            "reference_only": 9,
+            "rejected_at_0.05": true
+          }
+        },
+        "family": [
+          "S",
+          "C",
+          "M"
+        ]
+      },
+      "primary_judge": "gptoss",
+      "schema": "paper5-claims-v1",
+      "secondary": {
+        "C_vs_T@1024": {
+          "arm_only": 32,
+          "both": 30,
+          "difference": 0.023999999999999994,
+          "mcnemar_p": 0.12634707581392135,
+          "n": 500,
+          "neither": 418,
+          "newcombe95": [
+            -0.004396947843826379,
+            0.052992531286370166
+          ],
+          "phi": 0.48141852988827555,
+          "reference_only": 20
+        },
+        "Cw_vs_C@4096": {
+          "arm_only": 54,
+          "both": 46,
+          "difference": -0.05199999999999999,
+          "mcnemar_p": 0.030414804699519814,
+          "n": 500,
+          "neither": 320,
+          "newcombe95": [
+            -0.09709492342192785,
+            -0.006756924158832174
+          ],
+          "phi": 0.23954233022320554,
+          "reference_only": 80
+        },
+        "Cw_vs_T@1024": {
+          "arm_only": 12,
+          "both": 41,
+          "difference": 0.0059999999999999915,
+          "mcnemar_p": 0.6636238098144531,
+          "n": 500,
+          "neither": 438,
+          "newcombe95": [
+            -0.012705539804629351,
+            0.025059759109097326
+          ],
+          "phi": 0.7731348766298692,
+          "reference_only": 9
+        },
+        "Cw_vs_T@4096": {
+          "arm_only": 53,
+          "both": 47,
+          "difference": 0.08600000000000001,
+          "mcnemar_p": 3.382168502403561e-08,
+          "n": 500,
+          "neither": 390,
+          "newcombe95": [
+            0.056143281128480764,
+            0.11715973947537217
+          ],
+          "phi": 0.5600808396196332,
+          "reference_only": 10
+        },
+        "M_vs_T@1024": {
+          "arm_only": 153,
+          "both": 42,
+          "difference": 0.29000000000000004,
+          "mcnemar_p": 6.769507367528149e-36,
+          "n": 500,
+          "neither": 297,
+          "newcombe95": [
+            0.2469448149455239,
+            0.332515153088027
+          ],
+          "phi": 0.30753463803927356,
+          "reference_only": 8
+        },
+        "Mbm25_vs_M@4096": {
+          "arm_only": 55,
+          "both": 311,
+          "difference": 0.02200000000000002,
+          "mcnemar_p": 0.31487989103762243,
+          "n": 500,
+          "neither": 90,
+          "newcombe95": [
+            -0.016974011128425143,
+            0.060930839455296204
+          ],
+          "phi": 0.5089083872746709,
+          "reference_only": 44
+        },
+        "Mbm25_vs_T@4096": {
+          "arm_only": 322,
+          "both": 44,
+          "difference": 0.618,
+          "mcnemar_p": 2.52733601390204e-78,
+          "n": 500,
+          "neither": 121,
+          "newcombe95": [
+            0.5679018402752278,
+            0.6619148695288439
+          ],
+          "phi": 0.03233776712632474,
+          "reference_only": 13
+        },
+        "S_vs_T@1024": {
+          "arm_only": 35,
+          "both": 40,
+          "difference": 0.04999999999999999,
+          "mcnemar_p": 0.00024708778460080794,
+          "n": 500,
+          "neither": 415,
+          "newcombe95": [
+            0.024252332808904577,
+            0.07713064451789371
+          ],
+          "phi": 0.6067880364121376,
+          "reference_only": 10
+        },
+        "oracle_gap_on_fit_subset": {
+          "O_minus_arm": {
+            "C": {
+              "arm_only": 109,
+              "both": 44,
+              "difference": 0.694267515923567,
+              "mcnemar_p": 3.0814879110195774e-33,
+              "n": 157,
+              "neither": 4,
+              "newcombe95": [
+                0.6137373879751495,
+                0.758931816547615
+              ],
+              "phi": 0.1008954070446451,
+              "reference_only": 0
+            },
+            "M": {
+              "arm_only": 18,
+              "both": 135,
+              "difference": 0.10828025477707004,
+              "mcnemar_p": 7.62939453125e-05,
+              "n": 157,
+              "neither": 3,
+              "newcombe95": [
+                0.05878995592415048,
+                0.1676947058479641
+              ],
+              "phi": 0.2927225315457337,
+              "reference_only": 1
+            },
+            "S": {
+              "arm_only": 82,
+              "both": 71,
+              "difference": 0.5095541401273885,
+              "mcnemar_p": 3.6923274592835773e-22,
+              "n": 157,
+              "neither": 2,
+              "newcombe95": [
+                0.42238620213783595,
+                0.5875408690913086
+              ],
+              "phi": -0.011356536384684203,
+              "reference_only": 2
+            },
+            "T": {
+              "arm_only": 132,
+              "both": 21,
+              "difference": 0.8407643312101911,
+              "mcnemar_p": 3.6734198463196485e-40,
+              "n": 157,
+              "neither": 4,
+              "newcombe95": [
+                0.7699781536014878,
+                0.8870300278711635
+              ],
+              "phi": 0.06353667351380254,
+              "reference_only": 0
+            }
+          },
+          "n_fit": 157
+        },
+        "ranking": {
+          "1024": [
+            "M",
+            "S",
+            "C",
+            "T"
+          ],
+          "4096": [
+            "M",
+            "S",
+            "C",
+            "T"
+          ]
+        }
+      },
+      "secondary_judge": "self"
+    },
+    "diagnostics": {
+      "agreement_denominator": "successful generation and nonempty successful verdict from each compared judge; containment is LongMemEval-only and excludes preference/abstention items",
+      "cells": {
+        "C@1024": {
+          "abstention": {
+            "accuracy": 0.7333333333333333,
+            "correct": 22,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.1794871794871795,
+              "correct": 14,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.06766917293233082,
+              "correct": 9,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.10714285714285714,
+              "correct": 6,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.2,
+              "correct": 6,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.1,
+              "correct": 7,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.47272312257475435,
+              "n": 440,
+              "raw": 0.9045454545454545
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9116399622997171,
+              "n": 500,
+              "raw": 0.982
+            },
+            "self_vs_containment": {
+              "kappa": 0.4702220133912837,
+              "n": 440,
+              "raw": 0.9068181818181819
+            }
+          }
+        },
+        "C@4096": {
+          "abstention": {
+            "accuracy": 0.8333333333333334,
+            "correct": 25,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.28205128205128205,
+              "correct": 22,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.25,
+              "correct": 14,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.26666666666666666,
+              "correct": 8,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.3142857142857143,
+              "correct": 22,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.3007518796992481,
+              "correct": 40,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.6107263796943164,
+              "n": 440,
+              "raw": 0.8681818181818182
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9455147763926423,
+              "n": 500,
+              "raw": 0.98
+            },
+            "self_vs_containment": {
+              "kappa": 0.6071182404912588,
+              "n": 440,
+              "raw": 0.8704545454545455
+            }
+          }
+        },
+        "Cw@1024": {
+          "abstention": {
+            "accuracy": 0.9666666666666667,
+            "correct": 29,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.11538461538461539,
+              "correct": 9,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.19642857142857142,
+              "correct": 11,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.03333333333333333,
+              "correct": 1,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.14285714285714285,
+              "correct": 10,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.3483053182694958,
+              "n": 440,
+              "raw": 0.9022727272727272
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.8973446482343278,
+              "n": 500,
+              "raw": 0.982
+            },
+            "self_vs_containment": {
+              "kappa": 0.3555946104276507,
+              "n": 440,
+              "raw": 0.9090909090909091
+            }
+          }
+        },
+        "Cw@4096": {
+          "abstention": {
+            "accuracy": 0.9,
+            "correct": 27,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.34615384615384615,
+              "correct": 27,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.12030075187969924,
+              "correct": 16,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.30357142857142855,
+              "correct": 17,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.13333333333333333,
+              "correct": 4,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.22857142857142856,
+              "correct": 16,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.15037593984962405,
+              "correct": 20,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 1,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 1,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.502389551639853,
+              "n": 440,
+              "raw": 0.8590909090909091
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.8812664907651714,
+              "n": 500,
+              "raw": 0.964
+            },
+            "self_vs_containment": {
+              "kappa": 0.5038226299694191,
+              "n": 440,
+              "raw": 0.865909090909091
+            }
+          }
+        },
+        "E@None": {
+          "abstention": {
+            "accuracy": 0.9333333333333333,
+            "correct": 28,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.07692307692307693,
+              "correct": 6,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.17857142857142858,
+              "correct": 10,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.1,
+              "correct": 7,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.05263157894736842,
+              "correct": 7,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.31097191351788184,
+              "n": 440,
+              "raw": 0.9295454545454546
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9605885444035732,
+              "n": 500,
+              "raw": 0.994
+            },
+            "self_vs_containment": {
+              "kappa": 0.3302540415704386,
+              "n": 440,
+              "raw": 0.9340909090909091
+            }
+          }
+        },
+        "M@1024": {
+          "abstention": {
+            "accuracy": 0.8666666666666667,
+            "correct": 26,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.47435897435897434,
+              "correct": 37,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.18045112781954886,
+              "correct": 24,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.875,
+              "correct": 49,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.26666666666666666,
+              "correct": 8,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.6714285714285714,
+              "correct": 47,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.22556390977443608,
+              "correct": 30,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.6040227686908004,
+              "n": 440,
+              "raw": 0.8181818181818182
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9319901385700926,
+              "n": 500,
+              "raw": 0.968
+            },
+            "self_vs_containment": {
+              "kappa": 0.6080133403385339,
+              "n": 440,
+              "raw": 0.8227272727272728
+            }
+          }
+        },
+        "M@4096": {
+          "abstention": {
+            "accuracy": 0.8,
+            "correct": 24,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.8461538461538461,
+              "correct": 66,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.48872180451127817,
+              "correct": 65,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.6333333333333333,
+              "correct": 19,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.9,
+              "correct": 63,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.6466165413533834,
+              "correct": 86,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.5370932754880695,
+              "n": 440,
+              "raw": 0.7795454545454545
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9428843407900999,
+              "n": 500,
+              "raw": 0.976
+            },
+            "self_vs_containment": {
+              "kappa": 0.5280606717226436,
+              "n": 440,
+              "raw": 0.775
+            }
+          }
+        },
+        "Mbm25@4096": {
+          "abstention": {
+            "accuracy": 0.6666666666666666,
+            "correct": 20,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.9102564102564102,
+              "correct": 71,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.43609022556390975,
+              "correct": 58,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.5666666666666667,
+              "correct": 17,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.9571428571428572,
+              "correct": 67,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.7293233082706767,
+              "correct": 97,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.5004047126540159,
+              "n": 440,
+              "raw": 0.7704545454545455
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.882656653367754,
+              "n": 500,
+              "raw": 0.952
+            },
+            "self_vs_containment": {
+              "kappa": 0.49297413407321206,
+              "n": 440,
+              "raw": 0.7659090909090909
+            }
+          }
+        },
+        "O@4096": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 5,
+            "n": 5
+          },
+          "by_type": {
+            "multi-session": {
+              "accuracy": 1.0,
+              "correct": 4,
+              "n": 4
+            },
+            "single-session-assistant": {
+              "accuracy": 1.0,
+              "correct": 56,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.7333333333333333,
+              "correct": 11,
+              "n": 15
+            },
+            "single-session-user": {
+              "accuracy": 1.0,
+              "correct": 64,
+              "n": 64
+            },
+            "temporal-reasoning": {
+              "accuracy": 1.0,
+              "correct": 18,
+              "n": 18
+            }
+          },
+          "empty_visible_answers": 1,
+          "empty_visible_answers_credited": 0,
+          "generated": 157,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 157,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 1,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.0,
+              "n": 137,
+              "raw": 0.7372262773722628
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.6549450549450547,
+              "n": 157,
+              "raw": 0.9745222929936306
+            },
+            "self_vs_containment": {
+              "kappa": 0.0,
+              "n": 137,
+              "raw": 0.7372262773722628
+            }
+          }
+        },
+        "S@1024": {
+          "abstention": {
+            "accuracy": 0.9333333333333333,
+            "correct": 28,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.23076923076923078,
+              "correct": 18,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.10526315789473684,
+              "correct": 14,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.19642857142857142,
+              "correct": 11,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.13333333333333333,
+              "correct": 4,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.17142857142857143,
+              "correct": 12,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.12030075187969924,
+              "correct": 16,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.523763709832596,
+              "n": 440,
+              "raw": 0.8977272727272727
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9081803005008346,
+              "n": 500,
+              "raw": 0.978
+            },
+            "self_vs_containment": {
+              "kappa": 0.5308470541559211,
+              "n": 440,
+              "raw": 0.9022727272727272
+            }
+          }
+        },
+        "S@4096": {
+          "abstention": {
+            "accuracy": 0.8,
+            "correct": 24,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.5769230769230769,
+              "correct": 45,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.18045112781954886,
+              "correct": 24,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.44642857142857145,
+              "correct": 25,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.4,
+              "correct": 12,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.44285714285714284,
+              "correct": 31,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.37593984962406013,
+              "correct": 50,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.592294316829871,
+              "n": 440,
+              "raw": 0.8159090909090909
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9261973396311602,
+              "n": 500,
+              "raw": 0.966
+            },
+            "self_vs_containment": {
+              "kappa": 0.5986143187066975,
+              "n": 440,
+              "raw": 0.8204545454545454
+            }
+          }
+        },
+        "T@1024": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 30,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.11538461538461539,
+              "correct": 9,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.09774436090225563,
+              "correct": 13,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.125,
+              "correct": 7,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.11428571428571428,
+              "correct": 8,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 0,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 0,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.2272504492729941,
+              "n": 440,
+              "raw": 0.9022727272727272
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.9043062200956937,
+              "n": 500,
+              "raw": 0.984
+            },
+            "self_vs_containment": {
+              "kappa": 0.25559604372722566,
+              "n": 440,
+              "raw": 0.9113636363636364
+            }
+          }
+        },
+        "T@4096": {
+          "abstention": {
+            "accuracy": 1.0,
+            "correct": 30,
+            "n": 30
+          },
+          "by_type": {
+            "knowledge-update": {
+              "accuracy": 0.15384615384615385,
+              "correct": 12,
+              "n": 78
+            },
+            "multi-session": {
+              "accuracy": 0.09774436090225563,
+              "correct": 13,
+              "n": 133
+            },
+            "single-session-assistant": {
+              "accuracy": 0.125,
+              "correct": 7,
+              "n": 56
+            },
+            "single-session-preference": {
+              "accuracy": 0.06666666666666667,
+              "correct": 2,
+              "n": 30
+            },
+            "single-session-user": {
+              "accuracy": 0.17142857142857143,
+              "correct": 12,
+              "n": 70
+            },
+            "temporal-reasoning": {
+              "accuracy": 0.08270676691729323,
+              "correct": 11,
+              "n": 133
+            }
+          },
+          "empty_visible_answers": 2,
+          "empty_visible_answers_credited": 0,
+          "generated": 500,
+          "generation_failures": 0,
+          "judge_failures_on_generated": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "n": 500,
+          "noncanonical_verdicts": {
+            "gptoss": 0,
+            "self": 0
+          },
+          "unterminated_thinking": 2,
+          "valid_pair_agreement": {
+            "gptoss_vs_containment": {
+              "kappa": 0.41436077057793397,
+              "n": 440,
+              "raw": 0.9136363636363637
+            },
+            "gptoss_vs_self": {
+              "kappa": 0.904312324572595,
+              "n": 500,
+              "raw": 0.982
+            },
+            "self_vs_containment": {
+              "kappa": 0.44898710865561714,
+              "n": 440,
+              "raw": 0.9227272727272727
+            }
+          }
+        }
+      },
+      "interpretation": "agreement is not correctness validation; accuracy still counts explicit failures as incorrect",
+      "schema": "p5-valid-verdict-diagnostics-v1"
+    }
+  },
+  "schema": "p5-public-results-v1"
+}
